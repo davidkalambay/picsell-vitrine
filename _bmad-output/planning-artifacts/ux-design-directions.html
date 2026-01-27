@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Picsell Agency - Design Directions Showcase</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <style>
+        body { background-color: #0A0A0A; color: #E5E4E2; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        .serif { font-family: 'Playfair Display', serif; }
+        .mono { font-family: 'Roboto Mono', monospace; }
+        .gold-glow { box-shadow: 0 0 20px rgba(212, 175, 55, 0.2); }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .direction-card { transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; }
+        .direction-card:hover { transform: translateY(-10px); border-color: #D4AF37; }
+        .gear-spinning { animation: spin 20s linear infinite; }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body class="p-8 lg:p-16">
+    <header class="mb-16 border-b border-white/10 pb-8">
+        <h1 class="serif text-5xl mb-4 text-[#D4AF37]">Design Directions Showcase</h1>
+        <p class="text-xl text-gray-400 max-w-3xl">Explorez 6 directions visuelles pour la "Maison de Haute Horlogerie Digitale". Chaque concept explore un équilibre différent entre luxe, technique et innovation.</p>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Direction 1: The Grand Mechanism -->
+        <div class="direction-card glass p-6 rounded-lg relative overflow-hidden group">
+            <div class="absolute -right-8 -top-8 opacity-10 group-hover:opacity-30 transition-opacity">
+                <svg width="200" height="200" viewBox="0 0 100 100" class="gear-spinning fill-white">
+                    <path d="M50 35c-8.3 0-15 6.7-15 15s6.7 15 15 15 15-6.7 15-15-6.7-15-15-15zm0 25c-5.5 0-10-4.5-10-10s4.5-10 10-10 10 4.5 10 10-4.5 10-10 10zM92.5 45H85c-.6-3.8-1.8-7.3-3.6-10.6l5.3-5.3c.4-.4.4-1.1 0-1.5l-5.7-5.7c-.4-.4-1.1-.4-1.5 0l-5.3 5.3c-3-1.8-6.4-3-10.1-3.6V12.5c0-.6-.4-1.1-1-1.1h-8c-.6 0-1.1.4-1.1 1.1V16c-3.8.6-7.3 1.8-10.6 3.6l-5.3-5.3c-.4-.4-1.1-.4-1.5 0l-5.7 5.7c-.4.4-.4 1.1 0 1.5l5.3 5.3c-1.8 3.3-3 6.8-3.6 10.6H17.5c-.6 0-1.1.4-1.1 1v8c0 .6.4 1.1 1.1 1.1H25c.6 3.8 1.8 7.3 3.6 10.6l-5.3 5.3c-.4.4-.4 1.1 0 1.5l5.7 5.7c.4.4 1.1.4 1.5 0l5.3-5.3c3.3 1.8 6.8 3 10.6 3.6v8.5c0 .6.4 1.1 1.1 1.1h8c.6 0 1-.4 1.1-1.1V84c3.8-.6 7.3-1.8 10.6-3.6l5.3 5.3c.4.4 1.1.4 1.5 0l5.7-5.7c.4-.4.4-1.1 0-1.5l-5.3-5.3c1.8-3.3 3-6.8 3.6-10.6h8.5c.6 0 1.1-.4 1.1-1.1v-8c.1-.6-.4-1.1-1-1.1z"/>
+                </svg>
+            </div>
+            <h3 class="serif text-2xl mb-2 text-[#D4AF37]">01. The Grand Mechanism</h3>
+            <p class="text-gray-400 mb-4">Focus sur le scroll-bound pur. Le site est un immense mouvement horloger SVG qui s'anime au fil de la lecture.</p>
+            <ul class="text-xs mono space-y-1 opacity-60">
+                <li>+ Immersion totale</li>
+                <li>+ Preuve technique immédiate</li>
+                <li>- Risque de surcharge CPU</li>
+            </ul>
+        </div>
+
+        <!-- Direction 2: Glass-Engine Pro -->
+        <div class="direction-card glass p-6 rounded-lg group">
+            <div class="h-32 mb-4 rounded-md border border-white/20 bg-gradient-to-br from-white/5 to-white/0 flex items-center justify-center overflow-hidden">
+                <div class="w-24 h-24 glass rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <span class="mono text-[8px] text-orange-400">DEBUG_MODE</span>
+                </div>
+            </div>
+            <h3 class="serif text-2xl mb-2 text-white">02. Glass-Engine Pro</h3>
+            <p class="text-gray-400 mb-4">Design type "Schéma Technique". Fond transparent révélant des lignes de code et des flux d'agents IA en permanence.</p>
+            <ul class="text-xs mono space-y-1 opacity-60">
+                <li>+ Transparence BMAD</li>
+                <li>+ Look Geek-Luxury</li>
+                <li>- Lisibilité complexe si non maîtrisé</li>
+            </ul>
+        </div>
+
+        <!-- Direction 3: Midnight Minimal -->
+        <div class="direction-card glass p-6 rounded-lg">
+            <div class="flex flex-col space-y-2 mb-6">
+                <div class="h-1 w-full bg-white/10"></div>
+                <div class="h-1 w-2/3 bg-white/10"></div>
+                <div class="h-1 w-1/2 bg-[#D4AF37]"></div>
+            </div>
+            <h3 class="serif text-2xl mb-2">03. Midnight Minimal</h3>
+            <p class="text-gray-400 mb-4">Luxe par le vide. Typographie massive, noir profond, et une seule animation d'engrenage solitaire et parfaite.</p>
+            <ul class="text-xs mono space-y-1 opacity-60">
+                <li>+ Très haute gamme (Premium)</li>
+                <li>+ Focus sur le message</li>
+                <li>- Peut paraître trop simple sans finition</li>
+            </ul>
+        </div>
+
+        <!-- Direction 4: Swiss Grid System -->
+        <div class="direction-card glass p-6 rounded-lg border-l-4 border-[#E5E4E2]">
+            <div class="grid grid-cols-4 gap-1 mb-4 h-24 opacity-20">
+                <div class="border border-white/50"></div><div class="border border-white/50"></div><div class="border border-white/50"></div><div class="border border-white/50"></div>
+            </div>
+            <h3 class="serif text-2xl mb-2">04. Swiss Precision</h3>
+            <p class="text-gray-400 mb-4">Structure ultra-rigoureuse. Annotations techniques sur les marges, mesures de performance live affichées en permanence.</p>
+            <ul class="text-xs mono space-y-1 opacity-60">
+                <li>+ Crédibilité technique infinie</li>
+                <li>+ Maîtrise apparente</li>
+                <li>- Sensation de "froid" si trop rigide</li>
+            </ul>
+        </div>
+
+        <!-- Direction 5: AEO Horizon -->
+        <div class="direction-card glass p-6 rounded-lg border-b-4 border-orange-500 shadow-[0_10px_30px_-15px_rgba(249,115,22,0.3)]">
+            <div class="h-32 mb-4 bg-orange-600/5 rounded flex items-center justify-center">
+                <div class="text-orange-500 animate-pulse">● AEO_SYNC</div>
+            </div>
+            <h3 class="serif text-2xl mb-2">05. AEO Horizon</h3>
+            <p class="text-gray-400 mb-4">Focus sur le futur de l'IA. Gradients orange chauds, effets de lueur (glows) et typographie futuriste (Sans-Serif large).</p>
+            <ul class="text-xs mono space-y-1 opacity-60">
+                <li>+ Énergie et Dynamisme</li>
+                <li>+ Spécialisation IA marquée</li>
+                <li>- Moins "Horlogerie Traditionnelle"</li>
+            </ul>
+        </div>
+
+        <!-- Direction 6: Atomic Horology -->
+        <div class="direction-card glass p-6 rounded-lg bg-gradient-to-t from-gray-950 to-transparent">
+            <div class="relative h-24 mb-4">
+                <div class="absolute inset-0 flex items-center justify-center">
+                   <div class="w-16 h-1 bg-[#D4AF37] rotate-45"></div>
+                   <div class="w-12 h-1 bg-[#E5E4E2] -rotate-12"></div>
+                </div>
+            </div>
+            <h3 class="serif text-2xl mb-2">06. Atomic Horology</h3>
+            <p class="text-gray-400 mb-4">Mix entre mécanique ancienne et physique atomique. Particules en mouvement couplées à des engrenages SVG.</p>
+            <ul class="text-xs mono space-y-1 opacity-60">
+                <li>+ Effet WOW garanti</li>
+                <li>+ Visionnaire</li>
+                <li>- Complexe à coder (WebGL recommandé)</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer class="mt-24 border-t border-white/10 pt-8 text-center">
+        <p class="serif italic text-2xl text-gray-500">"Qui peut le plus, peut le moins."</p>
+        <p class="text-gray-600 mt-2">Picsell Agency © 2026 - Maison de Haute Horlogerie Digitale</p>
+    </footer>
+</body>
+</html>
