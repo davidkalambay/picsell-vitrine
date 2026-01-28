@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 interface LogoProps {
@@ -8,46 +9,22 @@ interface LogoProps {
 export const Logo: React.FC<LogoProps> = ({ className, variant = "full" }) => {
     return (
         <div className={`flex items-center gap-3 ${className}`}>
-            {/* The "P" Chrono-Icon (SVG Procedural) */}
-            <div className="relative w-10 h-10 group">
-                <svg
-                    viewBox="0 0 100 100"
-                    className="w-full h-full drop-shadow-[0_0_12px_rgba(212,175,55,0.4)]"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    {/* Outer Precision Ring */}
-                    <circle cx="50" cy="50" r="48" stroke="#E5E4E2" strokeWidth="0.5" opacity="0.2" />
-
-                    {/* The "P" Structure - Bold & Visible */}
-                    <g className="transition-all duration-500 group-hover:drop-shadow-[0_0_8px_rgba(212,175,55,0.6)]">
-                        {/* Stem of the P */}
-                        <rect x="15" y="15" width="8" height="70" rx="4" fill="#D4AF37" />
-
-                        {/* Bowl of the P - Reinterpreted as Horological Mechanism */}
-                        <path
-                            d="M23 15 H55 C77 15 77 55 55 55 H23 V15Z"
-                            fill="url(#goldGradient)"
-                        />
-
-                        {/* Cutout in the bowl for mechanical transparency */}
-                        <circle cx="50" cy="35" r="12" fill="#0A0A0A" />
-                    </g>
-
-                    {/* Mechanical Heart - Pulsing Discreetly */}
-                    <g className="animate-pulse" style={{ animationDuration: '3s' }}>
-                        <circle cx="50" cy="35" r="8" stroke="#D4AF37" strokeWidth="1" opacity="0.8" />
-                        <circle cx="50" cy="35" r="4" fill="#E5E4E2" />
-                    </g>
-
-                    {/* Definition of Gradients */}
-                    <defs>
-                        <linearGradient id="goldGradient" x1="15" y1="15" x2="85" y2="85" gradientUnits="userSpaceOnUse">
-                            <stop offset="0%" stopColor="#D4AF37" />
-                            <stop offset="100%" stopColor="#AA8A2E" />
-                        </linearGradient>
-                    </defs>
-                </svg>
+            <div className="relative group">
+                {/* Original Icon with Color Harmonization Filter */}
+                <div className="relative w-10 h-10 overflow-hidden rounded-full border border-[#D4AF37]/20">
+                    <Image
+                        src="/assets/icon-picsell.png"
+                        alt="Picsell Agency Icon"
+                        fill
+                        className="object-cover transition-all duration-500 group-hover:scale-110"
+                        style={{
+                            filter: 'sepia(100%) saturate(300%) hue-rotate(-15deg) brightness(0.9)',
+                            /* This filter shifts the orange/red toward a warmer gold palette */
+                        }}
+                    />
+                    {/* Subtle Pulse Overlay for the "Mechanical Heart" feel */}
+                    <div className="absolute inset-0 bg-[#D4AF37]/10 animate-pulse mix-blend-overlay pointer-events-none" />
+                </div>
             </div>
 
             {variant === "full" && (
