@@ -10,20 +10,14 @@ export const Logo: React.FC<LogoProps> = ({ className, variant = "full" }) => {
     return (
         <div className={`flex items-center gap-3 ${className}`}>
             <div className="relative group">
-                {/* Original Icon with Color Harmonization Filter */}
-                <div className="relative w-10 h-10 overflow-hidden rounded-full border border-[#D4AF37]/20">
+                {/* PURE ORIGINAL ASSET - No filters */}
+                <div className="relative w-10 h-10 overflow-hidden rounded-lg">
                     <Image
                         src="/assets/icon-picsell.png"
                         alt="Picsell Agency Icon"
                         fill
-                        className="object-cover transition-all duration-500 group-hover:scale-110"
-                        style={{
-                            filter: 'sepia(100%) saturate(300%) hue-rotate(-15deg) brightness(0.9)',
-                            /* This filter shifts the orange/red toward a warmer gold palette */
-                        }}
+                        className="object-contain transition-transform duration-500 group-hover:scale-110"
                     />
-                    {/* Subtle Pulse Overlay for the "Mechanical Heart" feel */}
-                    <div className="absolute inset-0 bg-[#D4AF37]/10 animate-pulse mix-blend-overlay pointer-events-none" />
                 </div>
             </div>
 
