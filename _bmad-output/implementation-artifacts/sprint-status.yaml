@@ -1,0 +1,70 @@
+# generated: 2026-01-28
+# project: picsell.agency
+# project_key: PA
+# tracking_system: file-system
+# story_location: _bmad-output/implementation-artifacts
+
+# STATUS DEFINITIONS:
+# ==================
+# Epic Status:
+#   - backlog: Epic not yet started
+#   - in-progress: Epic actively being worked on
+#   - done: All stories in epic completed
+#
+# Epic Status Transitions:
+#   - backlog → in-progress: Automatically when first story is created (via create-story)
+#   - in-progress → done: Manually when all stories reach 'done' status
+#
+# Story Status:
+#   - backlog: Story only exists in epic file
+#   - ready-for-dev: Story file created in stories folder
+#   - in-progress: Developer actively working on implementation
+#   - review: Ready for code review (via Dev's code-review workflow)
+#   - done: Story completed
+#
+# Retrospective Status:
+#   - optional: Can be completed but not required
+#   - done: Retrospective has been completed
+#
+# WORKFLOW NOTES:
+# ===============
+# - Epic transitions to 'in-progress' automatically when first story is created
+# - Stories can be worked in parallel if team capacity allows
+# - SM typically creates next story after previous one is 'done' to incorporate learnings
+# - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
+
+generated: 2026-01-28
+project: picsell.agency
+project_key: PA
+tracking_system: file-system
+story_location: _bmad-output/implementation-artifacts
+
+development_status:
+  epic-1-fondations-vitrine-luxury-tech: in-progress
+  1-1-initialization-du-mecanisme-nextjs-stack: review
+  1-2-le-grand-mecanisme-animations-dengrenages: review
+  1-3-configuration-aeo-analytics-ga4: backlog
+  epic-1-retrospective: optional
+
+  epic-2-navigateur-interactif-des-3-piliers: backlog
+  2-1-navigation-spa-midnight-flow: backlog
+  2-2-catalogue-des-complications-services: backlog
+  2-3-catalogue-dynamique-mdx-content: backlog
+  epic-2-retrospective: optional
+
+  epic-3-transparence-bmad-effet-glass-engine: backlog
+  3-1-manifeste-bmad-stack-technique: backlog
+  3-2-interaction-glass-engine-vision-transparente: backlog
+  epic-3-retrospective: optional
+
+  epic-4-portfolio-garde-temps-preuve-roi: backlog
+  4-1-presentation-des-garde-temps-portfolio: backlog
+  4-2-indicateurs-de-performance-roi-metrics: backlog
+  4-3-showcase-dashboard-roi-video-demo: backlog
+  epic-4-retrospective: optional
+
+  epic-5-moteur-conversion-dual-accessibilite: backlog
+  5-1-le-tunnel-precision-upwork-james: backlog
+  5-2-le-tunnel-proximite-direct-jean-luc: backlog
+  5-3-rigueur-inclusive-wcag-aa-accessibility: backlog
+  epic-5-retrospective: optional

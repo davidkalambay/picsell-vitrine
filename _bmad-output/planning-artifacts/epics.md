@@ -97,6 +97,7 @@ So that I have a high-performance foundation for the agency showcase.
 **When** running the initialization command and installing dependencies
 **Then** Next.js 15+, TypeScript (strict), GSAP (3.14), Framer Motion (v12), and Zustand (v5) are installed
 **And** the project structure follows the architecture document (src/app, src/components, etc.)
+**And** initial GitHub Actions workflows (`.github/workflows/deploy.yml`) are configured for Vercel deployment from Day 1.
 
 ### Story 1.2: Le Grand Mécanisme (Animations d'engrenages)
 
@@ -110,7 +111,8 @@ So that I immediately feel the "Luxury Tech" precision of the agency.
 **When** the user scrolls down the page
 **Then** the SVG gears rotate with a speed proportional to the scroll velocity
 **And** the animation maintains a consistent 60 FPS
-**And** GSAP ScrollTrigger is used for precise synchronization
+**And** GSAP ScrollTrigger is used for precise synchronization of all mechanical parts (no Lottie for synchronous gears).
+**And** the animation logic is isolated in `src/components/animations/` following the architecture rules.
 
 ### Story 1.3: Configuration AEO & Analytics (GA4)
 
@@ -280,6 +282,7 @@ So that I can request a consultation without technical friction.
 **Then** he can select which pillar (Dev, Marketing, or Auto) he is interested in
 **And** the form validates inputs on both client and server sides
 **And** a success message appears: "Votre mécanisme de croissance est en cours de réglage".
+**And** in case of failure, a "Midnight Luxury" error message is displayed (e.g., "Le mécanisme a rencontré une résistance imprévue. Veuillez relancer la commande dans un instant.") keeping with the prestige aesthetic.
 
 ### Story 5.3: Rigueur Inclusive (WCAG AA Accessibility)
 
