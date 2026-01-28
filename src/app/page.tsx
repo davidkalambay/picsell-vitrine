@@ -1,8 +1,18 @@
 import { HeroMechanicalEngine } from "@/components/animations/HeroMechanicalEngine";
+import { Logo } from "@/components/ui/Logo";
 
 export default function Home() {
   return (
     <main className="relative flex min-h-screen flex-col bg-[#0A0A0A] overflow-hidden">
+      {/* Absolute Header for Logo */}
+      <header className="absolute top-0 left-0 w-full z-30 p-8 flex justify-between items-center">
+        <Logo />
+        <div className="hidden md:flex gap-8 font-mono text-[10px] text-[#E5E4E2]/40 uppercase tracking-[0.2em]">
+          <span>// Heritage_Suisse</span>
+          <span>// IA_Supervisée</span>
+        </div>
+      </header>
+
       {/* The Mechanical Engine - Proving our technical mastery even in Coming Soon */}
       <section className="absolute inset-0 z-0">
         <div className="opacity-40 scale-110 blur-[2px]">
