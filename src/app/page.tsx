@@ -31,13 +31,13 @@ export default function Home() {
           </h2>
 
           <h1 className="text-5xl md:text-7xl font-serif tracking-tight text-[#E5E4E2] leading-tight">
-            L'horlogerie digitale <br />
-            <span className="italic font-light">de haute précision</span>
+            L'ingénierie de <br />
+            <span className="italic font-light text-[#D4AF37]">l'image qui vend.</span>
           </h1>
 
           <p className="max-w-xl mx-auto text-[#E5E4E2]/70 text-lg font-light leading-relaxed">
-            Picsell Agency règle ses derniers engrenages. Nous fusionnons l'IA et l'expertise humaine pour une croissance sans friction.
-            Prêt pour la métamorphose ?
+            Picsell Agency réinvente la conversion digitale. La puissance du pixel, la précision d'un mouvement d'horlogerie.
+            Prêt pour l'ajustement final ?
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-8">
