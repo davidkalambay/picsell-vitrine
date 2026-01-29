@@ -1,6 +1,6 @@
 # Story 1.2: Le Grand Mécanisme (Animations d'engrenages)
 
-Status: review
+Status: done
 
 <!-- Note: Validation is optional. Run validate-create-story for quality check before dev-story. -->
 

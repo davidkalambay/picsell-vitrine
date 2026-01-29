@@ -41,9 +41,9 @@ story_location: _bmad-output/implementation-artifacts
 
 development_status:
   epic-1-fondations-vitrine-luxury-tech: in-progress
-  1-1-initialization-du-mecanisme-nextjs-stack: review
-  1-2-le-grand-mecanisme-animations-dengrenages: review
-  1-3-configuration-aeo-analytics-ga4: backlog
+  1-1-initialization-du-mecanisme-nextjs-stack: done
+  1-2-le-grand-mecanisme-animations-dengrenages: done
+  1-3-configuration-aeo-analytics-ga4: done
   epic-1-retrospective: optional
 
   epic-2-navigateur-interactif-des-3-piliers: backlog

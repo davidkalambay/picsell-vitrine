@@ -58,6 +58,12 @@ _This file contains critical rules and patterns that AI agents must follow when 
 - **🛑 PAS de clés API visibles :** Utiliser `.env.local` et les `Route Handlers` Next.js pour masquer les clés GA4/Email.
 - **Performance :** Toujours vérifier le score Lighthouse/LCP après avoir ajouté une nouvelle animation SVG lourde.
 
+### Git & Workflow
+- **Branch Strategy :**
+    - `dev` : Branche active pour tout le développement et l'implémentation des stories.
+    - `main` : Réservée exclusivement à la page "Coming Soon" et à la production.
+- **Workflow :** Toujours s'assurer d'être sur la branche `dev` avant d'écrire du code applicatif.
+
 ---
 
 ## Usage Guidelines
