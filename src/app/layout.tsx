@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { ClientTracker } from "@/components/animations/ClientTracker";
+import { Navbar } from "@/components/ui/Navbar";
+import { PageTransition } from "@/components/animations/PageTransition";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -47,7 +49,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <Navbar />
+        <PageTransition>
+          {children}
+        </PageTransition>
         <ClientTracker />
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || "G-XXXXXXXXXX"} />
       </body>

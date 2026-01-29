@@ -40,16 +40,16 @@ tracking_system: file-system
 story_location: _bmad-output/implementation-artifacts
 
 development_status:
-  epic-1-fondations-vitrine-luxury-tech: in-progress
+  epic-1-fondations-vitrine-luxury-tech: done
   1-1-initialization-du-mecanisme-nextjs-stack: done
   1-2-le-grand-mecanisme-animations-dengrenages: done
   1-3-configuration-aeo-analytics-ga4: done
   epic-1-retrospective: optional
 
-  epic-2-navigateur-interactif-des-3-piliers: backlog
-  2-1-navigation-spa-midnight-flow: backlog
-  2-2-catalogue-des-complications-services: backlog
-  2-3-catalogue-dynamique-mdx-content: backlog
+  epic-2-navigateur-interactif-des-3-piliers: done
+  2-1-navigation-spa-midnight-flow: done
+  2-2-catalogue-des-complications-services: done
+  2-3-catalogue-dynamique-mdx-content: done
   epic-2-retrospective: optional
 
   epic-3-transparence-bmad-effet-glass-engine: backlog
