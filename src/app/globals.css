@@ -1,30 +1,37 @@
 @import "tailwindcss";
 
 :root {
-  --background: #FFFFFF;
-  --foreground: #1A1A1A;
+  --bg: #FFFFFF;
   --blue: #0089D0;
   --cyan: #3DBCC7;
   --orange: #F37021;
   --yellow: #FDB913;
   --black: #1A1A1A;
-  --glass-bg: rgba(255, 255, 255, 0.95);
+  --text: #1A1A1A;
+  --glass-bg: rgba(255, 255, 255, 0.85);
   --glass-border: rgba(255, 255, 255, 0.6);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-blue: var(--blue);
-  --color-cyan: var(--cyan);
-  --color-orange: var(--orange);
-  --color-yellow: var(--yellow);
-  --color-black: var(--black);
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  overflow: hidden;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@layer components {
+  .navbar-glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+  }
+
+  .gear-text {
+    font-family: inherit;
+    font-weight: 800;
+    text-transform: uppercase;
+    pointer-events: none;
+  }
 }
