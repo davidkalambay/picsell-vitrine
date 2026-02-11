@@ -53,8 +53,8 @@ development_status:
   2-3-catalogue-dynamique-mdx-content: done
   epic-2-retrospective: optional
 
-  epic-3-transparence-bmad-effet-glass-engine: backlog
-  3-1-manifeste-bmad-stack-technique: backlog
+  epic-3-transparence-bmad-effet-glass-engine: in-progress
+  3-1-manifeste-bmad-stack-technique: ready-for-dev
   3-2-interaction-glass-engine-vision-transparente: backlog
   epic-3-retrospective: optional
 

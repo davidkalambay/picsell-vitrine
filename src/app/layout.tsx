@@ -1,19 +1,17 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Sora, Quicksand } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
-import { ClientTracker } from "@/components/animations/ClientTracker";
-import { Navbar } from "@/components/ui/Navbar";
-import { PageTransition } from "@/components/animations/PageTransition";
+import { Navbar } from "@/components/Navbar";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const sora = Sora({
   subsets: ["latin"],
+  variable: "--font-sora",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const quicksand = Quicksand({
   subsets: ["latin"],
+  variable: "--font-quicksand",
 });
 
 export const metadata: Metadata = {
@@ -45,15 +43,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {/* <Navbar /> */}
-        <PageTransition>
-          {children}
-        </PageTransition>
-        <ClientTracker />
+    <html lang="fr" className={`${sora.variable} ${quicksand.variable}`}>
+      <body className="antialiased bg-white selection:bg-blue/10">
+        <Navbar />
+        {children}
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || "G-XXXXXXXXXX"} />
       </body>
     </html>
