@@ -13,6 +13,12 @@ inputDocuments:
 project_name: 'picsell.agency'
 user_name: 'David'
 date: '2026-01-27'
+alignedBrandGuideline: '2026-05-19'
+correctCourse: '2026-05-19'
+inputDocuments:
+  - 'docs/prd.md'
+  - 'docs/ux-design-specification.md'
+  - 'docs/picsell-brand-guideline.md'
 ---
 
 # Architecture Decision Document
@@ -24,7 +30,9 @@ _This document builds collaboratively through step-by-step discovery. Sections a
 ### Requirements Overview
 
 **Functional Requirements:**
-Architecture support for a "Luxury Tech" SPA with scroll-bound SVG animations, a "Glass-Engine" transparency feature for technical proof, and a dual-conversion funnel integrated with GA4.
+Architecture support for a **Picsell-branded** SPA (design system officiel, fond clair `#F0F2F5` par défaut) with scroll-bound SVG gear animations (logo colors), a **Fond Transparent** code-reveal feature for technical proof, and a dual-conversion funnel integrated with GA4.
+
+> **Course correction 2026-05-19:** "Luxury Tech" / Midnight Luxury (or/acier) is **deprecated**. See `docs/picsell-brand-guideline.md` and Story 1.4 in `docs/epics.md`.
 
 **Non-Functional Requirements:**
 60 FPS sustained animation performance, LCP < 1.5s, WCAG AA accessibility, and native AEO optimization via SSR/SSG.
@@ -65,6 +73,23 @@ Medium complexity driven by advanced animation orchestration and AI-native SEO r
 - **Decision:** Next.js Route Handlers (Serverless Functions).
 - **Rationale:** Natif à Next.js, sécurise les clés d'API tierces (GA4, Emails) et évite le CORS.
 - **Affects:** Contact forms, Analytics integration.
+
+### Design System Picsell (Tailwind)
+
+| Token | Valeur | Usage |
+|-------|--------|--------|
+| `pic-bg-light` | `#F0F2F5` | Fond par défaut, cards |
+| `pic-bg-dark` | `#080810` | Mode sombre autorisé |
+| `pic-blue` | `#0089D0` | Primaire — titres, liens, boutons |
+| `pic-turquoise` | `#3DBCC7` | Secondaire — accents tech, signature code |
+| `pic-orange` | `#F37021` | CTA, bordures actives |
+| `pic-gold` | `#FDB913` | Highlights, soulignements |
+| `pic-charcoal` | `#1A1A1A` | Corps de texte |
+
+- **Typographie:** Montserrat (H1–H2), Open Sans (corps), Courier New (code) via `next/font`.
+- **CTA:** fond `pic-orange` ou `pic-blue`, texte blanc, `border-radius` ≤ 2px.
+- **Interdits:** or `#D4AF37`, acier `#E5E4E2`, glassmorphism dominant, associations orange/jaune et bleu/turquoise.
+- **Référence:** [`docs/picsell-brand-guideline.md`](picsell-brand-guideline.md).
 
 ### Frontend Architecture
 
@@ -159,7 +184,7 @@ picsell.agency/
 
 ### Requirements to Structure Mapping
 
-- **Luxury Immersion:** `/src/components/animations/`, `/public/assets/`.
+- **Brand & Motion:** `/src/components/animations/`, `/public/assets/`, theme tokens in `tailwind.config` + `globals.css`.
 - **Three Pillars:** `/src/app/(piliers)/`, `/src/content/services/`.
 - **BMAD Transparency:** `/src/content/manifesto/`, `/src/components/case-studies/`.
 - **GA4/AEO Integration:** `/src/app/layout.tsx`, `/src/lib/ga.ts`.
@@ -168,7 +193,7 @@ picsell.agency/
 
 ### Coherence Validation ✅
 
-- **Decision Compatibility:** La stack Next.js + GSAP/Motion + MDX est optimale pour une vitrine de luxe.
+- **Decision Compatibility:** La stack Next.js + GSAP/Motion + MDX est optimale pour une vitrine Picsell haute performance.
 - **Pattern Consistency:** Les conventions `kebab-case` et l'organisation par composants/animations respectent les standards Next.js modernes.
 - **Structure Alignment:** La structure par répertoires isolés (animations, stores, content) soutient les objectifs de performance et de clarté.
 
@@ -251,7 +276,7 @@ Tous les besoins du projet sont supportés architecturalement, avec un mapping c
 
 ### Primary Technology Domain
 
-**Web application** basé sur les exigences de performance "Luxury", d'immersion (SPA) et d'optimisation AEO (SSR/SSG).
+**Web application** basé sur les exigences de performance « Precision », d'immersion (SPA) et d'optimisation AEO (SSR/SSG).
 
 ### Starter Options Considered
 

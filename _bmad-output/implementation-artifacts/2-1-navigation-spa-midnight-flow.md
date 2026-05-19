@@ -1,12 +1,14 @@
-# Story 2.1: Navigation SPA "Midnight Flow"
+# Story 2.1: Navigation SPA "Picsell Flow"
 
-Status: done
+Status: review
+
+<!-- Course correction 2026-05-19: Rework nav chrome colors to Picsell tokens (Story 1.4). -->
 
 ## Story
 
 As a **Visitor (Jean-Luc)**,
 I want **to navigate between the landing page and the three service pillars without page reloads**,
-so that **I stay immersed in the agency's premium "Luxury Tech" experience.**
+so that **I stay immersed in the agency's premium Picsell experience.**
 
 ## Acceptance Criteria
 
@@ -21,7 +23,7 @@ so that **I stay immersed in the agency's premium "Luxury Tech" experience.**
     - [ ] Transition animations maintain 60FPS.
     - [ ] No layout shift (CLS) during navigation.
 4. **Interactive Feedbacks:**
-    - [ ] Hover states on navigation links follow the "Mechanical Swiss Mastery" aesthetic (subtle glows or micro-movements).
+    - [ ] Hover states use Picsell tokens (bleu/turquoise accents) — not gold/steel Midnight Luxury palette.
 
 ## Tasks / Subtasks
 

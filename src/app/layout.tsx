@@ -1,20 +1,10 @@
 import type { Metadata } from "next";
-import { Sora, Quicksand } from "next/font/google";
+import { fontVariables, openSans } from "@/lib/fonts";
 import "./globals.css";
-
-const sora = Sora({
-  variable: "--font-sora",
-  subsets: ["latin"],
-});
-
-const quicksand = Quicksand({
-  variable: "--font-quicksand",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Picsell Agency - Coming Soon",
-  description: "Precision in progress — coming soon",
+  description: "Precision in every pixel — coming soon",
 };
 
 export default function RootLayout({
@@ -23,8 +13,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className={`${sora.variable} ${quicksand.variable} antialiased`}>
-      <body className="font-sora">
+    <html lang="fr" className={`${fontVariables} antialiased`}>
+      <body className={openSans.className}>
         {children}
       </body>
     </html>

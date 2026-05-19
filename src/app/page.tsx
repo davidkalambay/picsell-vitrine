@@ -28,7 +28,7 @@ export default function Home() {
 
             <div
                 ref={textRef}
-                className="fixed bottom-[6vh] text-center w-full text-base text-[#999] uppercase tracking-[0.4em] font-bold z-10"
+                className="fixed bottom-[6vh] text-center w-full text-sm text-pic-charcoal/60 uppercase tracking-[0.35em] font-heading font-semibold z-10"
             >
                 PRECISION IN PROGRESS — COMING SOON
             </div>

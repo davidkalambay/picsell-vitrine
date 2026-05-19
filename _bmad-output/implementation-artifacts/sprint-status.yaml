@@ -1,9 +1,11 @@
 # generated: 2026-01-28
+# updated: 2026-05-19 (bmad-correct-course — brand alignment)
 # project: picsell.agency
 # project_key: PA
 # tracking_system: file-system
 # story_location: _bmad-output/implementation-artifacts
 # NOTE: PROJECT PAUSED BY USER ON 2026-01-29. COMING SOON PAGE DEPLOYED.
+# NOTE: 2026-05-19 — Epics 1–2 reopened for Picsell brand rework (Stories 1.4–1.5 added).
 
 # STATUS DEFINITIONS:
 # ==================
@@ -20,36 +22,32 @@
 #   - backlog: Story only exists in epic file
 #   - ready-for-dev: Story file created in stories folder
 #   - in-progress: Developer actively working on implementation
-#   - review: Ready for code review (via Dev's code-review workflow)
+#   - review: Ready for code review OR rework required (course correction)
 #   - done: Story completed
 #
 # Retrospective Status:
 #   - optional: Can be completed but not required
 #   - done: Retrospective has been completed
-#
-# WORKFLOW NOTES:
-# ===============
-# - Epic transitions to 'in-progress' automatically when first story is created
-# - Stories can be worked in parallel if team capacity allows
-# - SM typically creates next story after previous one is 'done' to incorporate learnings
-# - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
 
 generated: 2026-01-28
 project: picsell.agency
 project_key: PA
 tracking_system: file-system
 story_location: _bmad-output/implementation-artifacts
+correct_course: '2026-05-19'
 
 development_status:
-  epic-1-fondations-vitrine-luxury-tech: done
+  epic-1-fondations-vitrine-picsell: in-progress
   1-1-initialization-du-mecanisme-nextjs-stack: done
-  1-2-le-grand-mecanisme-animations-dengrenages: done
+  1-2-le-grand-mecanisme-animations-dengrenages: review
   1-3-configuration-aeo-analytics-ga4: done
+  1-4-design-system-picsell-tokens-tailwind: done
+  1-5-surfaces-brand-tagline-logo-cta: backlog
   epic-1-retrospective: optional
 
-  epic-2-navigateur-interactif-des-3-piliers: done
-  2-1-navigation-spa-midnight-flow: done
-  2-2-catalogue-des-complications-services: done
+  epic-2-navigateur-interactif-des-3-piliers: in-progress
+  2-1-navigation-spa-midnight-flow: review
+  2-2-catalogue-des-complications-services: review
   2-3-catalogue-dynamique-mdx-content: done
   epic-2-retrospective: optional
 

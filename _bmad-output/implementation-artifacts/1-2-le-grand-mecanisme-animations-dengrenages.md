@@ -1,6 +1,8 @@
 # Story 1.2: Le Grand Mécanisme (Animations d'engrenages)
 
-Status: done
+Status: review
+
+<!-- Course correction 2026-05-19: Rework required — replace Midnight Luxury (gold/steel) with Picsell logo colors per docs/epics.md Story 1.2 AC. -->
 
 <!-- Note: Validation is optional. Run validate-create-story for quality check before dev-story. -->
 
@@ -8,7 +10,7 @@ Status: done
 
 As a **Visitor (James)**,
 I want **to see fluid synchronized gears moving as I scroll**,
-so that **I immediately feel the "Luxury Tech" precision and mastery of the agency.**
+so that **I immediately feel the "Precision in every pixel" mastery of the agency.**
 
 ## Acceptance Criteria
 
@@ -20,8 +22,9 @@ so that **I immediately feel the "Luxury Tech" precision and mastery of the agen
 2. **Technical Isolation:**
     - [ ] Animation logic is strictly isolated in `src/components/animations/`.
     - [ ] The gear component is reusable and respects the `"use client"` directive.
-3. **Luxury Tech Aesthetics:**
-    - [ ] Gear colors match the "Midnight Luxury" palette: `Polished Steel` (#E5E4E2) or `Brushed Gold` (#D4AF37).
+3. **Picsell Brand Aesthetics (FR1):**
+    - [ ] Gear colors use **only** logo colors: `#0089D0`, `#3DBCC7`, `#F37021`, `#FDB913`, `#1A1A1A` — **not** `#D4AF37` or `#E5E4E2`.
+    - [ ] Hero background `#F0F2F5` (light mode default).
     - [ ] Minimalist visual style (stroke-based or clean silhouettes) avoiding "cheap AI" or "plastic" looks.
 4. **Performance & Integration:**
     - [ ] Uses the `useGSAP` hook for safe lifecycle management and cleanup.
@@ -41,7 +44,7 @@ so that **I immediately feel the "Luxury Tech" precision and mastery of the agen
   - [x] Configure `scrub: true` (or a specific numeric value like `1` for smoother lag) to bind rotation to scroll.
   - [x] Ensure cleanup in `useGSAP` to prevent memory leaks/zombie triggers.
 - [x] Task 4: Visual Polishing (AC: 3)
-  - [x] Apply "Midnight Luxury" strokes/glows using Tailwind classes or SVG attributes.
+  - [ ] Apply Picsell logo-color strokes using Tailwind tokens from Story 1.4 (replace legacy gold/steel).
   - [x] Verify 60FPS performance on scroll.
 
 ## Dev Notes

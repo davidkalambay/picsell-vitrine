@@ -1,21 +1,55 @@
 @import "tailwindcss";
 
+/*
+ * Picsell Design System — Tailwind v4 theme
+ * Reference: docs/picsell-brand-guideline.md
+ * Hierarchy: 60% bleu + blanc/clair | 30% orange + turquoise | 10% jaune + noir
+ * Forbidden: orange on yellow, blue on turquoise, gold #D4AF37, steel #E5E4E2
+ */
+
+@theme {
+  --color-pic-bg-light: #f0f2f5;
+  --color-pic-bg-dark: #080810;
+  --color-pic-blue: #0089d0;
+  --color-pic-turquoise: #3dbcc7;
+  --color-pic-orange: #f37021;
+  --color-pic-gold: #fdb913;
+  --color-pic-charcoal: #1a1a1a;
+
+  --font-sans: var(--font-open-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Courier New", Courier, monospace;
+
+  --radius-cta: 2px;
+}
+
 :root {
-  --bg: #FFFFFF;
-  --blue: #0089D0;
-  --cyan: #3DBCC7;
-  --orange: #F37021;
-  --yellow: #FDB913;
-  --black: #1A1A1A;
-  --text: #1A1A1A;
+  --pic-bg-light: #f0f2f5;
+  --pic-bg-dark: #080810;
+  --pic-blue: #0089d0;
+  --pic-turquoise: #3dbcc7;
+  --pic-orange: #f37021;
+  --pic-gold: #fdb913;
+  --pic-charcoal: #1a1a1a;
+
+  /* Semantic aliases for SVG / legacy var() usage */
+  --bg: var(--pic-bg-light);
+  --blue: var(--pic-blue);
+  --cyan: var(--pic-turquoise);
+  --orange: var(--pic-orange);
+  --yellow: var(--pic-gold);
+  --black: var(--pic-charcoal);
+  --text: var(--pic-charcoal);
+
   --glass-bg: rgba(255, 255, 255, 0.85);
   --glass-border: rgba(255, 255, 255, 0.6);
 }
 
 body {
   margin: 0;
-  background: var(--bg);
-  color: var(--text);
+  background: var(--pic-bg-light);
+  color: var(--pic-charcoal);
+  font-family: var(--font-open-sans), ui-sans-serif, system-ui, sans-serif;
   overflow: hidden;
 }
 
@@ -29,9 +63,33 @@ body {
   }
 
   .gear-text {
-    font-family: inherit;
-    font-weight: 800;
+    font-family: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+    font-weight: 700;
     text-transform: uppercase;
     pointer-events: none;
+  }
+
+  /* FR23 — CTA: orange or blue, white text, radius ≤ 2px */
+  .btn-cta-orange {
+    @apply inline-flex items-center justify-center bg-pic-orange text-white font-semibold px-6 py-3 rounded-sm transition-opacity;
+    border-radius: var(--radius-cta);
+  }
+
+  .btn-cta-orange:hover {
+    @apply opacity-90;
+  }
+
+  .btn-cta-blue {
+    @apply inline-flex items-center justify-center bg-pic-blue text-white font-semibold px-6 py-3 rounded-sm transition-opacity;
+    border-radius: var(--radius-cta);
+  }
+
+  .btn-cta-blue:hover {
+    @apply opacity-90;
+  }
+
+  .text-code-signature {
+    font-family: var(--font-mono);
+    color: var(--pic-turquoise);
   }
 }

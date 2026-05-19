@@ -83,10 +83,10 @@ const GearEngine = () => {
                             ))}
                         </g>
                         <circle r="90" fill="white" stroke="var(--black)" strokeWidth="4" />
-                        <text className="gear-text font-sora font-extrabold" textAnchor="middle" fontSize="28" dy="10" fill="var(--black)">
+                        <text className="gear-text" textAnchor="middle" fontSize="28" dy="10" fill="var(--black)">
                             AI
                         </text>
-                        <text className="gear-text font-sora font-extrabold" textAnchor="middle" fontSize="10" dy="25" fill="var(--black)">
+                        <text className="gear-text " textAnchor="middle" fontSize="10" dy="25" fill="var(--black)">
                             ENGINE
                         </text>
                     </g>
@@ -102,10 +102,10 @@ const GearEngine = () => {
                             ))}
                         </g>
                         <circle r="60" fill="white" stroke="var(--orange)" strokeWidth="4" />
-                        <text className="gear-text font-sora font-extrabold" textAnchor="middle" fontSize="12" dy="-5" fill="var(--orange)">
+                        <text className="gear-text " textAnchor="middle" fontSize="12" dy="-5" fill="var(--orange)">
                             DIGITAL
                         </text>
-                        <text className="gear-text font-sora font-extrabold" textAnchor="middle" fontSize="14" dy="12" fill="var(--orange)">
+                        <text className="gear-text " textAnchor="middle" fontSize="14" dy="12" fill="var(--orange)">
                             MARKETING
                         </text>
                     </g>
@@ -121,7 +121,7 @@ const GearEngine = () => {
                             ))}
                         </g>
                         <circle r="50" fill="white" stroke="var(--cyan)" strokeWidth="4" />
-                        <text className="gear-text font-sora font-extrabold" textAnchor="middle" fontSize="11" dy="5" fill="var(--cyan)">
+                        <text className="gear-text " textAnchor="middle" fontSize="11" dy="5" fill="var(--cyan)">
                             AUTOMATION
                         </text>
                     </g>
@@ -137,10 +137,10 @@ const GearEngine = () => {
                             ))}
                         </g>
                         <circle r="75" fill="white" stroke="var(--yellow)" strokeWidth="4" />
-                        <text className="gear-text font-sora font-extrabold" textAnchor="middle" fontSize="13" dy="-2" fill="var(--yellow)">
+                        <text className="gear-text " textAnchor="middle" fontSize="13" dy="-2" fill="var(--yellow)">
                             DATA
                         </text>
-                        <text className="gear-text font-sora font-extrabold" textAnchor="middle" fontSize="13" dy="16" fill="var(--yellow)">
+                        <text className="gear-text " textAnchor="middle" fontSize="13" dy="16" fill="var(--yellow)">
                             INTELLIGENCE
                         </text>
                     </g>
@@ -156,10 +156,10 @@ const GearEngine = () => {
                             ))}
                         </g>
                         <circle r="65" fill="white" stroke="var(--blue)" strokeWidth="4" />
-                        <text className="gear-text font-sora font-extrabold" textAnchor="middle" fontSize="28" dy="-10" fill="var(--blue)">
+                        <text className="gear-text " textAnchor="middle" fontSize="28" dy="-10" fill="var(--blue)">
                             &lt;/&gt;
                         </text>
-                        <text className="gear-text font-sora font-extrabold" textAnchor="middle" fontSize="11" dy="15" fill="var(--blue)">
+                        <text className="gear-text " textAnchor="middle" fontSize="11" dy="15" fill="var(--blue)">
                             DEVELOPMENT
                         </text>
                     </g>

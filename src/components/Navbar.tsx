@@ -76,7 +76,7 @@ const Navbar = () => {
                         </g>
                     </g>
                 </svg>
-                <span className="font-quicksand font-bold text-[1.6rem] tracking-[-0.02em] text-[var(--text)]">
+                <span className="font-heading font-bold text-[1.6rem] tracking-[-0.02em] text-pic-charcoal">
                     Picsell Agency
                 </span>
             </a>
