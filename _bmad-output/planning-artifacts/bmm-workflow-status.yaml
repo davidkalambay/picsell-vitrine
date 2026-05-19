@@ -1,84 +1,108 @@
-# Workflow Status Template
+# Workflow Status — réinitialisé via workflow-init le 2026-05-19
+# BMAD v6.7.1 | Track: BMad Method | Type: brownfield
 
-# This tracks progress through BMM methodology Analysis, Planning, and Solutioning phases.
-# Implementation phase is tracked separately in sprint-status.yaml
-
-# STATUS DEFINITIONS:
-# ==================
-# Initial Status (before completion):
-#   - required: Must be completed to progress
-#   - optional: Can be completed but not required
-#   - recommended: Strongly suggested but not required
-#   - conditional: Required only if certain conditions met (e.g., if_has_ui)
-#
-# Completion Status:
-#   - {file-path}: File created/found (e.g., "docs/product-brief.md")
-#   - skipped: Optional/conditional workflow that was skipped
-
-generated: "2026-01-26T12:00:00Z"
+generated: "2026-05-19T19:10:00Z"
 project: "picsell.agency"
 project_type: "BMM"
 selected_track: "BMad Method"
-field_type: "greenfield"
-workflow_path: "{project-root}/_bmad/bmm/workflows/workflow-status/paths/method-greenfield.yaml"
+field_type: "brownfield"
+bmad_version: "6.7.1"
+workflow_path: "{project-root}/_bmad/bmm/workflows/workflow-status/paths/method-brownfield.yaml"
+project_knowledge: "{project-root}/docs"
+notes: |
+  Projet brownfield : codebase Next.js active + artifacts BMM complets.
+  PRD aligné brand guideline (2026-05-19) — UX/epics à réaligner avant reprise implémentation.
+  Sprint en pause (depuis 2026-01-29) — Epic 3 in-progress.
+
 workflow_status:
+  - phase: 0
+    name: "Documentation"
+    workflows:
+      - id: "document-project"
+        status: "skipped"
+        agent: "analyst"
+        skill: "bmad-document-project"
+        note: "Documentation existante dans docs/ et _bmad-output/"
+
   - phase: 1
     name: "Analysis (Optional)"
     workflows:
       - id: "brainstorm-project"
-        status: "recommended"
+        status: "docs/brainstorming-session-2026-01-26.md"
         agent: "analyst"
-        command: "/bmad:bmm:workflows:brainstorming"
+        skill: "bmad-brainstorming"
+        last_updated: "2026-01-26"
       - id: "research"
-        status: "completed"
+        status: "docs/market-Premium-AI-Agencies-research-2026-01-27.md"
         agent: "analyst"
-        command: "/bmad:bmm:workflows:research"
-      - id: "product-brief"
-        status: "completed"
-        agent: "analyst"
-        command: "/bmad:bmm:workflows:create-product-brief"
-        output_file: "planning-artifacts/product-brief-picsell.agency-2026-01-27.md"
+        skill: "bmad-market-research"
         last_updated: "2026-01-27"
+      - id: "product-brief"
+        status: "docs/product-brief-picsell.agency-2026-01-27.md"
+        agent: "analyst"
+        skill: "bmad-product-brief"
+        last_updated: "2026-01-27"
+
   - phase: 2
     name: "Planning"
     workflows:
       - id: "prd"
-        status: "completed"
+        status: "docs/prd.md"
         agent: "pm"
-        command: "/bmad:bmm:workflows:create-prd"
-        output_file: "planning-artifacts/prd.md"
-        last_updated: "2026-01-27"
+        skill: "bmad-prd"
+        last_updated: "2026-05-19"
+        note: "Aligné picsell-brand-guideline.md v1.0"
       - id: "create-ux-design"
-        status: "conditional"
+        status: "docs/ux-design-specification.md"
         agent: "ux-designer"
-        command: "/bmad:bmm:workflows:create-ux-design"
+        skill: "bmad-create-ux-design"
+        output_file: "docs/ux-design-specification.md"
+        last_updated: "2026-05-19"
+        note: "Réaligné design system Picsell (brand guideline v1.0)"
+
   - phase: 3
     name: "Solutioning"
     workflows:
       - id: "create-architecture"
-        status: "completed"
+        status: "docs/architecture.md"
         agent: "architect"
-        command: "/bmad:bmm:workflows:create-architecture"
-        output_file: "planning-artifacts/architecture.md"
+        skill: "bmad-create-architecture"
         last_updated: "2026-01-27"
       - id: "create-epics-and-stories"
-        status: "completed"
+        status: "docs/epics.md"
         agent: "pm"
-        command: "/bmad:bmm:workflows:create-epics-and-stories"
-        output_file: "planning-artifacts/epics.md"
+        skill: "bmad-create-epics-and-stories"
         last_updated: "2026-01-27"
+        note: "À réaligner sur PRD brand-compliant"
       - id: "test-design"
         status: "optional"
         agent: "tea"
-        command: "/bmad:bmm:workflows:test-design"
+        skill: "bmad-qa-generate-e2e-tests"
       - id: "implementation-readiness"
         status: "required"
         agent: "architect"
-        command: "/bmad:bmm:workflows:implementation-readiness"
+        skill: "bmad-check-implementation-readiness"
+        output_file: "_bmad-output/planning-artifacts/implementation-readiness-report-2026-01-28.md"
+        last_updated: "2026-01-28"
+        note: "À relancer après alignement UX + epics"
+
   - phase: 4
     name: "Implementation"
     workflows:
       - id: "sprint-planning"
-        status: "required"
+        status: "_bmad-output/implementation-artifacts/sprint-status.yaml"
         agent: "sm"
-        command: "/bmad:bmm:workflows:sprint-planning"
+        skill: "bmad-sprint-planning"
+        last_updated: "2026-01-28"
+        note: "En pause — Epic 3 in-progress (3-1 ready-for-dev)"
+
+next_recommended:
+  workflow: "implementation-readiness"
+  skill: "bmad-check-implementation-readiness"
+  agent: "bmad-agent-architect"
+  reason: "Valider cohérence PRD + UX + epics après réalignement brand"
+  alternative:
+    - skill: "bmad-correct-course"
+      reason: "Réaligner epics et stories sur tokens Picsell avant reprise sprint"
+    - skill: "bmad-dev-story"
+      reason: "Reprendre epic 3 (3-1 ready-for-dev) après validation readiness"
