@@ -1,0 +1,52 @@
+# Configuration Jira — picsell.agency (instance Picsell)
+
+project:
+  name: "picsell.agency"
+  key: "PA"
+  board_type: scrum
+
+site:
+  base_url: "https://picsell.atlassian.net"
+
+auth:
+  email_env: "JIRA_EMAIL"
+  api_token_env: "JIRA_API_TOKEN"
+
+issue_types:
+  epic: "Epic"
+  story: "Story"
+  task: "Task"
+  bug: "Bug"
+
+status_mapping:
+  backlog: "To Do"
+  ready-for-dev: "To Do"
+  in-progress: "In Progress"
+  review: "In Review"
+  done: "Done"
+
+epic_status_mapping:
+  backlog: "To Do"
+  in-progress: "In Progress"
+  done: "Done"
+
+# IDs à compléter après: npm run jira:verify
+custom_fields:
+  story_points: null
+  epic_link: null
+  external_story_id: null
+
+labels:
+  product: "picsell-vitrine"
+  method: "bmad-method"
+
+links:
+  backlog: "docs/BACKLOG.md"
+  prd: "docs/prd.md"
+  epics: "docs/epics.md"
+  sprint_status: "_bmad-output/implementation-artifacts/sprint-status.yaml"
+  board_url: "https://picsell.atlassian.net/jira/software/projects/PA/boards"
+
+sync:
+  dry_run: false
+  update_existing: true

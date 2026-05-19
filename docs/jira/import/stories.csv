@@ -1,0 +1,17 @@
+Issue Type,Summary,Description,Priority,Labels,Epic Name,Story Points,External ID,Sprint BMAD,Statut BMAD
+Story,"[1.1] Initialisation du Mécanisme (Next.js & Stack)","Stack Next.js 15+, TS, GSAP, Framer Motion, Zustand, CI Vercel.|Story: _bmad-output/implementation-artifacts/1-1-initialization.md",High,"picsell-vitrine,story-1-1,sprint-S1",Epic 1 — Fondations & Vitrine Picsell,5,1.1,S1,done
+Story,"[1.2] Le Grand Mécanisme (engrenages)","Engrenages SVG scroll-bound, couleurs logo uniquement, GSAP ScrollTrigger.|FR1|Rework: review",Highest,"picsell-vitrine,story-1-2,sprint-S5",Epic 1 — Fondations & Vitrine Picsell,8,1.2,S5,review
+Story,"[1.3] Configuration AEO & Analytics (GA4)","Metadata AEO, GA4 @next/third-parties, événements scroll.|FR17 FR19|À réconcilier dans src/",High,"picsell-vitrine,story-1-3,sprint-S1",Epic 1 — Fondations & Vitrine Picsell,5,1.3,S1,done
+Story,"[1.4] Design System Picsell (tokens Tailwind)","Tokens @theme, Montserrat/Open Sans, CTA .btn-cta-*.|FR2 FR23|Livré 2026-05-19",High,"picsell-vitrine,story-1-4,sprint-S4",Epic 1 — Fondations & Vitrine Picsell,5,1.4,S4,done
+Story,"[1.5] Surfaces Brand (tagline, signature, logo)","Tagline hero/footer, signature code, logo conforme.|FR20-FR22 FR24",Highest,"picsell-vitrine,story-1-5,sprint-S5",Epic 1 — Fondations & Vitrine Picsell,3,1.5,S5,backlog
+Story,"[2.1] Navigation SPA Picsell Flow","Navigation sans rechargement, Framer Motion, grille 12 col.|FR3|Rework brand",High,"picsell-vitrine,story-2-1,sprint-S2",Epic 2 — Navigateur Interactif des 3 Piliers,5,2.1,S2,review
+Story,"[2.2] Catalogue des Complications","3 cartes piliers, ROI, tokens Picsell.|FR4-FR7|Rework brand",High,"picsell-vitrine,story-2-2,sprint-S2",Epic 2 — Navigateur Interactif des 3 Piliers,8,2.2,S2,review
+Story,"[2.3] Catalogue Dynamique (MDX)","@next/mdx, src/content/services/, SSR AEO.|FR4-FR7",Medium,"picsell-vitrine,story-2-3,sprint-S2",Epic 2 — Navigateur Interactif des 3 Piliers,5,2.3,S2,done
+Story,"[3.1] Manifeste BMAD & Stack Technique","Section Inside the Engine, MDX, stack icons.|FR8 FR9 FR21",High,"picsell-vitrine,story-3-1,sprint-S6",Epic 3 — Transparence BMAD & Fond Transparent,8,3.1,S6,ready-for-dev
+Story,"[3.2] Interaction Fond Transparent","Révélation code/schémas au survol, 60 FPS.|FR10",High,"picsell-vitrine,story-3-2,sprint-S6",Epic 3 — Transparence BMAD & Fond Transparent,8,3.2,S6,backlog
+Story,"[4.1] Présentation des Garde-Temps (Portfolio)","4 études de cas premium.|FR11",Medium,"picsell-vitrine,story-4-1,sprint-S7",Epic 4 — Portfolio Garde-Temps & Preuve ROI,8,4.1,S7,backlog
+Story,"[4.2] Indicateurs de Performance (ROI)","Compteurs/charts métriques ROI.|FR12",Medium,"picsell-vitrine,story-4-2,sprint-S7",Epic 4 — Portfolio Garde-Temps & Preuve ROI,5,4.2,S7,backlog
+Story,"[4.3] Showcase Dashboard ROI (Vidéo)","Lecteur vidéo, LCP préservé.|FR13",Medium,"picsell-vitrine,story-4-3,sprint-S7",Epic 4 — Portfolio Garde-Temps & Preuve ROI,5,4.3,S7,backlog
+Story,"[5.1] Tunnel Precision (Upwork / James)","CTA Hire on Upwork, FR23.|FR14",High,"picsell-vitrine,story-5-1,sprint-S8",Epic 5 — Moteur de Conversion Dual & Accessibilité,3,5.1,S8,backlog
+Story,"[5.2] Tunnel Proximité (Direct / Jean-Luc)","Formulaire 3 piliers, validation, ton brand.|FR15 FR16 FR24",High,"picsell-vitrine,story-5-2,sprint-S8",Epic 5 — Moteur de Conversion Dual & Accessibilité,8,5.2,S8,backlog
+Story,"[5.3] Rigueur inclusive (WCAG AA)","Focus, contrastes brand, ARIA.|FR18",High,"picsell-vitrine,story-5-3,sprint-S8",Epic 5 — Moteur de Conversion Dual & Accessibilité,8,5.3,S8,backlog

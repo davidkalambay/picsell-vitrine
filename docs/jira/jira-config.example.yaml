@@ -1,0 +1,57 @@
+# Configuration Jira — picsell.agency
+# Copier vers jira-config.yaml (non versionné si secrets) ou utiliser les variables d'environnement.
+
+project:
+  name: "picsell.agency"
+  key: "PA"
+  board_type: scrum # scrum | kanban
+
+site:
+  base_url: "https://picsell.atlassian.net"
+
+auth:
+  email: "votre-email@picsell.agency"
+  # Token API : https://id.atlassian.com/manage-profile/security/api-tokens
+  api_token_env: "JIRA_API_TOKEN"
+
+issue_types:
+  epic: "Epic"
+  story: "Story"
+  task: "Task"
+  bug: "Bug"
+
+# Mapping statuts BMAD (sprint-status.yaml) → statuts Jira
+# Adapter les noms à votre workflow Jira (Paramètres → Workflows)
+status_mapping:
+  backlog: "To Do"
+  ready-for-dev: "To Do"
+  in-progress: "In Progress"
+  review: "In Review"
+  done: "Done"
+
+epic_status_mapping:
+  backlog: "To Do"
+  in-progress: "In Progress"
+  done: "Done"
+
+custom_fields:
+  # Renseigner après création du projet (Admin → Champs personnalisés → ID)
+  story_points: "customfield_10016"
+  sprint: "customfield_10020"
+  external_story_id: "customfield_10050" # Ex. "1.4" — optionnel
+
+labels:
+  product: "picsell-vitrine"
+  method: "bmad-method"
+
+links:
+  repo: "https://github.com/VOTRE-ORG/picsell-vitrine"
+  prd: "docs/prd.md"
+  backlog: "docs/BACKLOG.md"
+  sprint_status: "_bmad-output/implementation-artifacts/sprint-status.yaml"
+
+sync:
+  # Script scripts/jira/sync-to-jira.mjs
+  dry_run: true
+  update_existing: true
+  create_sprints: true

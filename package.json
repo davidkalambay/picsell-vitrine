@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "jira:verify": "node scripts/jira/verify-jira.mjs",
+    "jira:sync": "node scripts/jira/sync-to-jira.mjs",
+    "jira:sync:dry": "node scripts/jira/sync-to-jira.mjs --dry-run",
+    "jira:sync:status": "node scripts/jira/sync-to-jira.mjs --status-only"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

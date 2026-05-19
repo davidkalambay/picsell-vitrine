@@ -5,6 +5,8 @@
 **Source opérationnelle :** [`_bmad-output/implementation-artifacts/sprint-status.yaml`](../_bmad-output/implementation-artifacts/sprint-status.yaml)  
 **Exigences :** [`prd.md`](prd.md) (FR1–FR24) · [`epics.md`](epics.md) · [`picsell-brand-guideline.md`](picsell-brand-guideline.md)
 
+**Suivi Jira :** [picsell.atlassian.net — projet **PA**](https://picsell.atlassian.net/jira/software/projects/PA/boards) · [`jira/SETUP.md`](jira/SETUP.md) · `npm run jira:verify` puis `npm run jira:sync`
+
 ---
 
 ## Vue d’ensemble

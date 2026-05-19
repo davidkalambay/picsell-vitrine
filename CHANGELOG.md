@@ -35,6 +35,7 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
 - Rapport `implementation-readiness-report-2026-05-19.md` (v2) — verdict **PRÊT AVEC RÉSERVES**.
 - Backlog produit complet : `docs/BACKLOG.md`.
+- Kit Jira : `docs/jira/SETUP.md`, CSV d'import, script `scripts/jira/sync-to-jira.mjs`.
 
 ---
 

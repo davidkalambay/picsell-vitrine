@@ -1,0 +1,6 @@
+Issue Type,Summary,Description,Priority,Labels,Epic Name
+Epic,"Epic 1 — Fondations & Vitrine Picsell","Design system Picsell, engrenages, tagline, AEO/GA4. James perçoit la rigueur brand dès l'arrivée.|Réf: docs/epics.md Epic 1|FR: FR1-FR2 FR17 FR19-FR24",High,"picsell-vitrine,bmad-method,epic-1",Epic 1 — Fondations & Vitrine Picsell
+Epic,"Epic 2 — Navigateur Interactif des 3 Piliers","SPA, catalogue Dev/Marketing/Automation, MDX. Jean-Luc comprend les offres.|Réf: docs/epics.md Epic 2|FR: FR3-FR7",High,"picsell-vitrine,bmad-method,epic-2",Epic 2 — Navigateur Interactif des 3 Piliers
+Epic,"Epic 3 — Transparence BMAD & Fond Transparent","Inside the Engine: manifeste BMAD, stack, révélation code.|Réf: docs/epics.md Epic 3|FR: FR8-FR10 FR21",High,"picsell-vitrine,bmad-method,epic-3",Epic 3 — Transparence BMAD & Fond Transparent
+Epic,"Epic 4 — Portfolio Garde-Temps & Preuve ROI","4 études de cas, métriques ROI, vidéo Dashboard.|Réf: docs/epics.md Epic 4|FR: FR11-FR13",Medium,"picsell-vitrine,bmad-method,epic-4",Epic 4 — Portfolio Garde-Temps & Preuve ROI
+Epic,"Epic 5 — Moteur de Conversion Dual & Accessibilité","Tunnels Upwork/direct, formulaire piliers, WCAG AA.|Réf: docs/epics.md Epic 5|FR: FR14-FR16 FR18 FR23-FR24",High,"picsell-vitrine,bmad-method,epic-5",Epic 5 — Moteur de Conversion Dual & Accessibilité

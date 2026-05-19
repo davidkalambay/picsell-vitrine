@@ -32,9 +32,13 @@
 generated: 2026-01-28
 project: picsell.agency
 project_key: PA
-tracking_system: file-system
+tracking_system: jira
 story_location: _bmad-output/implementation-artifacts
 correct_course: '2026-05-19'
+jira:
+  base_url: https://picsell.atlassian.net
+  project_key: PA
+  board_url: https://picsell.atlassian.net/jira/software/projects/PA/boards
 
 development_status:
   epic-1-fondations-vitrine-picsell: in-progress
