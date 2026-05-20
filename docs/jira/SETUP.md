@@ -26,7 +26,7 @@ Guide pour créer le projet Jira, importer le backlog (y compris sprints déjà 
 
 ## Étape 1 — Créer le projet Jira
 
-> **Statut actuel :** le projet **PA** n’existe pas encore sur https://picsell.atlassian.net (API retourne 404). Créez-le avant `npm run jira:sync`.
+> Le projet **PA** est actif sur https://picsell.atlassian.net. Utilisez `npm run jira-sync` pour (re)synchroniser le backlog.
 
 1. Ouvrir : [Créer un projet Jira](https://picsell.atlassian.net/jira/projects/create)
 2. Modèle : **Scrum** (Epics + Stories + Sprints)
@@ -133,16 +133,16 @@ JIRA_PROJECT_KEY=PA
 
 ```bash
 # Test connexion + infos projet PA
-npm run jira:verify
+npm run jira-verify
 
 # Simulation (aucune écriture Jira)
-npm run jira:sync:dry
+npm run jira-sync-dry
 
 # Création epics + stories
-npm run jira:sync
+npm run jira-sync
 
 # Mise à jour des statuts depuis sprint-status.yaml
-npm run jira:sync:status
+npm run jira-sync-status
 ```
 
 Le script lit :

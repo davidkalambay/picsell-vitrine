@@ -43,10 +43,10 @@ jira:
 development_status:
   epic-1-fondations-vitrine-picsell: in-progress
   1-1-initialization-du-mecanisme-nextjs-stack: done
-  1-2-le-grand-mecanisme-animations-dengrenages: review
+  1-2-le-grand-mecanisme-animations-dengrenages: done
   1-3-configuration-aeo-analytics-ga4: done
   1-4-design-system-picsell-tokens-tailwind: done
-  1-5-surfaces-brand-tagline-logo-cta: backlog
+  1-5-surfaces-brand-tagline-logo-cta: done
   epic-1-retrospective: optional
 
   epic-2-navigateur-interactif-des-3-piliers: in-progress

@@ -1,37 +1,42 @@
 "use client";
 
 import React, { useRef } from "react";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
 import Navbar from "@/components/Navbar";
-import GearEngine from "@/components/GearEngine";
+import { HeroMechanicalEngine } from "@/components/animations/HeroMechanicalEngine";
+import { HeroTagline } from "@/components/brand/HeroTagline";
+import { SiteFooter } from "@/components/brand/SiteFooter";
+import { CodeSignature } from "@/components/brand/CodeSignature";
+
+/** Distance de scroll pour piloter les engrenages (FR1 scroll-bound). */
+const SCROLL_TRACK_VH = 280;
 
 export default function Home() {
-    const textRef = useRef<HTMLDivElement>(null);
+  const scrollTrackRef = useRef<HTMLDivElement>(null);
 
-    useGSAP(() => {
-        // Pulsation effect for the coming soon text (Human Breathing Rhythm ~4s)
-        gsap.to(textRef.current, {
-            opacity: 0.2,
-            duration: 4,
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut",
-        });
-    });
-
-    return (
-        <main className="relative w-screen h-screen flex flex-col items-center justify-center">
-            <Navbar />
-
-            <GearEngine />
-
-            <div
-                ref={textRef}
-                className="fixed bottom-[6vh] text-center w-full text-sm text-pic-charcoal/60 uppercase tracking-[0.35em] font-heading font-semibold z-10"
-            >
-                PRECISION IN PROGRESS — COMING SOON
-            </div>
-        </main>
-    );
+  return (
+    <main className="relative bg-pic-bg-light">
+      <div
+        ref={scrollTrackRef}
+        className="relative w-full"
+        style={{ minHeight: `${SCROLL_TRACK_VH}vh` }}
+        aria-label="Parcours de découverte Picsell"
+      >
+        <div className="sticky top-0 flex h-screen w-full flex-col overflow-hidden">
+          <Navbar />
+          <HeroTagline />
+          <HeroMechanicalEngine scrollTrackRef={scrollTrackRef} />
+          <div
+            className="pointer-events-none absolute bottom-[12vh] left-1/2 z-10 -translate-x-1/2"
+            aria-hidden
+          >
+            <CodeSignature />
+          </div>
+          <SiteFooter />
+        </div>
+      </div>
+      <p className="sr-only">
+        Faites défiler la page pour animer le mécanisme d&apos;engrenages.
+      </p>
+    </main>
+  );
 }

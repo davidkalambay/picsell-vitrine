@@ -125,14 +125,14 @@ async function main() {
   }
 
   const labeled = await api(
-    `/search/jql?${searchParams(`project = ${PROJECT_KEY} AND labels = picsell-vitrine`, 0)}`
+    `/search/jql?${searchParams(`project = ${PROJECT_KEY} AND labels = picsell-vitrine`, 1)}`
   );
   console.log(`\nLabel picsell-vitrine : ${labeled.total ?? 0} ticket(s)`);
 
   if ((labeled.total ?? 0) === 0) {
-    console.log("\n→ Prochaine étape : npm run jira:sync");
+    console.log("\n→ Prochaine étape : npm run jira-sync");
   } else {
-    console.log("\n→ Mise à jour statuts : npm run jira:sync:status");
+    console.log("\n→ Mise à jour statuts : npm run jira-sync-status");
   }
 
   console.log(`\nBoard : ${base}/jira/software/projects/${PROJECT_KEY}/boards\n`);

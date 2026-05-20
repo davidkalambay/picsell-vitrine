@@ -23,12 +23,16 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
 ### Added
 
-- Story **1.5** (backlog) : surfaces brand — tagline, signature code, conformité logo (FR20–FR22, FR24).
+- Story **1.5** : composants brand (`PicsellLogo`, `HeroTagline`, `SiteFooter`, `CodeSignature`) — FR20–FR22, FR24.
 - Fichiers de suivi : `1-5-surfaces-brand-tagline-logo-cta.md`, rapports readiness v2, sprint change proposal.
+
+### Added
+
+- Story **1.2** : `HeroMechanicalEngine` — engrenages synchronisés au scroll (ScrollTrigger, `scrub: 1`).
 
 ### Changed
 
-- Stories **1.2**, **2.1**, **2.2** repassées en statut `review` (rework brand post correct-course).
+- Stories **2.1**, **2.2** en statut `review` (rework brand post correct-course).
 - Pied de page Coming Soon : classes typographiques Picsell (`font-heading`, `text-pic-charcoal/60`).
 
 ### Docs

@@ -19,18 +19,18 @@ issue_types:
   bug: "Bug"
 
 status_mapping:
-  backlog: "To Do"
-  ready-for-dev: "To Do"
-  in-progress: "In Progress"
-  review: "In Review"
-  done: "Done"
+  backlog: "À faire"
+  ready-for-dev: "À faire"
+  in-progress: "En cours"
+  review: "En cours"
+  done: "Terminé(e)"
 
 epic_status_mapping:
   backlog: "To Do"
   in-progress: "In Progress"
   done: "Done"
 
-# IDs à compléter après: npm run jira:verify
+# IDs à compléter après: npm run jira-verify
 custom_fields:
   story_points: null
   epic_link: null

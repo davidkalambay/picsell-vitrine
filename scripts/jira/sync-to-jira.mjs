@@ -59,11 +59,11 @@ const EPIC_SUMMARIES = {
 };
 
 const STATUS_MAP = {
-  backlog: "To Do",
-  "ready-for-dev": "To Do",
-  "in-progress": "In Progress",
-  review: "In Review",
-  done: "Done",
+  backlog: "À faire",
+  "ready-for-dev": "À faire",
+  "in-progress": "En cours",
+  review: "En cours",
+  done: "Terminé(e)",
 };
 
 function parseSimpleYaml(content) {
@@ -292,6 +292,10 @@ async function main() {
     }
   }
 
+  // Rafraîchir l'index après toutes les créations
+  const allIssues = await searchIssues(`project = ${PROJECT_KEY}`);
+  const bySummaryFinal = new Map(allIssues.map((i) => [i.fields.summary, i]));
+
   console.log("\n--- Statuts (sprint-status.yaml) ---");
   for (const [key, status] of Object.entries(devStatus)) {
     if (key.startsWith("epic-") && key.endsWith("-retrospective")) continue;
@@ -303,7 +307,7 @@ async function main() {
     const csvRow = csvStories.find((r) => r["External ID"] === externalId);
     if (!csvRow) continue;
 
-    const issue = bySummary.get(csvRow.Summary);
+    const issue = bySummaryFinal.get(csvRow.Summary);
     if (!issue) {
       console.warn(`  ⚠ Ticket Jira introuvable: ${csvRow.Summary}`);
       continue;
