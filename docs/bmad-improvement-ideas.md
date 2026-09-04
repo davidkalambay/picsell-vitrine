@@ -8,8 +8,8 @@ Ce document répertorie les 30 propositions d'améliorations esthétiques, inter
 ## 👩‍💻 1. Amelia — Développement React & Animations GSAP
 *Focus : Fluidité, dynamisme, micro-interactions et maîtrise de GSAP.*
 
-- [ ] **01. Velocity-based Rotation** : Accélérer la vitesse de rotation des engrenages proportionnellement à la vélocité du défilement avec une décélération élastique naturelle à l'arrêt du scroll.
-- [ ] **02. Effet Scroll-Snap GSAP** : Mettre en place un accrochage magnétique doux qui centre automatiquement la carte de l'expertise consultée au milieu du viewport.
+- [ ] **01. Velocity-based Rotation** : Accélérer la vitesse de rotation des engrenages proportionnellement à la vélocité du défilement avec une décélération élastique naturelle à l'arrêt du scroll. *(Annulé à la demande utilisateur pour préserver la synchronisation stricte)*
+- [x] **02. Effet Scroll-Snap GSAP** : Mettre en place un accrochage magnétique doux qui centre automatiquement la carte de l'expertise consultée au milieu du viewport. *(Testé & Implémenté sur `feat/gsap-scroll-snap`)*
 - [ ] **03. SplitText / Text Reveal** : Animer l'apparition des titres et paragraphes mot par mot ou lettre par lettre à la manière d'une frappe d'horlogerie de précision.
 - [ ] **04. DrawSVG (Tracé initial)** : Au premier chargement de la page, révéler les contours vectoriels des engrenages comme un dessin technique qui s'assemble avant de commencer à tourner.
 - [x] **05. Glow & Halo Dynamique** : Faire émettre à l'engrenage actif et à son arrière-plan une lumière néon (`drop-shadow` et aura diffuse) de sa couleur de marque dédiée. *(Testé & Implémenté sur `feat/dark-mode-scroll`)*

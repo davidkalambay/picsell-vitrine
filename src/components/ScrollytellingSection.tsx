@@ -41,7 +41,65 @@ export const ScrollytellingSection: React.FC = () => {
             }
         });
 
-    }, { scope: containerRef });
+        // Amelia's Idea 02: Soft GSAP Magnetic Scroll-Snap to center active card
+        if (settings.scrollSnap && containerRef.current) {
+            const cardIds = ["story-marketing", "story-automation", "story-development", "story-data"];
+
+            const snapTrigger = ScrollTrigger.create({
+                trigger: containerRef.current,
+                start: "top top",
+                end: "bottom bottom",
+                snap: {
+                    snapTo: (value, self) => {
+                        if (!self) return value;
+                        const totalDist = self.end - self.start;
+                        if (!totalDist || totalDist <= 0) return value;
+
+                        const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+                        const windowH = window.innerHeight;
+
+                        const snapProgresses = cardIds.map((id) => {
+                            const el = document.getElementById(id);
+                            if (!el) return null;
+                            const rect = el.getBoundingClientRect();
+                            const cardAbsCenter = currentScroll + rect.top + rect.height / 2;
+                            const targetScroll = cardAbsCenter - windowH / 2;
+                            const prog = (targetScroll - self.start) / totalDist;
+                            return Math.max(0, Math.min(1, prog));
+                        }).filter((p): p is number => p !== null);
+
+                        if (snapProgresses.length === 0) return value;
+
+                        let closest = value;
+                        let minDiff = Infinity;
+
+                        snapProgresses.forEach((p) => {
+                            const diff = Math.abs(p - value);
+                            if (diff < minDiff) {
+                                minDiff = diff;
+                                closest = p;
+                            }
+                        });
+
+                        // Gently snap if within proximity threshold
+                        if (minDiff < 0.18) {
+                            return closest;
+                        }
+                        return value;
+                    },
+                    duration: { min: 0.25, max: 0.55 },
+                    delay: 0.12,
+                    ease: "power2.out",
+                    inertia: false,
+                },
+            });
+
+            return () => {
+                snapTrigger.kill();
+            };
+        }
+
+    }, { scope: containerRef, dependencies: [settings.scrollSnap] });
 
     const renderNumber = (num: string, sectionId: SectionType, colorHex: string) => {
         const isActive = activeSection === sectionId;
