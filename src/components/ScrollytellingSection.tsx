@@ -66,6 +66,41 @@ export const ScrollytellingSection: React.FC = () => {
         );
     };
 
+    const renderBadge = (label: string, colorVar: string, colorHex: string) => {
+        const isInteractive = settings.badgeMicroInteractions;
+        return (
+            <span
+                key={label}
+                className={`group/badge relative overflow-hidden text-[11px] font-bold tracking-wider uppercase px-4 py-2 rounded-full border backdrop-blur-md transition-all duration-300 select-none ${
+                    isInteractive
+                        ? "cursor-pointer hover:scale-105 hover:-translate-y-0.5 hover:shadow-lg hover:border-white/60 hover:text-white"
+                        : ""
+                }`}
+                style={{
+                    borderColor: `${colorHex}66`,
+                    backgroundColor: `${colorHex}18`,
+                    color: colorHex,
+                    boxShadow: isInteractive ? undefined : `0 0 12px ${colorHex}33`,
+                }}
+            >
+                {/* Light Sweep / Shimmer Wave on Hover */}
+                {isInteractive && (
+                    <span
+                        className="absolute inset-0 -translate-x-full group-hover/badge:translate-x-full transition-transform duration-700 ease-out bg-gradient-to-r from-transparent via-white/40 to-transparent pointer-events-none"
+                        aria-hidden="true"
+                    />
+                )}
+                <span className="relative z-10 flex items-center gap-1.5">
+                    <span
+                        className="w-1.5 h-1.5 rounded-full transition-all duration-300 group-hover/badge:scale-150 group-hover/badge:shadow-[0_0_8px_white]"
+                        style={{ backgroundColor: colorVar }}
+                    />
+                    {label}
+                </span>
+            </span>
+        );
+    };
+
     return (
         <section id="scrollytelling-section" ref={containerRef} className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 py-20 pb-40">
             {/* Desktop Layout: Grid. Mobile Layout: Stacked */}
@@ -73,8 +108,9 @@ export const ScrollytellingSection: React.FC = () => {
                 
                 {/* Visual side (Sticky) */}
                 <div className="w-full h-full order-first lg:order-none z-0">
-                    <div className="w-full lg:sticky lg:top-24 flex flex-col items-center justify-center py-6 lg:py-16 lg:h-[80vh]">
-                        <div className="w-full h-full relative flex items-center justify-center">
+                    <div className="sticky top-24 sm:top-28 flex flex-col items-center justify-center min-h-[450px] sm:min-h-[550px] lg:min-h-[620px] max-h-[85vh] w-full rounded-3xl p-4 sm:p-8">
+                        {/* 80% Scale Engine Container */}
+                        <div className="relative w-full h-[360px] sm:h-[440px] lg:h-[480px] flex items-center justify-center">
                             <ScrollytellingEngine activeSection={activeSection} />
                         </div>
                         
@@ -119,9 +155,9 @@ export const ScrollytellingSection: React.FC = () => {
                             Stratégie de contenu, acquisition et image de marque pensées pour le marché congolais et la diaspora francophone.
                         </p>
                         <div className="flex flex-wrap gap-2.5">
-                            <span className="text-[11px] font-bold tracking-wider uppercase px-4 py-2 rounded-full border border-[var(--pic-orange,#f37021)]/40 bg-[var(--pic-orange,#f37021)]/10 text-[var(--pic-orange,#f37021)] backdrop-blur-md shadow-[0_0_12px_rgba(243,112,33,0.2)]">Stratégie</span>
-                            <span className="text-[11px] font-bold tracking-wider uppercase px-4 py-2 rounded-full border border-[var(--pic-orange,#f37021)]/40 bg-[var(--pic-orange,#f37021)]/10 text-[var(--pic-orange,#f37021)] backdrop-blur-md shadow-[0_0_12px_rgba(243,112,33,0.2)]">Contenu</span>
-                            <span className="text-[11px] font-bold tracking-wider uppercase px-4 py-2 rounded-full border border-[var(--pic-orange,#f37021)]/40 bg-[var(--pic-orange,#f37021)]/10 text-[var(--pic-orange,#f37021)] backdrop-blur-md shadow-[0_0_12px_rgba(243,112,33,0.2)]">Acquisition</span>
+                            {renderBadge("Stratégie", "var(--pic-orange, #f37021)", "#f37021")}
+                            {renderBadge("Contenu", "var(--pic-orange, #f37021)", "#f37021")}
+                            {renderBadge("Acquisition", "var(--pic-orange, #f37021)", "#f37021")}
                         </div>
                     </div>
 
@@ -151,9 +187,9 @@ export const ScrollytellingSection: React.FC = () => {
                             Workflows automatisés, intégrations et outils sur-mesure pour éliminer les tâches répétitives de vos équipes.
                         </p>
                         <div className="flex flex-wrap gap-2.5">
-                            <span className="text-[11px] font-bold tracking-wider uppercase px-4 py-2 rounded-full border border-[var(--pic-turquoise,#3dbcc7)]/40 bg-[var(--pic-turquoise,#3dbcc7)]/10 text-[var(--pic-turquoise,#3dbcc7)] backdrop-blur-md shadow-[0_0_12px_rgba(61,188,199,0.2)]">Workflows</span>
-                            <span className="text-[11px] font-bold tracking-wider uppercase px-4 py-2 rounded-full border border-[var(--pic-turquoise,#3dbcc7)]/40 bg-[var(--pic-turquoise,#3dbcc7)]/10 text-[var(--pic-turquoise,#3dbcc7)] backdrop-blur-md shadow-[0_0_12px_rgba(61,188,199,0.2)]">Intégrations</span>
-                            <span className="text-[11px] font-bold tracking-wider uppercase px-4 py-2 rounded-full border border-[var(--pic-turquoise,#3dbcc7)]/40 bg-[var(--pic-turquoise,#3dbcc7)]/10 text-[var(--pic-turquoise,#3dbcc7)] backdrop-blur-md shadow-[0_0_12px_rgba(61,188,199,0.2)]">Gain de temps</span>
+                            {renderBadge("Workflows", "var(--pic-turquoise, #3dbcc7)", "#3dbcc7")}
+                            {renderBadge("Intégrations", "var(--pic-turquoise, #3dbcc7)", "#3dbcc7")}
+                            {renderBadge("Gain de temps", "var(--pic-turquoise, #3dbcc7)", "#3dbcc7")}
                         </div>
                     </div>
 
@@ -183,9 +219,9 @@ export const ScrollytellingSection: React.FC = () => {
                             Applications web et mobiles sur Next.js, Node.js et PostgreSQL — de la carte de visite digitale aux plateformes SaaS complètes.
                         </p>
                         <div className="flex flex-wrap gap-2.5">
-                            <span className="text-[11px] font-bold tracking-wider uppercase px-4 py-2 rounded-full border border-[var(--pic-blue,#0089d0)]/40 bg-[var(--pic-blue,#0089d0)]/10 text-[var(--pic-blue,#0089d0)] backdrop-blur-md shadow-[0_0_12px_rgba(0,137,208,0.2)]">Web & Mobile</span>
-                            <span className="text-[11px] font-bold tracking-wider uppercase px-4 py-2 rounded-full border border-[var(--pic-blue,#0089d0)]/40 bg-[var(--pic-blue,#0089d0)]/10 text-[var(--pic-blue,#0089d0)] backdrop-blur-md shadow-[0_0_12px_rgba(0,137,208,0.2)]">API</span>
-                            <span className="text-[11px] font-bold tracking-wider uppercase px-4 py-2 rounded-full border border-[var(--pic-blue,#0089d0)]/40 bg-[var(--pic-blue,#0089d0)]/10 text-[var(--pic-blue,#0089d0)] backdrop-blur-md shadow-[0_0_12px_rgba(0,137,208,0.2)]">Scalabilité</span>
+                            {renderBadge("Web & Mobile", "var(--pic-blue, #0089d0)", "#0089d0")}
+                            {renderBadge("API", "var(--pic-blue, #0089d0)", "#0089d0")}
+                            {renderBadge("Scalabilité", "var(--pic-blue, #0089d0)", "#0089d0")}
                         </div>
                     </div>
 
@@ -215,9 +251,9 @@ export const ScrollytellingSection: React.FC = () => {
                             Tableaux de bord, reporting et modèles prédictifs pour transformer vos données en décisions stratégiques.
                         </p>
                         <div className="flex flex-wrap gap-2.5">
-                            <span className="text-[11px] font-bold tracking-wider uppercase px-4 py-2 rounded-full border border-[var(--pic-gold,#fdb913)]/40 bg-[var(--pic-gold,#fdb913)]/10 text-[var(--pic-gold,#fdb913)] backdrop-blur-md shadow-[0_0_12px_rgba(253,185,19,0.2)]">Dashboards</span>
-                            <span className="text-[11px] font-bold tracking-wider uppercase px-4 py-2 rounded-full border border-[var(--pic-gold,#fdb913)]/40 bg-[var(--pic-gold,#fdb913)]/10 text-[var(--pic-gold,#fdb913)] backdrop-blur-md shadow-[0_0_12px_rgba(253,185,19,0.2)]">Reporting</span>
-                            <span className="text-[11px] font-bold tracking-wider uppercase px-4 py-2 rounded-full border border-[var(--pic-gold,#fdb913)]/40 bg-[var(--pic-gold,#fdb913)]/10 text-[var(--pic-gold,#fdb913)] backdrop-blur-md shadow-[0_0_12px_rgba(253,185,19,0.2)]">Prédiction</span>
+                            {renderBadge("Dashboards", "var(--pic-gold, #fdb913)", "#fdb913")}
+                            {renderBadge("Reporting", "var(--pic-gold, #fdb913)", "#fdb913")}
+                            {renderBadge("Prédiction", "var(--pic-gold, #fdb913)", "#fdb913")}
                         </div>
                     </div>
 

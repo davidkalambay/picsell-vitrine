@@ -217,7 +217,21 @@ export const SettingsDrawer: React.FC = () => {
                             />
                         </div>
 
-                        {/* Option 8: Vitesse d'Inertie GSAP */}
+                        {/* Option 8: Micro-interactions sur les Badges */}
+                        <div className="flex items-center justify-between p-4 rounded-2xl bg-white/[0.03] border border-white/10">
+                            <div>
+                                <p className="text-sm font-bold text-white">Survol Réactif des Badges</p>
+                                <p className="text-xs text-slate-400">Onde lumineuse & lévitation des tags</p>
+                            </div>
+                            <input
+                                type="checkbox"
+                                checked={settings.badgeMicroInteractions}
+                                onChange={(e) => updateSetting("badgeMicroInteractions", e.target.checked)}
+                                className="w-5 h-5 accent-[var(--pic-orange,#f37021)] rounded cursor-pointer"
+                            />
+                        </div>
+
+                        {/* Option 9: Vitesse d'Inertie GSAP */}
                         <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10">
                             <div className="flex justify-between items-center mb-3">
                                 <div>

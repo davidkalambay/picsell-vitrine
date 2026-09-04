@@ -15,6 +15,7 @@ export interface SiteSettings {
     noiseOverlay: boolean;
     noiseIntensity: NoiseIntensity;
     blueprintGrid: boolean;
+    badgeMicroInteractions: boolean;
     scrubSpeed: number; // in seconds (e.g. 0.5 to 2.5)
     performanceMode: boolean;
 }
@@ -28,6 +29,7 @@ const DEFAULT_SETTINGS: SiteSettings = {
     noiseOverlay: true,
     noiseIntensity: "subtle",
     blueprintGrid: true,
+    badgeMicroInteractions: true,
     scrubSpeed: 1.5,
     performanceMode: false,
 };
