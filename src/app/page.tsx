@@ -81,9 +81,20 @@ export default function Home() {
           </span>
         </h1>
 
-        <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto mb-10 leading-relaxed font-normal">
+        <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto mb-8 leading-relaxed font-normal">
           Picsell Agency conçoit des systèmes marketing, techniques et data pilotés par l'IA, pensés pour les entreprises congolaises et le marché francophone.
         </p>
+
+        {/* Technical Monospace Metadata HUD (Sally's Idea 09) */}
+        {settings.extremeTypography && (
+          <div className="mb-10 inline-flex flex-wrap items-center justify-center gap-2 sm:gap-4 px-4 py-1.5 rounded-full bg-slate-100 dark:bg-white/[0.03] border border-slate-200 dark:border-white/10 font-mono text-[10px] sm:text-[11px] tracking-widest text-slate-500 uppercase select-none">
+            <span>SYS_ID // PICSELL_HQ</span>
+            <span className="opacity-40">•</span>
+            <span>GEO // KINSHASA (4.32°S 15.30°E)</span>
+            <span className="opacity-40">•</span>
+            <span className="text-[var(--pic-turquoise,#3dbcc7)] font-bold">PRECISION // 100%</span>
+          </div>
+        )}
 
         <div className="flex flex-wrap justify-center gap-4">
           <a

@@ -191,6 +191,13 @@ export const ScrollytellingSection: React.FC = () => {
                             {renderNumber("01", "marketing", "var(--pic-orange, #f37021)")}
                         </div>
 
+                        {/* Technical Spec Index (Sally's Idea 09) */}
+                        {settings.extremeTypography && (
+                            <p className="font-mono text-[10px] sm:text-[11px] tracking-[0.22em] uppercase text-[var(--pic-orange,#f37021)]/90 mb-2 select-none">
+                                // SPEC_01: ACQUISITION_ROAS // CHANNEL_GROWTH
+                            </p>
+                        )}
+
                         <h2 className="text-2xl sm:text-4xl font-black tracking-tight mb-4 text-white leading-tight font-sora">
                             Une présence qui convertit, pas seulement qui existe.
                         </h2>
@@ -239,6 +246,13 @@ export const ScrollytellingSection: React.FC = () => {
                             {renderNumber("02", "automation", "var(--pic-turquoise, #3dbcc7)")}
                         </div>
 
+                        {/* Technical Spec Index (Sally's Idea 09) */}
+                        {settings.extremeTypography && (
+                            <p className="font-mono text-[10px] sm:text-[11px] tracking-[0.22em] uppercase text-[var(--pic-turquoise,#3dbcc7)]/90 mb-2 select-none">
+                                // SPEC_02: WORKFLOW_SYNC // ZERO_HUMAN_ERROR
+                            </p>
+                        )}
+
                         <h2 className="text-2xl sm:text-4xl font-black tracking-tight mb-4 text-white leading-tight font-sora">
                             Vos process tournent, même quand vous dormez.
                         </h2>
@@ -286,6 +300,13 @@ export const ScrollytellingSection: React.FC = () => {
                             {renderNumber("03", "development", "var(--pic-blue, #0089d0)")}
                         </div>
 
+                        {/* Technical Spec Index (Sally's Idea 09) */}
+                        {settings.extremeTypography && (
+                            <p className="font-mono text-[10px] sm:text-[11px] tracking-[0.22em] uppercase text-[var(--pic-blue,#0089d0)]/90 mb-2 select-none">
+                                // SPEC_03: SAAS_CORE_ENGINE // POSTGRES_OPTIMIZED
+                            </p>
+                        )}
+
                         <h2 className="text-2xl sm:text-4xl font-black tracking-tight mb-4 text-white leading-tight font-sora">
                             Des produits robustes, du prototype à l'échelle.
                         </h2>
@@ -332,6 +353,13 @@ export const ScrollytellingSection: React.FC = () => {
                             </p>
                             {renderNumber("04", "data", "var(--pic-gold, #fdb913)")}
                         </div>
+
+                        {/* Technical Spec Index (Sally's Idea 09) */}
+                        {settings.extremeTypography && (
+                            <p className="font-mono text-[10px] sm:text-[11px] tracking-[0.22em] uppercase text-[var(--pic-gold,#fdb913)]/90 mb-2 select-none">
+                                // SPEC_04: PREDICTIVE_ANALYTICS // DECISION_ENGINE
+                            </p>
+                        )}
 
                         <h2 className="text-2xl sm:text-4xl font-black tracking-tight mb-4 text-white leading-tight font-sora">
                             Décidez avec des chiffres, pas des intuitions.

@@ -15,6 +15,7 @@ export interface SiteSettings {
     clippingMaskNumbers: boolean;
     codeTerminals: boolean;
     progressRing: boolean;
+    extremeTypography: boolean;
     noiseOverlay: boolean;
     noiseIntensity: NoiseIntensity;
     blueprintGrid: boolean;
@@ -32,6 +33,7 @@ const DEFAULT_SETTINGS: SiteSettings = {
     clippingMaskNumbers: true,
     codeTerminals: true,
     progressRing: true,
+    extremeTypography: true,
     noiseOverlay: true,
     noiseIntensity: "subtle",
     blueprintGrid: true,

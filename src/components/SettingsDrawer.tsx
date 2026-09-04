@@ -204,7 +204,21 @@ export const SettingsDrawer: React.FC = () => {
                             />
                         </div>
 
-                        {/* Option 9: Bruit Texturé (Noise Overlay) */}
+                        {/* Option 9: Contrastes Typographiques Extrêmes */}
+                        <div className="flex items-center justify-between p-4 rounded-2xl bg-white/[0.03] border border-white/10">
+                            <div>
+                                <p className="text-sm font-bold text-white">Contrastes Typographiques</p>
+                                <p className="text-xs text-slate-400">Titres Display gras + métadonnées Monospace</p>
+                            </div>
+                            <input
+                                type="checkbox"
+                                checked={settings.extremeTypography}
+                                onChange={(e) => updateSetting("extremeTypography", e.target.checked)}
+                                className="w-5 h-5 accent-[var(--pic-orange,#f37021)] rounded cursor-pointer"
+                            />
+                        </div>
+
+                        {/* Option 10: Bruit Texturé (Noise Overlay) */}
                         <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 space-y-3">
                             <div className="flex items-center justify-between">
                                 <div>
