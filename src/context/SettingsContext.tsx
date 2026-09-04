@@ -20,6 +20,7 @@ export interface SiteSettings {
     scrollSnap: boolean;
     splitTextReveal: boolean;
     drawSvgIntro: boolean;
+    parallaxBadges: boolean;
     noiseOverlay: boolean;
     noiseIntensity: NoiseIntensity;
     blueprintGrid: boolean;
@@ -42,6 +43,7 @@ const DEFAULT_SETTINGS: SiteSettings = {
     scrollSnap: true,
     splitTextReveal: true,
     drawSvgIntro: true,
+    parallaxBadges: true,
     noiseOverlay: true,
     noiseIntensity: "subtle",
     blueprintGrid: true,

@@ -102,6 +102,86 @@ export const ScrollytellingSection: React.FC = () => {
 
     }, { scope: containerRef, dependencies: [settings.scrollSnap] });
 
+    // Amelia's Idea 06: Multilayer 3D Parallax on Badges & Category Header Pills
+    useGSAP(() => {
+        if (!containerRef.current) return;
+
+        const cardIds = ["story-marketing", "story-automation", "story-development", "story-data"];
+
+        if (!settings.parallaxBadges) {
+            // Reset transforms when disabled
+            cardIds.forEach((id) => {
+                const card = document.getElementById(id);
+                if (card) {
+                    gsap.set(card.querySelectorAll(".badge-parallax-item, .card-top-pill"), { y: 0, rotateZ: 0 });
+                }
+            });
+            return;
+        }
+
+        const triggers: ScrollTrigger[] = [];
+
+        cardIds.forEach((id) => {
+            const card = document.getElementById(id);
+            if (!card) return;
+
+            // Individual badge pills inside the card with depth differentiation
+            const badges = card.querySelectorAll<HTMLElement>(".badge-parallax-item");
+            badges.forEach((badge, idx) => {
+                // Multilayer depth planes:
+                // Badge 0: +/- 14px
+                // Badge 1: +/- 24px
+                // Badge 2: +/- 34px
+                const depthY = (idx + 1) * 10 + 4;
+                const microTilt = (idx % 2 === 0 ? 1 : -1) * 1.8;
+
+                const tween = gsap.fromTo(badge, {
+                    y: depthY,
+                    rotateZ: microTilt,
+                }, {
+                    y: -depthY,
+                    rotateZ: -microTilt,
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top bottom",
+                        end: "bottom top",
+                        scrub: 1.2,
+                    }
+                });
+
+                if (tween.scrollTrigger) {
+                    triggers.push(tween.scrollTrigger);
+                }
+            });
+
+            // Top category pill inside card header
+            const topPill = card.querySelector<HTMLElement>(".card-top-pill");
+            if (topPill) {
+                const tween = gsap.fromTo(topPill, {
+                    y: 12,
+                }, {
+                    y: -12,
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top bottom",
+                        end: "bottom top",
+                        scrub: 0.8,
+                    }
+                });
+
+                if (tween.scrollTrigger) {
+                    triggers.push(tween.scrollTrigger);
+                }
+            }
+        });
+
+        return () => {
+            triggers.forEach((st) => st.kill());
+        };
+    }, { scope: containerRef, dependencies: [settings.parallaxBadges] });
+
     const renderNumber = (num: string, sectionId: SectionType, colorHex: string) => {
         const isActive = activeSection === sectionId;
 
@@ -178,7 +258,7 @@ export const ScrollytellingSection: React.FC = () => {
         return (
             <span
                 key={label}
-                className={`group/badge relative overflow-hidden text-[11px] font-bold tracking-wider uppercase px-4 py-2 rounded-full border backdrop-blur-md transition-all duration-300 select-none ${
+                className={`badge-parallax-item group/badge relative overflow-hidden text-[11px] font-bold tracking-wider uppercase px-4 py-2 rounded-full border backdrop-blur-md transition-all duration-300 select-none ${
                     isInteractive
                         ? "cursor-pointer hover:scale-105 hover:-translate-y-0.5 hover:shadow-lg hover:border-white/60 hover:text-white"
                         : ""
@@ -188,6 +268,7 @@ export const ScrollytellingSection: React.FC = () => {
                     backgroundColor: `${colorHex}18`,
                     color: colorHex,
                     boxShadow: isInteractive ? undefined : `0 0 12px ${colorHex}33`,
+                    willChange: "transform",
                 }}
             >
                 {/* Light Sweep / Shimmer Wave on Hover */}
@@ -242,7 +323,7 @@ export const ScrollytellingSection: React.FC = () => {
                     >
                         <div className="absolute -top-24 -right-24 w-48 h-48 bg-[var(--pic-orange,#f37021)]/20 rounded-full blur-3xl pointer-events-none" />
                         
-                        <div className="flex items-center justify-between mb-4">
+                        <div className="card-top-pill flex items-center justify-between mb-4">
                             <p className="text-xs font-bold tracking-[0.2em] uppercase text-[var(--pic-orange,#f37021)] flex items-center gap-2">
                                 <span className="w-2 h-2 rounded-full bg-[var(--pic-orange,#f37021)]"></span>
                                 Digital Marketing
@@ -314,7 +395,7 @@ export const ScrollytellingSection: React.FC = () => {
                     >
                         <div className="absolute -top-24 -right-24 w-48 h-48 bg-[var(--pic-turquoise,#3dbcc7)]/20 rounded-full blur-3xl pointer-events-none" />
 
-                        <div className="flex items-center justify-between mb-4">
+                        <div className="card-top-pill flex items-center justify-between mb-4">
                             <p className="text-xs font-bold tracking-[0.2em] uppercase text-[var(--pic-turquoise,#3dbcc7)] flex items-center gap-2">
                                 <span className="w-2 h-2 rounded-full bg-[var(--pic-turquoise,#3dbcc7)]"></span>
                                 Automation
@@ -385,7 +466,7 @@ export const ScrollytellingSection: React.FC = () => {
                     >
                         <div className="absolute -top-24 -right-24 w-48 h-48 bg-[var(--pic-blue,#0089d0)]/20 rounded-full blur-3xl pointer-events-none" />
 
-                        <div className="flex items-center justify-between mb-4">
+                        <div className="card-top-pill flex items-center justify-between mb-4">
                             <p className="text-xs font-bold tracking-[0.2em] uppercase text-[var(--pic-blue,#0089d0)] flex items-center gap-2">
                                 <span className="w-2 h-2 rounded-full bg-[var(--pic-blue,#0089d0)]"></span>
                                 Development
@@ -456,7 +537,7 @@ export const ScrollytellingSection: React.FC = () => {
                     >
                         <div className="absolute -top-24 -right-24 w-48 h-48 bg-[var(--pic-gold,#fdb913)]/20 rounded-full blur-3xl pointer-events-none" />
 
-                        <div className="flex items-center justify-between mb-4">
+                        <div className="card-top-pill flex items-center justify-between mb-4">
                             <p className="text-xs font-bold tracking-[0.2em] uppercase text-[var(--pic-gold,#fdb913)] flex items-center gap-2">
                                 <span className="w-2 h-2 rounded-full bg-[var(--pic-gold,#fdb913)]"></span>
                                 Data Intelligence

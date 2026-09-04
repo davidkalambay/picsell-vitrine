@@ -13,7 +13,7 @@ Ce document répertorie les 30 propositions d'améliorations esthétiques, inter
 - [x] **03. SplitText / Text Reveal** : Animer l'apparition des titres et paragraphes mot par mot ou lettre par lettre à la manière d'une frappe d'horlogerie de précision. *(Testé & Implémenté sur `feat/split-text-reveal`)*
 - [x] **04. DrawSVG (Tracé initial)** : Au premier chargement de la page, révéler les contours vectoriels des engrenages comme un dessin technique qui s'assemble avant de commencer à tourner. *(Testé & Implémenté sur `feat/drawsvg-initial-trace`)*
 - [x] **05. Glow & Halo Dynamique** : Faire émettre à l'engrenage actif et à son arrière-plan une lumière néon (`drop-shadow` et aura diffuse) de sa couleur de marque dédiée. *(Testé & Implémenté sur `feat/dark-mode-scroll`)*
-- [ ] **06. Parallaxe sur les badges & tags** : Décaler la vitesse de scroll des pills/badges par rapport au texte pour créer un effet de profondeur 3D multicouche.
+- [x] **06. Parallaxe sur les badges & tags** : Décaler la vitesse de scroll des pills/badges par rapport au texte pour créer un effet de profondeur 3D multicouche. *(Testé & Implémenté sur `feat/badges-tags-parallax`)*
 - [ ] **07. Animation d'entrée du Hero** : Emboîter les mots du slogan principal *"La précision, moteur..."* comme des rouages mécaniques lors de l'apparition initiale.
 - [ ] **08. Typing / Live Counter sur Data** : Dans le module Data Intelligence, animer des chiffres et métriques en temps réel qui défilent à toute allure puis se figent avec précision.
 - [ ] **09. Magnetic Buttons** : Rendre les boutons CTA du Hero et du Footer magnétiques en les attirant subtilement vers le curseur lors du survol.

@@ -303,6 +303,25 @@ export const SettingsDrawer: React.FC = () => {
                             )}
                         </div>
 
+                        {/* Option 14: Parallaxe sur Badges & Tags (Amelia's Idea 06) */}
+                        <div className="flex items-center justify-between p-4 rounded-2xl bg-white/[0.03] border border-white/10">
+                            <div>
+                                <div className="flex items-center gap-1.5">
+                                    <p className="text-sm font-bold text-white">Parallaxe Badges & Tags (3D)</p>
+                                    <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-[var(--pic-orange,#f37021)]/20 text-[var(--pic-orange,#f37021)]">
+                                        AMELIA #06
+                                    </span>
+                                </div>
+                                <p className="text-xs text-slate-400">Vitesse décalée & profondeur multicouche au défilement</p>
+                            </div>
+                            <input
+                                type="checkbox"
+                                checked={settings.parallaxBadges}
+                                onChange={(e) => updateSetting("parallaxBadges", e.target.checked)}
+                                className="w-5 h-5 accent-[var(--pic-orange,#f37021)] rounded cursor-pointer"
+                            />
+                        </div>
+
                         {/* Option 11: Bruit Texturé (Noise Overlay) */}
                         <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 space-y-3">
                             <div className="flex items-center justify-between">
