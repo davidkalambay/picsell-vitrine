@@ -218,7 +218,21 @@ export const SettingsDrawer: React.FC = () => {
                             />
                         </div>
 
-                        {/* Option 10: Bruit Texturé (Noise Overlay) */}
+                        {/* Option 10: CTA Flottant Contextuel */}
+                        <div className="flex items-center justify-between p-4 rounded-2xl bg-white/[0.03] border border-white/10">
+                            <div>
+                                <p className="text-sm font-bold text-white">Bouton Flottant Contextuel</p>
+                                <p className="text-xs text-slate-400">CTA sticky morphing synchronisé au scroll</p>
+                            </div>
+                            <input
+                                type="checkbox"
+                                checked={settings.floatingCta}
+                                onChange={(e) => updateSetting("floatingCta", e.target.checked)}
+                                className="w-5 h-5 accent-[var(--pic-blue,#0089d0)] rounded cursor-pointer"
+                            />
+                        </div>
+
+                        {/* Option 11: Bruit Texturé (Noise Overlay) */}
                         <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 space-y-3">
                             <div className="flex items-center justify-between">
                                 <div>

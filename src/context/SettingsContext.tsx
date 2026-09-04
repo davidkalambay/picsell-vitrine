@@ -16,6 +16,7 @@ export interface SiteSettings {
     codeTerminals: boolean;
     progressRing: boolean;
     extremeTypography: boolean;
+    floatingCta: boolean;
     noiseOverlay: boolean;
     noiseIntensity: NoiseIntensity;
     blueprintGrid: boolean;
@@ -34,6 +35,7 @@ const DEFAULT_SETTINGS: SiteSettings = {
     codeTerminals: true,
     progressRing: true,
     extremeTypography: true,
+    floatingCta: true,
     noiseOverlay: true,
     noiseIntensity: "subtle",
     blueprintGrid: true,

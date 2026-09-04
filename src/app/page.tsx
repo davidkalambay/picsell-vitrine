@@ -4,6 +4,7 @@ import React, { useRef, useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import { ScrollytellingSection } from "@/components/ScrollytellingSection";
 import { SettingsDrawer } from "@/components/SettingsDrawer";
+import { ContextualFloatingCTA } from "@/components/ContextualFloatingCTA";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap-config";
 import { useSiteSettings } from "@/context/SettingsContext";
 
@@ -64,6 +65,7 @@ export default function Home() {
     >
       <Navbar isDark={isDarkMode} />
       <SettingsDrawer />
+      <ContextualFloatingCTA />
 
       {/* Hero Section (Daylight / Sunlit Mode) */}
       <section className="pt-36 pb-20 px-6 text-center max-w-4xl mx-auto relative z-10">

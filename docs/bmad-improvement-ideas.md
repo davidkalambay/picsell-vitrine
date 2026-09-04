@@ -33,7 +33,7 @@ Ce document répertorie les 30 propositions d'améliorations esthétiques, inter
 - [x] **07. Clipping Mask visuel & Mini-Terminaux d'Ingénierie** : Dévoiler des textures abstraites et de vrais aperçus de code source interactifs (`pixel_attribution.ts`, `lead_pipeline.ts`, `enterprise_app.tsx`, `predictive_scoring.sql`) dans les cartes de service. *(Testé & Implémenté sur `feat/engineering-code-terminals`)*
 - [x] **08. Anneau de progression circulaire** : Remplacer le compteur texte par un anneau circulaire lumineux autour de l'engrenage central qui se remplit à 25%, 50%, 75% et 100%. *(Testé & Implémenté sur `feat/circular-progress-ring`)*
 - [x] **09. Contrastes typographiques extrêmes** : Associer une police Serif/Sora très grasse pour les titres à une typographie Monospace technique pour les métadonnées et indices. *(Testé & Implémenté sur `feat/extreme-typography-contrasts`)*
-- [ ] **10. CTA Flottant contextuel** : Afficher un bouton d'action discret et sticky dont l'intitulé s'adapte en temps réel au service en cours de lecture.
+- [x] **10. CTA Flottant contextuel** : Afficher un bouton d'action discret et sticky dont l'intitulé s'adapte en temps réel au service en cours de lecture. *(Testé & Implémenté sur `feat/contextual-floating-cta`)*
 
 ---
 
