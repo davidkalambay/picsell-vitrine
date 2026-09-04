@@ -21,6 +21,7 @@ export interface SiteSettings {
     splitTextReveal: boolean;
     drawSvgIntro: boolean;
     parallaxBadges: boolean;
+    heroMechanicalIntro: boolean;
     noiseOverlay: boolean;
     noiseIntensity: NoiseIntensity;
     blueprintGrid: boolean;
@@ -44,6 +45,7 @@ const DEFAULT_SETTINGS: SiteSettings = {
     splitTextReveal: true,
     drawSvgIntro: true,
     parallaxBadges: true,
+    heroMechanicalIntro: true,
     noiseOverlay: true,
     noiseIntensity: "subtle",
     blueprintGrid: true,
@@ -60,6 +62,8 @@ interface SettingsContextType {
     resetSettings: () => void;
     drawSvgKey: number;
     triggerDrawSvgReplay: () => void;
+    heroIntroKey: number;
+    triggerHeroIntroReplay: () => void;
     isDrawerOpen: boolean;
     setIsDrawerOpen: (open: boolean) => void;
 }
@@ -69,6 +73,7 @@ const SettingsContext = createContext<SettingsContextType | undefined>(undefined
 export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [settings, setSettings] = useState<SiteSettings>(DEFAULT_SETTINGS);
     const [drawSvgKey, setDrawSvgKey] = useState<number>(0);
+    const [heroIntroKey, setHeroIntroKey] = useState<number>(0);
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
 
@@ -109,6 +114,10 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
         setDrawSvgKey((prev) => prev + 1);
     };
 
+    const triggerHeroIntroReplay = () => {
+        setHeroIntroKey((prev) => prev + 1);
+    };
+
     return (
         <SettingsContext.Provider
             value={{
@@ -117,6 +126,8 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
                 resetSettings,
                 drawSvgKey,
                 triggerDrawSvgReplay,
+                heroIntroKey,
+                triggerHeroIntroReplay,
                 isDrawerOpen,
                 setIsDrawerOpen,
             }}

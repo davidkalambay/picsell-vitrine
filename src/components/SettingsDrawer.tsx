@@ -4,7 +4,7 @@ import React from "react";
 import { useSiteSettings, ThemeMode, GearSize } from "@/context/SettingsContext";
 
 export const SettingsDrawer: React.FC = () => {
-    const { settings, updateSetting, resetSettings, triggerDrawSvgReplay, isDrawerOpen, setIsDrawerOpen } = useSiteSettings();
+    const { settings, updateSetting, resetSettings, triggerDrawSvgReplay, triggerHeroIntroReplay, isDrawerOpen, setIsDrawerOpen } = useSiteSettings();
 
     return (
         <>
@@ -320,6 +320,39 @@ export const SettingsDrawer: React.FC = () => {
                                 onChange={(e) => updateSetting("parallaxBadges", e.target.checked)}
                                 className="w-5 h-5 accent-[var(--pic-orange,#f37021)] rounded cursor-pointer"
                             />
+                        </div>
+
+                        {/* Option 15: Animation d'Entrée Mécanique du Hero (Amelia's Idea 07) */}
+                        <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 space-y-3">
+                            <div className="flex items-center justify-between">
+                                <div>
+                                    <div className="flex items-center gap-1.5">
+                                        <p className="text-sm font-bold text-white">Entrée Mécanique Hero</p>
+                                        <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-[var(--pic-turquoise,#3dbcc7)]/20 text-[var(--pic-turquoise,#3dbcc7)]">
+                                            AMELIA #07
+                                        </span>
+                                    </div>
+                                    <p className="text-xs text-slate-400">Emboîtement horloger des mots & rouages filigranes</p>
+                                </div>
+                                <input
+                                    type="checkbox"
+                                    checked={settings.heroMechanicalIntro}
+                                    onChange={(e) => updateSetting("heroMechanicalIntro", e.target.checked)}
+                                    className="w-5 h-5 accent-[var(--pic-turquoise,#3dbcc7)] rounded cursor-pointer"
+                                />
+                            </div>
+
+                            {settings.heroMechanicalIntro && (
+                                <button
+                                    onClick={() => {
+                                        triggerHeroIntroReplay();
+                                        window.scrollTo({ top: 0, behavior: "smooth" });
+                                    }}
+                                    className="w-full py-2 px-3 rounded-xl text-xs font-bold font-mono tracking-wider uppercase border border-[var(--pic-turquoise,#3dbcc7)]/40 bg-[var(--pic-turquoise,#3dbcc7)]/10 hover:bg-[var(--pic-turquoise,#3dbcc7)]/20 text-[var(--pic-turquoise,#3dbcc7)] hover:text-white flex items-center justify-center gap-2 transition-all"
+                                >
+                                    <span>▶</span> Rejouer l'entrée du Hero
+                                </button>
+                            )}
                         </div>
 
                         {/* Option 11: Bruit Texturé (Noise Overlay) */}
