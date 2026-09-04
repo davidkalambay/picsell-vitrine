@@ -162,7 +162,21 @@ export const SettingsDrawer: React.FC = () => {
                             />
                         </div>
 
-                        {/* Option 6: Bruit Texturé (Noise Overlay) */}
+                        {/* Option 6: Clipping Mask Visuel */}
+                        <div className="flex items-center justify-between p-4 rounded-2xl bg-white/[0.03] border border-white/10">
+                            <div>
+                                <p className="text-sm font-bold text-white">Clipping Mask Texturé</p>
+                                <p className="text-xs text-slate-400">Gradients vibrants découpés dans les chiffres</p>
+                            </div>
+                            <input
+                                type="checkbox"
+                                checked={settings.clippingMaskNumbers}
+                                onChange={(e) => updateSetting("clippingMaskNumbers", e.target.checked)}
+                                className="w-5 h-5 accent-[var(--pic-turquoise,#3dbcc7)] rounded cursor-pointer"
+                            />
+                        </div>
+
+                        {/* Option 7: Bruit Texturé (Noise Overlay) */}
                         <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 space-y-3">
                             <div className="flex items-center justify-between">
                                 <div>

@@ -12,6 +12,7 @@ export interface SiteSettings {
     gearSize: GearSize;
     neonGlow: boolean;
     reactiveOutline: boolean;
+    clippingMaskNumbers: boolean;
     noiseOverlay: boolean;
     noiseIntensity: NoiseIntensity;
     blueprintGrid: boolean;
@@ -26,6 +27,7 @@ const DEFAULT_SETTINGS: SiteSettings = {
     gearSize: "large",
     neonGlow: true,
     reactiveOutline: true,
+    clippingMaskNumbers: true,
     noiseOverlay: true,
     noiseIntensity: "subtle",
     blueprintGrid: true,

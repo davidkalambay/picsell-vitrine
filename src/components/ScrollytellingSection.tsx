@@ -43,6 +43,52 @@ export const ScrollytellingSection: React.FC = () => {
 
     const renderNumber = (num: string, sectionId: SectionType, colorHex: string) => {
         const isActive = activeSection === sectionId;
+
+        // Visual Clipping Mask Mode (Sally's Idea 07)
+        if (settings.clippingMaskNumbers) {
+            // Textures dynamically tailored per service module
+            const maskBackgrounds: Record<string, string> = {
+                marketing: "linear-gradient(135deg, #f37021 0%, #fdb913 50%, #ff3b00 100%)",
+                automation: "linear-gradient(135deg, #3dbcc7 0%, #0089d0 50%, #00ffa2 100%)",
+                development: "linear-gradient(135deg, #0089d0 0%, #7c3aed 50%, #3dbcc7 100%)",
+                data: "linear-gradient(135deg, #fdb913 0%, #f37021 50%, #ffea79 100%)",
+            };
+
+            const bgStyle = maskBackgrounds[sectionId || ''] || "linear-gradient(135deg, #ffffff, #888888)";
+
+            return (
+                <div className="relative inline-block select-none group">
+                    <p
+                        className={`text-5xl sm:text-6xl font-black font-sora transition-all duration-700 ${
+                            isActive ? "scale-108" : "scale-100 opacity-25"
+                        }`}
+                        style={{
+                            backgroundImage: bgStyle,
+                            WebkitBackgroundClip: "text",
+                            backgroundClip: "text",
+                            color: "transparent",
+                            WebkitTextStroke: isActive ? `1.2px ${colorHex}` : "1.2px rgba(255, 255, 255, 0.15)",
+                            filter: isActive ? `drop-shadow(0 0 25px ${colorHex}88)` : "none",
+                        }}
+                    >
+                        {num}
+                    </p>
+                    {/* Micro Technical Sub-label in Clipping Mode */}
+                    <span
+                        className={`absolute -bottom-2 right-0 text-[8px] font-mono tracking-widest uppercase transition-opacity duration-500 ${
+                            isActive ? "opacity-90" : "opacity-0"
+                        }`}
+                        style={{ color: colorHex }}
+                    >
+                        {sectionId === 'marketing' && "GROWTH_SYS"}
+                        {sectionId === 'automation' && "AUTO_FLOW"}
+                        {sectionId === 'development' && "STACK_V4"}
+                        {sectionId === 'data' && "INSIGHTS"}
+                    </span>
+                </div>
+            );
+        }
+
         if (!settings.reactiveOutline) {
             return (
                 <p className={`text-5xl sm:text-6xl font-black font-sora transition-all duration-500 ${isActive ? 'text-white' : 'text-white/10'}`}>
