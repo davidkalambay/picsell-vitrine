@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { SettingsProvider } from "@/context/SettingsContext";
+import { NoiseOverlay } from "@/components/NoiseOverlay";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -29,6 +30,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <SettingsProvider>
+          <NoiseOverlay />
           {children}
         </SettingsProvider>
       </body>

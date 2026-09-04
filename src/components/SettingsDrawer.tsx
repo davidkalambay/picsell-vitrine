@@ -162,6 +162,47 @@ export const SettingsDrawer: React.FC = () => {
                             />
                         </div>
 
+                        {/* Option 6: Bruit Texturé (Noise Overlay) */}
+                        <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 space-y-3">
+                            <div className="flex items-center justify-between">
+                                <div>
+                                    <p className="text-sm font-bold text-white">Grain Argentique (Noise)</p>
+                                    <p className="text-xs text-slate-400">Texture éditoriale et subtil grain de film</p>
+                                </div>
+                                <input
+                                    type="checkbox"
+                                    checked={settings.noiseOverlay}
+                                    onChange={(e) => updateSetting("noiseOverlay", e.target.checked)}
+                                    className="w-5 h-5 accent-[var(--pic-turquoise,#3dbcc7)] rounded cursor-pointer"
+                                />
+                            </div>
+
+                            {settings.noiseOverlay && (
+                                <div className="pt-2 border-t border-white/5 flex items-center justify-between gap-2 animate-fade-in">
+                                    <span className="text-[11px] text-slate-400 font-medium">Intensité :</span>
+                                    <div className="flex gap-1.5">
+                                        {[
+                                            { id: "subtle", label: "Subtil" },
+                                            { id: "medium", label: "Moyen" },
+                                            { id: "cinema", label: "Cinéma" },
+                                        ].map((level) => (
+                                            <button
+                                                key={level.id}
+                                                onClick={() => updateSetting("noiseIntensity", level.id as any)}
+                                                className={`px-2.5 py-1 rounded-lg text-[10px] font-bold border transition-all ${
+                                                    settings.noiseIntensity === level.id
+                                                        ? "bg-[var(--pic-turquoise,#3dbcc7)]/20 border-[var(--pic-turquoise,#3dbcc7)] text-white shadow-[0_0_10px_rgba(61,188,199,0.3)]"
+                                                        : "bg-white/5 border-white/10 text-slate-400 hover:border-white/20"
+                                                }`}
+                                            >
+                                                {level.label}
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+
                         {/* Option 5: Vitesse d'Inertie GSAP */}
                         <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10">
                             <div className="flex justify-between items-center mb-3">

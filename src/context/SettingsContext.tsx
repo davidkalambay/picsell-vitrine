@@ -4,6 +4,7 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 
 export type ThemeMode = "scroll-dynamic" | "force-dark" | "force-light";
 export type GearSize = "standard" | "large" | "max";
+export type NoiseIntensity = "subtle" | "medium" | "cinema";
 
 export interface SiteSettings {
     themeMode: ThemeMode;
@@ -11,6 +12,8 @@ export interface SiteSettings {
     gearSize: GearSize;
     neonGlow: boolean;
     reactiveOutline: boolean;
+    noiseOverlay: boolean;
+    noiseIntensity: NoiseIntensity;
     scrubSpeed: number; // in seconds (e.g. 0.5 to 2.5)
     performanceMode: boolean;
 }
@@ -21,6 +24,8 @@ const DEFAULT_SETTINGS: SiteSettings = {
     gearSize: "large",
     neonGlow: true,
     reactiveOutline: true,
+    noiseOverlay: true,
+    noiseIntensity: "subtle",
     scrubSpeed: 1.5,
     performanceMode: false,
 };
