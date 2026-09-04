@@ -2,7 +2,7 @@
 
 import React, { useRef, useState } from "react";
 import { ScrollytellingEngine } from "./ScrollytellingEngine";
-import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap-config";
+import { ScrollTrigger, useGSAP } from "@/lib/gsap-config";
 
 type SectionType = "marketing" | "automation" | "development" | "data" | null;
 
@@ -11,7 +11,6 @@ export const ScrollytellingSection: React.FC = () => {
     const [activeSection, setActiveSection] = useState<SectionType>(null);
 
     useGSAP(() => {
-        // We can create scroll triggers for each block to update activeSection
         const sections = [
             { id: "marketing" },
             { id: "automation" },
@@ -29,7 +28,6 @@ export const ScrollytellingSection: React.FC = () => {
                     onEnter: () => setActiveSection(id as SectionType),
                     onEnterBack: () => setActiveSection(id as SectionType),
                     onLeave: () => {
-                        // If we leave the very top or bottom, we might clear it or keep last
                         if (id === "data") setActiveSection(null);
                     },
                     onLeaveBack: () => {
@@ -77,7 +75,6 @@ export const ScrollytellingSection: React.FC = () => {
                                 : 'bg-white/[0.02] border-white/[0.06] opacity-30 translate-y-4 scale-[0.98]'
                         }`}
                     >
-                        {/* Glass Refraction Sheen */}
                         <div className="absolute -top-24 -right-24 w-48 h-48 bg-[var(--pic-orange,#f37021)]/20 rounded-full blur-3xl pointer-events-none" />
                         
                         <div className="flex items-center justify-between mb-4">
@@ -110,7 +107,6 @@ export const ScrollytellingSection: React.FC = () => {
                                 : 'bg-white/[0.02] border-white/[0.06] opacity-30 translate-y-4 scale-[0.98]'
                         }`}
                     >
-                        {/* Glass Refraction Sheen */}
                         <div className="absolute -top-24 -right-24 w-48 h-48 bg-[var(--pic-turquoise,#3dbcc7)]/20 rounded-full blur-3xl pointer-events-none" />
 
                         <div className="flex items-center justify-between mb-4">
@@ -143,7 +139,6 @@ export const ScrollytellingSection: React.FC = () => {
                                 : 'bg-white/[0.02] border-white/[0.06] opacity-30 translate-y-4 scale-[0.98]'
                         }`}
                     >
-                        {/* Glass Refraction Sheen */}
                         <div className="absolute -top-24 -right-24 w-48 h-48 bg-[var(--pic-blue,#0089d0)]/20 rounded-full blur-3xl pointer-events-none" />
 
                         <div className="flex items-center justify-between mb-4">
@@ -176,7 +171,6 @@ export const ScrollytellingSection: React.FC = () => {
                                 : 'bg-white/[0.02] border-white/[0.06] opacity-30 translate-y-4 scale-[0.98]'
                         }`}
                     >
-                        {/* Glass Refraction Sheen */}
                         <div className="absolute -top-24 -right-24 w-48 h-48 bg-[var(--pic-gold,#fdb913)]/20 rounded-full blur-3xl pointer-events-none" />
 
                         <div className="flex items-center justify-between mb-4">

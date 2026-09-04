@@ -9,16 +9,16 @@ interface ScrollytellingEngineProps {
 
 export const ScrollytellingEngine: React.FC<ScrollytellingEngineProps> = ({ activeSection }) => {
     const container = useRef<SVGSVGElement>(null);
-    const [viewBox, setViewBox] = useState("0 0 1200 900");
+    const [viewBox, setViewBox] = useState("250 150 700 600");
 
     useEffect(() => {
         const handleResize = () => {
             if (window.innerWidth < 768) {
-                // Mobile: Tight zoom on the gears
-                setViewBox("350 150 500 500");
+                // Mobile: Tight focus
+                setViewBox("280 180 640 540");
             } else {
-                // Desktop: Full view
-                setViewBox("0 0 1200 900");
+                // Desktop: Fills ~80% of container smoothly
+                setViewBox("250 150 700 600");
             }
         };
 
@@ -84,45 +84,70 @@ export const ScrollytellingEngine: React.FC<ScrollytellingEngineProps> = ({ acti
 
     }, { scope: container });
 
-    // Active state styles
+    // Active state styles with dynamic neon glow
     const getStyle = (section: string) => {
         const isActive = activeSection === section;
-        // The HTML prototype sets inactive opacity to 0.34 and adds a grayscale/brightness filter
+        const glowColors: Record<string, string> = {
+            marketing: "rgba(243, 112, 33, 0.65)",
+            automation: "rgba(61, 188, 199, 0.65)",
+            development: "rgba(0, 137, 208, 0.65)",
+            data: "rgba(253, 185, 19, 0.65)",
+        };
+
         return {
-            opacity: isActive ? 1 : 0.34,
-            filter: isActive ? "none" : "grayscale(1) brightness(1.2)",
-            transition: "opacity 0.6s ease, filter 0.5s ease"
+            opacity: isActive ? 1 : 0.25,
+            filter: isActive 
+                ? `drop-shadow(0 0 24px ${glowColors[section] || "transparent"})`
+                : "grayscale(1) brightness(0.7)",
+            transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)"
         };
     };
 
     return (
-        <div className="w-full h-full flex justify-center items-center overflow-visible">
+        <div className="w-full h-full flex justify-center items-center overflow-visible relative">
+            {/* Ambient Background Aura based on active section */}
+            <div 
+                className="absolute w-[350px] h-[350px] md:w-[500px] md:h-[500px] rounded-full blur-[100px] pointer-events-none transition-all duration-700 opacity-40 -z-10"
+                style={{
+                    backgroundColor: 
+                        activeSection === "marketing" ? "var(--pic-orange, #f37021)" :
+                        activeSection === "automation" ? "var(--pic-turquoise, #3dbcc7)" :
+                        activeSection === "development" ? "var(--pic-blue, #0089d0)" :
+                        activeSection === "data" ? "var(--pic-gold, #fdb913)" :
+                        "rgba(255, 255, 255, 0.05)"
+                }}
+            />
+
             <svg
                 ref={container}
                 viewBox={viewBox}
                 xmlns="http://www.w3.org/2000/svg"
-                className="w-full max-w-[1000px] max-h-[80vh] overflow-visible drop-shadow-2xl"
+                className="w-full max-w-[1000px] max-h-[80vh] overflow-visible"
             >
                 <defs>
                     <path id="tooth-v23" d="M-9,-12 L9,-12 L12,0 L-12,0 Z" />
+                    <filter id="ai-glow" x="-50%" y="-50%" width="200%" height="200%">
+                        <feDropShadow dx="0" dy="0" stdDeviation="15" floodColor="#ffffff" floodOpacity="0.25" />
+                    </filter>
                 </defs>
 
                 <g id="cluster" style={{ transformOrigin: "600px 450px" }}>
-                    {/* AI ENGINE */}
-                    <g id="g_ai" transform="translate(600, 450)">
+                    {/* AI ENGINE (Central Gear) */}
+                    <g id="g_ai" transform="translate(600, 450)" filter="url(#ai-glow)">
                         <g id="spin_ai">
-                            <circle r="120" fill="var(--pic-charcoal, #1a1a1a)" />
+                            <circle r="120" fill="#1e212b" stroke="#333846" strokeWidth="3" />
                             {Array.from({ length: 18 }).map((_, i) => (
                                 <g key={i} transform={`rotate(${i * 20}) translate(0,-120)`}>
-                                    <use href="#tooth-v23" fill="var(--pic-charcoal, #1a1a1a)" />
+                                    <use href="#tooth-v23" fill="#1e212b" />
                                 </g>
                             ))}
                         </g>
-                        <circle r="90" fill="white" stroke="var(--pic-charcoal, #1a1a1a)" strokeWidth="4" />
-                        <text className="font-sora font-extrabold" textAnchor="middle" fontSize="28" dy="10" fill="var(--pic-charcoal, #1a1a1a)">
+                        <circle r="90" fill="#0d0e12" stroke="#4b5563" strokeWidth="4" />
+                        <circle r="80" fill="white" />
+                        <text className="font-sora font-extrabold tracking-wider" textAnchor="middle" fontSize="28" dy="10" fill="#090a0f">
                             AI
                         </text>
-                        <text className="font-sora font-extrabold" textAnchor="middle" fontSize="10" dy="25" fill="var(--pic-charcoal, #1a1a1a)">
+                        <text className="font-sora font-bold tracking-widest uppercase" textAnchor="middle" fontSize="10" dy="25" fill="#4b5563">
                             ENGINE
                         </text>
                     </g>
@@ -137,11 +162,11 @@ export const ScrollytellingEngine: React.FC<ScrollytellingEngineProps> = ({ acti
                                 </g>
                             ))}
                         </g>
-                        <circle r="60" fill="white" stroke="var(--pic-orange, #f37021)" strokeWidth="4" />
-                        <text className="font-sora font-extrabold" textAnchor="middle" fontSize="12" dy="-5" fill="var(--pic-orange, #f37021)">
+                        <circle r="60" fill="#0d0e12" stroke="var(--pic-orange, #f37021)" strokeWidth="3" />
+                        <text className="font-sora font-extrabold" textAnchor="middle" fontSize="12" dy="-5" fill="white">
                             DIGITAL
                         </text>
-                        <text className="font-sora font-extrabold" textAnchor="middle" fontSize="14" dy="12" fill="var(--pic-orange, #f37021)">
+                        <text className="font-sora font-extrabold" textAnchor="middle" fontSize="13" dy="12" fill="var(--pic-orange, #f37021)">
                             MARKETING
                         </text>
                     </g>
@@ -156,8 +181,8 @@ export const ScrollytellingEngine: React.FC<ScrollytellingEngineProps> = ({ acti
                                 </g>
                             ))}
                         </g>
-                        <circle r="50" fill="white" stroke="var(--pic-turquoise, #3dbcc7)" strokeWidth="4" />
-                        <text className="font-sora font-extrabold" textAnchor="middle" fontSize="11" dy="5" fill="var(--pic-turquoise, #3dbcc7)">
+                        <circle r="50" fill="#0d0e12" stroke="var(--pic-turquoise, #3dbcc7)" strokeWidth="3" />
+                        <text className="font-sora font-extrabold tracking-wide" textAnchor="middle" fontSize="11" dy="5" fill="var(--pic-turquoise, #3dbcc7)">
                             AUTOMATION
                         </text>
                     </g>
@@ -172,11 +197,11 @@ export const ScrollytellingEngine: React.FC<ScrollytellingEngineProps> = ({ acti
                                 </g>
                             ))}
                         </g>
-                        <circle r="65" fill="white" stroke="var(--pic-blue, #0089d0)" strokeWidth="4" />
-                        <text className="font-sora font-extrabold" textAnchor="middle" fontSize="28" dy="-10" fill="var(--pic-blue, #0089d0)">
+                        <circle r="65" fill="#0d0e12" stroke="var(--pic-blue, #0089d0)" strokeWidth="3" />
+                        <text className="font-sora font-extrabold" textAnchor="middle" fontSize="26" dy="-8" fill="white">
                             &lt;/&gt;
                         </text>
-                        <text className="font-sora font-extrabold" textAnchor="middle" fontSize="11" dy="15" fill="var(--pic-blue, #0089d0)">
+                        <text className="font-sora font-extrabold tracking-wider" textAnchor="middle" fontSize="11" dy="14" fill="var(--pic-blue, #0089d0)">
                             DEVELOPMENT
                         </text>
                     </g>
@@ -191,8 +216,8 @@ export const ScrollytellingEngine: React.FC<ScrollytellingEngineProps> = ({ acti
                                 </g>
                             ))}
                         </g>
-                        <circle r="75" fill="white" stroke="var(--pic-gold, #fdb913)" strokeWidth="4" />
-                        <text className="font-sora font-extrabold" textAnchor="middle" fontSize="13" dy="-2" fill="var(--pic-gold, #fdb913)">
+                        <circle r="75" fill="#0d0e12" stroke="var(--pic-gold, #fdb913)" strokeWidth="3" />
+                        <text className="font-sora font-extrabold" textAnchor="middle" fontSize="13" dy="-2" fill="white">
                             DATA
                         </text>
                         <text className="font-sora font-extrabold" textAnchor="middle" fontSize="13" dy="16" fill="var(--pic-gold, #fdb913)">
