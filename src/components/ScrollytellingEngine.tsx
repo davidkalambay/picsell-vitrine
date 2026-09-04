@@ -10,7 +10,7 @@ interface ScrollytellingEngineProps {
 
 export const ScrollytellingEngine: React.FC<ScrollytellingEngineProps> = ({ activeSection }) => {
     const container = useRef<SVGSVGElement>(null);
-    const { settings } = useSiteSettings();
+    const { settings, drawSvgKey } = useSiteSettings();
     const [viewBox, setViewBox] = useState("250 150 700 600");
 
     useEffect(() => {
@@ -32,6 +32,108 @@ export const ScrollytellingEngine: React.FC<ScrollytellingEngineProps> = ({ acti
         return () => window.removeEventListener("resize", handleResize);
     }, [settings.gearSize]);
 
+    // Amelia's Idea 04: DrawSVG Initial Engineering Assembly Reveal
+    useGSAP(() => {
+        if (!container.current) return;
+
+        if (!settings.drawSvgIntro) {
+            // Static mode: ensure all elements are visible immediately
+            gsap.set([".drawsvg-axis", ".drawsvg-ring"], { strokeDashoffset: 0, opacity: 0.4 });
+            gsap.set(".drawsvg-fill", { opacity: 1 });
+            gsap.set(".drawsvg-tooth", { scale: 1, opacity: 1 });
+            gsap.set(".drawsvg-text", { opacity: 1, scale: 1 });
+            return;
+        }
+
+        const sectionTrigger = document.getElementById("scrollytelling-section");
+
+        const playDrawAnimation = () => {
+            const introTl = gsap.timeline({ defaults: { ease: "power2.inOut" } });
+
+            // 1. Initial State: Hidden wireframe offsets & zero scale
+            introTl.set(".drawsvg-axis", { strokeDashoffset: 100, opacity: 0 });
+            introTl.set(".drawsvg-ring", { strokeDashoffset: 100, opacity: 0 });
+            introTl.set(".drawsvg-fill", { opacity: 0 });
+            introTl.set(".drawsvg-tooth", { scale: 0, opacity: 0, transformOrigin: "center center" });
+            introTl.set(".drawsvg-text", { scale: 0.7, opacity: 0, transformOrigin: "center center" });
+
+            // 2. Phase 1: Draw Blueprint Axis Lines connecting AI Engine to Satellites (0s - 0.7s)
+            introTl.to(".drawsvg-axis", {
+                strokeDashoffset: 0,
+                opacity: 0.45,
+                duration: 0.7,
+                stagger: 0.08,
+                ease: "power2.out",
+            });
+
+            // 3. Phase 2: Draw Technical Pitch Circles & Gear Perimeter Contours (0.4s - 1.5s)
+            introTl.to(".drawsvg-ring", {
+                strokeDashoffset: 0,
+                opacity: 1,
+                duration: 1.1,
+                stagger: 0.1,
+                ease: "power2.inOut",
+            }, "-=0.4");
+
+            // 4. Phase 3: Clockwork Teeth Escapement Radial Assembly (0.9s - 1.4s)
+            introTl.to(".drawsvg-tooth", {
+                scale: 1,
+                opacity: 1,
+                duration: 0.45,
+                stagger: {
+                    each: 0.012,
+                    from: "center",
+                },
+                ease: "back.out(2.2)",
+            }, "-=0.5");
+
+            // 5. Phase 4: Solid Precision Body Fill-in (1.2s - 1.8s)
+            introTl.to(".drawsvg-fill", {
+                opacity: 1,
+                duration: 0.6,
+                stagger: 0.06,
+                ease: "power2.out",
+            }, "-=0.3");
+
+            // 6. Phase 5: Technical Typography Ingress & Calibration Flash (1.4s - 1.9s)
+            introTl.to(".drawsvg-text", {
+                scale: 1,
+                opacity: 1,
+                duration: 0.4,
+                stagger: 0.06,
+                ease: "back.out(1.5)",
+            }, "-=0.3");
+
+            // Micro calibration pulse on AI Hub
+            introTl.fromTo("#g_ai", {
+                scale: 1,
+            }, {
+                scale: 1.04,
+                duration: 0.2,
+                yoyo: true,
+                repeat: 1,
+                ease: "power1.inOut",
+            }, "-=0.1");
+        };
+
+        if (drawSvgKey > 0) {
+            // Replay requested from settings drawer
+            playDrawAnimation();
+        } else if (sectionTrigger) {
+            // First time entrance trigger
+            ScrollTrigger.create({
+                trigger: sectionTrigger,
+                start: "top 75%",
+                once: true,
+                onEnter: () => playDrawAnimation(),
+            });
+        } else {
+            playDrawAnimation();
+        }
+
+    }, { scope: container, dependencies: [settings.drawSvgIntro, drawSvgKey] });
+
+    // Synchronized Clockwork Rotation Scrubbing
     useGSAP(() => {
         if (!container.current) return;
         
@@ -139,95 +241,273 @@ export const ScrollytellingEngine: React.FC<ScrollytellingEngineProps> = ({ acti
                 </defs>
 
                 <g id="cluster" style={{ transformOrigin: "600px 450px" }}>
+                    {/* DrawSVG Blueprint Axis Lines connecting Hub to Satellites */}
+                    <g className="drawsvg-axes-group pointer-events-none">
+                        {/* Hub -> Marketing */}
+                        <line
+                            x1="600" y1="450" x2="438" y2="305"
+                            className="drawsvg-axis"
+                            pathLength="100"
+                            strokeDasharray="100"
+                            stroke="var(--pic-orange, #f37021)"
+                            strokeWidth="1.5"
+                            strokeDashoffset="0"
+                            strokeOpacity="0.4"
+                        />
+                        {/* Hub -> Automation */}
+                        <line
+                            x1="600" y1="450" x2="743" y2="307"
+                            className="drawsvg-axis"
+                            pathLength="100"
+                            strokeDasharray="100"
+                            stroke="var(--pic-turquoise, #3dbcc7)"
+                            strokeWidth="1.5"
+                            strokeDashoffset="0"
+                            strokeOpacity="0.4"
+                        />
+                        {/* Hub -> Development */}
+                        <line
+                            x1="600" y1="450" x2="428" y2="592"
+                            className="drawsvg-axis"
+                            pathLength="100"
+                            strokeDasharray="100"
+                            stroke="var(--pic-blue, #0089d0)"
+                            strokeWidth="1.5"
+                            strokeDashoffset="0"
+                            strokeOpacity="0.4"
+                        />
+                        {/* Hub -> Data */}
+                        <line
+                            x1="600" y1="450" x2="786" y2="591"
+                            className="drawsvg-axis"
+                            pathLength="100"
+                            strokeDasharray="100"
+                            stroke="var(--pic-gold, #fdb913)"
+                            strokeWidth="1.5"
+                            strokeDashoffset="0"
+                            strokeOpacity="0.4"
+                        />
+                    </g>
+
                     {/* AI ENGINE (Central Gear) */}
                     <g id="g_ai" transform="translate(600, 450)" filter="url(#ai-glow)">
+                        {/* DrawSVG Technical Guide Ring */}
+                        <circle
+                            r="126"
+                            fill="none"
+                            stroke="rgba(255, 255, 255, 0.4)"
+                            strokeWidth="1.5"
+                            strokeDasharray="100"
+                            pathLength="100"
+                            className="drawsvg-ring"
+                        />
                         <g id="spin_ai">
-                            <circle r="120" fill="#1e212b" stroke="#333846" strokeWidth="3" />
+                            <circle
+                                r="120"
+                                fill="#1e212b"
+                                stroke="#333846"
+                                strokeWidth="3"
+                                pathLength="100"
+                                strokeDasharray="100"
+                                className="drawsvg-fill drawsvg-ring"
+                            />
                             {Array.from({ length: 18 }).map((_, i) => (
                                 <g key={i} transform={`rotate(${i * 20}) translate(0,-120)`}>
-                                    <use href="#tooth-v23" fill="#1e212b" />
+                                    <use href="#tooth-v23" fill="#1e212b" className="drawsvg-tooth" />
                                 </g>
                             ))}
                         </g>
-                        <circle r="90" fill="#0d0e12" stroke="#4b5563" strokeWidth="4" />
-                        <circle r="80" fill="white" />
-                        <text className="font-sora font-extrabold tracking-wider" textAnchor="middle" fontSize="28" dy="10" fill="#090a0f">
+                        <circle
+                            r="90"
+                            fill="#0d0e12"
+                            stroke="#4b5563"
+                            strokeWidth="4"
+                            pathLength="100"
+                            strokeDasharray="100"
+                            className="drawsvg-fill drawsvg-ring"
+                        />
+                        <circle r="80" fill="white" className="drawsvg-fill" />
+                        <text className="font-sora font-extrabold tracking-wider drawsvg-text" textAnchor="middle" fontSize="28" dy="10" fill="#090a0f">
                             AI
                         </text>
-                        <text className="font-sora font-bold tracking-widest uppercase" textAnchor="middle" fontSize="10" dy="25" fill="#4b5563">
+                        <text className="font-sora font-bold tracking-widest uppercase drawsvg-text" textAnchor="middle" fontSize="10" dy="25" fill="#4b5563">
                             ENGINE
                         </text>
                     </g>
 
                     {/* DIGITAL MARKETING */}
                     <g id="g_marketing" transform="translate(438, 305)" style={getStyle('marketing')}>
+                        {/* DrawSVG Technical Guide Ring */}
+                        <circle
+                            r="91"
+                            fill="none"
+                            stroke="var(--pic-orange, #f37021)"
+                            strokeWidth="1.5"
+                            strokeDasharray="100"
+                            pathLength="100"
+                            className="drawsvg-ring"
+                        />
                         <g id="spin_marketing">
-                            <circle r="85" fill="var(--pic-orange, #f37021)" />
+                            <circle
+                                r="85"
+                                fill="var(--pic-orange, #f37021)"
+                                stroke="var(--pic-orange, #f37021)"
+                                strokeWidth="1"
+                                pathLength="100"
+                                strokeDasharray="100"
+                                className="drawsvg-fill drawsvg-ring"
+                            />
                             {Array.from({ length: 12 }).map((_, i) => (
                                 <g key={i} transform={`rotate(${i * 30 + 15}) translate(0,-85)`}>
-                                    <use href="#tooth-v23" fill="var(--pic-orange, #f37021)" />
+                                    <use href="#tooth-v23" fill="var(--pic-orange, #f37021)" className="drawsvg-tooth" />
                                 </g>
                             ))}
                         </g>
-                        <circle r="60" fill="#0d0e12" stroke="var(--pic-orange, #f37021)" strokeWidth="3" />
-                        <text className="font-sora font-extrabold" textAnchor="middle" fontSize="12" dy="-5" fill="white">
+                        <circle
+                            r="60"
+                            fill="#0d0e12"
+                            stroke="var(--pic-orange, #f37021)"
+                            strokeWidth="3"
+                            pathLength="100"
+                            strokeDasharray="100"
+                            className="drawsvg-fill drawsvg-ring"
+                        />
+                        <text className="font-sora font-extrabold drawsvg-text" textAnchor="middle" fontSize="12" dy="-5" fill="white">
                             DIGITAL
                         </text>
-                        <text className="font-sora font-extrabold" textAnchor="middle" fontSize="13" dy="12" fill="var(--pic-orange, #f37021)">
+                        <text className="font-sora font-extrabold drawsvg-text" textAnchor="middle" fontSize="13" dy="12" fill="var(--pic-orange, #f37021)">
                             MARKETING
                         </text>
                     </g>
 
                     {/* AUTOMATION */}
                     <g id="g_automation" transform="translate(743, 307)" style={getStyle('automation')}>
+                        {/* DrawSVG Technical Guide Ring */}
+                        <circle
+                            r="76"
+                            fill="none"
+                            stroke="var(--pic-turquoise, #3dbcc7)"
+                            strokeWidth="1.5"
+                            strokeDasharray="100"
+                            pathLength="100"
+                            className="drawsvg-ring"
+                        />
                         <g id="spin_automation">
-                            <circle r="70" fill="var(--pic-turquoise, #3dbcc7)" />
+                            <circle
+                                r="70"
+                                fill="var(--pic-turquoise, #3dbcc7)"
+                                stroke="var(--pic-turquoise, #3dbcc7)"
+                                strokeWidth="1"
+                                pathLength="100"
+                                strokeDasharray="100"
+                                className="drawsvg-fill drawsvg-ring"
+                            />
                             {Array.from({ length: 10 }).map((_, i) => (
                                 <g key={i} transform={`rotate(${i * 36}) translate(0,-70)`}>
-                                    <use href="#tooth-v23" fill="var(--pic-turquoise, #3dbcc7)" />
+                                    <use href="#tooth-v23" fill="var(--pic-turquoise, #3dbcc7)" className="drawsvg-tooth" />
                                 </g>
                             ))}
                         </g>
-                        <circle r="50" fill="#0d0e12" stroke="var(--pic-turquoise, #3dbcc7)" strokeWidth="3" />
-                        <text className="font-sora font-extrabold tracking-wide" textAnchor="middle" fontSize="11" dy="5" fill="var(--pic-turquoise, #3dbcc7)">
+                        <circle
+                            r="50"
+                            fill="#0d0e12"
+                            stroke="var(--pic-turquoise, #3dbcc7)"
+                            strokeWidth="3"
+                            pathLength="100"
+                            strokeDasharray="100"
+                            className="drawsvg-fill drawsvg-ring"
+                        />
+                        <text className="font-sora font-extrabold tracking-wide drawsvg-text" textAnchor="middle" fontSize="11" dy="5" fill="var(--pic-turquoise, #3dbcc7)">
                             AUTOMATION
                         </text>
                     </g>
 
                     {/* DEVELOPMENT */}
                     <g id="g_dev" transform="translate(428, 592)" style={getStyle('development')}>
+                        {/* DrawSVG Technical Guide Ring */}
+                        <circle
+                            r="96"
+                            fill="none"
+                            stroke="var(--pic-blue, #0089d0)"
+                            strokeWidth="1.5"
+                            strokeDasharray="100"
+                            pathLength="100"
+                            className="drawsvg-ring"
+                        />
                         <g id="spin_dev">
-                            <circle r="90" fill="var(--pic-blue, #0089d0)" />
+                            <circle
+                                r="90"
+                                fill="var(--pic-blue, #0089d0)"
+                                stroke="var(--pic-blue, #0089d0)"
+                                strokeWidth="1"
+                                pathLength="100"
+                                strokeDasharray="100"
+                                className="drawsvg-fill drawsvg-ring"
+                            />
                             {Array.from({ length: 14 }).map((_, i) => (
                                 <g key={i} transform={`rotate(${i * 25.7}) translate(0,-90)`}>
-                                    <use href="#tooth-v23" fill="var(--pic-blue, #0089d0)" />
+                                    <use href="#tooth-v23" fill="var(--pic-blue, #0089d0)" className="drawsvg-tooth" />
                                 </g>
                             ))}
                         </g>
-                        <circle r="65" fill="#0d0e12" stroke="var(--pic-blue, #0089d0)" strokeWidth="3" />
-                        <text className="font-sora font-extrabold" textAnchor="middle" fontSize="26" dy="-8" fill="white">
+                        <circle
+                            r="65"
+                            fill="#0d0e12"
+                            stroke="var(--pic-blue, #0089d0)"
+                            strokeWidth="3"
+                            pathLength="100"
+                            strokeDasharray="100"
+                            className="drawsvg-fill drawsvg-ring"
+                        />
+                        <text className="font-sora font-extrabold drawsvg-text" textAnchor="middle" fontSize="26" dy="-8" fill="white">
                             &lt;/&gt;
                         </text>
-                        <text className="font-sora font-extrabold tracking-wider" textAnchor="middle" fontSize="11" dy="14" fill="var(--pic-blue, #0089d0)">
+                        <text className="font-sora font-extrabold tracking-wider drawsvg-text" textAnchor="middle" fontSize="11" dy="14" fill="var(--pic-blue, #0089d0)">
                             DEVELOPMENT
                         </text>
                     </g>
 
                     {/* DATA INTELLIGENCE */}
                     <g id="g_data" transform="translate(786, 591)" style={getStyle('data')}>
+                        {/* DrawSVG Technical Guide Ring */}
+                        <circle
+                            r="106"
+                            fill="none"
+                            stroke="var(--pic-gold, #fdb913)"
+                            strokeWidth="1.5"
+                            strokeDasharray="100"
+                            pathLength="100"
+                            className="drawsvg-ring"
+                        />
                         <g id="spin_data">
-                            <circle r="100" fill="var(--pic-gold, #fdb913)" />
+                            <circle
+                                r="100"
+                                fill="var(--pic-gold, #fdb913)"
+                                stroke="var(--pic-gold, #fdb913)"
+                                strokeWidth="1"
+                                pathLength="100"
+                                strokeDasharray="100"
+                                className="drawsvg-fill drawsvg-ring"
+                            />
                             {Array.from({ length: 16 }).map((_, i) => (
                                 <g key={i} transform={`rotate(${i * 22.5 + 11.25}) translate(0,-100)`}>
-                                    <use href="#tooth-v23" fill="var(--pic-gold, #fdb913)" />
+                                    <use href="#tooth-v23" fill="var(--pic-gold, #fdb913)" className="drawsvg-tooth" />
                                 </g>
                             ))}
                         </g>
-                        <circle r="75" fill="#0d0e12" stroke="var(--pic-gold, #fdb913)" strokeWidth="3" />
-                        <text className="font-sora font-extrabold" textAnchor="middle" fontSize="13" dy="-2" fill="white">
+                        <circle
+                            r="75"
+                            fill="#0d0e12"
+                            stroke="var(--pic-gold, #fdb913)"
+                            strokeWidth="3"
+                            pathLength="100"
+                            strokeDasharray="100"
+                            className="drawsvg-fill drawsvg-ring"
+                        />
+                        <text className="font-sora font-extrabold drawsvg-text" textAnchor="middle" fontSize="13" dy="-2" fill="white">
                             DATA
                         </text>
-                        <text className="font-sora font-extrabold" textAnchor="middle" fontSize="13" dy="16" fill="var(--pic-gold, #fdb913)">
+                        <text className="font-sora font-extrabold drawsvg-text" textAnchor="middle" fontSize="13" dy="16" fill="var(--pic-gold, #fdb913)">
                             INTELLIGENCE
                         </text>
                     </g>

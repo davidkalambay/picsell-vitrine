@@ -19,6 +19,7 @@ export interface SiteSettings {
     floatingCta: boolean;
     scrollSnap: boolean;
     splitTextReveal: boolean;
+    drawSvgIntro: boolean;
     noiseOverlay: boolean;
     noiseIntensity: NoiseIntensity;
     blueprintGrid: boolean;
@@ -40,6 +41,7 @@ const DEFAULT_SETTINGS: SiteSettings = {
     floatingCta: true,
     scrollSnap: true,
     splitTextReveal: true,
+    drawSvgIntro: true,
     noiseOverlay: true,
     noiseIntensity: "subtle",
     blueprintGrid: true,
@@ -54,6 +56,8 @@ interface SettingsContextType {
     settings: SiteSettings;
     updateSetting: <K extends keyof SiteSettings>(key: K, value: SiteSettings[K]) => void;
     resetSettings: () => void;
+    drawSvgKey: number;
+    triggerDrawSvgReplay: () => void;
     isDrawerOpen: boolean;
     setIsDrawerOpen: (open: boolean) => void;
 }
@@ -62,6 +66,7 @@ const SettingsContext = createContext<SettingsContextType | undefined>(undefined
 
 export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [settings, setSettings] = useState<SiteSettings>(DEFAULT_SETTINGS);
+    const [drawSvgKey, setDrawSvgKey] = useState<number>(0);
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
 
@@ -98,12 +103,18 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
         setSettings(DEFAULT_SETTINGS);
     };
 
+    const triggerDrawSvgReplay = () => {
+        setDrawSvgKey((prev) => prev + 1);
+    };
+
     return (
         <SettingsContext.Provider
             value={{
                 settings,
                 updateSetting,
                 resetSettings,
+                drawSvgKey,
+                triggerDrawSvgReplay,
                 isDrawerOpen,
                 setIsDrawerOpen,
             }}

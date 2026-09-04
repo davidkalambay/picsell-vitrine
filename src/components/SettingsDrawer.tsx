@@ -4,7 +4,7 @@ import React from "react";
 import { useSiteSettings, ThemeMode, GearSize } from "@/context/SettingsContext";
 
 export const SettingsDrawer: React.FC = () => {
-    const { settings, updateSetting, resetSettings, isDrawerOpen, setIsDrawerOpen } = useSiteSettings();
+    const { settings, updateSetting, resetSettings, triggerDrawSvgReplay, isDrawerOpen, setIsDrawerOpen } = useSiteSettings();
 
     return (
         <>
@@ -268,6 +268,39 @@ export const SettingsDrawer: React.FC = () => {
                                 onChange={(e) => updateSetting("splitTextReveal", e.target.checked)}
                                 className="w-5 h-5 accent-[var(--pic-gold,#fdb913)] rounded cursor-pointer"
                             />
+                        </div>
+
+                        {/* Option 13: DrawSVG Tracé Initial (Amelia's Idea 04) */}
+                        <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 space-y-3">
+                            <div className="flex items-center justify-between">
+                                <div>
+                                    <div className="flex items-center gap-1.5">
+                                        <p className="text-sm font-bold text-white">Tracé Initial DrawSVG</p>
+                                        <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-[var(--pic-blue,#0089d0)]/20 text-[var(--pic-blue,#0089d0)]">
+                                            AMELIA #04
+                                        </span>
+                                    </div>
+                                    <p className="text-xs text-slate-400">Dessin vectoriel des axes & assemblage mécanique</p>
+                                </div>
+                                <input
+                                    type="checkbox"
+                                    checked={settings.drawSvgIntro}
+                                    onChange={(e) => updateSetting("drawSvgIntro", e.target.checked)}
+                                    className="w-5 h-5 accent-[var(--pic-blue,#0089d0)] rounded cursor-pointer"
+                                />
+                            </div>
+
+                            {settings.drawSvgIntro && (
+                                <button
+                                    onClick={() => {
+                                        triggerDrawSvgReplay();
+                                        // Close drawer or give instant feedback
+                                    }}
+                                    className="w-full py-2 px-3 rounded-xl text-xs font-bold font-mono tracking-wider uppercase border border-[var(--pic-blue,#0089d0)]/40 bg-[var(--pic-blue,#0089d0)]/10 hover:bg-[var(--pic-blue,#0089d0)]/20 text-[var(--pic-blue,#0089d0)] hover:text-white flex items-center justify-center gap-2 transition-all"
+                                >
+                                    <span>▶</span> Rejouer l'assemblage DrawSVG
+                                </button>
+                            )}
                         </div>
 
                         {/* Option 11: Bruit Texturé (Noise Overlay) */}
