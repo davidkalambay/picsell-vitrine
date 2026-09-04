@@ -203,7 +203,21 @@ export const SettingsDrawer: React.FC = () => {
                             )}
                         </div>
 
-                        {/* Option 5: Vitesse d'Inertie GSAP */}
+                        {/* Option 7: Lignes de Force & Grille Blueprint */}
+                        <div className="flex items-center justify-between p-4 rounded-2xl bg-white/[0.03] border border-white/10">
+                            <div>
+                                <p className="text-sm font-bold text-white">Grille Blueprint & Axes</p>
+                                <p className="text-xs text-slate-400">Repères d'ingénierie & lignes de force</p>
+                            </div>
+                            <input
+                                type="checkbox"
+                                checked={settings.blueprintGrid}
+                                onChange={(e) => updateSetting("blueprintGrid", e.target.checked)}
+                                className="w-5 h-5 accent-[var(--pic-blue,#0089d0)] rounded cursor-pointer"
+                            />
+                        </div>
+
+                        {/* Option 8: Vitesse d'Inertie GSAP */}
                         <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10">
                             <div className="flex justify-between items-center mb-3">
                                 <div>

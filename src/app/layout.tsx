@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { SettingsProvider } from "@/context/SettingsContext";
 import { NoiseOverlay } from "@/components/NoiseOverlay";
+import { BlueprintGrid } from "@/components/BlueprintGrid";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -31,6 +32,7 @@ export default function RootLayout({
       >
         <SettingsProvider>
           <NoiseOverlay />
+          <BlueprintGrid />
           {children}
         </SettingsProvider>
       </body>

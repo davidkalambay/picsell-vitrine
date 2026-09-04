@@ -28,7 +28,7 @@ Ce document répertorie les 30 propositions d'améliorations esthétiques, inter
 - [x] **02. Glassmorphism Premium** : Encapsuler chaque section dans une carte en verre dépoli (`backdrop-blur-2xl`, bordures fines semi-transparentes et reflets irisés) pour une lisibilité maximale sur tous les écrans. *(Testé & Implémenté sur `feat/glassmorphism-premium`)*
 - [x] **03. Typographie "Outline" réactive** : Styliser les grands numéros `01, 02, 03, 04` en contour filaire vide, se remplissant de couleur néon vibrante et brillante selon le module actif. *(Testé & Implémenté sur `feat/reactive-outline-typography`)*
 - [x] **04. Bruit texturé (Noise Overlay)** : Ajouter une couche très subtile de grain photographique (film noise) en arrière-plan pour un rendu éditorial haut de gamme. *(Testé & Implémenté sur `feat/noise-overlay`)*
-- [ ] **05. Lignes de force & Grille Blueprint** : Dessiner de fines lignes géométriques lumineuses en arrière-plan rappelant des plans d'architecte et d'ingénierie logicielle.
+- [x] **05. Lignes de force & Grille Blueprint** : Dessiner de fines lignes géométriques lumineuses en arrière-plan rappelant des plans d'architecte et d'ingénierie logicielle. *(Testé & Implémenté sur `feat/blueprint-grid`)*
 - [ ] **06. Micro-interactions sur les badges** : Illuminer intensément les tags de compétences (`Stratégie`, `Next.js`, etc.) avec une onde lumineuse au survol de la souris.
 - [ ] **07. Clipping Mask visuel** : Dévoiler des textures abstraites ou des aperçus de code source à travers les découpes des grands chiffres vectoriels.
 - [ ] **08. Anneau de progression circulaire** : Remplacer le compteur texte par un anneau circulaire lumineux autour de l'engrenage central qui se remplit à 25%, 50%, 75% et 100%.

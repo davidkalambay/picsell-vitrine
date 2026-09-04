@@ -14,6 +14,7 @@ export interface SiteSettings {
     reactiveOutline: boolean;
     noiseOverlay: boolean;
     noiseIntensity: NoiseIntensity;
+    blueprintGrid: boolean;
     scrubSpeed: number; // in seconds (e.g. 0.5 to 2.5)
     performanceMode: boolean;
 }
@@ -26,6 +27,7 @@ const DEFAULT_SETTINGS: SiteSettings = {
     reactiveOutline: true,
     noiseOverlay: true,
     noiseIntensity: "subtle",
+    blueprintGrid: true,
     scrubSpeed: 1.5,
     performanceMode: false,
 };
