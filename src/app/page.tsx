@@ -1,19 +1,35 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import { ScrollytellingSection } from "@/components/ScrollytellingSection";
+import { SettingsDrawer } from "@/components/SettingsDrawer";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap-config";
+import { useSiteSettings } from "@/context/SettingsContext";
 
 export default function Home() {
   const mainRef = useRef<HTMLElement>(null);
+  const { settings } = useSiteSettings();
   const [isDarkMode, setIsDarkMode] = useState(false);
 
-  useGSAP(() => {
+  // Handle Forced Themes
+  useEffect(() => {
     if (!mainRef.current) return;
 
+    if (settings.themeMode === "force-dark") {
+      setIsDarkMode(true);
+      gsap.to(mainRef.current, { backgroundColor: "#06070a", duration: 0.4 });
+    } else if (settings.themeMode === "force-light") {
+      setIsDarkMode(false);
+      gsap.to(mainRef.current, { backgroundColor: "#ffffff", duration: 0.4 });
+    }
+  }, [settings.themeMode]);
+
+  useGSAP(() => {
+    if (!mainRef.current || settings.themeMode !== "scroll-dynamic") return;
+
     // Day to Night smooth transition when scrolling into Scrollytelling Section
-    ScrollTrigger.create({
+    const st = ScrollTrigger.create({
       trigger: "#scrollytelling-section",
       start: "top 70%",
       end: "bottom 30%",
@@ -34,7 +50,9 @@ export default function Home() {
         });
       },
     });
-  }, { scope: mainRef });
+
+    return () => st.kill();
+  }, { scope: mainRef, dependencies: [settings.themeMode] });
 
   return (
     <main
@@ -42,9 +60,10 @@ export default function Home() {
       className={`relative w-full min-h-screen transition-colors duration-700 ${
         isDarkMode ? "text-[#f4f4f6]" : "text-[var(--pic-charcoal,#1a1a1a)]"
       }`}
-      style={{ backgroundColor: "#ffffff" }}
+      style={{ backgroundColor: settings.themeMode === "force-dark" ? "#06070a" : "#ffffff" }}
     >
       <Navbar isDark={isDarkMode} />
+      <SettingsDrawer />
 
       {/* Hero Section (Daylight / Sunlit Mode) */}
       <section className="pt-36 pb-20 px-6 text-center max-w-4xl mx-auto relative z-10">

@@ -3,11 +3,13 @@
 import React, { useRef, useState } from "react";
 import { ScrollytellingEngine } from "./ScrollytellingEngine";
 import { ScrollTrigger, useGSAP } from "@/lib/gsap-config";
+import { useSiteSettings } from "@/context/SettingsContext";
 
 type SectionType = "marketing" | "automation" | "development" | "data" | null;
 
 export const ScrollytellingSection: React.FC = () => {
     const containerRef = useRef<HTMLDivElement>(null);
+    const { settings } = useSiteSettings();
     const [activeSection, setActiveSection] = useState<SectionType>(null);
 
     useGSAP(() => {

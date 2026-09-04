@@ -2,6 +2,7 @@
 
 import React, { useRef, useState, useEffect } from "react";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap-config";
+import { useSiteSettings } from "@/context/SettingsContext";
 
 interface ScrollytellingEngineProps {
     activeSection: "marketing" | "automation" | "development" | "data" | null;
@@ -9,23 +10,27 @@ interface ScrollytellingEngineProps {
 
 export const ScrollytellingEngine: React.FC<ScrollytellingEngineProps> = ({ activeSection }) => {
     const container = useRef<SVGSVGElement>(null);
+    const { settings } = useSiteSettings();
     const [viewBox, setViewBox] = useState("250 150 700 600");
 
     useEffect(() => {
         const handleResize = () => {
-            if (window.innerWidth < 768) {
-                // Mobile: Tight focus
-                setViewBox("280 180 640 540");
+            const isMobile = window.innerWidth < 768;
+
+            if (settings.gearSize === "standard") {
+                setViewBox(isMobile ? "200 100 800 700" : "180 80 840 740");
+            } else if (settings.gearSize === "max") {
+                setViewBox(isMobile ? "300 200 600 500" : "280 180 640 540");
             } else {
-                // Desktop: Fills ~80% of container smoothly
-                setViewBox("250 150 700 600");
+                // "large" (default 80%)
+                setViewBox(isMobile ? "280 180 640 540" : "250 150 700 600");
             }
         };
 
-        handleResize(); // Initial check
+        handleResize();
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
-    }, []);
+    }, [settings.gearSize]);
 
     useGSAP(() => {
         if (!container.current) return;
@@ -39,13 +44,13 @@ export const ScrollytellingEngine: React.FC<ScrollytellingEngineProps> = ({ acti
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: sectionTrigger,
-                start: "top top", // When top of the scrollytelling section hits top of viewport
-                end: "bottom bottom", // When bottom of the section hits bottom of viewport
-                scrub: 1.5, // Smooth lag
+                start: "top top",
+                end: "bottom bottom",
+                scrub: settings.scrubSpeed,
             },
         });
 
-        const totalDegrees = 900; // Total rotation over the section
+        const totalDegrees = 900;
 
         // AI Engine Rotation (Base)
         tl.to("#spin_ai", {
@@ -82,7 +87,7 @@ export const ScrollytellingEngine: React.FC<ScrollytellingEngineProps> = ({ acti
             ease: "none",
         }, 0);
 
-    }, { scope: container });
+    }, { scope: container, dependencies: [settings.scrubSpeed] });
 
     // Active state styles with dynamic neon glow
     const getStyle = (section: string) => {
@@ -97,7 +102,7 @@ export const ScrollytellingEngine: React.FC<ScrollytellingEngineProps> = ({ acti
         return {
             opacity: isActive ? 1 : 0.25,
             filter: isActive 
-                ? `drop-shadow(0 0 24px ${glowColors[section] || "transparent"})`
+                ? (settings.neonGlow ? `drop-shadow(0 0 24px ${glowColors[section] || "transparent"})` : "none")
                 : "grayscale(1) brightness(0.7)",
             transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)"
         };
@@ -106,17 +111,19 @@ export const ScrollytellingEngine: React.FC<ScrollytellingEngineProps> = ({ acti
     return (
         <div className="w-full h-full flex justify-center items-center overflow-visible relative">
             {/* Ambient Background Aura based on active section */}
-            <div 
-                className="absolute w-[350px] h-[350px] md:w-[500px] md:h-[500px] rounded-full blur-[100px] pointer-events-none transition-all duration-700 opacity-40 -z-10"
-                style={{
-                    backgroundColor: 
-                        activeSection === "marketing" ? "var(--pic-orange, #f37021)" :
-                        activeSection === "automation" ? "var(--pic-turquoise, #3dbcc7)" :
-                        activeSection === "development" ? "var(--pic-blue, #0089d0)" :
-                        activeSection === "data" ? "var(--pic-gold, #fdb913)" :
-                        "rgba(255, 255, 255, 0.05)"
-                }}
-            />
+            {settings.neonGlow && (
+                <div 
+                    className="absolute w-[350px] h-[350px] md:w-[500px] md:h-[500px] rounded-full blur-[100px] pointer-events-none transition-all duration-700 opacity-40 -z-10"
+                    style={{
+                        backgroundColor: 
+                            activeSection === "marketing" ? "var(--pic-orange, #f37021)" :
+                            activeSection === "automation" ? "var(--pic-turquoise, #3dbcc7)" :
+                            activeSection === "development" ? "var(--pic-blue, #0089d0)" :
+                            activeSection === "data" ? "var(--pic-gold, #fdb913)" :
+                            "rgba(255, 255, 255, 0.05)"
+                    }}
+                />
+            )}
 
             <svg
                 ref={container}
