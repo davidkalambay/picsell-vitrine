@@ -41,6 +41,31 @@ export const ScrollytellingSection: React.FC = () => {
 
     }, { scope: containerRef });
 
+    const renderNumber = (num: string, sectionId: SectionType, colorHex: string) => {
+        const isActive = activeSection === sectionId;
+        if (!settings.reactiveOutline) {
+            return (
+                <p className={`text-5xl sm:text-6xl font-black font-sora transition-all duration-500 ${isActive ? 'text-white' : 'text-white/10'}`}>
+                    {num}
+                </p>
+            );
+        }
+
+        return (
+            <p
+                className="text-5xl sm:text-6xl font-black font-sora transition-all duration-700 select-none inline-block"
+                style={{
+                    WebkitTextStroke: isActive ? `1.5px ${colorHex}` : "1.5px rgba(255, 255, 255, 0.22)",
+                    color: isActive ? colorHex : "transparent",
+                    textShadow: isActive ? `0 0 30px ${colorHex}` : "none",
+                    transform: isActive ? "scale(1.08)" : "scale(1)",
+                }}
+            >
+                {num}
+            </p>
+        );
+    };
+
     return (
         <section id="scrollytelling-section" ref={containerRef} className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 py-20 pb-40">
             {/* Desktop Layout: Grid. Mobile Layout: Stacked */}
@@ -84,7 +109,7 @@ export const ScrollytellingSection: React.FC = () => {
                                 <span className="w-2 h-2 rounded-full bg-[var(--pic-orange,#f37021)]"></span>
                                 Digital Marketing
                             </p>
-                            <p className="text-5xl sm:text-6xl font-black text-white/10 font-sora">01</p>
+                            {renderNumber("01", "marketing", "var(--pic-orange, #f37021)")}
                         </div>
 
                         <h2 className="text-2xl sm:text-4xl font-black tracking-tight mb-4 text-white leading-tight font-sora">
@@ -116,7 +141,7 @@ export const ScrollytellingSection: React.FC = () => {
                                 <span className="w-2 h-2 rounded-full bg-[var(--pic-turquoise,#3dbcc7)]"></span>
                                 Automation
                             </p>
-                            <p className="text-5xl sm:text-6xl font-black text-white/10 font-sora">02</p>
+                            {renderNumber("02", "automation", "var(--pic-turquoise, #3dbcc7)")}
                         </div>
 
                         <h2 className="text-2xl sm:text-4xl font-black tracking-tight mb-4 text-white leading-tight font-sora">
@@ -148,7 +173,7 @@ export const ScrollytellingSection: React.FC = () => {
                                 <span className="w-2 h-2 rounded-full bg-[var(--pic-blue,#0089d0)]"></span>
                                 Development
                             </p>
-                            <p className="text-5xl sm:text-6xl font-black text-white/10 font-sora">03</p>
+                            {renderNumber("03", "development", "var(--pic-blue, #0089d0)")}
                         </div>
 
                         <h2 className="text-2xl sm:text-4xl font-black tracking-tight mb-4 text-white leading-tight font-sora">
@@ -180,7 +205,7 @@ export const ScrollytellingSection: React.FC = () => {
                                 <span className="w-2 h-2 rounded-full bg-[var(--pic-gold,#fdb913)]"></span>
                                 Data Intelligence
                             </p>
-                            <p className="text-5xl sm:text-6xl font-black text-white/10 font-sora">04</p>
+                            {renderNumber("04", "data", "var(--pic-gold, #fdb913)")}
                         </div>
 
                         <h2 className="text-2xl sm:text-4xl font-black tracking-tight mb-4 text-white leading-tight font-sora">

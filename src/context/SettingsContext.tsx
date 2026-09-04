@@ -10,6 +10,7 @@ export interface SiteSettings {
     glassmorphism: boolean;
     gearSize: GearSize;
     neonGlow: boolean;
+    reactiveOutline: boolean;
     scrubSpeed: number; // in seconds (e.g. 0.5 to 2.5)
     performanceMode: boolean;
 }
@@ -19,6 +20,7 @@ const DEFAULT_SETTINGS: SiteSettings = {
     glassmorphism: true,
     gearSize: "large",
     neonGlow: true,
+    reactiveOutline: true,
     scrubSpeed: 1.5,
     performanceMode: false,
 };

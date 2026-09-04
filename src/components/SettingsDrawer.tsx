@@ -148,6 +148,20 @@ export const SettingsDrawer: React.FC = () => {
                             />
                         </div>
 
+                        {/* Option 5: Typographie Outline Réactive */}
+                        <div className="flex items-center justify-between p-4 rounded-2xl bg-white/[0.03] border border-white/10">
+                            <div>
+                                <p className="text-sm font-bold text-white">Chiffres "Outline" Réactifs</p>
+                                <p className="text-xs text-slate-400">Contour filaire qui s'illumine & se remplit</p>
+                            </div>
+                            <input
+                                type="checkbox"
+                                checked={settings.reactiveOutline}
+                                onChange={(e) => updateSetting("reactiveOutline", e.target.checked)}
+                                className="w-5 h-5 accent-[var(--pic-gold,#fdb913)] rounded cursor-pointer"
+                            />
+                        </div>
+
                         {/* Option 5: Vitesse d'Inertie GSAP */}
                         <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10">
                             <div className="flex justify-between items-center mb-3">

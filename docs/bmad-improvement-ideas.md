@@ -26,7 +26,7 @@ Ce document répertorie les 30 propositions d'améliorations esthétiques, inter
 
 - [x] **01. Transition Jour/Nuit (Dark Mode Scroll)** : Transitionner progressivement le fond blanc épuré du Hero vers un noir obsidienne profond (`#06070a`) lors de l'entrée dans les expertises. *(Testé & Implémenté sur `feat/dark-mode-scroll`)*
 - [x] **02. Glassmorphism Premium** : Encapsuler chaque section dans une carte en verre dépoli (`backdrop-blur-2xl`, bordures fines semi-transparentes et reflets irisés) pour une lisibilité maximale sur tous les écrans. *(Testé & Implémenté sur `feat/glassmorphism-premium`)*
-- [ ] **03. Typographie "Outline" réactive** : Styliser les grands numéros `01, 02, 03, 04` en contour filaire vide, se remplissant verticalement d'encre colorée au fil de la lecture.
+- [x] **03. Typographie "Outline" réactive** : Styliser les grands numéros `01, 02, 03, 04` en contour filaire vide, se remplissant de couleur néon vibrante et brillante selon le module actif. *(Testé & Implémenté sur `feat/reactive-outline-typography`)*
 - [ ] **04. Bruit texturé (Noise Overlay)** : Ajouter une couche très subtile de grain photographique (film noise) en arrière-plan pour un rendu éditorial haut de gamme.
 - [ ] **05. Lignes de force & Grille Blueprint** : Dessiner de fines lignes géométriques lumineuses en arrière-plan rappelant des plans d'architecte et d'ingénierie logicielle.
 - [ ] **06. Micro-interactions sur les badges** : Illuminer intensément les tags de compétences (`Stratégie`, `Next.js`, etc.) avec une onde lumineuse au survol de la souris.
