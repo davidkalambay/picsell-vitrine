@@ -7,6 +7,7 @@ import { SettingsDrawer } from "@/components/SettingsDrawer";
 import { ContextualFloatingCTA } from "@/components/ContextualFloatingCTA";
 import { SplitTextReveal } from "@/components/animations/SplitTextReveal";
 import { MagneticButton } from "@/components/interactions/MagneticButton";
+import { CustomGearCursor } from "@/components/interactions/CustomGearCursor";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap-config";
 import { useSiteSettings } from "@/context/SettingsContext";
 
@@ -140,6 +141,7 @@ export default function Home() {
       }`}
       style={{ backgroundColor: settings.themeMode === "force-dark" ? "#06070a" : "#ffffff" }}
     >
+      <CustomGearCursor />
       <Navbar isDark={isDarkMode} />
       <SettingsDrawer />
       <ContextualFloatingCTA />

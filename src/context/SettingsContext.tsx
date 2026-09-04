@@ -24,6 +24,7 @@ export interface SiteSettings {
     heroMechanicalIntro: boolean;
     dataLiveCounter: boolean;
     magneticButtons: boolean;
+    gearCursor: boolean;
     noiseOverlay: boolean;
     noiseIntensity: NoiseIntensity;
     blueprintGrid: boolean;
@@ -50,6 +51,7 @@ const DEFAULT_SETTINGS: SiteSettings = {
     heroMechanicalIntro: true,
     dataLiveCounter: true,
     magneticButtons: true,
+    gearCursor: true,
     noiseOverlay: true,
     noiseIntensity: "subtle",
     blueprintGrid: true,
