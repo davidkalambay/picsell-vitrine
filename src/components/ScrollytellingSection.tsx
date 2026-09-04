@@ -5,7 +5,7 @@ import { ScrollytellingEngine } from "./ScrollytellingEngine";
 import { EngineeringTerminal } from "./EngineeringTerminal";
 import { CircularProgressRing } from "./CircularProgressRing";
 import { SplitTextReveal } from "./animations/SplitTextReveal";
-import { ScrollTrigger, useGSAP } from "@/lib/gsap-config";
+import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap-config";
 import { useSiteSettings } from "@/context/SettingsContext";
 
 type SectionType = "marketing" | "automation" | "development" | "data" | null;
