@@ -2,6 +2,7 @@
 
 import React, { useRef, useState } from "react";
 import { ScrollytellingEngine } from "./ScrollytellingEngine";
+import { EngineeringTerminal } from "./EngineeringTerminal";
 import { ScrollTrigger, useGSAP } from "@/lib/gsap-config";
 import { useSiteSettings } from "@/context/SettingsContext";
 
@@ -205,6 +206,22 @@ export const ScrollytellingSection: React.FC = () => {
                             {renderBadge("Contenu", "var(--pic-orange, #f37021)", "#f37021")}
                             {renderBadge("Acquisition", "var(--pic-orange, #f37021)", "#f37021")}
                         </div>
+
+                        {/* Engineering Code Terminal */}
+                        <EngineeringTerminal
+                            filename="pixel_attribution.ts"
+                            language="typescript"
+                            tagLabel="TS // TRACKING"
+                            accentColor="#f37021"
+                            lines={[
+                                { text: "// Attribution & ROAS multi-canal haute fidélité" },
+                                { text: "const campaign = await picsell.trackConversion({" },
+                                { text: "  target: \"kinshasa_b2b\"," },
+                                { text: "  channels: [\"meta\", \"google\", \"linkedin\"]," },
+                                { text: "  roiTarget: \"340%\"" },
+                                { text: "});" },
+                            ]}
+                        />
                     </div>
 
                     {/* Section 2: Automation Card */}
@@ -237,6 +254,21 @@ export const ScrollytellingSection: React.FC = () => {
                             {renderBadge("Intégrations", "var(--pic-turquoise, #3dbcc7)", "#3dbcc7")}
                             {renderBadge("Gain de temps", "var(--pic-turquoise, #3dbcc7)", "#3dbcc7")}
                         </div>
+
+                        {/* Engineering Code Terminal */}
+                        <EngineeringTerminal
+                            filename="lead_pipeline.ts"
+                            language="typescript"
+                            tagLabel="TS // WORKFLOW"
+                            accentColor="#3dbcc7"
+                            lines={[
+                                { text: "// Webhook instantané & sync CRM multi-outils" },
+                                { text: "export async function onLeadCaptured(lead: Lead) {" },
+                                { text: "  await crm.sync(lead, { enrichWithAI: true });" },
+                                { text: "  await notifyTeam(\"#croissance\", lead.dealValue);" },
+                                { text: "}" },
+                            ]}
+                        />
                     </div>
 
                     {/* Section 3: Development Card */}
@@ -269,6 +301,21 @@ export const ScrollytellingSection: React.FC = () => {
                             {renderBadge("API", "var(--pic-blue, #0089d0)", "#0089d0")}
                             {renderBadge("Scalabilité", "var(--pic-blue, #0089d0)", "#0089d0")}
                         </div>
+
+                        {/* Engineering Code Terminal */}
+                        <EngineeringTerminal
+                            filename="enterprise_app.tsx"
+                            language="typescript"
+                            tagLabel="TSX // SERVER"
+                            accentColor="#0089d0"
+                            lines={[
+                                { text: "// Architecture Next.js 16 & Server Components" },
+                                { text: "export default async function SaaSCore({ orgId }: Props) {" },
+                                { text: "  const db = await connectPool({ latency: \"<15ms\" });" },
+                                { text: "  return <EngineDashboard realTime={true} />;" },
+                                { text: "}" },
+                            ]}
+                        />
                     </div>
 
                     {/* Section 4: Data Intelligence Card */}
@@ -301,6 +348,21 @@ export const ScrollytellingSection: React.FC = () => {
                             {renderBadge("Reporting", "var(--pic-gold, #fdb913)", "#fdb913")}
                             {renderBadge("Prédiction", "var(--pic-gold, #fdb913)", "#fdb913")}
                         </div>
+
+                        {/* Engineering Code Terminal */}
+                        <EngineeringTerminal
+                            filename="predictive_scoring.sql"
+                            language="sql"
+                            tagLabel="SQL // ML_MODEL"
+                            accentColor="#fdb913"
+                            lines={[
+                                { text: "-- Modèle d'attrition & prédiction de LTV" },
+                                { text: "SELECT cohort, ltv_forecast, churn_risk" },
+                                { text: "FROM analytics.ml_scoring" },
+                                { text: "WHERE confidence_score >= 0.985" },
+                                { text: "ORDER BY ltv_forecast DESC;" },
+                            ]}
+                        />
                     </div>
 
                     {/* Spacer at the bottom so we can scroll past the last item safely */}

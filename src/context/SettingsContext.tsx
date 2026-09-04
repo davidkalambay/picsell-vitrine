@@ -13,6 +13,7 @@ export interface SiteSettings {
     neonGlow: boolean;
     reactiveOutline: boolean;
     clippingMaskNumbers: boolean;
+    codeTerminals: boolean;
     noiseOverlay: boolean;
     noiseIntensity: NoiseIntensity;
     blueprintGrid: boolean;
@@ -28,6 +29,7 @@ const DEFAULT_SETTINGS: SiteSettings = {
     neonGlow: true,
     reactiveOutline: true,
     clippingMaskNumbers: true,
+    codeTerminals: true,
     noiseOverlay: true,
     noiseIntensity: "subtle",
     blueprintGrid: true,
