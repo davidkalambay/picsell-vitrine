@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { fontVariables, openSans } from "@/lib/fonts";
+import { Geist, Geist_Mono } from "next/font/google";
+import { SettingsProvider } from "@/context/SettingsContext";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Picsell Agency - Coming Soon",
-  description: "Precision in every pixel — coming soon",
+  title: "Picsell Agency — Precision in progress",
+  description: "Agence digitale — Kinshasa, RDC",
 };
 
 export default function RootLayout({
@@ -13,9 +14,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className={`${fontVariables} antialiased`}>
-      <body className={openSans.className}>
-        {children}
+    <html lang="fr">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        <SettingsProvider>
+          {children}
+        </SettingsProvider>
       </body>
     </html>
   );
