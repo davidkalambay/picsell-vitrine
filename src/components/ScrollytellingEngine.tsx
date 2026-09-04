@@ -9,16 +9,16 @@ interface ScrollytellingEngineProps {
 
 export const ScrollytellingEngine: React.FC<ScrollytellingEngineProps> = ({ activeSection }) => {
     const container = useRef<SVGSVGElement>(null);
-    const [viewBox, setViewBox] = useState("0 0 1200 900");
+    const [viewBox, setViewBox] = useState("250 150 700 600");
 
     useEffect(() => {
         const handleResize = () => {
             if (window.innerWidth < 768) {
-                // Mobile: Tight zoom on the gears
-                setViewBox("350 150 500 500");
+                // Mobile: Tight focus
+                setViewBox("280 180 640 540");
             } else {
-                // Desktop: Full view
-                setViewBox("0 0 1200 900");
+                // Desktop: Fills ~80% of container smoothly
+                setViewBox("250 150 700 600");
             }
         };
 
