@@ -2,9 +2,19 @@
 
 import React from "react";
 
-const Navbar = () => {
+interface NavbarProps {
+    isDark?: boolean;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ isDark = false }) => {
     return (
-        <nav className="fixed top-[20px] md:top-[30px] left-1/2 -translate-x-1/2 w-[90%] md:w-fit h-[60px] md:h-[70px] flex items-center navbar-glass rounded-[30px] md:rounded-[50px] px-6 md:px-10 z-50">
+        <nav
+            className={`fixed top-[20px] md:top-[30px] left-1/2 -translate-x-1/2 w-[90%] md:w-fit h-[60px] md:h-[70px] flex items-center rounded-[30px] md:rounded-[50px] px-6 md:px-10 z-50 backdrop-blur-xl transition-all duration-700 border ${
+                isDark
+                    ? "bg-[#090a0f]/80 border-white/15 text-white shadow-[0_10px_30px_rgba(0,0,0,0.6)]"
+                    : "bg-white/85 border-slate-200/80 text-slate-900 shadow-[0_10px_30px_rgba(0,0,0,0.06)]"
+            }`}
+        >
             <a href="#" className="flex items-center gap-[15px] no-underline">
                 <svg
                     className="h-[30px] md:h-[45px] w-auto"
@@ -76,7 +86,7 @@ const Navbar = () => {
                         </g>
                     </g>
                 </svg>
-                <span className="font-quicksand font-bold text-[1rem] md:text-[1.6rem] tracking-[-0.02em] text-[var(--text)] whitespace-nowrap">
+                <span className="font-quicksand font-bold text-[1rem] md:text-[1.6rem] tracking-[-0.02em] text-current whitespace-nowrap">
                     Picsell Agency
                 </span>
             </a>
