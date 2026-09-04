@@ -22,6 +22,7 @@ export interface SiteSettings {
     drawSvgIntro: boolean;
     parallaxBadges: boolean;
     heroMechanicalIntro: boolean;
+    dataLiveCounter: boolean;
     noiseOverlay: boolean;
     noiseIntensity: NoiseIntensity;
     blueprintGrid: boolean;
@@ -46,6 +47,7 @@ const DEFAULT_SETTINGS: SiteSettings = {
     drawSvgIntro: true,
     parallaxBadges: true,
     heroMechanicalIntro: true,
+    dataLiveCounter: true,
     noiseOverlay: true,
     noiseIntensity: "subtle",
     blueprintGrid: true,

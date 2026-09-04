@@ -5,6 +5,7 @@ import { ScrollytellingEngine } from "./ScrollytellingEngine";
 import { EngineeringTerminal } from "./EngineeringTerminal";
 import { CircularProgressRing } from "./CircularProgressRing";
 import { SplitTextReveal } from "./animations/SplitTextReveal";
+import { DataLiveCounter } from "./DataLiveCounter";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap-config";
 import { useSiteSettings } from "@/context/SettingsContext";
 
@@ -580,6 +581,9 @@ export const ScrollytellingSection: React.FC = () => {
                             {renderBadge("Reporting", "var(--pic-gold, #fdb913)", "#fdb913")}
                             {renderBadge("Prédiction", "var(--pic-gold, #fdb913)", "#fdb913")}
                         </div>
+
+                        {/* Live Telemetry Counter HUD (Amelia's Idea 08) */}
+                        <DataLiveCounter isActive={activeSection === 'data'} />
 
                         {/* Engineering Code Terminal */}
                         <EngineeringTerminal

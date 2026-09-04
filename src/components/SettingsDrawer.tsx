@@ -355,6 +355,25 @@ export const SettingsDrawer: React.FC = () => {
                             )}
                         </div>
 
+                        {/* Option 16: Typing / Live Counter sur Data (Amelia's Idea 08) */}
+                        <div className="flex items-center justify-between p-4 rounded-2xl bg-white/[0.03] border border-white/10">
+                            <div>
+                                <div className="flex items-center gap-1.5">
+                                    <p className="text-sm font-bold text-white">Compteur Live Data (HUD)</p>
+                                    <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-[var(--pic-gold,#fdb913)]/20 text-[var(--pic-gold,#fdb913)]">
+                                        AMELIA #08
+                                    </span>
+                                </div>
+                                <p className="text-xs text-slate-400">Télémétrie en direct & calcul d'odomètre haute vitesse</p>
+                            </div>
+                            <input
+                                type="checkbox"
+                                checked={settings.dataLiveCounter}
+                                onChange={(e) => updateSetting("dataLiveCounter", e.target.checked)}
+                                className="w-5 h-5 accent-[var(--pic-gold,#fdb913)] rounded cursor-pointer"
+                            />
+                        </div>
+
                         {/* Option 11: Bruit Texturé (Noise Overlay) */}
                         <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 space-y-3">
                             <div className="flex items-center justify-between">
