@@ -27,8 +27,8 @@ export const ScrollytellingSection: React.FC = () => {
             if (el) {
                 ScrollTrigger.create({
                     trigger: el,
-                    start: "top center",
-                    end: "bottom center",
+                    start: "top 70%",
+                    end: "bottom 30%",
                     onEnter: () => setActiveSection(id as SectionType),
                     onEnterBack: () => setActiveSection(id as SectionType),
                     onLeave: () => {

@@ -32,37 +32,38 @@ export const ContextualFloatingCTA: React.FC = () => {
             const dataEl = document.getElementById("story-data");
             const footerEl = document.getElementById("footer-contact");
 
-            const vhCenter = window.innerHeight / 2;
+            const triggerLine = window.innerHeight * 0.70;
+            const bottomLine = window.innerHeight * 0.30;
 
-            if (footerEl && footerEl.getBoundingClientRect().top <= vhCenter) {
+            if (footerEl && footerEl.getBoundingClientRect().top <= triggerLine) {
                 setCurrentCta({
                     title: "Nous contacter",
                     sublabel: "contact@picsell.agency",
                     color: "#fdb913",
                     badge: "CONTACT",
                 });
-            } else if (dataEl && dataEl.getBoundingClientRect().top <= vhCenter && dataEl.getBoundingClientRect().bottom >= vhCenter) {
+            } else if (dataEl && dataEl.getBoundingClientRect().top <= triggerLine && dataEl.getBoundingClientRect().bottom >= bottomLine) {
                 setCurrentCta({
                     title: "Piloter par la Data",
                     sublabel: "ML & Reporting IA // 04",
                     color: "#fdb913",
                     badge: "DATA",
                 });
-            } else if (developmentEl && developmentEl.getBoundingClientRect().top <= vhCenter && developmentEl.getBoundingClientRect().bottom >= vhCenter) {
+            } else if (developmentEl && developmentEl.getBoundingClientRect().top <= triggerLine && developmentEl.getBoundingClientRect().bottom >= bottomLine) {
                 setCurrentCta({
                     title: "Bâtir mon application",
                     sublabel: "Next.js & Cloud // 03",
                     color: "#0089d0",
                     badge: "DEV",
                 });
-            } else if (automationEl && automationEl.getBoundingClientRect().top <= vhCenter && automationEl.getBoundingClientRect().bottom >= vhCenter) {
+            } else if (automationEl && automationEl.getBoundingClientRect().top <= triggerLine && automationEl.getBoundingClientRect().bottom >= bottomLine) {
                 setCurrentCta({
                     title: "Automatiser mes process",
                     sublabel: "Workflows & CRM // 02",
                     color: "#3dbcc7",
                     badge: "AUTO",
                 });
-            } else if (marketingEl && marketingEl.getBoundingClientRect().top <= vhCenter && marketingEl.getBoundingClientRect().bottom >= vhCenter) {
+            } else if (marketingEl && marketingEl.getBoundingClientRect().top <= triggerLine && marketingEl.getBoundingClientRect().bottom >= bottomLine) {
                 setCurrentCta({
                     title: "Booster mon acquisition",
                     sublabel: "Marketing de Précision // 01",
