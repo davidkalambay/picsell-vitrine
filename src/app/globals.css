@@ -18,19 +18,17 @@ body {
   color: var(--text);
 }
 
-@layer components {
-  .navbar-glass {
-    background: var(--glass-bg);
-    -webkit-backdrop-filter: blur(15px);
-    backdrop-filter: blur(15px);
-    border: 1px solid var(--glass-border);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
-  }
-
-  .gear-text {
-    font-family: inherit;
-    font-weight: 800;
-    text-transform: uppercase;
-    pointer-events: none;
-  }
+.navbar-glass {
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
 }
+
+.gear-text {
+  font-family: inherit;
+  font-weight: 800;
+  text-transform: uppercase;
+  pointer-events: none;
+}
