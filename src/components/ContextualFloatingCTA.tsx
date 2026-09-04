@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useSiteSettings } from "@/context/SettingsContext";
+import { MagneticButton } from "@/components/interactions/MagneticButton";
 
 interface SectionCTAInfo {
     title: string;
@@ -89,16 +90,18 @@ export const ContextualFloatingCTA: React.FC = () => {
 
     return (
         <aside aria-label="Action contextuelle" className="fixed bottom-6 left-6 z-40 animate-fade-in pointer-events-auto">
-            <a
+            <MagneticButton
                 href="#footer-contact"
-                className="group flex items-center gap-3 px-4 py-2.5 sm:px-5 sm:py-3 rounded-full bg-slate-950/85 hover:bg-slate-900/95 text-white backdrop-blur-2xl border border-white/15 shadow-[0_12px_36px_rgba(0,0,0,0.5)] transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 active:scale-95"
+                strength={0.3}
+                textStrength={0.15}
+                className="group flex items-center gap-3 px-4 py-2.5 sm:px-5 sm:py-3 rounded-full bg-slate-950/85 hover:bg-slate-900/95 text-white backdrop-blur-2xl border border-white/15 shadow-[0_12px_36px_rgba(0,0,0,0.5)] transition-all duration-300 hover:scale-105 active:scale-95"
                 style={{
                     boxShadow: `0 10px 30px -5px ${currentCta.color}33`,
                     borderColor: `${currentCta.color}55`,
                 }}
             >
                 {/* Status Dot with Glow */}
-                <span className="relative flex h-3 w-3 shrink-0">
+                <span className="relative flex h-3 w-3 shrink-0 mr-2">
                     <span
                         className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75"
                         style={{ backgroundColor: currentCta.color }}
@@ -110,7 +113,7 @@ export const ContextualFloatingCTA: React.FC = () => {
                 </span>
 
                 {/* Text Block */}
-                <div className="flex flex-col text-left">
+                <div className="flex flex-col text-left mr-2">
                     <div className="flex items-center gap-2">
                         <span
                             className="text-[9px] font-mono font-bold tracking-widest uppercase px-1.5 py-0.2 rounded"
@@ -151,7 +154,7 @@ export const ContextualFloatingCTA: React.FC = () => {
                         <polyline points="12 5 19 12 12 19" />
                     </svg>
                 </div>
-            </a>
+            </MagneticButton>
         </aside>
     );
 };

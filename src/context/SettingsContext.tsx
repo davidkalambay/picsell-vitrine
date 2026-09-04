@@ -23,6 +23,7 @@ export interface SiteSettings {
     parallaxBadges: boolean;
     heroMechanicalIntro: boolean;
     dataLiveCounter: boolean;
+    magneticButtons: boolean;
     noiseOverlay: boolean;
     noiseIntensity: NoiseIntensity;
     blueprintGrid: boolean;
@@ -48,6 +49,7 @@ const DEFAULT_SETTINGS: SiteSettings = {
     parallaxBadges: true,
     heroMechanicalIntro: true,
     dataLiveCounter: true,
+    magneticButtons: true,
     noiseOverlay: true,
     noiseIntensity: "subtle",
     blueprintGrid: true,

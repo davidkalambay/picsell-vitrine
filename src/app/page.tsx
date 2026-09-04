@@ -6,6 +6,7 @@ import { ScrollytellingSection } from "@/components/ScrollytellingSection";
 import { SettingsDrawer } from "@/components/SettingsDrawer";
 import { ContextualFloatingCTA } from "@/components/ContextualFloatingCTA";
 import { SplitTextReveal } from "@/components/animations/SplitTextReveal";
+import { MagneticButton } from "@/components/interactions/MagneticButton";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap-config";
 import { useSiteSettings } from "@/context/SettingsContext";
 
@@ -237,18 +238,22 @@ export default function Home() {
         )}
 
         <div id="hero-cta" className="flex flex-wrap justify-center gap-4 relative z-10">
-          <a
+          <MagneticButton
             href="#scrollytelling-section"
-            className="inline-flex items-center justify-center px-7 py-3.5 rounded-full text-sm font-bold bg-slate-900 text-white hover:bg-black hover:shadow-lg hover:-translate-y-0.5 transition-all"
+            strength={0.35}
+            textStrength={0.18}
+            className="px-7 py-3.5 rounded-full text-sm font-bold bg-slate-900 text-white hover:bg-black hover:shadow-lg hover:-translate-y-0.5 transition-all shadow-[0_4px_20px_rgba(0,0,0,0.15)]"
           >
             Découvrir nos expertises ↓
-          </a>
-          <a
+          </MagneticButton>
+          <MagneticButton
             href="#footer-contact"
-            className="inline-flex items-center justify-center px-7 py-3.5 rounded-full text-sm font-bold border-2 border-slate-200 text-slate-900 hover:border-slate-900 hover:-translate-y-0.5 transition-all"
+            strength={0.3}
+            textStrength={0.15}
+            className="px-7 py-3.5 rounded-full text-sm font-bold border-2 border-slate-200 text-slate-900 hover:border-slate-900 hover:-translate-y-0.5 transition-all"
           >
             Nous écrire
-          </a>
+          </MagneticButton>
         </div>
       </section>
 
@@ -286,12 +291,14 @@ export default function Home() {
           >
             Marketing, automatisation, développement et data — assemblés pour faire avancer votre entreprise avec une précision horlogère.
           </SplitTextReveal>
-          <a
+          <MagneticButton
             href="#footer-contact"
-            className="inline-flex items-center justify-center px-8 py-4 rounded-full text-sm font-bold bg-white text-slate-950 hover:bg-[var(--pic-gold,#fdb913)] hover:text-slate-950 hover:shadow-[0_0_25px_rgba(253,185,19,0.5)] hover:-translate-y-0.5 transition-all"
+            strength={0.4}
+            textStrength={0.2}
+            className="px-8 py-4 rounded-full text-sm font-bold bg-white text-slate-950 hover:bg-[var(--pic-gold,#fdb913)] hover:text-slate-950 hover:shadow-[0_0_30px_rgba(253,185,19,0.6)] hover:-translate-y-0.5 transition-all shadow-[0_8px_30px_rgba(255,255,255,0.15)]"
           >
             Démarrer un projet avec nous
-          </a>
+          </MagneticButton>
         </div>
       </section>
 

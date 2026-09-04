@@ -15,8 +15,7 @@ Ce document répertorie les 30 propositions d'améliorations esthétiques, inter
 - [x] **05. Glow & Halo Dynamique** : Faire émettre à l'engrenage actif et à son arrière-plan une lumière néon (`drop-shadow` et aura diffuse) de sa couleur de marque dédiée. *(Testé & Implémenté sur `feat/dark-mode-scroll`)*
 - [x] **06. Parallaxe sur les badges & tags** : Décaler la vitesse de scroll des pills/badges par rapport au texte pour créer un effet de profondeur 3D multicouche. *(Testé & Implémenté sur `feat/badges-tags-parallax`)*
 - [x] **07. Animation d'entrée du Hero** : Emboîter les mots du slogan principal *"La précision, moteur..."* comme des rouages mécaniques lors de l'apparition initiale. *(Testé & Implémenté sur `feat/hero-mechanical-entrance`)*
-- [x] **08. Typing / Live Counter sur Data** : Dans le module Data Intelligence, animer des chiffres et métriques en temps réel qui défilent à toute allure puis se figent avec précision. *(Testé & Implémenté sur `feat/data-live-counter`)*
-- [ ] **09. Magnetic Buttons** : Rendre les boutons CTA du Hero et du Footer magnétiques en les attirant subtilement vers le curseur lors du survol.
+- [x] **09. Magnetic Buttons** : Rendre les boutons CTA du Hero et du Footer magnétiques en les attirant subtilement vers le curseur lors du survol. *(Testé & Implémenté sur `feat/magnetic-buttons`)*
 - [ ] **10. Curseur interactif (Custom Gear Cursor)** : Remplacer la souris par un pointeur minimaliste en forme de mini-engrenage qui pivote avec les mouvements de la souris.
 
 ---
