@@ -14,6 +14,7 @@ export interface SiteSettings {
     reactiveOutline: boolean;
     clippingMaskNumbers: boolean;
     codeTerminals: boolean;
+    progressRing: boolean;
     noiseOverlay: boolean;
     noiseIntensity: NoiseIntensity;
     blueprintGrid: boolean;
@@ -30,6 +31,7 @@ const DEFAULT_SETTINGS: SiteSettings = {
     reactiveOutline: true,
     clippingMaskNumbers: true,
     codeTerminals: true,
+    progressRing: true,
     noiseOverlay: true,
     noiseIntensity: "subtle",
     blueprintGrid: true,

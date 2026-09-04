@@ -190,7 +190,21 @@ export const SettingsDrawer: React.FC = () => {
                             />
                         </div>
 
-                        {/* Option 8: Bruit Texturé (Noise Overlay) */}
+                        {/* Option 8: Anneau de Progression Circulaire */}
+                        <div className="flex items-center justify-between p-4 rounded-2xl bg-white/[0.03] border border-white/10">
+                            <div>
+                                <p className="text-sm font-bold text-white">Anneau de Progression Circulaire</p>
+                                <p className="text-xs text-slate-400">Jauge HUD radiale 25% à 100% avec néon</p>
+                            </div>
+                            <input
+                                type="checkbox"
+                                checked={settings.progressRing}
+                                onChange={(e) => updateSetting("progressRing", e.target.checked)}
+                                className="w-5 h-5 accent-[var(--pic-gold,#fdb913)] rounded cursor-pointer"
+                            />
+                        </div>
+
+                        {/* Option 9: Bruit Texturé (Noise Overlay) */}
                         <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 space-y-3">
                             <div className="flex items-center justify-between">
                                 <div>

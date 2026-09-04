@@ -3,6 +3,7 @@
 import React, { useRef, useState } from "react";
 import { ScrollytellingEngine } from "./ScrollytellingEngine";
 import { EngineeringTerminal } from "./EngineeringTerminal";
+import { CircularProgressRing } from "./CircularProgressRing";
 import { ScrollTrigger, useGSAP } from "@/lib/gsap-config";
 import { useSiteSettings } from "@/context/SettingsContext";
 
@@ -161,13 +162,8 @@ export const ScrollytellingSection: React.FC = () => {
                             <ScrollytellingEngine activeSection={activeSection} />
                         </div>
                         
-                        {/* Status text (Glassmorphism Pill Badge) */}
-                        <div className="mt-6 inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-white/[0.04] backdrop-blur-xl border border-white/10 shadow-[0_8px_24px_rgba(0,0,0,0.4)]">
-                            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                            <span className="text-xs font-bold tracking-[0.18em] uppercase text-slate-300 font-sora">
-                                {activeSection ? `${['marketing', 'automation', 'development', 'data'].indexOf(activeSection) + 1}/4 modules engagés` : "0/4 modules engagés"}
-                            </span>
-                        </div>
+                        {/* Circular Progress Ring HUD (Sally's Idea 08) */}
+                        <CircularProgressRing activeSection={activeSection} />
                     </div>
                 </div>
 

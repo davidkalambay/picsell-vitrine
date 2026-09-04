@@ -31,7 +31,7 @@ Ce document répertorie les 30 propositions d'améliorations esthétiques, inter
 - [x] **05. Lignes de force & Grille Blueprint** : Dessiner de fines lignes géométriques lumineuses en arrière-plan rappelant des plans d'architecte et d'ingénierie logicielle. *(Testé & Implémenté sur `feat/blueprint-grid`)*
 - [x] **06. Micro-interactions sur les badges** : Illuminer intensément les tags de compétences (`Stratégie`, `Next.js`, etc.) avec une onde lumineuse au survol de la souris. *(Testé & Implémenté sur `feat/badge-micro-interactions`)*
 - [x] **07. Clipping Mask visuel & Mini-Terminaux d'Ingénierie** : Dévoiler des textures abstraites et de vrais aperçus de code source interactifs (`pixel_attribution.ts`, `lead_pipeline.ts`, `enterprise_app.tsx`, `predictive_scoring.sql`) dans les cartes de service. *(Testé & Implémenté sur `feat/engineering-code-terminals`)*
-- [ ] **08. Anneau de progression circulaire** : Remplacer le compteur texte par un anneau circulaire lumineux autour de l'engrenage central qui se remplit à 25%, 50%, 75% et 100%.
+- [x] **08. Anneau de progression circulaire** : Remplacer le compteur texte par un anneau circulaire lumineux autour de l'engrenage central qui se remplit à 25%, 50%, 75% et 100%. *(Testé & Implémenté sur `feat/circular-progress-ring`)*
 - [ ] **09. Contrastes typographiques extrêmes** : Associer une police Serif/Sora très grasse pour les titres à une typographie Monospace technique pour les métadonnées et indices.
 - [ ] **10. CTA Flottant contextuel** : Afficher un bouton d'action discret et sticky dont l'intitulé s'adapte en temps réel au service en cours de lecture.
 
