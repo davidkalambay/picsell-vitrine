@@ -4,6 +4,7 @@ import React, { useRef, useState } from "react";
 import { ScrollytellingEngine } from "./ScrollytellingEngine";
 import { EngineeringTerminal } from "./EngineeringTerminal";
 import { CircularProgressRing } from "./CircularProgressRing";
+import { SplitTextReveal } from "./animations/SplitTextReveal";
 import { ScrollTrigger, useGSAP } from "@/lib/gsap-config";
 import { useSiteSettings } from "@/context/SettingsContext";
 
@@ -256,12 +257,29 @@ export const ScrollytellingSection: React.FC = () => {
                             </p>
                         )}
 
-                        <h2 className="text-2xl sm:text-4xl font-black tracking-tight mb-4 text-white leading-tight font-sora">
+                        <SplitTextReveal
+                            as="h2"
+                            trigger="active"
+                            isActive={activeSection === 'marketing'}
+                            stagger={0.035}
+                            duration={0.65}
+                            flavor="clockwork"
+                            className="text-2xl sm:text-4xl font-black tracking-tight mb-4 text-white leading-tight font-sora"
+                        >
                             Une présence qui convertit, pas seulement qui existe.
-                        </h2>
-                        <p className="text-slate-300 text-base sm:text-lg mb-8 leading-relaxed">
+                        </SplitTextReveal>
+                        <SplitTextReveal
+                            as="p"
+                            trigger="active"
+                            isActive={activeSection === 'marketing'}
+                            delay={0.12}
+                            stagger={0.015}
+                            duration={0.55}
+                            flavor="smooth"
+                            className="text-slate-300 text-base sm:text-lg mb-8 leading-relaxed"
+                        >
                             Stratégie de contenu, acquisition et image de marque pensées pour le marché congolais et la diaspora francophone.
-                        </p>
+                        </SplitTextReveal>
                         <div className="flex flex-wrap gap-2.5">
                             {renderBadge("Stratégie", "var(--pic-orange, #f37021)", "#f37021")}
                             {renderBadge("Contenu", "var(--pic-orange, #f37021)", "#f37021")}
@@ -311,12 +329,29 @@ export const ScrollytellingSection: React.FC = () => {
                             </p>
                         )}
 
-                        <h2 className="text-2xl sm:text-4xl font-black tracking-tight mb-4 text-white leading-tight font-sora">
+                        <SplitTextReveal
+                            as="h2"
+                            trigger="active"
+                            isActive={activeSection === 'automation'}
+                            stagger={0.035}
+                            duration={0.65}
+                            flavor="clockwork"
+                            className="text-2xl sm:text-4xl font-black tracking-tight mb-4 text-white leading-tight font-sora"
+                        >
                             Vos process tournent, même quand vous dormez.
-                        </h2>
-                        <p className="text-slate-300 text-base sm:text-lg mb-8 leading-relaxed">
+                        </SplitTextReveal>
+                        <SplitTextReveal
+                            as="p"
+                            trigger="active"
+                            isActive={activeSection === 'automation'}
+                            delay={0.12}
+                            stagger={0.015}
+                            duration={0.55}
+                            flavor="smooth"
+                            className="text-slate-300 text-base sm:text-lg mb-8 leading-relaxed"
+                        >
                             Workflows automatisés, intégrations et outils sur-mesure pour éliminer les tâches répétitives de vos équipes.
-                        </p>
+                        </SplitTextReveal>
                         <div className="flex flex-wrap gap-2.5">
                             {renderBadge("Workflows", "var(--pic-turquoise, #3dbcc7)", "#3dbcc7")}
                             {renderBadge("Intégrations", "var(--pic-turquoise, #3dbcc7)", "#3dbcc7")}
@@ -365,12 +400,29 @@ export const ScrollytellingSection: React.FC = () => {
                             </p>
                         )}
 
-                        <h2 className="text-2xl sm:text-4xl font-black tracking-tight mb-4 text-white leading-tight font-sora">
+                        <SplitTextReveal
+                            as="h2"
+                            trigger="active"
+                            isActive={activeSection === 'development'}
+                            stagger={0.035}
+                            duration={0.65}
+                            flavor="clockwork"
+                            className="text-2xl sm:text-4xl font-black tracking-tight mb-4 text-white leading-tight font-sora"
+                        >
                             Des produits robustes, du prototype à l'échelle.
-                        </h2>
-                        <p className="text-slate-300 text-base sm:text-lg mb-8 leading-relaxed">
+                        </SplitTextReveal>
+                        <SplitTextReveal
+                            as="p"
+                            trigger="active"
+                            isActive={activeSection === 'development'}
+                            delay={0.12}
+                            stagger={0.015}
+                            duration={0.55}
+                            flavor="smooth"
+                            className="text-slate-300 text-base sm:text-lg mb-8 leading-relaxed"
+                        >
                             Applications web et mobiles sur Next.js, Node.js et PostgreSQL — de la carte de visite digitale aux plateformes SaaS complètes.
-                        </p>
+                        </SplitTextReveal>
                         <div className="flex flex-wrap gap-2.5">
                             {renderBadge("Web & Mobile", "var(--pic-blue, #0089d0)", "#0089d0")}
                             {renderBadge("API", "var(--pic-blue, #0089d0)", "#0089d0")}
@@ -419,12 +471,29 @@ export const ScrollytellingSection: React.FC = () => {
                             </p>
                         )}
 
-                        <h2 className="text-2xl sm:text-4xl font-black tracking-tight mb-4 text-white leading-tight font-sora">
+                        <SplitTextReveal
+                            as="h2"
+                            trigger="active"
+                            isActive={activeSection === 'data'}
+                            stagger={0.035}
+                            duration={0.65}
+                            flavor="clockwork"
+                            className="text-2xl sm:text-4xl font-black tracking-tight mb-4 text-white leading-tight font-sora"
+                        >
                             Décidez avec des chiffres, pas des intuitions.
-                        </h2>
-                        <p className="text-slate-300 text-base sm:text-lg mb-8 leading-relaxed">
+                        </SplitTextReveal>
+                        <SplitTextReveal
+                            as="p"
+                            trigger="active"
+                            isActive={activeSection === 'data'}
+                            delay={0.12}
+                            stagger={0.015}
+                            duration={0.55}
+                            flavor="smooth"
+                            className="text-slate-300 text-base sm:text-lg mb-8 leading-relaxed"
+                        >
                             Tableaux de bord, reporting et modèles prédictifs pour transformer vos données en décisions stratégiques.
-                        </p>
+                        </SplitTextReveal>
                         <div className="flex flex-wrap gap-2.5">
                             {renderBadge("Dashboards", "var(--pic-gold, #fdb913)", "#fdb913")}
                             {renderBadge("Reporting", "var(--pic-gold, #fdb913)", "#fdb913")}

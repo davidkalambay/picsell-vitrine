@@ -18,6 +18,7 @@ export interface SiteSettings {
     extremeTypography: boolean;
     floatingCta: boolean;
     scrollSnap: boolean;
+    splitTextReveal: boolean;
     noiseOverlay: boolean;
     noiseIntensity: NoiseIntensity;
     blueprintGrid: boolean;
@@ -38,6 +39,7 @@ const DEFAULT_SETTINGS: SiteSettings = {
     extremeTypography: true,
     floatingCta: true,
     scrollSnap: true,
+    splitTextReveal: true,
     noiseOverlay: true,
     noiseIntensity: "subtle",
     blueprintGrid: true,

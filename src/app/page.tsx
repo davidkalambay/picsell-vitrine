@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import { ScrollytellingSection } from "@/components/ScrollytellingSection";
 import { SettingsDrawer } from "@/components/SettingsDrawer";
 import { ContextualFloatingCTA } from "@/components/ContextualFloatingCTA";
+import { SplitTextReveal } from "@/components/animations/SplitTextReveal";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap-config";
 import { useSiteSettings } from "@/context/SettingsContext";
 
@@ -76,16 +77,32 @@ export default function Home() {
           </p>
         </div>
 
-        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight mb-6 leading-[1.08] text-slate-900 font-sora">
+        <SplitTextReveal
+          as="h1"
+          trigger="mount"
+          delay={0.12}
+          stagger={0.045}
+          duration={0.7}
+          flavor="clockwork"
+          className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight mb-6 leading-[1.08] text-slate-900 font-sora"
+        >
           La précision, moteur de votre{" "}
           <span className="bg-gradient-to-r from-[var(--pic-blue,#0089d0)] via-[var(--pic-turquoise,#3dbcc7)] to-[var(--pic-orange,#f37021)] bg-clip-text text-transparent">
             croissance digitale.
           </span>
-        </h1>
+        </SplitTextReveal>
 
-        <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto mb-8 leading-relaxed font-normal">
+        <SplitTextReveal
+          as="p"
+          trigger="mount"
+          delay={0.4}
+          stagger={0.015}
+          duration={0.6}
+          flavor="smooth"
+          className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto mb-8 leading-relaxed font-normal"
+        >
           Picsell Agency conçoit des systèmes marketing, techniques et data pilotés par l'IA, pensés pour les entreprises congolaises et le marché francophone.
-        </p>
+        </SplitTextReveal>
 
         {/* Technical Monospace Metadata HUD (Sally's Idea 09) */}
         {settings.extremeTypography && (
@@ -127,12 +144,27 @@ export default function Home() {
             <span className="w-2.5 h-2.5 rounded-full bg-[var(--pic-blue,#0089d0)] shadow-[0_0_12px_rgba(0,137,208,0.8)]"></span>
             <span className="w-2.5 h-2.5 rounded-full bg-[var(--pic-gold,#fdb913)] shadow-[0_0_12px_rgba(253,185,19,0.8)]"></span>
           </div>
-          <h2 className="text-3xl md:text-5xl font-black tracking-tight mb-6 leading-tight font-sora">
+          <SplitTextReveal
+            as="h2"
+            trigger="scroll"
+            stagger={0.04}
+            duration={0.7}
+            flavor="clockwork"
+            className="text-3xl md:text-5xl font-black tracking-tight mb-6 leading-tight font-sora"
+          >
             Un seul moteur. Quatre expertises. Une seule agence.
-          </h2>
-          <p className="text-base md:text-lg text-slate-400 mb-10 leading-relaxed max-w-xl mx-auto">
+          </SplitTextReveal>
+          <SplitTextReveal
+            as="p"
+            trigger="scroll"
+            delay={0.15}
+            stagger={0.015}
+            duration={0.6}
+            flavor="smooth"
+            className="text-base md:text-lg text-slate-400 mb-10 leading-relaxed max-w-xl mx-auto"
+          >
             Marketing, automatisation, développement et data — assemblés pour faire avancer votre entreprise avec une précision horlogère.
-          </p>
+          </SplitTextReveal>
           <a
             href="#footer-contact"
             className="inline-flex items-center justify-center px-8 py-4 rounded-full text-sm font-bold bg-white text-slate-950 hover:bg-[var(--pic-gold,#fdb913)] hover:text-slate-950 hover:shadow-[0_0_25px_rgba(253,185,19,0.5)] hover:-translate-y-0.5 transition-all"

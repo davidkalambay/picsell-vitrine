@@ -251,6 +251,25 @@ export const SettingsDrawer: React.FC = () => {
                             />
                         </div>
 
+                        {/* Option 12: SplitText / Text Reveal (Amelia's Idea 03) */}
+                        <div className="flex items-center justify-between p-4 rounded-2xl bg-white/[0.03] border border-white/10">
+                            <div>
+                                <div className="flex items-center gap-1.5">
+                                    <p className="text-sm font-bold text-white">SplitText Horloger (Text Reveal)</p>
+                                    <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-[var(--pic-gold,#fdb913)]/20 text-[var(--pic-gold,#fdb913)]">
+                                        AMELIA #03
+                                    </span>
+                                </div>
+                                <p className="text-xs text-slate-400">Révélation mécanique mot par mot & frappe d'horlogerie</p>
+                            </div>
+                            <input
+                                type="checkbox"
+                                checked={settings.splitTextReveal}
+                                onChange={(e) => updateSetting("splitTextReveal", e.target.checked)}
+                                className="w-5 h-5 accent-[var(--pic-gold,#fdb913)] rounded cursor-pointer"
+                            />
+                        </div>
+
                         {/* Option 11: Bruit Texturé (Noise Overlay) */}
                         <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 space-y-3">
                             <div className="flex items-center justify-between">
