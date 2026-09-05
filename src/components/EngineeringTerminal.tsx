@@ -14,7 +14,7 @@ interface EngineeringTerminalProps {
     tagLabel: string;
 }
 
-export const EngineeringTerminal: React.FC<EngineeringTerminalProps> = ({
+const EngineeringTerminalComponent: React.FC<EngineeringTerminalProps> = ({
     filename,
     lines,
     accentColor,
@@ -99,6 +99,17 @@ export const EngineeringTerminal: React.FC<EngineeringTerminalProps> = ({
         </div>
     );
 };
+
+export const EngineeringTerminal = React.memo(
+    EngineeringTerminalComponent,
+    (prevProps, nextProps) =>
+        prevProps.filename === nextProps.filename &&
+        prevProps.accentColor === nextProps.accentColor &&
+        prevProps.tagLabel === nextProps.tagLabel &&
+        prevProps.language === nextProps.language &&
+        prevProps.lines.length === nextProps.lines.length
+);
+
 
 function renderHighlightedLine(text: string, accentColor: string) {
     if (text.startsWith("//") || text.startsWith("--")) {

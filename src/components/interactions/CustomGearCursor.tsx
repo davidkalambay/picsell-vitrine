@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { gsap, useGSAP } from "@/lib/gsap-config";
 import { useSiteSettings } from "@/context/SettingsContext";
 
-export const CustomGearCursor: React.FC = () => {
+const CustomGearCursorComponent: React.FC = () => {
     const { settings } = useSiteSettings();
     const cursorRef = useRef<HTMLDivElement>(null);
     const dotRef = useRef<HTMLDivElement>(null);
@@ -255,3 +255,6 @@ export const CustomGearCursor: React.FC = () => {
         </div>
     );
 };
+
+export const CustomGearCursor = React.memo(CustomGearCursorComponent);
+

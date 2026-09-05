@@ -8,7 +8,7 @@ interface DataLiveCounterProps {
     isActive: boolean;
 }
 
-export const DataLiveCounter: React.FC<DataLiveCounterProps> = ({ isActive }) => {
+const DataLiveCounterComponent: React.FC<DataLiveCounterProps> = ({ isActive }) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const { settings } = useSiteSettings();
 
@@ -164,3 +164,9 @@ export const DataLiveCounter: React.FC<DataLiveCounterProps> = ({ isActive }) =>
         </div>
     );
 };
+
+export const DataLiveCounter = React.memo(
+    DataLiveCounterComponent,
+    (prevProps, nextProps) => prevProps.isActive === nextProps.isActive
+);
+

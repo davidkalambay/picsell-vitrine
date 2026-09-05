@@ -3,7 +3,7 @@
 import React from "react";
 import { useSiteSettings } from "@/context/SettingsContext";
 
-export const NoiseOverlay: React.FC = () => {
+const NoiseOverlayComponent: React.FC = () => {
     const { settings } = useSiteSettings();
 
     if (!settings.noiseOverlay) return null;
@@ -36,3 +36,6 @@ export const NoiseOverlay: React.FC = () => {
         </div>
     );
 };
+
+export const NoiseOverlay = React.memo(NoiseOverlayComponent);
+

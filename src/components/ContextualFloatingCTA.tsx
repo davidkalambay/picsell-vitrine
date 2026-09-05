@@ -11,7 +11,7 @@ interface SectionCTAInfo {
     badge: string;
 }
 
-export const ContextualFloatingCTA: React.FC = () => {
+const ContextualFloatingCTAComponent: React.FC = () => {
     const { settings } = useSiteSettings();
     const [currentCta, setCurrentCta] = useState<SectionCTAInfo>({
         title: "Démarrer un projet",
@@ -158,3 +158,6 @@ export const ContextualFloatingCTA: React.FC = () => {
         </aside>
     );
 };
+
+export const ContextualFloatingCTA = React.memo(ContextualFloatingCTAComponent);
+

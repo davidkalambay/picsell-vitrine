@@ -9,7 +9,7 @@ interface CircularProgressRingProps {
     activeSection: SectionType;
 }
 
-export const CircularProgressRing: React.FC<CircularProgressRingProps> = ({ activeSection }) => {
+const CircularProgressRingComponent: React.FC<CircularProgressRingProps> = ({ activeSection }) => {
     const { settings } = useSiteSettings();
 
     if (!settings.progressRing) {
@@ -123,3 +123,9 @@ export const CircularProgressRing: React.FC<CircularProgressRingProps> = ({ acti
         </div>
     );
 };
+
+export const CircularProgressRing = React.memo(
+    CircularProgressRingComponent,
+    (prevProps, nextProps) => prevProps.activeSection === nextProps.activeSection
+);
+

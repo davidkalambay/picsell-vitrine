@@ -17,7 +17,7 @@ interface ScrollytellingEngineProps {
     activeSection: ServiceModuleKey | null;
 }
 
-export const ScrollytellingEngine: React.FC<ScrollytellingEngineProps> = ({ activeSection }) => {
+const ScrollytellingEngineComponent: React.FC<ScrollytellingEngineProps> = ({ activeSection }) => {
     const container = useRef<SVGSVGElement>(null);
     const { settings, drawSvgKey } = useSiteSettings();
     const [viewBox, setViewBox] = useState("250 150 700 600");
@@ -409,3 +409,9 @@ export const ScrollytellingEngine: React.FC<ScrollytellingEngineProps> = ({ acti
         </div>
     );
 };
+
+export const ScrollytellingEngine = React.memo(
+    ScrollytellingEngineComponent,
+    (prevProps, nextProps) => prevProps.activeSection === nextProps.activeSection
+);
+

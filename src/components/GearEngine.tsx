@@ -4,7 +4,7 @@ import React, { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
-const GearEngine = () => {
+const GearEngineComponent = () => {
     const container = useRef<SVGSVGElement>(null);
     const [viewBox, setViewBox] = useState("0 0 1200 900");
 
@@ -186,4 +186,7 @@ const GearEngine = () => {
     );
 };
 
+const GearEngine = React.memo(GearEngineComponent);
+
 export default GearEngine;
+

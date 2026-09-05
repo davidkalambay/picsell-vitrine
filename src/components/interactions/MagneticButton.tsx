@@ -18,7 +18,7 @@ interface MagneticButtonProps {
     ariaLabel?: string;
 }
 
-export const MagneticButton: React.FC<MagneticButtonProps> = ({
+const MagneticButtonComponent: React.FC<MagneticButtonProps> = ({
     children,
     className = "",
     style = {},
@@ -121,3 +121,6 @@ export const MagneticButton: React.FC<MagneticButtonProps> = ({
         </Component>
     );
 };
+
+export const MagneticButton = React.memo(MagneticButtonComponent);
+

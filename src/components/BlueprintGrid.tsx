@@ -3,7 +3,7 @@
 import React from "react";
 import { useSiteSettings } from "@/context/SettingsContext";
 
-export const BlueprintGrid: React.FC = () => {
+const BlueprintGridComponent: React.FC = () => {
     const { settings } = useSiteSettings();
 
     if (!settings.blueprintGrid) return null;
@@ -86,3 +86,6 @@ export const BlueprintGrid: React.FC = () => {
         </div>
     );
 };
+
+export const BlueprintGrid = React.memo(BlueprintGridComponent);
+
