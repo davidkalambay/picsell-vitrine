@@ -1,10 +1,9 @@
 "use client";
 
 import React, { useRef, useState, useEffect } from "react";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
+import { gsap, useGSAP } from "@/lib/gsap-config";
 
-const GearEngine = () => {
+const GearEngineComponent = () => {
     const container = useRef<SVGSVGElement>(null);
     const [viewBox, setViewBox] = useState("0 0 1200 900");
 
@@ -77,12 +76,18 @@ const GearEngine = () => {
     }, { scope: container });
 
     return (
-        <div className="w-screen h-screen flex justify-center items-center z-1">
+        <div className="w-screen h-screen flex justify-center items-center z-1 hero-engine-aspect-ratio">
             <svg
                 ref={container}
                 viewBox={viewBox}
+                width="1200"
+                height="900"
                 xmlns="http://www.w3.org/2000/svg"
-                className="w-[90%] md:w-[80%] h-[90%] max-w-[1000px] overflow-visible"
+                className="w-[90%] md:w-[80%] h-[90%] max-w-[1000px] overflow-visible gear-gpu-layer"
+                style={{
+                    aspectRatio: "1200/900",
+                    contain: "layout size",
+                }}
             >
                 <defs>
                     <path id="tooth-v23" d="M-9,-12 L9,-12 L12,0 L-12,0 Z" />
@@ -186,4 +191,7 @@ const GearEngine = () => {
     );
 };
 
+const GearEngine = React.memo(GearEngineComponent);
+
 export default GearEngine;
+

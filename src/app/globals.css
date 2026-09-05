@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sora: var(--font-sora), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-quicksand: var(--font-quicksand), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
 :root {
   --bg: #FFFFFF;
   --blue: #0089D0;
@@ -16,6 +22,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
 }
 
 .navbar-glass {
@@ -31,4 +38,105 @@ body {
   font-weight: 800;
   text-transform: uppercase;
   pointer-events: none;
-}
+}
+
+/* Winston 08: Zero Layout Shift (CLS 0) & Container Aspect Ratios */
+.engine-aspect-ratio {
+  aspect-ratio: 700 / 600;
+  contain-intrinsic-size: 700px 600px;
+}
+
+.hero-engine-aspect-ratio {
+  aspect-ratio: 1200 / 900;
+  contain-intrinsic-size: 1200px 900px;
+}
+
+.cls-card-contain {
+  min-height: 70vh;
+}
+
+.cls-terminal-reserve {
+  min-height: 180px;
+}
+
+.cls-counter-reserve {
+  min-height: 140px;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+  -moz-font-feature-settings: "tnum";
+  -webkit-font-feature-settings: "tnum";
+  font-feature-settings: "tnum";
+}
+
+/* Winston 02: 100% GPU Hardware Acceleration & Layer Compositing */
+.gpu-accelerated {
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  will-change: transform;
+}
+
+/* SVG Hardware Layer - Use will-change instead of translateZ which breaks SVG matrix transforms */
+.gear-gpu-layer {
+  will-change: transform;
+}
+
+/* Winston 04: Accessibility & prefers-reduced-motion Compliance */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.reduce-motion *,
+.reduce-motion *::before,
+.reduce-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* Winston 09: Isolation SSR & Anti-FOUC Cloaking */
+.gsap-cloak {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in, visibility 0.3s ease-in;
+}
+
+html.gsap-ready .gsap-cloak {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Winston 10: Mode Éco-responsable (Battery Saver & Low GPU Power) */
+.eco-mode * {
+  text-shadow: none !important;
+}
+
+.eco-mode .blur-\[100px\],
+.eco-mode .blur-3xl,
+.eco-mode .blur-2xl {
+  filter: blur(12px) !important;
+  opacity: 0.15 !important;
+}
+
+.eco-mode .backdrop-blur-2xl,
+.eco-mode .backdrop-blur-xl {
+  backdrop-filter: blur(6px) !important;
+  -webkit-backdrop-filter: blur(6px) !important;
+}
+
+.eco-mode [style*="drop-shadow"] {
+  filter: none !important;
+}
+
+

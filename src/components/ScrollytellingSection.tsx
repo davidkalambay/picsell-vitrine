@@ -1,9 +1,27 @@
 "use client";
 
 import React, { useRef, useState } from "react";
+import dynamic from "next/dynamic";
 import { ScrollytellingEngine } from "./ScrollytellingEngine";
-import { ScrollTrigger, useGSAP } from "@/lib/gsap-config";
+import { SplitTextReveal } from "./animations/SplitTextReveal";
+import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap-config";
 import { useSiteSettings } from "@/context/SettingsContext";
+
+// Winston 05: Progressive Lazy Hydration for deep scrollytelling submodules
+const EngineeringTerminal = dynamic(
+    () => import("./EngineeringTerminal").then((mod) => mod.EngineeringTerminal),
+    { ssr: false }
+);
+
+const CircularProgressRing = dynamic(
+    () => import("./CircularProgressRing").then((mod) => mod.CircularProgressRing),
+    { ssr: false }
+);
+
+const DataLiveCounter = dynamic(
+    () => import("./DataLiveCounter").then((mod) => mod.DataLiveCounter),
+    { ssr: false }
+);
 
 type SectionType = "marketing" | "automation" | "development" | "data" | null;
 
@@ -25,8 +43,8 @@ export const ScrollytellingSection: React.FC = () => {
             if (el) {
                 ScrollTrigger.create({
                     trigger: el,
-                    start: "top center",
-                    end: "bottom center",
+                    start: "top 70%",
+                    end: "bottom 30%",
                     onEnter: () => setActiveSection(id as SectionType),
                     onEnterBack: () => setActiveSection(id as SectionType),
                     onLeave: () => {
@@ -39,26 +57,271 @@ export const ScrollytellingSection: React.FC = () => {
             }
         });
 
-    }, { scope: containerRef });
+        // Amelia's Idea 02: Soft GSAP Magnetic Scroll-Snap to center active card
+        if (settings.scrollSnap && containerRef.current) {
+            const cardIds = ["story-marketing", "story-automation", "story-development", "story-data"];
+
+            const snapTrigger = ScrollTrigger.create({
+                trigger: containerRef.current,
+                start: "top top",
+                end: "bottom bottom",
+                snap: {
+                    snapTo: (value, self) => {
+                        if (!self) return value;
+                        const totalDist = self.end - self.start;
+                        if (!totalDist || totalDist <= 0) return value;
+
+                        const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+                        const windowH = window.innerHeight;
+
+                        const snapProgresses = cardIds.map((id) => {
+                            const el = document.getElementById(id);
+                            if (!el) return null;
+                            const rect = el.getBoundingClientRect();
+                            const cardAbsCenter = currentScroll + rect.top + rect.height / 2;
+                            const targetScroll = cardAbsCenter - windowH / 2;
+                            const prog = (targetScroll - self.start) / totalDist;
+                            return Math.max(0, Math.min(1, prog));
+                        }).filter((p): p is number => p !== null);
+
+                        if (snapProgresses.length === 0) return value;
+
+                        let closest = value;
+                        let minDiff = Infinity;
+
+                        snapProgresses.forEach((p) => {
+                            const diff = Math.abs(p - value);
+                            if (diff < minDiff) {
+                                minDiff = diff;
+                                closest = p;
+                            }
+                        });
+
+                        // Gently snap if within proximity threshold
+                        if (minDiff < 0.18) {
+                            return closest;
+                        }
+                        return value;
+                    },
+                    duration: { min: 0.25, max: 0.55 },
+                    delay: 0.12,
+                    ease: "power2.out",
+                    inertia: false,
+                },
+            });
+
+            return () => {
+                snapTrigger.kill();
+            };
+        }
+
+    }, { scope: containerRef, dependencies: [settings.scrollSnap] });
+
+    // Amelia's Idea 06 & Winston 03: Multilayer 3D Parallax with Responsive MatchMedia
+    useGSAP(() => {
+        if (!containerRef.current) return;
+
+        const cardIds = ["story-marketing", "story-automation", "story-development", "story-data"];
+
+        if (!settings.parallaxBadges) {
+            // Reset transforms when disabled
+            cardIds.forEach((id) => {
+                const card = document.getElementById(id);
+                if (card) {
+                    gsap.set(card.querySelectorAll(".badge-parallax-item, .card-top-pill"), { y: 0, rotateZ: 0 });
+                }
+            });
+            return;
+        }
+
+        const mm = gsap.matchMedia();
+
+        mm.add({
+            isDesktop: "(min-width: 1024px)",
+            isTablet: "(min-width: 768px) and (max-width: 1023px)",
+            isMobile: "(max-width: 767px)",
+        }, (context) => {
+            const { isDesktop, isTablet } = context.conditions as {
+                isDesktop: boolean;
+                isTablet: boolean;
+                isMobile: boolean;
+            };
+
+            const depthMultiplier = isDesktop ? 1.0 : isTablet ? 0.65 : 0.4;
+            const scrubSpeed = isDesktop ? 1.2 : 0.8;
+
+            cardIds.forEach((id) => {
+                const card = document.getElementById(id);
+                if (!card) return;
+
+                // Individual badge pills inside the card with depth differentiation
+                const badges = card.querySelectorAll<HTMLElement>(".badge-parallax-item");
+                badges.forEach((badge, idx) => {
+                    const depthY = ((idx + 1) * 10 + 4) * depthMultiplier;
+                    const microTilt = (idx % 2 === 0 ? 1 : -1) * (isDesktop ? 1.8 : 0.8);
+
+                    gsap.fromTo(badge, {
+                        y: depthY,
+                        rotateZ: microTilt,
+                    }, {
+                        y: -depthY,
+                        rotateZ: -microTilt,
+                        ease: "none",
+                        scrollTrigger: {
+                            trigger: card,
+                            start: "top bottom",
+                            end: "bottom top",
+                            scrub: scrubSpeed,
+                        }
+                    });
+                });
+
+                // Top category pill inside card header
+                const topPill = card.querySelector<HTMLElement>(".card-top-pill");
+                if (topPill) {
+                    const pillY = 12 * depthMultiplier;
+                    gsap.fromTo(topPill, {
+                        y: pillY,
+                    }, {
+                        y: -pillY,
+                        ease: "none",
+                        scrollTrigger: {
+                            trigger: card,
+                            start: "top bottom",
+                            end: "bottom top",
+                            scrub: scrubSpeed,
+                        }
+                    });
+                }
+            });
+        });
+
+        return () => mm.revert();
+    }, { scope: containerRef, dependencies: [settings.parallaxBadges, settings.matchMediaResponsive] });
+
+    const renderNumber = (num: string, sectionId: SectionType, colorHex: string) => {
+        const isActive = activeSection === sectionId;
+
+        // Visual Clipping Mask Mode (Sally's Idea 07)
+        if (settings.clippingMaskNumbers) {
+            // Textures dynamically tailored per service module
+            const maskBackgrounds: Record<string, string> = {
+                marketing: "linear-gradient(135deg, #f37021 0%, #fdb913 50%, #ff3b00 100%)",
+                automation: "linear-gradient(135deg, #3dbcc7 0%, #0089d0 50%, #00ffa2 100%)",
+                development: "linear-gradient(135deg, #0089d0 0%, #7c3aed 50%, #3dbcc7 100%)",
+                data: "linear-gradient(135deg, #fdb913 0%, #f37021 50%, #ffea79 100%)",
+            };
+
+            const bgStyle = maskBackgrounds[sectionId || ''] || "linear-gradient(135deg, #ffffff, #888888)";
+
+            return (
+                <div className="relative inline-block select-none group">
+                    <p
+                        className={`text-5xl sm:text-6xl font-black font-sora transition-all duration-700 ${
+                            isActive ? "scale-108" : "scale-100 opacity-25"
+                        }`}
+                        style={{
+                            backgroundImage: bgStyle,
+                            WebkitBackgroundClip: "text",
+                            backgroundClip: "text",
+                            color: "transparent",
+                            WebkitTextStroke: isActive ? `1.2px ${colorHex}` : "1.2px rgba(255, 255, 255, 0.15)",
+                            filter: isActive ? `drop-shadow(0 0 25px ${colorHex}88)` : "none",
+                        }}
+                    >
+                        {num}
+                    </p>
+                    {/* Micro Technical Sub-label in Clipping Mode */}
+                    <span
+                        className={`absolute -bottom-2 right-0 text-[8px] font-mono tracking-widest uppercase transition-opacity duration-500 ${
+                            isActive ? "opacity-90" : "opacity-0"
+                        }`}
+                        style={{ color: colorHex }}
+                    >
+                        {sectionId === 'marketing' && "GROWTH_SYS"}
+                        {sectionId === 'automation' && "AUTO_FLOW"}
+                        {sectionId === 'development' && "STACK_V4"}
+                        {sectionId === 'data' && "INSIGHTS"}
+                    </span>
+                </div>
+            );
+        }
+
+        if (!settings.reactiveOutline) {
+            return (
+                <p className={`text-5xl sm:text-6xl font-black font-sora transition-all duration-500 ${isActive ? 'text-white' : 'text-white/10'}`}>
+                    {num}
+                </p>
+            );
+        }
+
+        return (
+            <p
+                className="text-5xl sm:text-6xl font-black font-sora transition-all duration-700 select-none inline-block"
+                style={{
+                    WebkitTextStroke: isActive ? `1.5px ${colorHex}` : "1.5px rgba(255, 255, 255, 0.22)",
+                    color: isActive ? colorHex : "transparent",
+                    textShadow: isActive ? `0 0 30px ${colorHex}` : "none",
+                    transform: isActive ? "scale(1.08)" : "scale(1)",
+                }}
+            >
+                {num}
+            </p>
+        );
+    };
+
+    const renderBadge = (label: string, colorVar: string, colorHex: string) => {
+        const isInteractive = settings.badgeMicroInteractions;
+        return (
+            <span
+                key={label}
+                className={`badge-parallax-item group/badge relative overflow-hidden text-[11px] font-bold tracking-wider uppercase px-4 py-2 rounded-full border backdrop-blur-md transition-all duration-300 select-none ${
+                    isInteractive
+                        ? "cursor-pointer hover:scale-105 hover:-translate-y-0.5 hover:shadow-lg hover:border-white/60 hover:text-white"
+                        : ""
+                }`}
+                style={{
+                    borderColor: `${colorHex}66`,
+                    backgroundColor: `${colorHex}18`,
+                    color: colorHex,
+                    boxShadow: isInteractive ? undefined : `0 0 12px ${colorHex}33`,
+                    willChange: "transform",
+                }}
+            >
+                {/* Light Sweep / Shimmer Wave on Hover */}
+                {isInteractive && (
+                    <span
+                        className="absolute inset-0 -translate-x-full group-hover/badge:translate-x-full transition-transform duration-700 ease-out bg-gradient-to-r from-transparent via-white/40 to-transparent pointer-events-none"
+                        aria-hidden="true"
+                    />
+                )}
+                <span className="relative z-10 flex items-center gap-1.5">
+                    <span
+                        className="w-1.5 h-1.5 rounded-full transition-all duration-300 group-hover/badge:scale-150 group-hover/badge:shadow-[0_0_8px_white]"
+                        style={{ backgroundColor: colorVar }}
+                    />
+                    {label}
+                </span>
+            </span>
+        );
+    };
 
     return (
         <section id="scrollytelling-section" ref={containerRef} className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 py-20 pb-40">
             {/* Desktop Layout: Grid. Mobile Layout: Stacked */}
             <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-24 relative">
                 
-                {/* Visual side (Sticky) */}
+                {/* Visual side (Sticky) with CLS prevention */}
                 <div className="w-full h-full order-first lg:order-none z-0">
-                    <div className="w-full lg:sticky lg:top-24 flex flex-col items-center justify-center py-6 lg:py-16 lg:h-[80vh]">
-                        <div className="w-full h-full relative flex items-center justify-center">
+                    <div className="sticky top-24 sm:top-28 flex flex-col items-center justify-center min-h-[480px] sm:min-h-[560px] lg:min-h-[620px] max-h-[85vh] w-full rounded-3xl p-4 sm:p-8">
+                        {/* 80% Scale Engine Container with strict aspect ratio */}
+                        <div className="relative w-full h-[360px] sm:h-[440px] lg:h-[480px] aspect-[700/600] flex items-center justify-center">
                             <ScrollytellingEngine activeSection={activeSection} />
                         </div>
                         
-                        {/* Status text (Glassmorphism Pill Badge) */}
-                        <div className="mt-6 inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-white/[0.04] backdrop-blur-xl border border-white/10 shadow-[0_8px_24px_rgba(0,0,0,0.4)]">
-                            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                            <span className="text-xs font-bold tracking-[0.18em] uppercase text-slate-300 font-sora">
-                                {activeSection ? `${['marketing', 'automation', 'development', 'data'].indexOf(activeSection) + 1}/4 modules engagés` : "0/4 modules engagés"}
-                            </span>
+                        {/* Circular Progress Ring HUD (Sally's Idea 08) with reserved container */}
+                        <div className="min-h-[72px] flex items-center justify-center w-full">
+                            <CircularProgressRing activeSection={activeSection} />
                         </div>
                     </div>
                 </div>
@@ -71,7 +334,7 @@ export const ScrollytellingSection: React.FC = () => {
                     {/* Section 1: Marketing Card */}
                     <div
                         id="story-marketing"
-                        className={`min-h-[70vh] flex flex-col justify-center p-8 sm:p-12 rounded-3xl backdrop-blur-2xl transition-all duration-700 relative overflow-hidden border ${
+                        className={`min-h-[70vh] cls-card-contain flex flex-col justify-center p-8 sm:p-12 rounded-3xl backdrop-blur-2xl transition-all duration-700 relative overflow-hidden border ${
                             activeSection === 'marketing'
                                 ? 'bg-gradient-to-br from-[rgba(243,112,33,0.1)] via-white/[0.04] to-transparent border-[var(--pic-orange,#f37021)]/40 shadow-[0_20px_50px_rgba(243,112,33,0.15)] opacity-100 translate-y-0 scale-100'
                                 : 'bg-white/[0.02] border-white/[0.06] opacity-30 translate-y-4 scale-[0.98]'
@@ -79,31 +342,71 @@ export const ScrollytellingSection: React.FC = () => {
                     >
                         <div className="absolute -top-24 -right-24 w-48 h-48 bg-[var(--pic-orange,#f37021)]/20 rounded-full blur-3xl pointer-events-none" />
                         
-                        <div className="flex items-center justify-between mb-4">
+                        <div className="card-top-pill flex items-center justify-between mb-4">
                             <p className="text-xs font-bold tracking-[0.2em] uppercase text-[var(--pic-orange,#f37021)] flex items-center gap-2">
                                 <span className="w-2 h-2 rounded-full bg-[var(--pic-orange,#f37021)]"></span>
                                 Digital Marketing
                             </p>
-                            <p className="text-5xl sm:text-6xl font-black text-white/10 font-sora">01</p>
+                            {renderNumber("01", "marketing", "var(--pic-orange, #f37021)")}
                         </div>
 
-                        <h2 className="text-2xl sm:text-4xl font-black tracking-tight mb-4 text-white leading-tight font-sora">
+                        {/* Technical Spec Index (Sally's Idea 09) */}
+                        {settings.extremeTypography && (
+                            <p className="font-mono text-[10px] sm:text-[11px] tracking-[0.22em] uppercase text-[var(--pic-orange,#f37021)]/90 mb-2 select-none">
+                                // SPEC_01: ACQUISITION_ROAS // CHANNEL_GROWTH
+                            </p>
+                        )}
+
+                        <SplitTextReveal
+                            as="h2"
+                            trigger="active"
+                            isActive={activeSection === 'marketing'}
+                            stagger={0.035}
+                            duration={0.65}
+                            flavor="clockwork"
+                            className="text-2xl sm:text-4xl font-black tracking-tight mb-4 text-white leading-tight font-sora"
+                        >
                             Une présence qui convertit, pas seulement qui existe.
-                        </h2>
-                        <p className="text-slate-300 text-base sm:text-lg mb-8 leading-relaxed">
+                        </SplitTextReveal>
+                        <SplitTextReveal
+                            as="p"
+                            trigger="active"
+                            isActive={activeSection === 'marketing'}
+                            delay={0.12}
+                            stagger={0.015}
+                            duration={0.55}
+                            flavor="smooth"
+                            className="text-slate-300 text-base sm:text-lg mb-8 leading-relaxed"
+                        >
                             Stratégie de contenu, acquisition et image de marque pensées pour le marché congolais et la diaspora francophone.
-                        </p>
+                        </SplitTextReveal>
                         <div className="flex flex-wrap gap-2.5">
-                            <span className="text-[11px] font-bold tracking-wider uppercase px-4 py-2 rounded-full border border-[var(--pic-orange,#f37021)]/40 bg-[var(--pic-orange,#f37021)]/10 text-[var(--pic-orange,#f37021)] backdrop-blur-md shadow-[0_0_12px_rgba(243,112,33,0.2)]">Stratégie</span>
-                            <span className="text-[11px] font-bold tracking-wider uppercase px-4 py-2 rounded-full border border-[var(--pic-orange,#f37021)]/40 bg-[var(--pic-orange,#f37021)]/10 text-[var(--pic-orange,#f37021)] backdrop-blur-md shadow-[0_0_12px_rgba(243,112,33,0.2)]">Contenu</span>
-                            <span className="text-[11px] font-bold tracking-wider uppercase px-4 py-2 rounded-full border border-[var(--pic-orange,#f37021)]/40 bg-[var(--pic-orange,#f37021)]/10 text-[var(--pic-orange,#f37021)] backdrop-blur-md shadow-[0_0_12px_rgba(243,112,33,0.2)]">Acquisition</span>
+                            {renderBadge("Stratégie", "var(--pic-orange, #f37021)", "#f37021")}
+                            {renderBadge("Contenu", "var(--pic-orange, #f37021)", "#f37021")}
+                            {renderBadge("Acquisition", "var(--pic-orange, #f37021)", "#f37021")}
                         </div>
+
+                        {/* Engineering Code Terminal */}
+                        <EngineeringTerminal
+                            filename="pixel_attribution.ts"
+                            language="typescript"
+                            tagLabel="TS // TRACKING"
+                            accentColor="#f37021"
+                            lines={[
+                                { text: "// Attribution & ROAS multi-canal haute fidélité" },
+                                { text: "const campaign = await picsell.trackConversion({" },
+                                { text: "  target: \"kinshasa_b2b\"," },
+                                { text: "  channels: [\"meta\", \"google\", \"linkedin\"]," },
+                                { text: "  roiTarget: \"340%\"" },
+                                { text: "});" },
+                            ]}
+                        />
                     </div>
 
                     {/* Section 2: Automation Card */}
                     <div
                         id="story-automation"
-                        className={`min-h-[70vh] flex flex-col justify-center p-8 sm:p-12 rounded-3xl backdrop-blur-2xl transition-all duration-700 relative overflow-hidden border ${
+                        className={`min-h-[70vh] cls-card-contain flex flex-col justify-center p-8 sm:p-12 rounded-3xl backdrop-blur-2xl transition-all duration-700 relative overflow-hidden border ${
                             activeSection === 'automation'
                                 ? 'bg-gradient-to-br from-[rgba(61,188,199,0.1)] via-white/[0.04] to-transparent border-[var(--pic-turquoise,#3dbcc7)]/40 shadow-[0_20px_50px_rgba(61,188,199,0.15)] opacity-100 translate-y-0 scale-100'
                                 : 'bg-white/[0.02] border-white/[0.06] opacity-30 translate-y-4 scale-[0.98]'
@@ -111,31 +414,70 @@ export const ScrollytellingSection: React.FC = () => {
                     >
                         <div className="absolute -top-24 -right-24 w-48 h-48 bg-[var(--pic-turquoise,#3dbcc7)]/20 rounded-full blur-3xl pointer-events-none" />
 
-                        <div className="flex items-center justify-between mb-4">
+                        <div className="card-top-pill flex items-center justify-between mb-4">
                             <p className="text-xs font-bold tracking-[0.2em] uppercase text-[var(--pic-turquoise,#3dbcc7)] flex items-center gap-2">
                                 <span className="w-2 h-2 rounded-full bg-[var(--pic-turquoise,#3dbcc7)]"></span>
                                 Automation
                             </p>
-                            <p className="text-5xl sm:text-6xl font-black text-white/10 font-sora">02</p>
+                            {renderNumber("02", "automation", "var(--pic-turquoise, #3dbcc7)")}
                         </div>
 
-                        <h2 className="text-2xl sm:text-4xl font-black tracking-tight mb-4 text-white leading-tight font-sora">
+                        {/* Technical Spec Index (Sally's Idea 09) */}
+                        {settings.extremeTypography && (
+                            <p className="font-mono text-[10px] sm:text-[11px] tracking-[0.22em] uppercase text-[var(--pic-turquoise,#3dbcc7)]/90 mb-2 select-none">
+                                // SPEC_02: WORKFLOW_SYNC // ZERO_HUMAN_ERROR
+                            </p>
+                        )}
+
+                        <SplitTextReveal
+                            as="h2"
+                            trigger="active"
+                            isActive={activeSection === 'automation'}
+                            stagger={0.035}
+                            duration={0.65}
+                            flavor="clockwork"
+                            className="text-2xl sm:text-4xl font-black tracking-tight mb-4 text-white leading-tight font-sora"
+                        >
                             Vos process tournent, même quand vous dormez.
-                        </h2>
-                        <p className="text-slate-300 text-base sm:text-lg mb-8 leading-relaxed">
+                        </SplitTextReveal>
+                        <SplitTextReveal
+                            as="p"
+                            trigger="active"
+                            isActive={activeSection === 'automation'}
+                            delay={0.12}
+                            stagger={0.015}
+                            duration={0.55}
+                            flavor="smooth"
+                            className="text-slate-300 text-base sm:text-lg mb-8 leading-relaxed"
+                        >
                             Workflows automatisés, intégrations et outils sur-mesure pour éliminer les tâches répétitives de vos équipes.
-                        </p>
+                        </SplitTextReveal>
                         <div className="flex flex-wrap gap-2.5">
-                            <span className="text-[11px] font-bold tracking-wider uppercase px-4 py-2 rounded-full border border-[var(--pic-turquoise,#3dbcc7)]/40 bg-[var(--pic-turquoise,#3dbcc7)]/10 text-[var(--pic-turquoise,#3dbcc7)] backdrop-blur-md shadow-[0_0_12px_rgba(61,188,199,0.2)]">Workflows</span>
-                            <span className="text-[11px] font-bold tracking-wider uppercase px-4 py-2 rounded-full border border-[var(--pic-turquoise,#3dbcc7)]/40 bg-[var(--pic-turquoise,#3dbcc7)]/10 text-[var(--pic-turquoise,#3dbcc7)] backdrop-blur-md shadow-[0_0_12px_rgba(61,188,199,0.2)]">Intégrations</span>
-                            <span className="text-[11px] font-bold tracking-wider uppercase px-4 py-2 rounded-full border border-[var(--pic-turquoise,#3dbcc7)]/40 bg-[var(--pic-turquoise,#3dbcc7)]/10 text-[var(--pic-turquoise,#3dbcc7)] backdrop-blur-md shadow-[0_0_12px_rgba(61,188,199,0.2)]">Gain de temps</span>
+                            {renderBadge("Workflows", "var(--pic-turquoise, #3dbcc7)", "#3dbcc7")}
+                            {renderBadge("Intégrations", "var(--pic-turquoise, #3dbcc7)", "#3dbcc7")}
+                            {renderBadge("Gain de temps", "var(--pic-turquoise, #3dbcc7)", "#3dbcc7")}
                         </div>
+
+                        {/* Engineering Code Terminal */}
+                        <EngineeringTerminal
+                            filename="lead_pipeline.ts"
+                            language="typescript"
+                            tagLabel="TS // WORKFLOW"
+                            accentColor="#3dbcc7"
+                            lines={[
+                                { text: "// Webhook instantané & sync CRM multi-outils" },
+                                { text: "export async function onLeadCaptured(lead: Lead) {" },
+                                { text: "  await crm.sync(lead, { enrichWithAI: true });" },
+                                { text: "  await notifyTeam(\"#croissance\", lead.dealValue);" },
+                                { text: "}" },
+                            ]}
+                        />
                     </div>
 
                     {/* Section 3: Development Card */}
                     <div
                         id="story-development"
-                        className={`min-h-[70vh] flex flex-col justify-center p-8 sm:p-12 rounded-3xl backdrop-blur-2xl transition-all duration-700 relative overflow-hidden border ${
+                        className={`min-h-[70vh] cls-card-contain flex flex-col justify-center p-8 sm:p-12 rounded-3xl backdrop-blur-2xl transition-all duration-700 relative overflow-hidden border ${
                             activeSection === 'development'
                                 ? 'bg-gradient-to-br from-[rgba(0,137,208,0.1)] via-white/[0.04] to-transparent border-[var(--pic-blue,#0089d0)]/40 shadow-[0_20px_50px_rgba(0,137,208,0.15)] opacity-100 translate-y-0 scale-100'
                                 : 'bg-white/[0.02] border-white/[0.06] opacity-30 translate-y-4 scale-[0.98]'
@@ -143,31 +485,70 @@ export const ScrollytellingSection: React.FC = () => {
                     >
                         <div className="absolute -top-24 -right-24 w-48 h-48 bg-[var(--pic-blue,#0089d0)]/20 rounded-full blur-3xl pointer-events-none" />
 
-                        <div className="flex items-center justify-between mb-4">
+                        <div className="card-top-pill flex items-center justify-between mb-4">
                             <p className="text-xs font-bold tracking-[0.2em] uppercase text-[var(--pic-blue,#0089d0)] flex items-center gap-2">
                                 <span className="w-2 h-2 rounded-full bg-[var(--pic-blue,#0089d0)]"></span>
                                 Development
                             </p>
-                            <p className="text-5xl sm:text-6xl font-black text-white/10 font-sora">03</p>
+                            {renderNumber("03", "development", "var(--pic-blue, #0089d0)")}
                         </div>
 
-                        <h2 className="text-2xl sm:text-4xl font-black tracking-tight mb-4 text-white leading-tight font-sora">
+                        {/* Technical Spec Index (Sally's Idea 09) */}
+                        {settings.extremeTypography && (
+                            <p className="font-mono text-[10px] sm:text-[11px] tracking-[0.22em] uppercase text-[var(--pic-blue,#0089d0)]/90 mb-2 select-none">
+                                // SPEC_03: SAAS_CORE_ENGINE // POSTGRES_OPTIMIZED
+                            </p>
+                        )}
+
+                        <SplitTextReveal
+                            as="h2"
+                            trigger="active"
+                            isActive={activeSection === 'development'}
+                            stagger={0.035}
+                            duration={0.65}
+                            flavor="clockwork"
+                            className="text-2xl sm:text-4xl font-black tracking-tight mb-4 text-white leading-tight font-sora"
+                        >
                             Des produits robustes, du prototype à l'échelle.
-                        </h2>
-                        <p className="text-slate-300 text-base sm:text-lg mb-8 leading-relaxed">
+                        </SplitTextReveal>
+                        <SplitTextReveal
+                            as="p"
+                            trigger="active"
+                            isActive={activeSection === 'development'}
+                            delay={0.12}
+                            stagger={0.015}
+                            duration={0.55}
+                            flavor="smooth"
+                            className="text-slate-300 text-base sm:text-lg mb-8 leading-relaxed"
+                        >
                             Applications web et mobiles sur Next.js, Node.js et PostgreSQL — de la carte de visite digitale aux plateformes SaaS complètes.
-                        </p>
+                        </SplitTextReveal>
                         <div className="flex flex-wrap gap-2.5">
-                            <span className="text-[11px] font-bold tracking-wider uppercase px-4 py-2 rounded-full border border-[var(--pic-blue,#0089d0)]/40 bg-[var(--pic-blue,#0089d0)]/10 text-[var(--pic-blue,#0089d0)] backdrop-blur-md shadow-[0_0_12px_rgba(0,137,208,0.2)]">Web & Mobile</span>
-                            <span className="text-[11px] font-bold tracking-wider uppercase px-4 py-2 rounded-full border border-[var(--pic-blue,#0089d0)]/40 bg-[var(--pic-blue,#0089d0)]/10 text-[var(--pic-blue,#0089d0)] backdrop-blur-md shadow-[0_0_12px_rgba(0,137,208,0.2)]">API</span>
-                            <span className="text-[11px] font-bold tracking-wider uppercase px-4 py-2 rounded-full border border-[var(--pic-blue,#0089d0)]/40 bg-[var(--pic-blue,#0089d0)]/10 text-[var(--pic-blue,#0089d0)] backdrop-blur-md shadow-[0_0_12px_rgba(0,137,208,0.2)]">Scalabilité</span>
+                            {renderBadge("Web & Mobile", "var(--pic-blue, #0089d0)", "#0089d0")}
+                            {renderBadge("API", "var(--pic-blue, #0089d0)", "#0089d0")}
+                            {renderBadge("Scalabilité", "var(--pic-blue, #0089d0)", "#0089d0")}
                         </div>
+
+                        {/* Engineering Code Terminal */}
+                        <EngineeringTerminal
+                            filename="enterprise_app.tsx"
+                            language="typescript"
+                            tagLabel="TSX // SERVER"
+                            accentColor="#0089d0"
+                            lines={[
+                                { text: "// Architecture Next.js 16 & Server Components" },
+                                { text: "export default async function SaaSCore({ orgId }: Props) {" },
+                                { text: "  const db = await connectPool({ latency: \"<15ms\" });" },
+                                { text: "  return <EngineDashboard realTime={true} />;" },
+                                { text: "}" },
+                            ]}
+                        />
                     </div>
 
                     {/* Section 4: Data Intelligence Card */}
                     <div
                         id="story-data"
-                        className={`min-h-[70vh] flex flex-col justify-center p-8 sm:p-12 rounded-3xl backdrop-blur-2xl transition-all duration-700 relative overflow-hidden border ${
+                        className={`min-h-[70vh] cls-card-contain flex flex-col justify-center p-8 sm:p-12 rounded-3xl backdrop-blur-2xl transition-all duration-700 relative overflow-hidden border ${
                             activeSection === 'data'
                                 ? 'bg-gradient-to-br from-[rgba(253,185,19,0.1)] via-white/[0.04] to-transparent border-[var(--pic-gold,#fdb913)]/40 shadow-[0_20px_50px_rgba(253,185,19,0.15)] opacity-100 translate-y-0 scale-100'
                                 : 'bg-white/[0.02] border-white/[0.06] opacity-30 translate-y-4 scale-[0.98]'
@@ -175,25 +556,67 @@ export const ScrollytellingSection: React.FC = () => {
                     >
                         <div className="absolute -top-24 -right-24 w-48 h-48 bg-[var(--pic-gold,#fdb913)]/20 rounded-full blur-3xl pointer-events-none" />
 
-                        <div className="flex items-center justify-between mb-4">
+                        <div className="card-top-pill flex items-center justify-between mb-4">
                             <p className="text-xs font-bold tracking-[0.2em] uppercase text-[var(--pic-gold,#fdb913)] flex items-center gap-2">
                                 <span className="w-2 h-2 rounded-full bg-[var(--pic-gold,#fdb913)]"></span>
                                 Data Intelligence
                             </p>
-                            <p className="text-5xl sm:text-6xl font-black text-white/10 font-sora">04</p>
+                            {renderNumber("04", "data", "var(--pic-gold, #fdb913)")}
                         </div>
 
-                        <h2 className="text-2xl sm:text-4xl font-black tracking-tight mb-4 text-white leading-tight font-sora">
+                        {/* Technical Spec Index (Sally's Idea 09) */}
+                        {settings.extremeTypography && (
+                            <p className="font-mono text-[10px] sm:text-[11px] tracking-[0.22em] uppercase text-[var(--pic-gold,#fdb913)]/90 mb-2 select-none">
+                                // SPEC_04: PREDICTIVE_ANALYTICS // DECISION_ENGINE
+                            </p>
+                        )}
+
+                        <SplitTextReveal
+                            as="h2"
+                            trigger="active"
+                            isActive={activeSection === 'data'}
+                            stagger={0.035}
+                            duration={0.65}
+                            flavor="clockwork"
+                            className="text-2xl sm:text-4xl font-black tracking-tight mb-4 text-white leading-tight font-sora"
+                        >
                             Décidez avec des chiffres, pas des intuitions.
-                        </h2>
-                        <p className="text-slate-300 text-base sm:text-lg mb-8 leading-relaxed">
+                        </SplitTextReveal>
+                        <SplitTextReveal
+                            as="p"
+                            trigger="active"
+                            isActive={activeSection === 'data'}
+                            delay={0.12}
+                            stagger={0.015}
+                            duration={0.55}
+                            flavor="smooth"
+                            className="text-slate-300 text-base sm:text-lg mb-8 leading-relaxed"
+                        >
                             Tableaux de bord, reporting et modèles prédictifs pour transformer vos données en décisions stratégiques.
-                        </p>
+                        </SplitTextReveal>
                         <div className="flex flex-wrap gap-2.5">
-                            <span className="text-[11px] font-bold tracking-wider uppercase px-4 py-2 rounded-full border border-[var(--pic-gold,#fdb913)]/40 bg-[var(--pic-gold,#fdb913)]/10 text-[var(--pic-gold,#fdb913)] backdrop-blur-md shadow-[0_0_12px_rgba(253,185,19,0.2)]">Dashboards</span>
-                            <span className="text-[11px] font-bold tracking-wider uppercase px-4 py-2 rounded-full border border-[var(--pic-gold,#fdb913)]/40 bg-[var(--pic-gold,#fdb913)]/10 text-[var(--pic-gold,#fdb913)] backdrop-blur-md shadow-[0_0_12px_rgba(253,185,19,0.2)]">Reporting</span>
-                            <span className="text-[11px] font-bold tracking-wider uppercase px-4 py-2 rounded-full border border-[var(--pic-gold,#fdb913)]/40 bg-[var(--pic-gold,#fdb913)]/10 text-[var(--pic-gold,#fdb913)] backdrop-blur-md shadow-[0_0_12px_rgba(253,185,19,0.2)]">Prédiction</span>
+                            {renderBadge("Dashboards", "var(--pic-gold, #fdb913)", "#fdb913")}
+                            {renderBadge("Reporting", "var(--pic-gold, #fdb913)", "#fdb913")}
+                            {renderBadge("Prédiction", "var(--pic-gold, #fdb913)", "#fdb913")}
                         </div>
+
+                        {/* Live Telemetry Counter HUD (Amelia's Idea 08) */}
+                        <DataLiveCounter isActive={activeSection === 'data'} />
+
+                        {/* Engineering Code Terminal */}
+                        <EngineeringTerminal
+                            filename="predictive_scoring.sql"
+                            language="sql"
+                            tagLabel="SQL // ML_MODEL"
+                            accentColor="#fdb913"
+                            lines={[
+                                { text: "-- Modèle d'attrition & prédiction de LTV" },
+                                { text: "SELECT cohort, ltv_forecast, churn_risk" },
+                                { text: "FROM analytics.ml_scoring" },
+                                { text: "WHERE confidence_score >= 0.985" },
+                                { text: "ORDER BY ltv_forecast DESC;" },
+                            ]}
+                        />
                     </div>
 
                     {/* Spacer at the bottom so we can scroll past the last item safely */}

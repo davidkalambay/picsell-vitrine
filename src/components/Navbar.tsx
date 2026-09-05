@@ -6,7 +6,7 @@ interface NavbarProps {
     isDark?: boolean;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ isDark = false }) => {
+const NavbarComponent: React.FC<NavbarProps> = ({ isDark = false }) => {
     return (
         <nav
             className={`fixed top-[20px] md:top-[30px] left-1/2 -translate-x-1/2 w-[90%] md:w-fit h-[60px] md:h-[70px] flex items-center rounded-[30px] md:rounded-[50px] px-6 md:px-10 z-50 backdrop-blur-xl transition-all duration-700 border ${
@@ -94,4 +94,10 @@ const Navbar: React.FC<NavbarProps> = ({ isDark = false }) => {
     );
 };
 
+const Navbar = React.memo(
+    NavbarComponent,
+    (prevProps, nextProps) => prevProps.isDark === nextProps.isDark
+);
+
 export default Navbar;
+
