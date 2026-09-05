@@ -1,29 +1,15 @@
 "use client";
 
 import React, { useRef, useState, useEffect } from "react";
-import dynamic from "next/dynamic";
 import Navbar from "@/components/Navbar";
+import { SettingsDrawer } from "@/components/SettingsDrawer";
+import { ContextualFloatingCTA } from "@/components/ContextualFloatingCTA";
+import { CustomGearCursor } from "@/components/interactions/CustomGearCursor";
 import { ScrollytellingSection } from "@/components/ScrollytellingSection";
 import { SplitTextReveal } from "@/components/animations/SplitTextReveal";
 import { MagneticButton } from "@/components/interactions/MagneticButton";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap-config";
 import { useSiteSettings } from "@/context/SettingsContext";
-
-// Winston 05: Lazy Loading & Progressive Hydration for non-critical client overlays
-const SettingsDrawer = dynamic(
-  () => import("@/components/SettingsDrawer").then((mod) => mod.SettingsDrawer),
-  { ssr: false }
-);
-
-const ContextualFloatingCTA = dynamic(
-  () => import("@/components/ContextualFloatingCTA").then((mod) => mod.ContextualFloatingCTA),
-  { ssr: false }
-);
-
-const CustomGearCursor = dynamic(
-  () => import("@/components/interactions/CustomGearCursor").then((mod) => mod.CustomGearCursor),
-  { ssr: false }
-);
 
 export default function Home() {
   const mainRef = useRef<HTMLElement>(null);

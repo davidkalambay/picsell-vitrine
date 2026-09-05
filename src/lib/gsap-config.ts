@@ -17,7 +17,7 @@ export function ensureGsapPluginsRegistered() {
     if (typeof window === "undefined" || pluginsRegistered) return;
 
     try {
-        gsap.registerPlugin(ScrollTrigger, useGSAP);
+        gsap.registerPlugin(ScrollTrigger);
 
         // Global GSAP defaults - Winston 02: 100% GPU Hardware Acceleration
         gsap.config({

@@ -24,6 +24,7 @@ export const SmoothScrollProvider: React.FC<SmoothScrollProviderProps> = ({ chil
 
         // Initialize high performance Lenis smooth scrolling instance
         const lenis = new Lenis({
+            autoRaf: false,
             duration: 1.2,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             orientation: "vertical",
@@ -46,7 +47,7 @@ export const SmoothScrollProvider: React.FC<SmoothScrollProviderProps> = ({ chil
         };
 
         gsap.ticker.add(updateTicker);
-        gsap.ticker.lagSmoothing(0);
+        gsap.ticker.lagSmoothing(500, 33);
 
         return () => {
             gsap.ticker.remove(updateTicker);
@@ -54,7 +55,7 @@ export const SmoothScrollProvider: React.FC<SmoothScrollProviderProps> = ({ chil
             lenis.destroy();
             lenisRef.current = null;
         };
-    }, [settings.lenisSmoothScroll]);
+    }, [settings.lenisSmoothScroll, settings.reducedMotion]);
 
     return <>{children}</>;
 };

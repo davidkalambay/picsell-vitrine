@@ -1,6 +1,7 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState, useEffect, useCallback, useMemo } from "react";
+import { gsap } from "@/lib/gsap-config";
 
 export type ThemeMode = "scroll-dynamic" | "force-dark" | "force-light";
 export type GearSize = "standard" | "large" | "max";
@@ -109,37 +110,43 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
         supported: false,
     });
 
-    // Winston 10: Battery Status API listener & Hardware detection
+    // Winston 10: Battery Status API listener
     useEffect(() => {
-        if (typeof window === "undefined") return;
+        if (typeof window === "undefined" || !("getBattery" in navigator)) return;
 
-        if ("getBattery" in navigator) {
-            (navigator as any).getBattery().then((battery: any) => {
-                const updateBatteryState = () => {
-                    const level = Math.round(battery.level * 100);
-                    const charging = battery.charging;
-                    const isLow = !charging && battery.level <= 0.20;
+        let batteryObj: any = null;
+        let updateBatteryState: (() => void) | null = null;
 
-                    setBatteryInfo({
-                        level,
-                        charging,
-                        isLowBattery: isLow,
-                        supported: true,
-                    });
+        const handleBattery = (battery: any) => {
+            batteryObj = battery;
+            updateBatteryState = () => {
+                const level = Math.round(battery.level * 100);
+                const charging = battery.charging;
+                const isLow = !charging && battery.level <= 0.20;
 
-                    // Auto-enable Eco Mode if battery is low and not charging
-                    if (isLow) {
-                        setSettings((prev) => ({ ...prev, ecoMode: true }));
-                    }
-                };
+                setBatteryInfo({
+                    level,
+                    charging,
+                    isLowBattery: isLow,
+                    supported: true,
+                });
+            };
 
-                updateBatteryState();
-                battery.addEventListener("levelchange", updateBatteryState);
-                battery.addEventListener("chargingchange", updateBatteryState);
-            }).catch(() => {
-                setBatteryInfo((prev) => ({ ...prev, supported: false }));
-            });
-        }
+            updateBatteryState();
+            battery.addEventListener("levelchange", updateBatteryState);
+            battery.addEventListener("chargingchange", updateBatteryState);
+        };
+
+        (navigator as any).getBattery().then(handleBattery).catch(() => {
+            setBatteryInfo((prev) => ({ ...prev, supported: false }));
+        });
+
+        return () => {
+            if (batteryObj && updateBatteryState) {
+                batteryObj.removeEventListener("levelchange", updateBatteryState);
+                batteryObj.removeEventListener("chargingchange", updateBatteryState);
+            }
+        };
     }, []);
 
     // Load from localStorage on mount & detect system prefers-reduced-motion
@@ -181,14 +188,14 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
         if (settings.ecoMode) {
             document.documentElement.classList.add("eco-mode");
-            import("@/lib/gsap-config").then(({ gsap }) => {
-                gsap.ticker.fps(30); // Throttle ticker to 30 FPS to save power & battery
-            });
+            if (typeof window !== "undefined") {
+                gsap.ticker.fps(30); // Throttle ticker to 30 FPS
+            }
         } else {
             document.documentElement.classList.remove("eco-mode");
-            import("@/lib/gsap-config").then(({ gsap }) => {
-                gsap.ticker.fps(60); // Restore full 60 FPS
-            });
+            if (typeof window !== "undefined") {
+                gsap.ticker.fps(60); // Restore standard 60 FPS
+            }
         }
     }, [settings.ecoMode]);
 
@@ -213,37 +220,47 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
         }
     }, [settings, isLoaded]);
 
-    const updateSetting = <K extends keyof SiteSettings>(key: K, value: SiteSettings[K]) => {
+    const updateSetting = useCallback(<K extends keyof SiteSettings>(key: K, value: SiteSettings[K]) => {
         setSettings((prev) => ({ ...prev, [key]: value }));
-    };
+    }, []);
 
-    const resetSettings = () => {
+    const resetSettings = useCallback(() => {
         setSettings(DEFAULT_SETTINGS);
-    };
+    }, []);
 
-    const triggerDrawSvgReplay = () => {
+    const triggerDrawSvgReplay = useCallback(() => {
         setDrawSvgKey((prev) => prev + 1);
-    };
+    }, []);
 
-    const triggerHeroIntroReplay = () => {
+    const triggerHeroIntroReplay = useCallback(() => {
         setHeroIntroKey((prev) => prev + 1);
-    };
+    }, []);
+
+    const contextValue = useMemo(() => ({
+        settings,
+        updateSetting,
+        resetSettings,
+        drawSvgKey,
+        triggerDrawSvgReplay,
+        heroIntroKey,
+        triggerHeroIntroReplay,
+        isDrawerOpen,
+        setIsDrawerOpen,
+        batteryInfo,
+    }), [
+        settings,
+        updateSetting,
+        resetSettings,
+        drawSvgKey,
+        triggerDrawSvgReplay,
+        heroIntroKey,
+        triggerHeroIntroReplay,
+        isDrawerOpen,
+        batteryInfo,
+    ]);
 
     return (
-        <SettingsContext.Provider
-            value={{
-                settings,
-                updateSetting,
-                resetSettings,
-                drawSvgKey,
-                triggerDrawSvgReplay,
-                heroIntroKey,
-                triggerHeroIntroReplay,
-                isDrawerOpen,
-                setIsDrawerOpen,
-                batteryInfo,
-            }}
-        >
+        <SettingsContext.Provider value={contextValue}>
             {children}
         </SettingsContext.Provider>
     );

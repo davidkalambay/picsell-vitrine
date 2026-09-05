@@ -21,7 +21,7 @@ export const SettingsDrawer: React.FC = () => {
             <button
                 onClick={() => setIsDrawerOpen(true)}
                 aria-label="Ouvrir les réglages du site"
-                className="fixed bottom-6 right-6 z-50 group flex items-center gap-3 px-4 py-3 rounded-full bg-slate-950/80 hover:bg-slate-900 text-white backdrop-blur-xl border border-white/20 shadow-[0_10px_30px_rgba(0,0,0,0.5)] transition-all duration-300 hover:scale-105 active:scale-95"
+                className="fixed bottom-6 right-6 z-[60] group flex items-center gap-3 px-4 py-3 rounded-full bg-slate-950/80 hover:bg-slate-900 text-white backdrop-blur-xl border border-white/20 shadow-[0_10px_30px_rgba(0,0,0,0.5)] transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
             >
                 {/* Spinning Gear SVG */}
                 <svg
@@ -45,14 +45,15 @@ export const SettingsDrawer: React.FC = () => {
             {isDrawerOpen && (
                 <div
                     onClick={() => setIsDrawerOpen(false)}
-                    className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 transition-opacity duration-300 animate-fade-in"
+                    className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[70] transition-opacity duration-300 animate-fade-in"
                 />
             )}
 
             {/* Slide-over Drawer */}
             <div
-                className={`fixed top-0 right-0 h-full w-full sm:w-[420px] bg-[#090a10]/95 backdrop-blur-2xl border-l border-white/10 z-50 p-6 sm:p-8 flex flex-col justify-between overflow-y-auto shadow-2xl transition-transform duration-500 ease-out text-white ${
-                    isDrawerOpen ? "translate-x-0" : "translate-x-full pointer-events-none"
+                onClick={(e) => e.stopPropagation()}
+                className={`fixed top-0 right-0 h-full w-full sm:w-[420px] bg-[#090a10]/95 backdrop-blur-2xl border-l border-white/10 z-[80] p-6 sm:p-8 flex flex-col justify-between overflow-y-auto shadow-2xl transition-transform duration-500 ease-out text-white ${
+                    isDrawerOpen ? "translate-x-0 pointer-events-auto" : "translate-x-full pointer-events-none"
                 }`}
             >
                 <div>
