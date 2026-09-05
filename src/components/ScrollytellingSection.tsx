@@ -311,16 +311,18 @@ export const ScrollytellingSection: React.FC = () => {
             {/* Desktop Layout: Grid. Mobile Layout: Stacked */}
             <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-24 relative">
                 
-                {/* Visual side (Sticky) */}
+                {/* Visual side (Sticky) with CLS prevention */}
                 <div className="w-full h-full order-first lg:order-none z-0">
-                    <div className="sticky top-24 sm:top-28 flex flex-col items-center justify-center min-h-[450px] sm:min-h-[550px] lg:min-h-[620px] max-h-[85vh] w-full rounded-3xl p-4 sm:p-8">
-                        {/* 80% Scale Engine Container */}
-                        <div className="relative w-full h-[360px] sm:h-[440px] lg:h-[480px] flex items-center justify-center">
+                    <div className="sticky top-24 sm:top-28 flex flex-col items-center justify-center min-h-[480px] sm:min-h-[560px] lg:min-h-[620px] max-h-[85vh] w-full rounded-3xl p-4 sm:p-8 contain-layout">
+                        {/* 80% Scale Engine Container with strict aspect ratio */}
+                        <div className="relative w-full h-[360px] sm:h-[440px] lg:h-[480px] aspect-[700/600] flex items-center justify-center contain-layout">
                             <ScrollytellingEngine activeSection={activeSection} />
                         </div>
                         
-                        {/* Circular Progress Ring HUD (Sally's Idea 08) */}
-                        <CircularProgressRing activeSection={activeSection} />
+                        {/* Circular Progress Ring HUD (Sally's Idea 08) with reserved container */}
+                        <div className="min-h-[72px] flex items-center justify-center w-full">
+                            <CircularProgressRing activeSection={activeSection} />
+                        </div>
                     </div>
                 </div>
 
@@ -332,7 +334,7 @@ export const ScrollytellingSection: React.FC = () => {
                     {/* Section 1: Marketing Card */}
                     <div
                         id="story-marketing"
-                        className={`min-h-[70vh] flex flex-col justify-center p-8 sm:p-12 rounded-3xl backdrop-blur-2xl transition-all duration-700 relative overflow-hidden border ${
+                        className={`min-h-[70vh] cls-card-contain flex flex-col justify-center p-8 sm:p-12 rounded-3xl backdrop-blur-2xl transition-all duration-700 relative overflow-hidden border ${
                             activeSection === 'marketing'
                                 ? 'bg-gradient-to-br from-[rgba(243,112,33,0.1)] via-white/[0.04] to-transparent border-[var(--pic-orange,#f37021)]/40 shadow-[0_20px_50px_rgba(243,112,33,0.15)] opacity-100 translate-y-0 scale-100'
                                 : 'bg-white/[0.02] border-white/[0.06] opacity-30 translate-y-4 scale-[0.98]'
@@ -404,7 +406,7 @@ export const ScrollytellingSection: React.FC = () => {
                     {/* Section 2: Automation Card */}
                     <div
                         id="story-automation"
-                        className={`min-h-[70vh] flex flex-col justify-center p-8 sm:p-12 rounded-3xl backdrop-blur-2xl transition-all duration-700 relative overflow-hidden border ${
+                        className={`min-h-[70vh] cls-card-contain flex flex-col justify-center p-8 sm:p-12 rounded-3xl backdrop-blur-2xl transition-all duration-700 relative overflow-hidden border ${
                             activeSection === 'automation'
                                 ? 'bg-gradient-to-br from-[rgba(61,188,199,0.1)] via-white/[0.04] to-transparent border-[var(--pic-turquoise,#3dbcc7)]/40 shadow-[0_20px_50px_rgba(61,188,199,0.15)] opacity-100 translate-y-0 scale-100'
                                 : 'bg-white/[0.02] border-white/[0.06] opacity-30 translate-y-4 scale-[0.98]'
@@ -475,7 +477,7 @@ export const ScrollytellingSection: React.FC = () => {
                     {/* Section 3: Development Card */}
                     <div
                         id="story-development"
-                        className={`min-h-[70vh] flex flex-col justify-center p-8 sm:p-12 rounded-3xl backdrop-blur-2xl transition-all duration-700 relative overflow-hidden border ${
+                        className={`min-h-[70vh] cls-card-contain flex flex-col justify-center p-8 sm:p-12 rounded-3xl backdrop-blur-2xl transition-all duration-700 relative overflow-hidden border ${
                             activeSection === 'development'
                                 ? 'bg-gradient-to-br from-[rgba(0,137,208,0.1)] via-white/[0.04] to-transparent border-[var(--pic-blue,#0089d0)]/40 shadow-[0_20px_50px_rgba(0,137,208,0.15)] opacity-100 translate-y-0 scale-100'
                                 : 'bg-white/[0.02] border-white/[0.06] opacity-30 translate-y-4 scale-[0.98]'
@@ -546,7 +548,7 @@ export const ScrollytellingSection: React.FC = () => {
                     {/* Section 4: Data Intelligence Card */}
                     <div
                         id="story-data"
-                        className={`min-h-[70vh] flex flex-col justify-center p-8 sm:p-12 rounded-3xl backdrop-blur-2xl transition-all duration-700 relative overflow-hidden border ${
+                        className={`min-h-[70vh] cls-card-contain flex flex-col justify-center p-8 sm:p-12 rounded-3xl backdrop-blur-2xl transition-all duration-700 relative overflow-hidden border ${
                             activeSection === 'data'
                                 ? 'bg-gradient-to-br from-[rgba(253,185,19,0.1)] via-white/[0.04] to-transparent border-[var(--pic-gold,#fdb913)]/40 shadow-[0_20px_50px_rgba(253,185,19,0.15)] opacity-100 translate-y-0 scale-100'
                                 : 'bg-white/[0.02] border-white/[0.06] opacity-30 translate-y-4 scale-[0.98]'

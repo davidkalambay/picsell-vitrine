@@ -33,7 +33,7 @@ const EngineeringTerminalComponent: React.FC<EngineeringTerminalProps> = ({
     };
 
     return (
-        <div className="mt-6 w-full rounded-2xl overflow-hidden bg-black/50 backdrop-blur-xl border border-white/10 shadow-2xl transition-all duration-300 hover:border-white/20 group/terminal">
+        <div className="mt-6 w-full cls-terminal-reserve rounded-2xl overflow-hidden bg-black/50 backdrop-blur-xl border border-white/10 shadow-2xl transition-all duration-300 hover:border-white/20 group/terminal">
             {/* Top Bar */}
             <div className="flex items-center justify-between px-4 py-2.5 bg-white/[0.03] border-b border-white/10">
                 {/* Traffic Lights */}

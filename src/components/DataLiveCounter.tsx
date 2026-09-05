@@ -74,7 +74,7 @@ const DataLiveCounterComponent: React.FC<DataLiveCounterProps> = ({ isActive }) 
     return (
         <div
             ref={containerRef}
-            className="my-6 p-4 sm:p-5 rounded-2xl bg-[#090a0f]/80 backdrop-blur-xl border border-[var(--pic-gold,#fdb913)]/30 transition-all duration-500 relative overflow-hidden group shadow-[0_10px_30px_rgba(0,0,0,0.4)]"
+            className="my-6 p-4 sm:p-5 cls-counter-reserve rounded-2xl bg-[#090a0f]/80 backdrop-blur-xl border border-[var(--pic-gold,#fdb913)]/30 transition-all duration-500 relative overflow-hidden group shadow-[0_10px_30px_rgba(0,0,0,0.4)]"
         >
             {/* Ambient Corner Glow */}
             <div className="absolute -top-12 -right-12 w-28 h-28 bg-[var(--pic-gold,#fdb913)]/15 rounded-full blur-2xl pointer-events-none" />
@@ -114,7 +114,7 @@ const DataLiveCounterComponent: React.FC<DataLiveCounterProps> = ({ isActive }) 
                         Précision ML
                     </span>
                     <div className="flex items-baseline gap-0.5">
-                        <span className="font-sora text-xl sm:text-2xl font-black text-white font-mono">
+                        <span className="font-sora text-xl sm:text-2xl font-black text-white font-mono tabular-nums inline-block min-w-[54px]">
                             {precision}
                         </span>
                         <span className="text-xs font-bold text-[var(--pic-gold,#fdb913)] font-mono">%</span>
@@ -127,7 +127,7 @@ const DataLiveCounterComponent: React.FC<DataLiveCounterProps> = ({ isActive }) 
                         Flux Événements
                     </span>
                     <div className="flex items-baseline gap-0.5">
-                        <span className="font-sora text-xl sm:text-2xl font-black text-white font-mono">
+                        <span className="font-sora text-xl sm:text-2xl font-black text-white font-mono tabular-nums inline-block min-w-[48px]">
                             {events}
                         </span>
                         <span className="text-xs font-bold text-[var(--pic-gold,#fdb913)] font-mono">k/s</span>
@@ -140,7 +140,7 @@ const DataLiveCounterComponent: React.FC<DataLiveCounterProps> = ({ isActive }) 
                         Surplus ROAS
                     </span>
                     <div className="flex items-baseline gap-0.5">
-                        <span className="font-sora text-xl sm:text-2xl font-black text-emerald-400 font-mono">
+                        <span className="font-sora text-xl sm:text-2xl font-black text-emerald-400 font-mono tabular-nums inline-block min-w-[58px]">
                             {roas}
                         </span>
                         <span className="text-xs font-bold text-emerald-400 font-mono">%</span>
@@ -154,7 +154,7 @@ const DataLiveCounterComponent: React.FC<DataLiveCounterProps> = ({ isActive }) 
                     </span>
                     <div className="flex items-baseline gap-0.5">
                         <span className="text-xs font-bold text-[var(--pic-turquoise,#3dbcc7)] font-mono">&lt;</span>
-                        <span className="font-sora text-xl sm:text-2xl font-black text-white font-mono">
+                        <span className="font-sora text-xl sm:text-2xl font-black text-white font-mono tabular-nums inline-block min-w-[36px]">
                             {latency}
                         </span>
                         <span className="text-xs font-bold text-[var(--pic-turquoise,#3dbcc7)] font-mono">ms</span>

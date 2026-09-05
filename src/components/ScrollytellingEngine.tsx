@@ -236,7 +236,7 @@ const ScrollytellingEngineComponent: React.FC<ScrollytellingEngineProps> = ({ ac
     const activeAuraColor = activeSection ? SATELLITE_GEARS[activeSection]?.accentHex : "rgba(255, 255, 255, 0.05)";
 
     return (
-        <div className="w-full h-full flex justify-center items-center overflow-visible relative">
+        <div className="w-full h-full flex justify-center items-center overflow-visible relative engine-aspect-ratio">
             {/* Ambient Background Aura based on active section */}
             {settings.neonGlow && (
                 <div 
@@ -248,8 +248,14 @@ const ScrollytellingEngineComponent: React.FC<ScrollytellingEngineProps> = ({ ac
             <svg
                 ref={container}
                 viewBox={viewBox}
+                width="700"
+                height="600"
                 xmlns="http://www.w3.org/2000/svg"
-                className="w-full max-w-[1000px] max-h-[80vh] overflow-visible"
+                className="w-full max-w-[1000px] max-h-[80vh] overflow-visible gear-gpu-layer"
+                style={{
+                    aspectRatio: "700/600",
+                    contain: "layout size",
+                }}
             >
                 <defs>
                     <path id={TOOTH_DEFINITION.pathId} d={TOOTH_DEFINITION.d} />

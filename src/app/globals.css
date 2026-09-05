@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sora: var(--font-sora), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-quicksand: var(--font-quicksand), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
 :root {
   --bg: #FFFFFF;
   --blue: #0089D0;
@@ -16,6 +22,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
 }
 
 .navbar-glass {
@@ -32,6 +39,44 @@ body {
   text-transform: uppercase;
   pointer-events: none;
 }
+
+/* Winston 08: Zero Layout Shift (CLS 0) & Container Aspect Ratios */
+.engine-aspect-ratio {
+  aspect-ratio: 700 / 600;
+  contain-intrinsic-size: 700px 600px;
+  content-visibility: auto;
+  contain: layout paint;
+}
+
+.hero-engine-aspect-ratio {
+  aspect-ratio: 1200 / 900;
+  contain-intrinsic-size: 1200px 900px;
+  content-visibility: auto;
+  contain: layout paint;
+}
+
+.cls-card-contain {
+  contain: layout style;
+  min-height: 70vh;
+}
+
+.cls-terminal-reserve {
+  min-height: 180px;
+  contain: layout;
+}
+
+.cls-counter-reserve {
+  min-height: 140px;
+  contain: layout;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+  -moz-font-feature-settings: "tnum";
+  -webkit-font-feature-settings: "tnum";
+  font-feature-settings: "tnum";
+}
+
 
 /* Winston 02: 100% GPU Hardware Acceleration & Layer Compositing */
 .gpu-accelerated {
