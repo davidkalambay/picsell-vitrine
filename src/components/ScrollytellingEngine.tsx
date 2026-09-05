@@ -155,7 +155,7 @@ const ScrollytellingEngineComponent: React.FC<ScrollytellingEngineProps> = ({ ac
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: sectionTrigger,
-                    start: "top top",
+                    start: "top 80%",
                     end: "bottom bottom",
                     scrub: settings.scrubSpeed,
                 },
@@ -193,8 +193,8 @@ const ScrollytellingEngineComponent: React.FC<ScrollytellingEngineProps> = ({ ac
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: sectionTrigger,
-                    start: isMobile ? "top 20%" : "top top",
-                    end: isMobile ? "bottom 80%" : "bottom bottom",
+                    start: isMobile ? "top 85%" : "top 75%",
+                    end: "bottom bottom",
                     scrub: scrubValue,
                 },
             });

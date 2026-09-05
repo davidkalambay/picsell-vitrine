@@ -80,7 +80,7 @@ export default function Home() {
     heroTl.set("#hero-cta", { y: 25, opacity: 0, scale: 0.95 });
     heroTl.set(".hero-gear-watermark", { opacity: 0, scale: 0.8 });
 
-    // 2. Background Watermark Gears materialize & rotate
+    // 2. Background Watermark Gears materialize
     heroTl.to(".hero-gear-watermark", {
       opacity: 0.08,
       scale: 1,
@@ -88,22 +88,6 @@ export default function Home() {
       stagger: 0.2,
       ease: "power2.out",
     }, 0);
-
-    // Continuous subtle gear rotation
-    gsap.to("#hero-gear-left", {
-      rotation: 360,
-      duration: 35,
-      repeat: -1,
-      ease: "none",
-      transformOrigin: "center center",
-    });
-    gsap.to("#hero-gear-right", {
-      rotation: -360,
-      duration: 45,
-      repeat: -1,
-      ease: "none",
-      transformOrigin: "center center",
-    });
 
     // 3. Top Agency Badge Escapement Snap
     heroTl.to("#hero-badge", {
@@ -132,6 +116,27 @@ export default function Home() {
     }, 0.85);
 
   }, { scope: mainRef, dependencies: [settings.heroMechanicalIntro, heroIntroKey] });
+
+  // Continuous subtle watermark gears rotation
+  useGSAP(() => {
+    if (!mainRef.current || settings.reducedMotion) return;
+
+    gsap.to("#hero-gear-left", {
+      rotation: 360,
+      duration: 35,
+      repeat: -1,
+      ease: "none",
+      transformOrigin: "center center",
+    });
+
+    gsap.to("#hero-gear-right", {
+      rotation: -360,
+      duration: 45,
+      repeat: -1,
+      ease: "none",
+      transformOrigin: "center center",
+    });
+  }, { scope: mainRef, dependencies: [settings.reducedMotion] });
 
   return (
     <main

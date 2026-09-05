@@ -47,7 +47,12 @@ export const SmoothScrollProvider: React.FC<SmoothScrollProviderProps> = ({ chil
         };
 
         gsap.ticker.add(updateTicker);
-        gsap.ticker.lagSmoothing(500, 33);
+        gsap.ticker.lagSmoothing(0);
+
+        // Refresh ScrollTrigger once Lenis is bound
+        requestAnimationFrame(() => {
+            ScrollTrigger.refresh();
+        });
 
         return () => {
             gsap.ticker.remove(updateTicker);
