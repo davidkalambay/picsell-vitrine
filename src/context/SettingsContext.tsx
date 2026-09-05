@@ -27,6 +27,7 @@ export interface SiteSettings {
     gearCursor: boolean;
     lenisSmoothScroll: boolean;
     gpuAcceleration: boolean;
+    matchMediaResponsive: boolean;
     noiseOverlay: boolean;
     noiseIntensity: NoiseIntensity;
     blueprintGrid: boolean;
@@ -56,6 +57,7 @@ const DEFAULT_SETTINGS: SiteSettings = {
     gearCursor: true,
     lenisSmoothScroll: true,
     gpuAcceleration: true,
+    matchMediaResponsive: true,
     noiseOverlay: true,
     noiseIntensity: "subtle",
     blueprintGrid: true,

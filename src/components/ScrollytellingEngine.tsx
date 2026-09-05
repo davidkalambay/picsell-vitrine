@@ -133,7 +133,7 @@ export const ScrollytellingEngine: React.FC<ScrollytellingEngineProps> = ({ acti
 
     }, { scope: container, dependencies: [settings.drawSvgIntro, drawSvgKey] });
 
-    // Synchronized Clockwork Rotation Scrubbing
+    // Synchronized Clockwork Rotation Scrubbing - Winston 03: GSAP MatchMedia Responsive
     useGSAP(() => {
         if (!container.current) return;
         
@@ -142,54 +142,92 @@ export const ScrollytellingEngine: React.FC<ScrollytellingEngineProps> = ({ acti
 
         const rads = { ai: 18, marketing: 12, automation: 10, development: 14, data: 16 };
         
-        // Use a timeline for the entire scroll container
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: sectionTrigger,
-                start: "top top",
-                end: "bottom bottom",
-                scrub: settings.scrubSpeed,
-            },
+        if (!settings.matchMediaResponsive) {
+            // Fallback non-responsive timeline
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: sectionTrigger,
+                    start: "top top",
+                    end: "bottom bottom",
+                    scrub: settings.scrubSpeed,
+                },
+            });
+            const totalDegrees = 900;
+            tl.to("#spin_ai", { rotation: totalDegrees, transformOrigin: "center center", ease: "none" }, 0);
+            tl.to("#spin_marketing", { rotation: -(rads.ai / rads.marketing) * totalDegrees, transformOrigin: "center center", ease: "none" }, 0);
+            tl.to("#spin_automation", { rotation: -(rads.ai / rads.automation) * totalDegrees, transformOrigin: "center center", ease: "none" }, 0);
+            tl.to("#spin_data", { rotation: -(rads.ai / rads.data) * totalDegrees, transformOrigin: "center center", ease: "none" }, 0);
+            tl.to("#spin_dev", { rotation: -(rads.ai / rads.development) * totalDegrees, transformOrigin: "center center", ease: "none" }, 0);
+            return;
+        }
+
+        const mm = gsap.matchMedia();
+
+        mm.add({
+            isDesktop: "(min-width: 1024px)",
+            isTablet: "(min-width: 768px) and (max-width: 1023px)",
+            isMobile: "(max-width: 767px)",
+        }, (context) => {
+            const { isDesktop, isTablet, isMobile } = context.conditions as {
+                isDesktop: boolean;
+                isTablet: boolean;
+                isMobile: boolean;
+            };
+
+            // Responsive Rotation Profiles:
+            // Desktop: 900° complete rotation over pinned section
+            // Tablet: 720° rotation with adjusted scrub
+            // Mobile: 540° rotation with tighter start/end offsets
+            const totalDegrees = isDesktop ? 900 : isTablet ? 720 : 540;
+            const scrubValue = isMobile ? Math.min(settings.scrubSpeed, 1.0) : settings.scrubSpeed;
+
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: sectionTrigger,
+                    start: isMobile ? "top 20%" : "top top",
+                    end: isMobile ? "bottom 80%" : "bottom bottom",
+                    scrub: scrubValue,
+                },
+            });
+
+            // AI Engine Rotation (Base)
+            tl.to("#spin_ai", {
+                rotation: totalDegrees,
+                transformOrigin: "center center",
+                ease: "none",
+            }, 0);
+
+            // Marketing Rotation
+            tl.to("#spin_marketing", {
+                rotation: -(rads.ai / rads.marketing) * totalDegrees,
+                transformOrigin: "center center",
+                ease: "none",
+            }, 0);
+
+            // Automation Rotation
+            tl.to("#spin_automation", {
+                rotation: -(rads.ai / rads.automation) * totalDegrees,
+                transformOrigin: "center center",
+                ease: "none",
+            }, 0);
+
+            // Data Rotation
+            tl.to("#spin_data", {
+                rotation: -(rads.ai / rads.data) * totalDegrees,
+                transformOrigin: "center center",
+                ease: "none",
+            }, 0);
+
+            // Development Rotation
+            tl.to("#spin_dev", {
+                rotation: -(rads.ai / rads.development) * totalDegrees,
+                transformOrigin: "center center",
+                ease: "none",
+            }, 0);
         });
 
-        const totalDegrees = 900;
-
-        // AI Engine Rotation (Base)
-        tl.to("#spin_ai", {
-            rotation: totalDegrees,
-            transformOrigin: "center center",
-            ease: "none",
-        }, 0);
-
-        // Marketing Rotation
-        tl.to("#spin_marketing", {
-            rotation: -(rads.ai / rads.marketing) * totalDegrees,
-            transformOrigin: "center center",
-            ease: "none",
-        }, 0);
-
-        // Automation Rotation
-        tl.to("#spin_automation", {
-            rotation: -(rads.ai / rads.automation) * totalDegrees,
-            transformOrigin: "center center",
-            ease: "none",
-        }, 0);
-
-        // Data Rotation
-        tl.to("#spin_data", {
-            rotation: -(rads.ai / rads.data) * totalDegrees,
-            transformOrigin: "center center",
-            ease: "none",
-        }, 0);
-
-        // Development Rotation
-        tl.to("#spin_dev", {
-            rotation: -(rads.ai / rads.development) * totalDegrees,
-            transformOrigin: "center center",
-            ease: "none",
-        }, 0);
-
-    }, { scope: container, dependencies: [settings.scrubSpeed] });
+        return () => mm.revert();
+    }, { scope: container, dependencies: [settings.scrubSpeed, settings.matchMediaResponsive] });
 
     // Active state styles with dynamic neon glow
     const getStyle = (section: string) => {

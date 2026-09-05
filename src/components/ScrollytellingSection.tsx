@@ -103,7 +103,7 @@ export const ScrollytellingSection: React.FC = () => {
 
     }, { scope: containerRef, dependencies: [settings.scrollSnap] });
 
-    // Amelia's Idea 06: Multilayer 3D Parallax on Badges & Category Header Pills
+    // Amelia's Idea 06 & Winston 03: Multilayer 3D Parallax with Responsive MatchMedia
     useGSAP(() => {
         if (!containerRef.current) return;
 
@@ -120,68 +120,70 @@ export const ScrollytellingSection: React.FC = () => {
             return;
         }
 
-        const triggers: ScrollTrigger[] = [];
+        const mm = gsap.matchMedia();
 
-        cardIds.forEach((id) => {
-            const card = document.getElementById(id);
-            if (!card) return;
+        mm.add({
+            isDesktop: "(min-width: 1024px)",
+            isTablet: "(min-width: 768px) and (max-width: 1023px)",
+            isMobile: "(max-width: 767px)",
+        }, (context) => {
+            const { isDesktop, isTablet } = context.conditions as {
+                isDesktop: boolean;
+                isTablet: boolean;
+                isMobile: boolean;
+            };
 
-            // Individual badge pills inside the card with depth differentiation
-            const badges = card.querySelectorAll<HTMLElement>(".badge-parallax-item");
-            badges.forEach((badge, idx) => {
-                // Multilayer depth planes:
-                // Badge 0: +/- 14px
-                // Badge 1: +/- 24px
-                // Badge 2: +/- 34px
-                const depthY = (idx + 1) * 10 + 4;
-                const microTilt = (idx % 2 === 0 ? 1 : -1) * 1.8;
+            const depthMultiplier = isDesktop ? 1.0 : isTablet ? 0.65 : 0.4;
+            const scrubSpeed = isDesktop ? 1.2 : 0.8;
 
-                const tween = gsap.fromTo(badge, {
-                    y: depthY,
-                    rotateZ: microTilt,
-                }, {
-                    y: -depthY,
-                    rotateZ: -microTilt,
-                    ease: "none",
-                    scrollTrigger: {
-                        trigger: card,
-                        start: "top bottom",
-                        end: "bottom top",
-                        scrub: 1.2,
-                    }
+            cardIds.forEach((id) => {
+                const card = document.getElementById(id);
+                if (!card) return;
+
+                // Individual badge pills inside the card with depth differentiation
+                const badges = card.querySelectorAll<HTMLElement>(".badge-parallax-item");
+                badges.forEach((badge, idx) => {
+                    const depthY = ((idx + 1) * 10 + 4) * depthMultiplier;
+                    const microTilt = (idx % 2 === 0 ? 1 : -1) * (isDesktop ? 1.8 : 0.8);
+
+                    gsap.fromTo(badge, {
+                        y: depthY,
+                        rotateZ: microTilt,
+                    }, {
+                        y: -depthY,
+                        rotateZ: -microTilt,
+                        ease: "none",
+                        scrollTrigger: {
+                            trigger: card,
+                            start: "top bottom",
+                            end: "bottom top",
+                            scrub: scrubSpeed,
+                        }
+                    });
                 });
 
-                if (tween.scrollTrigger) {
-                    triggers.push(tween.scrollTrigger);
+                // Top category pill inside card header
+                const topPill = card.querySelector<HTMLElement>(".card-top-pill");
+                if (topPill) {
+                    const pillY = 12 * depthMultiplier;
+                    gsap.fromTo(topPill, {
+                        y: pillY,
+                    }, {
+                        y: -pillY,
+                        ease: "none",
+                        scrollTrigger: {
+                            trigger: card,
+                            start: "top bottom",
+                            end: "bottom top",
+                            scrub: scrubSpeed,
+                        }
+                    });
                 }
             });
-
-            // Top category pill inside card header
-            const topPill = card.querySelector<HTMLElement>(".card-top-pill");
-            if (topPill) {
-                const tween = gsap.fromTo(topPill, {
-                    y: 12,
-                }, {
-                    y: -12,
-                    ease: "none",
-                    scrollTrigger: {
-                        trigger: card,
-                        start: "top bottom",
-                        end: "bottom top",
-                        scrub: 0.8,
-                    }
-                });
-
-                if (tween.scrollTrigger) {
-                    triggers.push(tween.scrollTrigger);
-                }
-            }
         });
 
-        return () => {
-            triggers.forEach((st) => st.kill());
-        };
-    }, { scope: containerRef, dependencies: [settings.parallaxBadges] });
+        return () => mm.revert();
+    }, { scope: containerRef, dependencies: [settings.parallaxBadges, settings.matchMediaResponsive] });
 
     const renderNumber = (num: string, sectionId: SectionType, colorHex: string) => {
         const isActive = activeSection === sectionId;
