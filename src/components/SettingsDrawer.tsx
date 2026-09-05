@@ -431,6 +431,25 @@ export const SettingsDrawer: React.FC = () => {
                             />
                         </div>
 
+                        {/* Option 20: Accélération 100% GPU (Winston's Idea 02) */}
+                        <div className="flex items-center justify-between p-4 rounded-2xl bg-white/[0.03] border border-white/10">
+                            <div>
+                                <div className="flex items-center gap-1.5">
+                                    <p className="text-sm font-bold text-white">Accélération 100% GPU</p>
+                                    <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-emerald-400/20 text-emerald-400">
+                                        WINSTON #02
+                                    </span>
+                                </div>
+                                <p className="text-xs text-slate-400">Isolation des couches 3D, zéro Repaint et force3D matériel</p>
+                            </div>
+                            <input
+                                type="checkbox"
+                                checked={settings.gpuAcceleration}
+                                onChange={(e) => updateSetting("gpuAcceleration", e.target.checked)}
+                                className="w-5 h-5 accent-emerald-400 rounded cursor-pointer"
+                            />
+                        </div>
+
                         {/* Option 11: Bruit Texturé (Noise Overlay) */}
                         <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 space-y-3">
                             <div className="flex items-center justify-between">

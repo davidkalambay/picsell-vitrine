@@ -301,7 +301,7 @@ export const ScrollytellingEngine: React.FC<ScrollytellingEngineProps> = ({ acti
                             pathLength="100"
                             className="drawsvg-ring"
                         />
-                        <g id="spin_ai">
+                        <g id="spin_ai" className="gear-gpu-layer">
                             <circle
                                 r="120"
                                 fill="#1e212b"
@@ -347,7 +347,7 @@ export const ScrollytellingEngine: React.FC<ScrollytellingEngineProps> = ({ acti
                             pathLength="100"
                             className="drawsvg-ring"
                         />
-                        <g id="spin_marketing">
+                        <g id="spin_marketing" className="gear-gpu-layer">
                             <circle
                                 r="85"
                                 fill="var(--pic-orange, #f37021)"
@@ -392,7 +392,7 @@ export const ScrollytellingEngine: React.FC<ScrollytellingEngineProps> = ({ acti
                             pathLength="100"
                             className="drawsvg-ring"
                         />
-                        <g id="spin_automation">
+                        <g id="spin_automation" className="gear-gpu-layer">
                             <circle
                                 r="70"
                                 fill="var(--pic-turquoise, #3dbcc7)"
@@ -434,7 +434,7 @@ export const ScrollytellingEngine: React.FC<ScrollytellingEngineProps> = ({ acti
                             pathLength="100"
                             className="drawsvg-ring"
                         />
-                        <g id="spin_dev">
+                        <g id="spin_dev" className="gear-gpu-layer">
                             <circle
                                 r="90"
                                 fill="var(--pic-blue, #0089d0)"
@@ -479,7 +479,7 @@ export const ScrollytellingEngine: React.FC<ScrollytellingEngineProps> = ({ acti
                             pathLength="100"
                             className="drawsvg-ring"
                         />
-                        <g id="spin_data">
+                        <g id="spin_data" className="gear-gpu-layer">
                             <circle
                                 r="100"
                                 fill="var(--pic-gold, #fdb913)"

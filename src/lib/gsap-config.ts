@@ -7,10 +7,16 @@ if (typeof window !== "undefined") {
     gsap.registerPlugin(ScrollTrigger, useGSAP);
 }
 
-// Global GSAP defaults
+// Global GSAP defaults - Winston 02: 100% GPU Hardware Acceleration
+gsap.config({
+    force3D: true,
+    autoSleep: 60,
+});
+
 gsap.defaults({
     ease: "power1.inOut",
     duration: 1,
+    force3D: true,
 });
 
 export { gsap, ScrollTrigger, useGSAP };

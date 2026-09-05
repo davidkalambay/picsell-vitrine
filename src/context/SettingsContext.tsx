@@ -26,6 +26,7 @@ export interface SiteSettings {
     magneticButtons: boolean;
     gearCursor: boolean;
     lenisSmoothScroll: boolean;
+    gpuAcceleration: boolean;
     noiseOverlay: boolean;
     noiseIntensity: NoiseIntensity;
     blueprintGrid: boolean;
@@ -54,6 +55,7 @@ const DEFAULT_SETTINGS: SiteSettings = {
     magneticButtons: true,
     gearCursor: true,
     lenisSmoothScroll: true,
+    gpuAcceleration: true,
     noiseOverlay: true,
     noiseIntensity: "subtle",
     blueprintGrid: true,
