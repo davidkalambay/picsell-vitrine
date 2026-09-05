@@ -150,73 +150,43 @@ const ScrollytellingEngineComponent: React.FC<ScrollytellingEngineProps> = ({ ac
             return;
         }
 
-        if (!settings.matchMediaResponsive) {
-            // Fallback non-responsive timeline
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: sectionTrigger,
-                    start: "top 80%",
-                    end: "bottom bottom",
-                    scrub: settings.scrubSpeed,
-                },
-            });
-            const totalDegrees = 900;
-            tl.to(`#${CENTRAL_AI_GEAR.spinId}`, { rotation: totalDegrees, transformOrigin: "center center", ease: "none" }, 0);
-            
-            SATELLITE_GEAR_LIST.forEach((gear) => {
-                tl.to(`#${gear.spinId}`, {
-                    rotation: calculateSatelliteRotation(gear.teethCount, totalDegrees),
-                    transformOrigin: "center center",
-                    ease: "none",
-                }, 0);
-            });
-            return;
-        }
+        const totalDegrees = 900;
+        const scrubValue = typeof settings.scrubSpeed === "number" ? settings.scrubSpeed : 1.5;
 
-        const mm = gsap.matchMedia();
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: sectionTrigger,
+                start: "top bottom",
+                end: "bottom bottom",
+                scrub: scrubValue,
+                invalidateOnRefresh: true,
+            },
+        });
 
-        mm.add({
-            isDesktop: "(min-width: 1024px)",
-            isTablet: "(min-width: 768px) and (max-width: 1023px)",
-            isMobile: "(max-width: 767px)",
-        }, (context) => {
-            const { isDesktop, isTablet, isMobile } = context.conditions as {
-                isDesktop: boolean;
-                isTablet: boolean;
-                isMobile: boolean;
-            };
+        // AI Central Core
+        tl.to(`#${CENTRAL_AI_GEAR.spinId}`, {
+            rotation: totalDegrees,
+            transformOrigin: "center center",
+            ease: "none",
+        }, 0);
 
-            // Responsive Rotation Profiles
-            const totalDegrees = isDesktop ? 900 : isTablet ? 720 : 540;
-            const scrubValue = isMobile ? Math.min(settings.scrubSpeed, 1.0) : settings.scrubSpeed;
-
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: sectionTrigger,
-                    start: isMobile ? "top 85%" : "top 75%",
-                    end: "bottom bottom",
-                    scrub: scrubValue,
-                },
-            });
-
-            // AI Central Core
-            tl.to(`#${CENTRAL_AI_GEAR.spinId}`, {
-                rotation: totalDegrees,
+        // Satellite Gears from Config
+        SATELLITE_GEAR_LIST.forEach((gear) => {
+            tl.to(`#${gear.spinId}`, {
+                rotation: calculateSatelliteRotation(gear.teethCount, totalDegrees),
                 transformOrigin: "center center",
                 ease: "none",
             }, 0);
-
-            // Satellite Gears from Config
-            SATELLITE_GEAR_LIST.forEach((gear) => {
-                tl.to(`#${gear.spinId}`, {
-                    rotation: calculateSatelliteRotation(gear.teethCount, totalDegrees),
-                    transformOrigin: "center center",
-                    ease: "none",
-                }, 0);
-            });
         });
 
-        return () => mm.revert();
+        // Trigger safe calibration refresh
+        requestAnimationFrame(() => {
+            ScrollTrigger.refresh();
+        });
+
+        return () => {
+            tl.kill();
+        };
     }, { scope: container, dependencies: [settings.scrubSpeed, settings.matchMediaResponsive, settings.reducedMotion] });
 
     // Active state styles with dynamic neon glow
@@ -251,10 +221,9 @@ const ScrollytellingEngineComponent: React.FC<ScrollytellingEngineProps> = ({ ac
                 width="700"
                 height="600"
                 xmlns="http://www.w3.org/2000/svg"
-                className="w-full max-w-[1000px] max-h-[80vh] overflow-visible gear-gpu-layer"
+                className="w-full max-w-[1000px] max-h-[80vh] overflow-visible"
                 style={{
                     aspectRatio: "700/600",
-                    contain: "layout size",
                 }}
             >
                 <defs>
@@ -297,7 +266,7 @@ const ScrollytellingEngineComponent: React.FC<ScrollytellingEngineProps> = ({ ac
                             pathLength="100"
                             className="drawsvg-ring"
                         />
-                        <g id={CENTRAL_AI_GEAR.spinId} className="gear-gpu-layer">
+                        <g id={CENTRAL_AI_GEAR.spinId}>
                             <circle
                                 r={CENTRAL_AI_GEAR.radius}
                                 fill={CENTRAL_AI_GEAR.fillColor}
@@ -354,7 +323,7 @@ const ScrollytellingEngineComponent: React.FC<ScrollytellingEngineProps> = ({ ac
                                 />
 
                                 {/* Rotating Body & Teeth */}
-                                <g id={gear.spinId} className="gear-gpu-layer">
+                                <g id={gear.spinId}>
                                     <circle
                                         r={gear.radius}
                                         fill={gear.color}

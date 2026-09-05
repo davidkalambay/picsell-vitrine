@@ -313,9 +313,9 @@ export const ScrollytellingSection: React.FC = () => {
                 
                 {/* Visual side (Sticky) with CLS prevention */}
                 <div className="w-full h-full order-first lg:order-none z-0">
-                    <div className="sticky top-24 sm:top-28 flex flex-col items-center justify-center min-h-[480px] sm:min-h-[560px] lg:min-h-[620px] max-h-[85vh] w-full rounded-3xl p-4 sm:p-8 contain-layout">
+                    <div className="sticky top-24 sm:top-28 flex flex-col items-center justify-center min-h-[480px] sm:min-h-[560px] lg:min-h-[620px] max-h-[85vh] w-full rounded-3xl p-4 sm:p-8">
                         {/* 80% Scale Engine Container with strict aspect ratio */}
-                        <div className="relative w-full h-[360px] sm:h-[440px] lg:h-[480px] aspect-[700/600] flex items-center justify-center contain-layout">
+                        <div className="relative w-full h-[360px] sm:h-[440px] lg:h-[480px] aspect-[700/600] flex items-center justify-center">
                             <ScrollytellingEngine activeSection={activeSection} />
                         </div>
                         

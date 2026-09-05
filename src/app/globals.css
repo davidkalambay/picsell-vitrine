@@ -44,30 +44,23 @@ body {
 .engine-aspect-ratio {
   aspect-ratio: 700 / 600;
   contain-intrinsic-size: 700px 600px;
-  content-visibility: auto;
-  contain: layout paint;
 }
 
 .hero-engine-aspect-ratio {
   aspect-ratio: 1200 / 900;
   contain-intrinsic-size: 1200px 900px;
-  content-visibility: auto;
-  contain: layout paint;
 }
 
 .cls-card-contain {
-  contain: layout style;
   min-height: 70vh;
 }
 
 .cls-terminal-reserve {
   min-height: 180px;
-  contain: layout;
 }
 
 .cls-counter-reserve {
   min-height: 140px;
-  contain: layout;
 }
 
 .tabular-nums {
@@ -77,29 +70,18 @@ body {
   font-feature-settings: "tnum";
 }
 
-
 /* Winston 02: 100% GPU Hardware Acceleration & Layer Compositing */
 .gpu-accelerated {
   transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  perspective: 1000px;
-  -webkit-perspective: 1000px;
   will-change: transform;
 }
 
+/* SVG Hardware Layer - Use will-change instead of translateZ which breaks SVG matrix transforms */
 .gear-gpu-layer {
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  transform-style: preserve-3d;
   will-change: transform;
-}
-
-.gpu-contain {
-  contain: layout paint;
 }
 
 /* Winston 04: Accessibility & prefers-reduced-motion Compliance */

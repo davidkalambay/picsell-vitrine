@@ -149,36 +149,21 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
         };
     }, []);
 
-    // Load from localStorage on mount & detect system prefers-reduced-motion
+    // Load from localStorage on mount
     useEffect(() => {
         try {
             const saved = localStorage.getItem(STORAGE_KEY);
-            const systemPrefersReduced = typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
             if (saved) {
                 const parsed = JSON.parse(saved);
                 setSettings((prev) => ({
                     ...prev,
                     ...parsed,
-                    reducedMotion: parsed.reducedMotion !== undefined ? parsed.reducedMotion : systemPrefersReduced,
                 }));
-            } else if (systemPrefersReduced) {
-                setSettings((prev) => ({ ...prev, reducedMotion: true }));
             }
         } catch (e) {
             console.error("Failed to load settings from localStorage", e);
         } finally {
             setIsLoaded(true);
-        }
-
-        // Listen for live system accessibility changes
-        if (typeof window !== "undefined") {
-            const motionMedia = window.matchMedia("(prefers-reduced-motion: reduce)");
-            const handleMotionChange = (e: MediaQueryListEvent) => {
-                setSettings((prev) => ({ ...prev, reducedMotion: e.matches }));
-            };
-            motionMedia.addEventListener("change", handleMotionChange);
-            return () => motionMedia.removeEventListener("change", handleMotionChange);
         }
     }, []);
 
