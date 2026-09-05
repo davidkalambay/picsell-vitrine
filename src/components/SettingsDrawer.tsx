@@ -4,7 +4,16 @@ import React from "react";
 import { useSiteSettings, ThemeMode, GearSize } from "@/context/SettingsContext";
 
 export const SettingsDrawer: React.FC = () => {
-    const { settings, updateSetting, resetSettings, triggerDrawSvgReplay, triggerHeroIntroReplay, isDrawerOpen, setIsDrawerOpen } = useSiteSettings();
+    const {
+        settings,
+        updateSetting,
+        resetSettings,
+        triggerDrawSvgReplay,
+        triggerHeroIntroReplay,
+        isDrawerOpen,
+        setIsDrawerOpen,
+        batteryInfo,
+    } = useSiteSettings();
 
     return (
         <>
@@ -505,6 +514,58 @@ export const SettingsDrawer: React.FC = () => {
                                 onChange={(e) => updateSetting("lazyHydration", e.target.checked)}
                                 className="w-5 h-5 accent-emerald-400 rounded cursor-pointer"
                             />
+                        </div>
+
+                        {/* Option Winston 10: Mode Éco-responsable & Batterie */}
+                        <div className={`p-4 rounded-2xl border transition-all ${
+                            settings.ecoMode
+                                ? "bg-emerald-950/30 border-emerald-500/40 shadow-[0_0_20px_rgba(16,185,129,0.15)]"
+                                : "bg-white/[0.03] border-white/10"
+                        }`}>
+                            <div className="flex items-center justify-between mb-3">
+                                <div className="space-y-0.5">
+                                    <div className="flex items-center gap-2">
+                                        <p className="text-sm font-bold text-white">Mode Éco-responsable</p>
+                                        <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-emerald-400/20 text-emerald-400">
+                                            WINSTON #10
+                                        </span>
+                                    </div>
+                                    <p className="text-xs text-slate-400">
+                                        Limite le Ticker GSAP à 30 FPS & simplifie les shaders GPU
+                                    </p>
+                                </div>
+                                <input
+                                    type="checkbox"
+                                    checked={settings.ecoMode}
+                                    onChange={(e) => updateSetting("ecoMode", e.target.checked)}
+                                    className="w-5 h-5 accent-emerald-400 rounded cursor-pointer"
+                                />
+                            </div>
+
+                            {/* Live Battery & Hardware Status Pill */}
+                            <div className="pt-2.5 border-t border-white/10 flex items-center justify-between text-[11px] font-mono">
+                                <div className="flex items-center gap-1.5">
+                                    <span className={`w-2 h-2 rounded-full ${
+                                        batteryInfo.charging
+                                            ? "bg-emerald-400 animate-pulse"
+                                            : batteryInfo.isLowBattery
+                                            ? "bg-rose-400 animate-ping"
+                                            : "bg-amber-400"
+                                    }`} />
+                                    <span className="text-slate-300">
+                                        {batteryInfo.supported && batteryInfo.level !== null
+                                            ? `Batterie: ${batteryInfo.level}% ${batteryInfo.charging ? "(⚡ En charge)" : "(🔋 Sur batterie)"}`
+                                            : "Mode Autonomie / 60Hz Actif"}
+                                    </span>
+                                </div>
+                                <span className={`text-[9px] px-2 py-0.5 rounded font-bold ${
+                                    settings.ecoMode
+                                        ? "bg-emerald-500/20 text-emerald-300 border border-emerald-500/30"
+                                        : "bg-white/10 text-slate-400"
+                                }`}>
+                                    {settings.ecoMode ? "30 FPS // ÉCO" : "60 FPS // MAX"}
+                                </span>
+                            </div>
                         </div>
 
                         {/* Option 11: Bruit Texturé (Noise Overlay) */}

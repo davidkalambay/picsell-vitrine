@@ -36,6 +36,14 @@ export interface SiteSettings {
     badgeMicroInteractions: boolean;
     scrubSpeed: number; // in seconds (e.g. 0.5 to 2.5)
     performanceMode: boolean;
+    ecoMode: boolean; // Winston 10: Battery & Low-Power Saver Mode
+}
+
+export interface BatteryInfo {
+    level: number | null;
+    charging: boolean | null;
+    isLowBattery: boolean;
+    supported: boolean;
 }
 
 const DEFAULT_SETTINGS: SiteSettings = {
@@ -68,6 +76,7 @@ const DEFAULT_SETTINGS: SiteSettings = {
     badgeMicroInteractions: true,
     scrubSpeed: 1.5,
     performanceMode: false,
+    ecoMode: false,
 };
 
 const STORAGE_KEY = "picsell_site_settings_v1";
@@ -82,6 +91,7 @@ interface SettingsContextType {
     triggerHeroIntroReplay: () => void;
     isDrawerOpen: boolean;
     setIsDrawerOpen: (open: boolean) => void;
+    batteryInfo: BatteryInfo;
 }
 
 const SettingsContext = createContext<SettingsContextType | undefined>(undefined);
@@ -92,6 +102,45 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     const [heroIntroKey, setHeroIntroKey] = useState<number>(0);
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
+    const [batteryInfo, setBatteryInfo] = useState<BatteryInfo>({
+        level: null,
+        charging: null,
+        isLowBattery: false,
+        supported: false,
+    });
+
+    // Winston 10: Battery Status API listener & Hardware detection
+    useEffect(() => {
+        if (typeof window === "undefined") return;
+
+        if ("getBattery" in navigator) {
+            (navigator as any).getBattery().then((battery: any) => {
+                const updateBatteryState = () => {
+                    const level = Math.round(battery.level * 100);
+                    const charging = battery.charging;
+                    const isLow = !charging && battery.level <= 0.20;
+
+                    setBatteryInfo({
+                        level,
+                        charging,
+                        isLowBattery: isLow,
+                        supported: true,
+                    });
+
+                    // Auto-enable Eco Mode if battery is low and not charging
+                    if (isLow) {
+                        setSettings((prev) => ({ ...prev, ecoMode: true }));
+                    }
+                };
+
+                updateBatteryState();
+                battery.addEventListener("levelchange", updateBatteryState);
+                battery.addEventListener("chargingchange", updateBatteryState);
+            }).catch(() => {
+                setBatteryInfo((prev) => ({ ...prev, supported: false }));
+            });
+        }
+    }, []);
 
     // Load from localStorage on mount & detect system prefers-reduced-motion
     useEffect(() => {
@@ -125,6 +174,23 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
             return () => motionMedia.removeEventListener("change", handleMotionChange);
         }
     }, []);
+
+    // Winston 10: Apply Eco-mode root class & throttle GSAP Ticker frame rate
+    useEffect(() => {
+        if (typeof document === "undefined") return;
+
+        if (settings.ecoMode) {
+            document.documentElement.classList.add("eco-mode");
+            import("@/lib/gsap-config").then(({ gsap }) => {
+                gsap.ticker.fps(30); // Throttle ticker to 30 FPS to save power & battery
+            });
+        } else {
+            document.documentElement.classList.remove("eco-mode");
+            import("@/lib/gsap-config").then(({ gsap }) => {
+                gsap.ticker.fps(60); // Restore full 60 FPS
+            });
+        }
+    }, [settings.ecoMode]);
 
     // Apply reduced-motion root class to body
     useEffect(() => {
@@ -175,6 +241,7 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
                 triggerHeroIntroReplay,
                 isDrawerOpen,
                 setIsDrawerOpen,
+                batteryInfo,
             }}
         >
             {children}

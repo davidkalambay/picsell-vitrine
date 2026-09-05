@@ -49,7 +49,7 @@ Ce document répertorie les 30 propositions d'améliorations esthétiques, inter
 - [x] **07. Mémoïsation React (`React.memo`)** : Isoler le composant SVG pour empêcher les re-rendus inutiles du cycle React pendant que GSAP pilote le DOM directement. *(Testé & Implémenté sur `feat/react-memo-optimization`)*
 - [x] **08. Prévention des Layout Shifts (CLS 0)** : Définir des ratios stricts (`aspect-ratio`) sur les conteneurs d'engrenages pour éviter tout saut d'écran au chargement des polices. *(Testé & Implémenté sur `feat/cls-layout-shift-prevention`)*
 - [x] **09. Isolation SSR & Hook Isomorphe** : Sécuriser l'enregistrement des plugins GSAP avec un cycle de vie contrôlé sans flash visuel avant hydratation. *(Testé & Implémenté sur `feat/ssr-isolation-isomorphic-hook`)*
-- [ ] **10. Mode Éco-responsable** : Détecter la batterie faible ou le mode économie d'énergie pour réduire les calculs d'ombres et le framerate de fond.
+- [x] **10. Mode Éco-responsable** : Détecter la batterie faible ou le mode économie d'énergie pour réduire les calculs d'ombres et le framerate de fond. *(Testé & Implémenté sur `feat/eco-mode-battery-detection`)*
 
 ---
 

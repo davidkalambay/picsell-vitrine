@@ -134,4 +134,27 @@ html.gsap-ready .gsap-cloak {
   opacity: 1;
   visibility: visible;
 }
+
+/* Winston 10: Mode Éco-responsable (Battery Saver & Low GPU Power) */
+.eco-mode * {
+  text-shadow: none !important;
+}
+
+.eco-mode .blur-\[100px\],
+.eco-mode .blur-3xl,
+.eco-mode .blur-2xl {
+  filter: blur(12px) !important;
+  opacity: 0.15 !important;
+}
+
+.eco-mode .backdrop-blur-2xl,
+.eco-mode .backdrop-blur-xl {
+  backdrop-filter: blur(6px) !important;
+  -webkit-backdrop-filter: blur(6px) !important;
+}
+
+.eco-mode [style*="drop-shadow"] {
+  filter: none !important;
+}
+
 
