@@ -10,8 +10,18 @@ interface SmoothScrollProviderProps {
 }
 
 export const SmoothScrollProvider: React.FC<SmoothScrollProviderProps> = ({ children }) => {
-    const { settings } = useSiteSettings();
+    const { settings, isDrawerOpen } = useSiteSettings();
     const lenisRef = useRef<Lenis | null>(null);
+
+    // Pause/Resume Lenis when Settings Drawer is open
+    useEffect(() => {
+        if (!lenisRef.current) return;
+        if (isDrawerOpen) {
+            lenisRef.current.stop();
+        } else {
+            lenisRef.current.start();
+        }
+    }, [isDrawerOpen]);
 
     useEffect(() => {
         if (!settings.lenisSmoothScroll || settings.reducedMotion) {

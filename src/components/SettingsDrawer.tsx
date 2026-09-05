@@ -15,6 +15,19 @@ export const SettingsDrawer: React.FC = () => {
         batteryInfo,
     } = useSiteSettings();
 
+    // Lock background window scroll when drawer is open
+    React.useEffect(() => {
+        if (typeof document === "undefined") return;
+        if (isDrawerOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "";
+        }
+        return () => {
+            document.body.style.overflow = "";
+        };
+    }, [isDrawerOpen]);
+
     return (
         <>
             {/* Floating Settings Button (Gear Icon) */}
@@ -52,7 +65,12 @@ export const SettingsDrawer: React.FC = () => {
             {/* Slide-over Drawer */}
             <div
                 onClick={(e) => e.stopPropagation()}
-                className={`fixed top-0 right-0 h-full w-full sm:w-[420px] bg-[#090a10]/95 backdrop-blur-2xl border-l border-white/10 z-[80] p-6 sm:p-8 flex flex-col justify-between overflow-y-auto shadow-2xl transition-transform duration-500 ease-out text-white ${
+                onWheel={(e) => e.stopPropagation()}
+                onTouchMove={(e) => e.stopPropagation()}
+                data-lenis-prevent="true"
+                data-lenis-prevent-wheel="true"
+                data-lenis-prevent-touch="true"
+                className={`fixed top-0 right-0 h-full w-full sm:w-[420px] bg-[#090a10]/95 backdrop-blur-2xl border-l border-white/10 z-[80] p-6 sm:p-8 flex flex-col justify-between overflow-y-auto overscroll-contain shadow-2xl transition-transform duration-500 ease-out text-white ${
                     isDrawerOpen ? "translate-x-0 pointer-events-auto" : "translate-x-full pointer-events-none"
                 }`}
             >
