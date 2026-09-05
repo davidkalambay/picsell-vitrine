@@ -25,6 +25,7 @@ export interface SiteSettings {
     dataLiveCounter: boolean;
     magneticButtons: boolean;
     gearCursor: boolean;
+    lenisSmoothScroll: boolean;
     noiseOverlay: boolean;
     noiseIntensity: NoiseIntensity;
     blueprintGrid: boolean;
@@ -52,6 +53,7 @@ const DEFAULT_SETTINGS: SiteSettings = {
     dataLiveCounter: true,
     magneticButtons: true,
     gearCursor: true,
+    lenisSmoothScroll: true,
     noiseOverlay: true,
     noiseIntensity: "subtle",
     blueprintGrid: true,

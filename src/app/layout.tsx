@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { SettingsProvider } from "@/context/SettingsContext";
+import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
 import { NoiseOverlay } from "@/components/NoiseOverlay";
 import { BlueprintGrid } from "@/components/BlueprintGrid";
 import "./globals.css";
@@ -31,9 +32,11 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <SettingsProvider>
-          <NoiseOverlay />
-          <BlueprintGrid />
-          {children}
+          <SmoothScrollProvider>
+            <NoiseOverlay />
+            <BlueprintGrid />
+            {children}
+          </SmoothScrollProvider>
         </SettingsProvider>
       </body>
     </html>

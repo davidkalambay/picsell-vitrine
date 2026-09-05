@@ -40,7 +40,7 @@ Ce document répertorie les 30 propositions d'améliorations esthétiques, inter
 ## 📐 3. Winston — Architecture, Performance & Bonnes Pratiques
 *Focus : 60 FPS constants, scalabilité, accessibilité et robustesse.*
 
-- [ ] **01. Intégration de Lenis (Smooth Scrolling)** : Intégrer la bibliothèque Lenis pour unifier et lisser l'inertie du défilement souris/trackpad sur tous les navigateurs.
+- [x] **01. Intégration de Lenis (Smooth Scrolling)** : Intégrer la bibliothèque Lenis pour unifier et lisser l'inertie du défilement souris/trackpad sur tous les navigateurs. *(Testé & Implémenté sur `feat/lenis-smooth-scrolling`)*
 - [ ] **02. Accélération 100% GPU (CSS Hardware Acceleration)** : Restreindre strictement les animations GSAP aux propriétés `transform` (GPU) et `opacity` afin d'éviter tout Layout Repaint.
 - [ ] **03. GSAP MatchMedia (Responsive conditionnel)** : Définir des timelines et comportements distincts pour Mobile (écrans tactiles) et Desktop (souris haute précision).
 - [ ] **04. Respect du `prefers-reduced-motion`** : Désactiver automatiquement les rotations rapides et effets intenses pour les utilisateurs ayant activé l'option d'accessibilité sur leur système.
