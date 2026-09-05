@@ -29,12 +29,13 @@ export function ensureGsapPluginsRegistered() {
         gsap.defaults({
             ease: "power1.inOut",
             duration: 1,
-            force3D: true,
         });
 
-        // Anti-FOUC initialization flag on DOM
-        if (typeof document !== "undefined") {
-            document.documentElement.classList.add("gsap-ready");
+        // Anti-FOUC initialization flag on DOM after hydration
+        if (typeof window !== "undefined") {
+            requestAnimationFrame(() => {
+                document.documentElement.classList.add("gsap-ready");
+            });
         }
 
         pluginsRegistered = true;
