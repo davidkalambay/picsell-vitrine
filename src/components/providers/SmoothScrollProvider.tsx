@@ -14,7 +14,7 @@ export const SmoothScrollProvider: React.FC<SmoothScrollProviderProps> = ({ chil
     const lenisRef = useRef<Lenis | null>(null);
 
     useEffect(() => {
-        if (!settings.lenisSmoothScroll) {
+        if (!settings.lenisSmoothScroll || settings.reducedMotion) {
             if (lenisRef.current) {
                 lenisRef.current.destroy();
                 lenisRef.current = null;

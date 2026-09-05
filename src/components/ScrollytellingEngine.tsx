@@ -141,7 +141,16 @@ export const ScrollytellingEngine: React.FC<ScrollytellingEngineProps> = ({ acti
         if (!sectionTrigger) return;
 
         const rads = { ai: 18, marketing: 12, automation: 10, development: 14, data: 16 };
-        
+
+        // Winston 04: Respect prefers-reduced-motion accessibility
+        if (settings.reducedMotion) {
+            gsap.set(["#spin_ai", "#spin_marketing", "#spin_automation", "#spin_data", "#spin_dev"], {
+                rotation: 0,
+                transformOrigin: "center center",
+            });
+            return;
+        }
+
         if (!settings.matchMediaResponsive) {
             // Fallback non-responsive timeline
             const tl = gsap.timeline({
@@ -227,7 +236,7 @@ export const ScrollytellingEngine: React.FC<ScrollytellingEngineProps> = ({ acti
         });
 
         return () => mm.revert();
-    }, { scope: container, dependencies: [settings.scrubSpeed, settings.matchMediaResponsive] });
+    }, { scope: container, dependencies: [settings.scrubSpeed, settings.matchMediaResponsive, settings.reducedMotion] });
 
     // Active state styles with dynamic neon glow
     const getStyle = (section: string) => {

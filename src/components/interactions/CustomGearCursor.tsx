@@ -24,7 +24,7 @@ export const CustomGearCursor: React.FC = () => {
     }, []);
 
     useGSAP(() => {
-        if (!settings.gearCursor || isTouchDevice || !cursorRef.current || !dotRef.current || !gearRef.current) {
+        if (!settings.gearCursor || settings.reducedMotion || isTouchDevice || !cursorRef.current || !dotRef.current || !gearRef.current) {
             return;
         }
 
@@ -174,7 +174,7 @@ export const CustomGearCursor: React.FC = () => {
         }
     }, [isHovered, isClicked, settings.gearCursor, isTouchDevice]);
 
-    if (!settings.gearCursor || isTouchDevice) return null;
+    if (!settings.gearCursor || settings.reducedMotion || isTouchDevice) return null;
 
     return (
         <div

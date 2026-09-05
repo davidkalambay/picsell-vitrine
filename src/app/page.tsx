@@ -62,8 +62,8 @@ export default function Home() {
   useGSAP(() => {
     if (!mainRef.current) return;
 
-    if (!settings.heroMechanicalIntro) {
-      // Ensure static elements are visible if intro is disabled
+    if (!settings.heroMechanicalIntro || settings.reducedMotion) {
+      // Ensure static elements are visible if intro is disabled or reduced motion is active
       gsap.set(["#hero-badge", "#hero-hud", "#hero-cta", ".hero-gear-watermark"], {
         opacity: 1,
         y: 0,

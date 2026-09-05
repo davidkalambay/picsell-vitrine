@@ -28,6 +28,7 @@ export interface SiteSettings {
     lenisSmoothScroll: boolean;
     gpuAcceleration: boolean;
     matchMediaResponsive: boolean;
+    reducedMotion: boolean;
     noiseOverlay: boolean;
     noiseIntensity: NoiseIntensity;
     blueprintGrid: boolean;
@@ -58,6 +59,7 @@ const DEFAULT_SETTINGS: SiteSettings = {
     lenisSmoothScroll: true,
     gpuAcceleration: true,
     matchMediaResponsive: true,
+    reducedMotion: false,
     noiseOverlay: true,
     noiseIntensity: "subtle",
     blueprintGrid: true,
@@ -89,20 +91,49 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
 
-    // Load from localStorage on mount
+    // Load from localStorage on mount & detect system prefers-reduced-motion
     useEffect(() => {
         try {
             const saved = localStorage.getItem(STORAGE_KEY);
+            const systemPrefersReduced = typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
             if (saved) {
                 const parsed = JSON.parse(saved);
-                setSettings((prev) => ({ ...prev, ...parsed }));
+                setSettings((prev) => ({
+                    ...prev,
+                    ...parsed,
+                    reducedMotion: parsed.reducedMotion !== undefined ? parsed.reducedMotion : systemPrefersReduced,
+                }));
+            } else if (systemPrefersReduced) {
+                setSettings((prev) => ({ ...prev, reducedMotion: true }));
             }
         } catch (e) {
             console.error("Failed to load settings from localStorage", e);
         } finally {
             setIsLoaded(true);
         }
+
+        // Listen for live system accessibility changes
+        if (typeof window !== "undefined") {
+            const motionMedia = window.matchMedia("(prefers-reduced-motion: reduce)");
+            const handleMotionChange = (e: MediaQueryListEvent) => {
+                setSettings((prev) => ({ ...prev, reducedMotion: e.matches }));
+            };
+            motionMedia.addEventListener("change", handleMotionChange);
+            return () => motionMedia.removeEventListener("change", handleMotionChange);
+        }
     }, []);
+
+    // Apply reduced-motion root class to body
+    useEffect(() => {
+        if (typeof document !== "undefined") {
+            if (settings.reducedMotion) {
+                document.documentElement.classList.add("reduce-motion");
+            } else {
+                document.documentElement.classList.remove("reduce-motion");
+            }
+        }
+    }, [settings.reducedMotion]);
 
     // Save to localStorage when settings change
     useEffect(() => {
