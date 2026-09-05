@@ -1,13 +1,27 @@
 "use client";
 
 import React, { useRef, useState } from "react";
+import dynamic from "next/dynamic";
 import { ScrollytellingEngine } from "./ScrollytellingEngine";
-import { EngineeringTerminal } from "./EngineeringTerminal";
-import { CircularProgressRing } from "./CircularProgressRing";
 import { SplitTextReveal } from "./animations/SplitTextReveal";
-import { DataLiveCounter } from "./DataLiveCounter";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap-config";
 import { useSiteSettings } from "@/context/SettingsContext";
+
+// Winston 05: Progressive Lazy Hydration for deep scrollytelling submodules
+const EngineeringTerminal = dynamic(
+    () => import("./EngineeringTerminal").then((mod) => mod.EngineeringTerminal),
+    { ssr: false }
+);
+
+const CircularProgressRing = dynamic(
+    () => import("./CircularProgressRing").then((mod) => mod.CircularProgressRing),
+    { ssr: false }
+);
+
+const DataLiveCounter = dynamic(
+    () => import("./DataLiveCounter").then((mod) => mod.DataLiveCounter),
+    { ssr: false }
+);
 
 type SectionType = "marketing" | "automation" | "development" | "data" | null;
 

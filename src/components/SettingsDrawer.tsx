@@ -488,6 +488,25 @@ export const SettingsDrawer: React.FC = () => {
                             />
                         </div>
 
+                        {/* Option 23: Lazy Loading & Progressive Hydration (Winston's Idea 05) */}
+                        <div className="flex items-center justify-between p-4 rounded-2xl bg-white/[0.03] border border-white/10">
+                            <div>
+                                <div className="flex items-center gap-1.5">
+                                    <p className="text-sm font-bold text-white">Hydratation Progressive</p>
+                                    <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-emerald-400/20 text-emerald-400">
+                                        WINSTON #05
+                                    </span>
+                                </div>
+                                <p className="text-xs text-slate-400">Chargement asynchrone des terminaux et HUD (FCP instantané)</p>
+                            </div>
+                            <input
+                                type="checkbox"
+                                checked={settings.lazyHydration}
+                                onChange={(e) => updateSetting("lazyHydration", e.target.checked)}
+                                className="w-5 h-5 accent-emerald-400 rounded cursor-pointer"
+                            />
+                        </div>
+
                         {/* Option 11: Bruit Texturé (Noise Overlay) */}
                         <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 space-y-3">
                             <div className="flex items-center justify-between">

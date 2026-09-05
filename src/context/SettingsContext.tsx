@@ -29,6 +29,7 @@ export interface SiteSettings {
     gpuAcceleration: boolean;
     matchMediaResponsive: boolean;
     reducedMotion: boolean;
+    lazyHydration: boolean;
     noiseOverlay: boolean;
     noiseIntensity: NoiseIntensity;
     blueprintGrid: boolean;
@@ -60,6 +61,7 @@ const DEFAULT_SETTINGS: SiteSettings = {
     gpuAcceleration: true,
     matchMediaResponsive: true,
     reducedMotion: false,
+    lazyHydration: true,
     noiseOverlay: true,
     noiseIntensity: "subtle",
     blueprintGrid: true,
