@@ -31,10 +31,11 @@ story_location: _bmad-output/implementation-artifacts
 development_status:
   # ===================================================================
   # EPIC 1: Moteur Vectoriel Horloger & Immersion Cinématique (FR1-FR3)
+  # Status: DONE (Audited and certified)
   # ===================================================================
   epic-1-moteur-vectoriel-horloger-immersion-cinematique: done
-  1-1-moteur-vectoriel-svg-synchrone-gearengine: done
-  1-2-pipeline-scrollytelling-lenis-gsap-scrolltrigger: done
+  1-1-initialisation-du-mecanisme: done
+  1-2-le-grand-mecanisme-animations-dengrenages: done
   1-3-univers-visuel-midnight-luxury-grille-blueprint: done
   epic-1-retrospective: done
 

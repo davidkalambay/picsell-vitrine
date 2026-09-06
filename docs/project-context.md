@@ -107,18 +107,93 @@ L'identité visuelle de Picsell est bâtie sur le concept **« Inside the Engine
 
 ---
 
-## 8. Règles de Coordination Multi-Agents & Concurrence de Sprint
+## 8. Concurrent Development & Workflow Multi-Agents (Règles Agents IA)
+
+**⚠️ CRITIQUE POUR MULTI-AGENT :** Éviter les conflits de développement et garantir la non-régression.
+
+### Règles Fondamentales
 
 - 🔒 **Verrouillage d'État Obligatoire (`in-progress`) :**
   - Dès qu'un agent commence à travailler sur un Epic ou une User Story, il **DOIT impérativement** passer son statut à `in-progress` dans `_bmad-output/implementation-artifacts/sprint-status.yaml`.
 - 🛡️ **Règle Anti-Collision Multi-Agents :**
   - Deux agents ne doivent **JAMAIS** travailler simultanément sur la même Story ou sur le même Epic.
-  - Tout agent prêt à intervenir doit d'abord inspecter `_bmad-output/implementation-artifacts/sprint-status.yaml`. Si un Epic ou une Story est déjà marqué(e) `in-progress`, l'agent doit obligatoirement sélectionner une autre Story ou un autre Epic disponible (au statut `backlog` ou `ready-for-dev`).
+  - Si un Epic ou une Story est déjà marqué(e) `in-progress`, l'agent doit obligatoirement sélectionner un autre Epic ou une autre Story disponible (`backlog` ou `ready-for-dev`).
 - 🌿 **Isolation Stricte par Branche Git :**
-  - Tout travail d'un agent doit être effectué sur une branche Git dédiée (préfixée obligatoirement par `aistudio/` ou `feat/`, ex. `aistudio/epic-2-vitrine-4-piliers-moteur-ia`).
-  - La branche `main` doit rester protégée et intacte afin de préserver l'historique et permettre une intégration structurée avec validation par Pull Request.
+  - Tout travail d'un agent doit être effectué sur une branche Git dédiée (préfixée obligatoirement par `aistudio/`, `claude/` ou `feat/`, ex. `aistudio/epic-2-vitrine-4-piliers-moteur-ia`).
+  - La branche `main` doit rester protégée afin de préserver l'historique et permettre une intégration structurée avec validation par Pull Request.
 - ✅ **Finalisation & Libération de Verrou :**
   - Une fois l'implémentation, les tests et la validation de compilation (`npm run build`) validés, l'agent consigne l'artefact de story dans `_bmad-output/implementation-artifacts/` et bascule le statut vers `done` ou `review` dans `sprint-status.yaml`.
+
+### Protocole de Réservation & Cycle de Vie
+
+1. **AVANT de commencer un Epic/Story :**
+   - Consulter `_bmad-output/implementation-artifacts/sprint-status.yaml`
+   - Vérifier le statut EXACT : `backlog` / `ready-for-dev` / `in-progress` / `review` / `done`
+   - Si `in-progress` → **CHOISIR UN AUTRE EPIC**
+
+2. **AU DÉMARRAGE :**
+   - Mettre à jour `sprint-status.yaml` : `ready-for-dev` → `in-progress`
+   - Commiter avec message : `ci: mark epic-X as in-progress by agent-name`
+   - Push immédiatement (réservation)
+
+3. **PENDANT LE DÉVELOPPEMENT :**
+   - Une seule branche par Epic/Story
+   - Format branche : `claude/epic-X-story-Y-...` ou `aistudio/epic-X-...`
+   - Commits réguliers et atomiques
+   - Push chaque commit pour visibilité
+
+4. **EN CAS DE BLOCAGE/ABANDON :**
+   - Mettre à jour `sprint-status.yaml` : `in-progress` → `ready-for-dev` + commentaire
+   - Commiter & push immédiatement : `ci: release epic-X (reason: timeout/blocker)`
+
+5. **À LA FIN (Ready for Review) :**
+   - Mettre à jour `sprint-status.yaml` : `in-progress` → `done` ou `review`
+   - Créer la PR avec lien vers `epics.md`
+
+### Fichier d'Autorité
+
+**Source Unique de Statut :**
+```
+_bmad-output/implementation-artifacts/sprint-status.yaml
+```
+
+Structure :
+```yaml
+development_status:
+  epic-1-moteur-vectoriel-horloger-immersion-cinematique: done
+  epic-2-vitrine-des-4-piliers-moteur-central-ia: done
+  epic-3-preuve-dingenierie-manifeste-bmad-code: ready-for-dev
+```
+
+### Contention Resolution
+
+**Si 2 agents attaquent le même epic :**
+1. Le premier qui push `in-progress` gagne
+2. Le second reçoit un conflit de merge
+3. Le second consulte de nouveau le yaml et choisit un autre Epic disponible
+4. Aucune négociation : strict respect du yaml
+
+### Conventions Git
+
+**Branch Naming Convention :**
+```
+✅ claude/epic-1-review-and-validation
+✅ aistudio/epic-2-vitrine-4-piliers-moteur-ia
+✅ feat/hero-mechanical-engine (spécifique)
+
+❌ dev (trop générique)
+❌ wip-stuff (trop vague)
+```
+
+**Commit Message Convention :**
+```
+✅ "feat(epic-1): implement gear engine ..."
+✅ "ci: mark epic-1 in-progress"
+✅ "docs: update sprint-status epic-2 → done"
+
+❌ "working on stuff"
+❌ "fixes"
+```
 
 ---
 
@@ -126,11 +201,13 @@ L'identité visuelle de Picsell est bâtie sur le concept **« Inside the Engine
 
 - **Dépôt :** `picsell-vitrine` sur GitHub.
 - **Branche Active :** `main` (synchronisée avec `origin/main`).
+- **Workflow Epics :** Voir section 8 (Concurrent Development)
 - **Source Unique de Vérité Documentaire :**
   - Spécifications & PRD : `_bmad-output/planning-artifacts/prd.md`
   - Architecture : `_bmad-output/planning-artifacts/architecture.md`
   - Epics & Stories : `_bmad-output/planning-artifacts/epics.md`
-  - Contexte Agent IA : `_bmad-output/planning-artifacts/project-context.md`
+  - Contexte Agent IA : `docs/project-context.md`
+  - **Sprint Status (CRITICAL) :** `_bmad-output/implementation-artifacts/sprint-status.yaml`
 
 ---
 
