@@ -6,6 +6,7 @@ import { useSiteSettings } from "@/context/SettingsContext";
 
 interface MagneticButtonProps {
     children: React.ReactNode;
+    id?: string;
     className?: string;
     style?: React.CSSProperties;
     onClick?: (e: React.MouseEvent) => void;
@@ -16,10 +17,13 @@ interface MagneticButtonProps {
     target?: string;
     rel?: string;
     ariaLabel?: string;
+    disabled?: boolean;
+    type?: "button" | "submit" | "reset";
 }
 
 const MagneticButtonComponent: React.FC<MagneticButtonProps> = ({
     children,
+    id,
     className = "",
     style = {},
     onClick,
@@ -30,6 +34,8 @@ const MagneticButtonComponent: React.FC<MagneticButtonProps> = ({
     target,
     rel,
     ariaLabel,
+    disabled,
+    type,
 }) => {
     const buttonRef = useRef<HTMLElement>(null);
     const contentRef = useRef<HTMLSpanElement>(null);
@@ -92,12 +98,15 @@ const MagneticButtonComponent: React.FC<MagneticButtonProps> = ({
 
     const props: any = {
         ref: buttonRef,
+        id,
         className: `inline-flex items-center justify-center select-none relative ${className}`,
         style: {
             willChange: "transform",
             ...style,
         },
         onClick,
+        disabled,
+        type: Tag === "button" ? type || "button" : undefined,
         "aria-label": ariaLabel,
     };
 

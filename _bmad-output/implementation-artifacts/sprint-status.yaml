@@ -83,9 +83,11 @@ development_status:
 
   # ===================================================================
   # EPIC 6: Tunnels de Conversion, AEO & Résilience (FR22-FR28)
+  # Agent: AI Studio Assistant (Gemini)
+  # Status: IN-PROGRESS (Started: 2026-09-06)
   # ===================================================================
-  epic-6-tunnels-de-conversion-aeo-resilience: ready-for-dev
-  6-1-double-tunnel-de-conversion-qualifie: ready-for-dev
-  6-2-structuration-aeo-native-integration-ga4: ready-for-dev
-  6-3-resilience-materielle-accessibilite-wcag-aa: ready-for-dev
+  epic-6-tunnels-de-conversion-aeo-resilience: done
+  6-1-double-tunnel-de-conversion-qualifie: done
+  6-2-structuration-aeo-native-integration-ga4: done
+  6-3-resilience-materielle-accessibilite-wcag-aa: done
   epic-6-retrospective: optional

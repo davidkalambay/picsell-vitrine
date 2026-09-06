@@ -8,6 +8,7 @@ import { CustomGearCursor } from "@/components/interactions/CustomGearCursor";
 import { ScrollytellingSection } from "@/components/ScrollytellingSection";
 import { GardeTempsPortfolio } from "@/components/portfolio/GardeTempsPortfolio";
 import { RoiDashboardShowcase } from "@/components/portfolio/RoiDashboardShowcase";
+import { ConversionHub } from "@/components/conversion/ConversionHub";
 import { SplitTextReveal } from "@/components/animations/SplitTextReveal";
 import { MagneticButton } from "@/components/interactions/MagneticButton";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap-config";
@@ -142,8 +143,10 @@ export default function Home() {
 
   return (
     <main
+      id="main-content"
+      tabIndex={-1}
       ref={mainRef}
-      className={`relative w-full min-h-screen transition-colors duration-700 ${
+      className={`relative w-full min-h-screen transition-colors duration-700 outline-none ${
         isDarkMode ? "text-[#f4f4f6]" : "text-[var(--pic-charcoal,#1a1a1a)]"
       }`}
       style={{ backgroundColor: settings.themeMode === "force-dark" ? "#06070a" : "#ffffff" }}
@@ -317,13 +320,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer id="footer-contact" className="bg-[#040406] text-slate-500 py-10 px-6 text-center border-t border-white/5">
-        <div className="text-sm mb-2 text-slate-400 font-medium">contact@picsell.agency — Kinshasa, RDC</div>
-        <div className="text-[10px] font-bold tracking-[0.2em] uppercase text-slate-600 mt-3">
-          © 2026 Picsell Agency — Precision in progress
-        </div>
-      </footer>
+      {/* Epic 6: Dual Conversion Hub (James Upwork + Jean-Luc Strategic Consultation) & Global Footer */}
+      <ConversionHub />
     </main>
   );
 }
