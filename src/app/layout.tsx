@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Sora, Quicksand } from "next/font/google";
 import { SettingsProvider } from "@/context/SettingsContext";
+import { MobileNavProvider } from "@/context/MobileNavContext";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
 import { NoiseOverlay } from "@/components/NoiseOverlay";
 import { BlueprintGrid } from "@/components/BlueprintGrid";
+import { HamburgerButton } from "@/components/MobileNavigation/HamburgerButton";
+import { NavigationDrawer } from "@/components/MobileNavigation/NavigationDrawer";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -53,11 +56,15 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${sora.variable} ${quicksand.variable} antialiased`}
       >
         <SettingsProvider>
-          <SmoothScrollProvider>
-            <NoiseOverlay />
-            <BlueprintGrid />
-            {children}
-          </SmoothScrollProvider>
+          <MobileNavProvider>
+            <SmoothScrollProvider>
+              <NoiseOverlay />
+              <BlueprintGrid />
+              <HamburgerButton />
+              <NavigationDrawer />
+              {children}
+            </SmoothScrollProvider>
+          </MobileNavProvider>
         </SettingsProvider>
       </body>
     </html>
