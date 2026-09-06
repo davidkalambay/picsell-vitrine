@@ -1,153 +1,329 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import { useSiteSettings } from "@/context/SettingsContext";
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { useRef, useState } from 'react';
 
-interface EngineeringTerminalProps {
-    filename: string;
-    language: "typescript" | "sql" | "json";
-    lines: {
-        text: string;
-        highlight?: "keyword" | "function" | "string" | "comment" | "accent";
-    }[];
-    accentColor: string;
-    tagLabel: string;
+interface CodeTab {
+  label: string;
+  icon: string;
+  language: string;
+  code: string;
 }
 
-const EngineeringTerminalComponent: React.FC<EngineeringTerminalProps> = ({
-    filename,
-    lines,
-    accentColor,
-    tagLabel,
-}) => {
-    const { settings } = useSiteSettings();
-    const [copied, setCopied] = useState(false);
+interface CodeLine {
+  text: string;
+}
 
-    if (!settings.codeTerminals) return null;
+const PRESET_CODE_EXAMPLES: CodeTab[] = [
+  {
+    label: 'schema.ts',
+    icon: '📄',
+    language: 'typescript',
+    code: `export interface ServiceConfig {
+  id: string;
+  name: string;
+  description: string;
+  enabled: boolean;
+  metadata: Record<string, unknown>;
+}
 
-    const handleCopy = () => {
-        const fullText = lines.map((l) => l.text).join("\n");
-        navigator.clipboard?.writeText(fullText);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
-    };
+export type ServiceModule =
+  | 'development'
+  | 'marketing'
+  | 'automation'
+  | 'data';
 
-    return (
-        <div className="mt-6 w-full cls-terminal-reserve rounded-2xl overflow-hidden bg-black/50 backdrop-blur-xl border border-white/10 shadow-2xl transition-all duration-300 hover:border-white/20 group/terminal">
-            {/* Top Bar */}
-            <div className="flex items-center justify-between px-4 py-2.5 bg-white/[0.03] border-b border-white/10">
-                {/* Traffic Lights */}
-                <div className="flex items-center gap-1.5">
-                    <span className="w-2.5 h-2.5 rounded-full bg-rose-500/70 border border-rose-500/40"></span>
-                    <span className="w-2.5 h-2.5 rounded-full bg-amber-500/70 border border-amber-500/40"></span>
-                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/70 border border-emerald-500/40"></span>
-                </div>
+export interface ProjectScope {
+  services: ServiceConfig[];
+  timeline: string;
+  budget: number;
+  kpis: string[];
+}`,
+  },
+  {
+    label: 'workflow.json',
+    icon: '📋',
+    language: 'json',
+    code: `{
+  "version": "1.0",
+  "name": "picsell-vitrine-deployment",
+  "triggers": ["push:main", "schedule:daily"],
+  "jobs": {
+    "build": {
+      "runs-on": "ubuntu-latest",
+      "steps": [
+        {
+          "uses": "actions/checkout@v4"
+        },
+        {
+          "name": "Install dependencies",
+          "run": "npm ci"
+        },
+        {
+          "name": "Build & validate",
+          "run": "npm run build"
+        }
+      ]
+    }
+  }
+}`,
+  },
+  {
+    label: 'pipeline.yml',
+    icon: '⚙️',
+    language: 'yaml',
+    code: `stages:
+  - validate
+  - build
+  - test
+  - deploy
 
-                {/* File Title */}
-                <div className="flex items-center gap-2">
-                    <span
-                        className="text-[10px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded"
-                        style={{
-                            backgroundColor: `${accentColor}20`,
-                            color: accentColor,
-                        }}
-                    >
-                        {tagLabel}
-                    </span>
-                    <span className="text-xs font-mono text-slate-400 select-none">
-                        {filename}
-                    </span>
-                </div>
+variables:
+  NODE_VERSION: "20.x"
+  CACHE_DIR: ".cache"
 
-                {/* Copy Button */}
-                <button
-                    onClick={handleCopy}
-                    className="text-[10px] font-mono text-slate-400 hover:text-white px-2 py-0.5 rounded bg-white/5 hover:bg-white/10 transition-colors"
-                    title="Copier le code"
-                >
-                    {copied ? "✓ Copié" : "Copier"}
-                </button>
-            </div>
+before_script:
+  - npm ci --cache .cache --prefer-offline
 
-            {/* Code Content */}
-            <div className="p-4 sm:p-5 font-mono text-[11px] sm:text-xs leading-relaxed overflow-x-auto text-slate-300 select-text">
-                <pre className="m-0 p-0 font-mono">
-                    <code>
-                        {lines.map((line, idx) => (
-                            <div key={idx} className="flex">
-                                <span className="text-slate-600 select-none w-6 inline-block text-right pr-3 shrink-0">
-                                    {idx + 1}
-                                </span>
-                                <span className="flex-1 whitespace-pre">
-                                    {renderHighlightedLine(line.text, accentColor)}
-                                </span>
-                            </div>
-                        ))}
-                    </code>
-                </pre>
-                {/* Blinking Cursor */}
-                <div className="flex items-center mt-2 text-slate-500 text-[10px] select-none">
-                    <span
-                        className="inline-block w-2 h-3.5 mr-1.5 animate-pulse"
-                        style={{ backgroundColor: accentColor }}
-                    />
-                    <span className="text-[10px] tracking-widest uppercase font-mono text-slate-500">
-                        ENGINE_READY // 0 ERROR
-                    </span>
-                </div>
-            </div>
-        </div>
-    );
+deploy:vercel:
+  stage: deploy
+  script:
+    - npm run deploy:prod
+  only: [main]`,
+  },
+];
+
+const getTokenColor = (token: string, language: string): string => {
+  if (['export', 'interface', 'type', 'const', 'let', 'var', 'function', 'class', 'import', 'from', 'default', 'return', 'if', 'else', 'for', 'while'].includes(token)) {
+    return 'text-cyan-400';
+  }
+  if (token.startsWith('"') || token.startsWith("'") || token.startsWith('`')) {
+    return 'text-emerald-400';
+  }
+  if (/^\d+/.test(token)) {
+    return 'text-amber-400';
+  }
+  if (['true', 'false', 'null', 'undefined'].includes(token)) {
+    return 'text-pink-400';
+  }
+  if (token.startsWith('//') || token.startsWith('#')) {
+    return 'text-zinc-500';
+  }
+  if (['[', ']', '{', '}', '(', ')'].includes(token)) {
+    return 'text-zinc-400';
+  }
+  return 'text-zinc-300';
 };
 
-export const EngineeringTerminal = React.memo(
-    EngineeringTerminalComponent,
-    (prevProps, nextProps) =>
-        prevProps.filename === nextProps.filename &&
-        prevProps.accentColor === nextProps.accentColor &&
-        prevProps.tagLabel === nextProps.tagLabel &&
-        prevProps.language === nextProps.language &&
-        prevProps.lines.length === nextProps.lines.length
-);
+interface HighlightedCodeProps {
+  code: string;
+  language: string;
+  lines?: CodeLine[];
+}
 
+const HighlightedCode: React.FC<HighlightedCodeProps> = ({ code, language, lines }) => {
+  const displayLines = lines ? lines.map(l => l.text) : code.split('\n');
+  
+  return (
+    <div className="font-mono text-sm leading-relaxed overflow-x-auto">
+      <div className="bg-zinc-950 p-4">
+        {displayLines.map((line, idx) => (
+          <div key={idx} className="flex gap-3 hover:bg-zinc-900/50 transition-colors">
+            <span className="w-8 text-right text-zinc-600 select-none flex-shrink-0">
+              {idx + 1}
+            </span>
+            <span className="flex-1 text-zinc-300">
+              {line.split(/(\s+|[{}[\]():",;])/).map((token, tokenIdx) => (
+                token.trim() ? (
+                  <span key={tokenIdx} className={getTokenColor(token, language)}>
+                    {token}
+                  </span>
+                ) : (
+                  <span key={tokenIdx}>{token}</span>
+                )
+              ))}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
 
-function renderHighlightedLine(text: string, accentColor: string) {
-    if (text.startsWith("//") || text.startsWith("--")) {
-        return <span className="text-slate-500 italic">{text}</span>;
+interface EngineeringTerminalProps {
+  title?: string;
+  description?: string;
+  defaultTab?: 0 | 1 | 2;
+  filename?: string;
+  language?: string;
+  tagLabel?: string;
+  accentColor?: string;
+  lines?: CodeLine[];
+}
+
+export default function EngineeringTerminal({
+  title = 'Engineering Terminal',
+  description = 'Inspect real code from our architecture',
+  defaultTab = 0,
+  filename,
+  language,
+  tagLabel,
+  accentColor = '#00F5FF',
+  lines,
+}: EngineeringTerminalProps) {
+  const [activeTab, setActiveTab] = useState(defaultTab);
+  const [showCopyFeedback, setShowCopyFeedback] = useState(false);
+  const [showFullscreen, setShowFullscreen] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const codeDisplayRef = useRef<HTMLDivElement>(null);
+
+  const isCustomFormat = filename !== undefined;
+  const codeExamples = isCustomFormat ? [] : PRESET_CODE_EXAMPLES;
+  const currentCode = isCustomFormat
+    ? { label: filename || '', icon: '📄', language: language || 'typescript', code: '' }
+    : codeExamples[activeTab];
+
+  useGSAP(
+    () => {
+      if (!codeDisplayRef.current) return;
+      gsap.fromTo(
+        codeDisplayRef.current,
+        { opacity: 0, y: 10 },
+        { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' }
+      );
+    },
+    { scope: containerRef, dependencies: [activeTab] }
+  );
+
+  const handleCopy = async () => {
+    const textToCopy = isCustomFormat
+      ? lines?.map(l => l.text).join('\n') || ''
+      : currentCode.code;
+    try {
+      await navigator.clipboard.writeText(textToCopy);
+      setShowCopyFeedback(true);
+      setTimeout(() => setShowCopyFeedback(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy:', err);
     }
+  };
 
-    // Split and color common keywords for a fast, elegant syntax highlight
-    const parts = text.split(/(\b(?:const|await|export|async|function|return|SELECT|FROM|WHERE|ORDER|BY|DESC|Props|Lead|true|false)\b|["'`].*?["'`]|=>|\{|\}|\(|\))/g);
+  return (
+    <>
+      <section ref={containerRef} className="py-12 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+        {!isCustomFormat && (
+          <div className="mb-8">
+            <h3 className="text-2xl font-bold text-white mb-2">{title}</h3>
+            <p className="text-zinc-400">{description}</p>
+          </div>
+        )}
 
-    return parts.map((part, i) => {
-        if (/^(const|await|export|async|function|return|SELECT|FROM|WHERE|ORDER|BY|DESC)$/.test(part)) {
-            return (
-                <span key={i} className="text-rose-400 font-bold">
-                    {part}
-                </span>
-            );
-        }
-        if (/^(Props|Lead|true|false)$/.test(part)) {
-            return (
-                <span key={i} className="text-amber-400 font-semibold">
-                    {part}
-                </span>
-            );
-        }
-        if (/^["'`].*?["'`]$/.test(part)) {
-            return (
-                <span key={i} className="text-emerald-300">
-                    {part}
-                </span>
-            );
-        }
-        if (part === "=>") {
-            return (
-                <span key={i} style={{ color: accentColor }}>
-                    {part}
-                </span>
-            );
-        }
-        return <span key={i}>{part}</span>;
-    });
+        <div className="border border-zinc-700 rounded-lg bg-zinc-950 overflow-hidden shadow-2xl">
+          {!isCustomFormat ? (
+            <>
+              <div className="flex gap-4 border-b border-zinc-700 p-4 bg-zinc-900/50 backdrop-blur-sm overflow-x-auto">
+                {codeExamples.map((tab, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setActiveTab(idx as 0 | 1 | 2)}
+                    className={`flex items-center gap-2 px-4 py-2 rounded transition-all duration-200 flex-shrink-0 ${
+                      activeTab === idx
+                        ? 'border-b-2 border-cyan-400 text-white font-semibold'
+                        : 'text-zinc-400 hover:text-zinc-300 border-b-2 border-transparent'
+                    }`}
+                  >
+                    <span className="text-lg">{tab.icon}</span>
+                    <span className="text-sm font-mono">{tab.label}</span>
+                  </button>
+                ))}
+              </div>
+
+              <div ref={codeDisplayRef} className="overflow-hidden">
+                <HighlightedCode code={currentCode.code} language={currentCode.language} />
+              </div>
+            </>
+          ) : (
+            <>
+              {tagLabel && (
+                <div className="px-4 py-3 border-b border-zinc-700 bg-zinc-900/30" style={{ borderLeftColor: accentColor, borderLeftWidth: '4px' }}>
+                  <span className="text-xs font-mono" style={{ color: accentColor }}>
+                    {tagLabel}
+                  </span>
+                </div>
+              )}
+              <div ref={codeDisplayRef} className="overflow-hidden">
+                <HighlightedCode code="" language={language || 'typescript'} lines={lines} />
+              </div>
+            </>
+          )}
+
+          <div className="flex gap-2 p-4 bg-zinc-900/50 border-t border-zinc-700">
+            <button
+              onClick={handleCopy}
+              className={`flex items-center gap-2 px-4 py-2 rounded transition-all duration-200 ${
+                showCopyFeedback
+                  ? 'bg-emerald-600/20 text-emerald-400 border border-emerald-500'
+                  : 'bg-zinc-800 text-zinc-300 hover:bg-zinc-700 border border-zinc-700'
+              }`}
+            >
+              <span className="text-sm">📋</span>
+              <span className="text-sm">{showCopyFeedback ? 'Copied!' : 'Copy'}</span>
+            </button>
+
+            {!isCustomFormat && (
+              <button
+                onClick={() => setShowFullscreen(true)}
+                className="flex items-center gap-2 px-4 py-2 rounded bg-zinc-800 text-zinc-300 hover:bg-zinc-700 border border-zinc-700 transition-all duration-200"
+              >
+                <span className="text-sm">⛶</span>
+                <span className="text-sm">Fullscreen</span>
+              </button>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {showFullscreen && !isCustomFormat && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-zinc-950 rounded-lg border border-zinc-700 w-full max-h-[90vh] overflow-hidden flex flex-col max-w-5xl">
+            <div className="flex items-center justify-between p-4 border-b border-zinc-700 bg-zinc-900/50">
+              <div>
+                <h4 className="text-white font-bold flex items-center gap-2">
+                  <span className="text-lg">{currentCode.icon}</span>
+                  {currentCode.label}
+                </h4>
+              </div>
+              <button
+                onClick={() => setShowFullscreen(false)}
+                className="p-2 hover:bg-zinc-800 rounded transition-colors text-zinc-400 hover:text-white"
+              >
+                ✕
+              </button>
+            </div>
+
+            <div className="overflow-auto flex-1">
+              <HighlightedCode code={currentCode.code} language={currentCode.language} />
+            </div>
+
+            <div className="flex gap-2 p-4 border-t border-zinc-700 bg-zinc-900/50">
+              <button
+                onClick={handleCopy}
+                className="flex items-center gap-2 px-4 py-2 rounded bg-zinc-800 text-zinc-300 hover:bg-zinc-700 border border-zinc-700 transition-all"
+              >
+                <span>📋</span>
+                <span>Copy Code</span>
+              </button>
+              <button
+                onClick={() => setShowFullscreen(false)}
+                className="ml-auto px-4 py-2 rounded bg-cyan-600/20 text-cyan-400 hover:bg-cyan-600/30 border border-cyan-500 transition-all"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
 }
