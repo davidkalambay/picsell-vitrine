@@ -4,17 +4,6 @@ import React, { useState } from "react";
 import { CASE_STUDIES } from "@/data/portfolioData";
 import { SplitTextReveal } from "@/components/animations/SplitTextReveal";
 import { MagneticButton } from "@/components/interactions/MagneticButton";
-import {
-  TrendingUp,
-  Clock,
-  ShieldCheck,
-  Activity,
-  Layers,
-  CheckCircle2,
-  Quote,
-  ChevronRight,
-  Code2,
-} from "lucide-react";
 
 export function GardeTempsPortfolio() {
   const [activeCaseId, setActiveCaseId] = useState<string>(CASE_STUDIES[0].id);
@@ -25,15 +14,15 @@ export function GardeTempsPortfolio() {
   const getPillarIcon = (pillarId: string) => {
     switch (pillarId) {
       case "marketing":
-        return <TrendingUp className="w-4 h-4 text-[var(--pic-orange,#f37021)]" />;
+        return <span className="text-[var(--pic-orange,#f37021)]">📈</span>;
       case "automation":
-        return <Clock className="w-4 h-4 text-[var(--pic-turquoise,#3dbcc7)]" />;
+        return <span className="text-[var(--pic-turquoise,#3dbcc7)]">⏱️</span>;
       case "development":
-        return <ShieldCheck className="w-4 h-4 text-[var(--pic-blue,#0089d0)]" />;
+        return <span className="text-[var(--pic-blue,#0089d0)]">✓</span>;
       case "data":
-        return <Activity className="w-4 h-4 text-[var(--pic-gold,#fdb913)]" />;
+        return <span className="text-[var(--pic-gold,#fdb913)]">📊</span>;
       default:
-        return <Layers className="w-4 h-4 text-white" />;
+        return <span className="text-white">🔧</span>;
     }
   };
 
@@ -174,7 +163,7 @@ export function GardeTempsPortfolio() {
                     onClick={() => setExpandedArchitecture(!expandedArchitecture)}
                     className="inline-flex items-center gap-2 font-mono text-xs text-[var(--pic-turquoise,#3dbcc7)] hover:underline cursor-pointer"
                   >
-                    <Code2 className="w-3.5 h-3.5" />
+                    <span>💻</span>
                     <span>
                       {expandedArchitecture
                         ? "Masquer les détails d'architecture"
@@ -189,7 +178,7 @@ export function GardeTempsPortfolio() {
                       </div>
                       {activeCase.architecture.map((item, idx) => (
                         <div key={idx} className="flex items-start gap-2 text-slate-300">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
+                          <span className="text-emerald-400 shrink-0 mt-0.5">✓</span>
                           <span>{item}</span>
                         </div>
                       ))}
@@ -218,7 +207,7 @@ export function GardeTempsPortfolio() {
               <div className="p-6 rounded-2xl bg-black/40 border border-white/10 shadow-inner">
                 <div className="flex items-center justify-between pb-3 mb-4 border-b border-white/10 font-mono text-[11px] uppercase tracking-wider text-slate-400">
                   <span className="font-bold text-white flex items-center gap-2">
-                    <TrendingUp className="w-3.5 h-3.5 text-[var(--pic-gold,#fdb913)]" />
+                    <span className="text-[var(--pic-gold,#fdb913)]">📈</span>
                     TÉLÉMÉTRIE ROI CERTIFIÉE
                   </span>
                   <span className="text-emerald-400 font-bold text-[9px] bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
@@ -259,7 +248,7 @@ export function GardeTempsPortfolio() {
               {/* Client Testimonial Quote */}
               {activeCase.quote && (
                 <div className="p-5 rounded-2xl bg-white/[0.02] border border-white/5 relative">
-                  <Quote className="w-6 h-6 text-white/10 absolute top-4 right-4 pointer-events-none" />
+                  <span className="text-3xl text-white/10 absolute top-4 right-4 pointer-events-none">❝</span>
                   <p className="text-xs sm:text-sm text-slate-300 italic mb-3 leading-relaxed relative z-10">
                     &ldquo;{activeCase.quote.text}&rdquo;
                   </p>
@@ -279,7 +268,7 @@ export function GardeTempsPortfolio() {
                   className="w-full py-3.5 px-6 rounded-xl font-mono text-xs uppercase font-bold tracking-wider text-center bg-white/10 hover:bg-white/20 text-white border border-white/15 transition-all flex items-center justify-center gap-2"
                 >
                   <span>Simuler le ROI pour votre structure</span>
-                  <ChevronRight className="w-3.5 h-3.5" />
+                  <span>→</span>
                 </MagneticButton>
               </div>
             </div>
