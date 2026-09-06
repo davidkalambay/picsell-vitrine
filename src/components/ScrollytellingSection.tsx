@@ -9,7 +9,7 @@ import { useSiteSettings } from "@/context/SettingsContext";
 
 // Winston 05: Progressive Lazy Hydration for deep scrollytelling submodules
 const EngineeringTerminal = dynamic(
-    () => import("./EngineeringTerminal").then((mod) => mod.EngineeringTerminal),
+    () => import("./EngineeringTerminal"),
     { ssr: false }
 );
 
