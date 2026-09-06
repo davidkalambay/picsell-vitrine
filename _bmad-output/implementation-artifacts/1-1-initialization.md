@@ -1,6 +1,6 @@
 # Story 1.1: Initialisation du Mécanisme (Next.js & Stack)
 
-Status: review
+Status: done
 
 <!-- Note: Validation is optional. Run validate-create-story for quality check before dev-story. -->
 
@@ -13,27 +13,27 @@ so that **I have a high-performance, strictly typed foundation for the agency sh
 ## Acceptance Criteria
 
 1. **Project Initialization:**
-    - [ ] Project initialized using `create-next-app` with App Router, TypeScript, Tailwind CSS, and ESLint.
-    - [ ] Project uses `src/` directory structure.
-    - [ ] Import alias `@/*` configured correctly.
+    - [x] Project initialized using `create-next-app` with App Router, TypeScript, Tailwind CSS, and ESLint.
+    - [x] Project uses `src/` directory structure.
+    - [x] Import alias `@/*` configured correctly.
 2. **Core Dependencies Installed:**
-    - [ ] `gsap` (v3.14+) installed for complex scroll-bound animations.
-    - [ ] `framer-motion` (v12+) installed for UI transitions.
-    - [ ] `zustand` (v5+) installed for state management.
-    - [ ] `@next/mdx` installed and configured for local MDX content.
+    - [x] `gsap` (v3.14+) installed for complex scroll-bound animations.
+    - [x] `framer-motion` (v12+) installed for UI transitions.
+    - [x] `zustand` (v5+) installed for state management.
+    - [x] `@next/mdx` installed and configured for local MDX content.
 3. **Project Structure Enforcement:**
-    - [ ] Directory structure matches `architecture.md` exactly:
+    - [x] Directory structure matches `architecture.md` exactly:
         - `src/components/{ui, sections, animations, case-studies}`
         - `src/{content, hooks, lib, store, types}`
         - `public/{assets, fonts}`
-    - [ ] `src/components/animations/` exists for isolated GSAP logic.
+    - [x] `src/components/animations/` exists for isolated GSAP logic.
 4. **Configuration & Rules:**
-    - [ ] `next.config.js` or `next.config.ts` configured (including MDX support).
-    - [ ] TypeScript configured with `strict: true`, `noImplicitAny: true`, `strictNullChecks: true`.
-    - [ ] Tailwind CSS configured to scan all content paths (components, app, lib).
+    - [x] `next.config.js` or `next.config.ts` configured (including MDX support).
+    - [x] TypeScript configured with `strict: true`, `noImplicitAny: true`, `strictNullChecks: true`.
+    - [x] Tailwind CSS configured to scan all content paths (components, app, lib).
 5. **Clean Slate:**
-    - [ ] Default Next.js boilerplate (homepage content) reduced to a minimal "Hello World" or skeleton to prove setup.
-    - [ ] `layout.tsx` basic structure established (metadata placeholder).
+    - [x] Default Next.js boilerplate (homepage content) reduced to a minimal "Hello World" or skeleton to prove setup.
+    - [x] `layout.tsx` basic structure established (metadata placeholder).
 
 ## Tasks / Subtasks
 

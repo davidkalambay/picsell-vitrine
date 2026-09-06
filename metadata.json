@@ -1,0 +1,6 @@
+{
+  "name": "Picsell Agency",
+  "description": "Picsell Agency — Precision in progress. Agence digitale à Kinshasa, RDC avec scrollytelling et interface dynamique.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

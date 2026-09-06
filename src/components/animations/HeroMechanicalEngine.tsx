@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef } from "react";
-import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap-config";
+import { gsap, useGSAP } from "@/lib/gsap-config";
 
 export const HeroMechanicalEngine: React.FC = () => {
     const containerRef = useRef<HTMLDivElement>(null);

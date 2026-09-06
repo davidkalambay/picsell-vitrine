@@ -32,11 +32,11 @@ development_status:
   # ===================================================================
   # EPIC 1: Moteur Vectoriel Horloger & Immersion Cinématique (FR1-FR3)
   # ===================================================================
-  epic-1-moteur-vectoriel-horloger-immersion-cinematique: in-progress
-  1-1-moteur-vectoriel-svg-synchrone-gearengine: review
-  1-2-pipeline-scrollytelling-lenis-gsap-scrolltrigger: review
-  1-3-univers-visuel-midnight-luxury-grille-blueprint: review
-  epic-1-retrospective: optional
+  epic-1-moteur-vectoriel-horloger-immersion-cinematique: done
+  1-1-moteur-vectoriel-svg-synchrone-gearengine: done
+  1-2-pipeline-scrollytelling-lenis-gsap-scrolltrigger: done
+  1-3-univers-visuel-midnight-luxury-grille-blueprint: done
+  epic-1-retrospective: done
 
   # ===================================================================
   # EPIC 2: Vitrine des 4 Piliers & Moteur Central IA (FR4-FR8)
