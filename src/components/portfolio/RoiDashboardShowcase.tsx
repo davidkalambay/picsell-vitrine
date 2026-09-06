@@ -4,18 +4,6 @@ import React, { useState, useMemo } from "react";
 import { DataLiveCounter } from "@/components/DataLiveCounter";
 import { SplitTextReveal } from "@/components/animations/SplitTextReveal";
 import { MagneticButton } from "@/components/interactions/MagneticButton";
-import {
-  Sliders,
-  Play,
-  Pause,
-  Gauge,
-  Sparkles,
-  TrendingUp,
-  Clock,
-  Maximize2,
-  CheckCircle2,
-  Cpu,
-} from "lucide-react";
 
 export function RoiDashboardShowcase() {
   // Simulator state
@@ -94,7 +82,7 @@ export function RoiDashboardShowcase() {
                   : "text-slate-400 hover:text-white"
               }`}
             >
-              <Sliders className="w-4 h-4" />
+              <span>🎚️</span>
               <span>1. Simulateur ROI Prédictif</span>
             </button>
             <button
@@ -106,7 +94,7 @@ export function RoiDashboardShowcase() {
                   : "text-slate-400 hover:text-white"
               }`}
             >
-              <Gauge className="w-4 h-4" />
+              <span>📊</span>
               <span>2. Cockpit Télémétrie Live</span>
             </button>
             <button
@@ -118,7 +106,7 @@ export function RoiDashboardShowcase() {
                   : "text-slate-400 hover:text-white"
               }`}
             >
-              <Play className="w-4 h-4" />
+              <span>▶️</span>
               <span>3. Démo Vidéo Interactive</span>
             </button>
           </div>
@@ -131,7 +119,7 @@ export function RoiDashboardShowcase() {
             <div className="lg:col-span-5 p-6 sm:p-8 rounded-3xl bg-[#090a10] border border-white/10 flex flex-col justify-between shadow-xl">
               <div>
                 <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-slate-400 mb-6 pb-4 border-b border-white/10">
-                  <Sliders className="w-4 h-4 text-[var(--pic-turquoise,#3dbcc7)]" />
+                  <span className="text-[var(--pic-turquoise,#3dbcc7)]">🎚️</span>
                   <span className="text-white font-bold">PARAMÈTRES DE VOTRE STRUCTURE</span>
                 </div>
 
@@ -213,7 +201,7 @@ export function RoiDashboardShowcase() {
                   textStrength={0.12}
                   className="w-full py-3.5 px-6 rounded-xl font-mono text-xs uppercase font-bold tracking-wider text-center bg-white text-slate-950 hover:bg-[var(--pic-gold,#fdb913)] transition-all flex items-center justify-center gap-2"
                 >
-                  <Sparkles className="w-3.5 h-3.5" />
+                  <span>✨</span>
                   <span>Verrouiller cette estimation par audit</span>
                 </MagneticButton>
               </div>
@@ -229,7 +217,7 @@ export function RoiDashboardShowcase() {
               <div className="relative z-10">
                 <div className="flex items-center justify-between pb-4 mb-6 border-b border-white/10 font-mono text-xs uppercase tracking-wider text-slate-400">
                   <span className="text-white font-bold flex items-center gap-2">
-                    <TrendingUp className="w-4 h-4 text-emerald-400" />
+                    <span className="text-emerald-400">📈</span>
                     PROJECTION DU RETOUR SUR INVESTISSEMENT
                   </span>
                   <span className="text-emerald-400 font-bold bg-emerald-500/10 px-2.5 py-1 rounded border border-emerald-500/20 text-[10px]">
@@ -256,7 +244,7 @@ export function RoiDashboardShowcase() {
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
                   <div className="p-4 rounded-xl bg-white/[0.03] border border-white/5">
                     <div className="flex items-center gap-1.5 font-mono text-[10px] text-slate-400 uppercase tracking-wider mb-2">
-                      <Clock className="w-3.5 h-3.5 text-[var(--pic-turquoise,#3dbcc7)]" />
+                      <span className="text-[var(--pic-turquoise,#3dbcc7)]">⏱️</span>
                       Temps économisé
                     </div>
                     <div className="font-sora text-2xl font-bold text-white mb-1">
@@ -269,7 +257,7 @@ export function RoiDashboardShowcase() {
 
                   <div className="p-4 rounded-xl bg-white/[0.03] border border-white/5">
                     <div className="flex items-center gap-1.5 font-mono text-[10px] text-slate-400 uppercase tracking-wider mb-2">
-                      <Cpu className="w-3.5 h-3.5 text-[var(--pic-blue,#0089d0)]" />
+                      <span className="text-[var(--pic-blue,#0089d0)]">💻</span>
                       Efficacité globale
                     </div>
                     <div className="font-sora text-2xl font-bold text-white mb-1">
@@ -282,7 +270,7 @@ export function RoiDashboardShowcase() {
 
                   <div className="p-4 rounded-xl bg-white/[0.03] border border-white/5">
                     <div className="flex items-center gap-1.5 font-mono text-[10px] text-slate-400 uppercase tracking-wider mb-2">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                      <span className="text-emerald-400">✓</span>
                       Disponibilité SLA
                     </div>
                     <div className="font-sora text-2xl font-bold text-emerald-400 mb-1">
@@ -393,7 +381,7 @@ export function RoiDashboardShowcase() {
           <div className="p-6 sm:p-10 rounded-3xl bg-[#090a12] border border-white/10 shadow-2xl relative">
             <div className="flex items-center justify-between pb-4 mb-6 border-b border-white/10 font-mono text-xs">
               <div className="flex items-center gap-2 text-white font-bold">
-                <Play className="w-4 h-4 text-[var(--pic-gold,#fdb913)]" />
+                <span className="text-[var(--pic-gold,#fdb913)]">▶️</span>
                 <span>APERÇU DU COCKPIT CLIENT // WALKTHROUGH VIDÉO DU DASHBOARD</span>
               </div>
               <button
@@ -401,7 +389,7 @@ export function RoiDashboardShowcase() {
                 onClick={() => setIsPlayingDemo(!isPlayingDemo)}
                 className="flex items-center gap-1.5 px-3 py-1 rounded bg-white/10 text-slate-200 hover:text-white transition-all cursor-pointer"
               >
-                {isPlayingDemo ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5" />}
+                <span>{isPlayingDemo ? "⏸️" : "▶️"}</span>
                 <span>{isPlayingDemo ? "Pause" : "Lecture"}</span>
               </button>
             </div>
@@ -418,7 +406,7 @@ export function RoiDashboardShowcase() {
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="text-emerald-400 font-bold">LIVE STREAM // 60 FPS</span>
-                  <Maximize2 className="w-3.5 h-3.5" />
+                  <span>⛶</span>
                 </div>
               </div>
 
@@ -431,7 +419,7 @@ export function RoiDashboardShowcase() {
                     }`}
                     style={{ animationDuration: "8s" }}
                   />
-                  <Gauge className="w-8 h-8 text-[var(--pic-gold,#fdb913)] absolute" />
+                  <span className="text-4xl text-[var(--pic-gold,#fdb913)] absolute">📊</span>
                 </div>
                 <h4 className="font-sora text-xl sm:text-2xl font-bold text-white mb-2">
                   Cockpit de Pilotage Centralisé
