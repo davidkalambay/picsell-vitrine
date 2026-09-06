@@ -10,11 +10,13 @@ import { SplitTextReveal } from "@/components/animations/SplitTextReveal";
 import { MagneticButton } from "@/components/interactions/MagneticButton";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap-config";
 import { useSiteSettings } from "@/context/SettingsContext";
+import { useMobileGearsParallax } from "@/hooks/useMobileGearsParallax";
 
 export default function Home() {
   const mainRef = useRef<HTMLElement>(null);
   const { settings, heroIntroKey } = useSiteSettings();
   const [isDarkMode, setIsDarkMode] = useState(false);
+  useMobileGearsParallax();
 
   // Handle Forced Themes
   useEffect(() => {
