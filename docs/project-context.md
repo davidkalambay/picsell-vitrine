@@ -168,15 +168,37 @@ development_status:
 
 ### Signaux Visuels
 
-**Branch Naming Convention :**
+**Branch Naming by Agent (MANDATORY) :**
+
+Chaque agent DOIT travailler sur une branche de feature commençant par son identificateur, suivi par l'Epic/Story :
+
 ```
+Format: {agent-id}/{epic-number}-{description}
+
 ✅ claude/epic-1-review-and-validation
-✅ aistudio/epic-2-vitrine-4-piliers
+✅ claude/epic-2-vitrine-4-piliers
+✅ aistudio/epic-3-terminals-interactifs
+✅ amelia/epic-4-portfolio-garde-temps
+✅ winston/epic-5-settings-drawer
 ✅ feat/hero-mechanical-engine (spécifique)
 
-❌ dev (trop générique)
-❌ wip-stuff (trop vague)
+❌ dev (trop générique, agent invisible)
+❌ wip-stuff (trop vague, pas de traçabilité)
+❌ feature-branch (pas d'identificateur agent)
 ```
+
+**Bénéfices :**
+- **Visibilité Immédiate :** Git log montre qui travaille quoi
+- **Résolution de Contentions :** FIFO par `git push` du premier agent
+- **Audit Trail Multi-Agent :** Chaque commit attribué à un agent via `git log --grep`
+- **Parallélisation Conflict-Free :** Branches isolées par agent = zéro merge conflicts artificiels
+
+**Identifiants d'Agent Reconnus :**
+- `claude/` → Claude Haiku/Opus
+- `aistudio/` → AI Studio agents
+- `amelia/` → Agent spécifique Amelia
+- `winston/` → Agent spécifique Winston
+- `agent-X/` → Autres agents nommés
 
 **Commit Message Convention :**
 ```
