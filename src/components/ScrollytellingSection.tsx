@@ -334,11 +334,15 @@ export const ScrollytellingSection: React.FC = () => {
                     {/* Section 1: Marketing Card */}
                     <div
                         id="story-marketing"
-                        className={`min-h-[70vh] cls-card-contain flex flex-col justify-center p-8 sm:p-12 rounded-3xl backdrop-blur-2xl transition-all duration-700 relative overflow-hidden border ${
+                        className={`min-h-[70vh] cls-card-contain flex flex-col justify-center p-6 sm:p-8 lg:p-12 rounded-3xl backdrop-blur-2xl transition-all duration-700 relative overflow-hidden border ${
                             activeSection === 'marketing'
                                 ? 'bg-gradient-to-br from-[rgba(243,112,33,0.1)] via-white/[0.04] to-transparent border-[var(--pic-orange,#f37021)]/40 shadow-[0_20px_50px_rgba(243,112,33,0.15)] opacity-100 translate-y-0 scale-100'
                                 : 'bg-white/[0.02] border-white/[0.06] opacity-30 translate-y-4 scale-[0.98]'
                         }`}
+                        style={{
+                            maskImage: "linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)",
+                            WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)",
+                        }}
                     >
                         <div className="absolute -top-24 -right-24 w-48 h-48 bg-[var(--pic-orange,#f37021)]/20 rounded-full blur-3xl pointer-events-none" />
                         
@@ -406,11 +410,15 @@ export const ScrollytellingSection: React.FC = () => {
                     {/* Section 2: Automation Card */}
                     <div
                         id="story-automation"
-                        className={`min-h-[70vh] cls-card-contain flex flex-col justify-center p-8 sm:p-12 rounded-3xl backdrop-blur-2xl transition-all duration-700 relative overflow-hidden border ${
+                        className={`min-h-[70vh] cls-card-contain flex flex-col justify-center p-6 sm:p-8 lg:p-12 rounded-3xl backdrop-blur-2xl transition-all duration-700 relative overflow-hidden border ${
                             activeSection === 'automation'
                                 ? 'bg-gradient-to-br from-[rgba(61,188,199,0.1)] via-white/[0.04] to-transparent border-[var(--pic-turquoise,#3dbcc7)]/40 shadow-[0_20px_50px_rgba(61,188,199,0.15)] opacity-100 translate-y-0 scale-100'
                                 : 'bg-white/[0.02] border-white/[0.06] opacity-30 translate-y-4 scale-[0.98]'
                         }`}
+                        style={{
+                            maskImage: "linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)",
+                            WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)",
+                        }}
                     >
                         <div className="absolute -top-24 -right-24 w-48 h-48 bg-[var(--pic-turquoise,#3dbcc7)]/20 rounded-full blur-3xl pointer-events-none" />
 
@@ -477,11 +485,15 @@ export const ScrollytellingSection: React.FC = () => {
                     {/* Section 3: Development Card */}
                     <div
                         id="story-development"
-                        className={`min-h-[70vh] cls-card-contain flex flex-col justify-center p-8 sm:p-12 rounded-3xl backdrop-blur-2xl transition-all duration-700 relative overflow-hidden border ${
+                        className={`min-h-[70vh] cls-card-contain flex flex-col justify-center p-6 sm:p-8 lg:p-12 rounded-3xl backdrop-blur-2xl transition-all duration-700 relative overflow-hidden border ${
                             activeSection === 'development'
                                 ? 'bg-gradient-to-br from-[rgba(0,137,208,0.1)] via-white/[0.04] to-transparent border-[var(--pic-blue,#0089d0)]/40 shadow-[0_20px_50px_rgba(0,137,208,0.15)] opacity-100 translate-y-0 scale-100'
                                 : 'bg-white/[0.02] border-white/[0.06] opacity-30 translate-y-4 scale-[0.98]'
                         }`}
+                        style={{
+                            maskImage: "linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)",
+                            WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)",
+                        }}
                     >
                         <div className="absolute -top-24 -right-24 w-48 h-48 bg-[var(--pic-blue,#0089d0)]/20 rounded-full blur-3xl pointer-events-none" />
 
@@ -548,11 +560,15 @@ export const ScrollytellingSection: React.FC = () => {
                     {/* Section 4: Data Intelligence Card */}
                     <div
                         id="story-data"
-                        className={`min-h-[70vh] cls-card-contain flex flex-col justify-center p-8 sm:p-12 rounded-3xl backdrop-blur-2xl transition-all duration-700 relative overflow-hidden border ${
+                        className={`min-h-[70vh] cls-card-contain flex flex-col justify-center p-6 sm:p-8 lg:p-12 rounded-3xl backdrop-blur-2xl transition-all duration-700 relative overflow-hidden border ${
                             activeSection === 'data'
                                 ? 'bg-gradient-to-br from-[rgba(253,185,19,0.1)] via-white/[0.04] to-transparent border-[var(--pic-gold,#fdb913)]/40 shadow-[0_20px_50px_rgba(253,185,19,0.15)] opacity-100 translate-y-0 scale-100'
                                 : 'bg-white/[0.02] border-white/[0.06] opacity-30 translate-y-4 scale-[0.98]'
                         }`}
+                        style={{
+                            maskImage: "linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)",
+                            WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)",
+                        }}
                     >
                         <div className="absolute -top-24 -right-24 w-48 h-48 bg-[var(--pic-gold,#fdb913)]/20 rounded-full blur-3xl pointer-events-none" />
 

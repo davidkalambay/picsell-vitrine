@@ -12,18 +12,6 @@ export const useMobileGearsParallax = () => {
 
     if (!heroGearContainer || !scrollytellingRef.current) return;
 
-    // Apply gradient mask to service cards on mobile
-    const applyCardMask = () => {
-      const cards = scrollytellingRef.current?.querySelectorAll("[id^='story-']");
-      if (!cards) return;
-
-      cards.forEach((card) => {
-        const element = card as HTMLElement;
-        element.style.maskImage = "linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)";
-        element.style.WebkitMaskImage = "linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)";
-      });
-    };
-
     // Make gears sticky on mobile when scrolling into scrollytelling section
     const handleScroll = () => {
       if (!scrollytellingRef.current || !heroGearContainer) return;
@@ -51,7 +39,6 @@ export const useMobileGearsParallax = () => {
     // Respect prefers-reduced-motion
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (!prefersReducedMotion) {
-      applyCardMask();
       window.addEventListener("scroll", handleScroll, { passive: true });
 
       return () => {
