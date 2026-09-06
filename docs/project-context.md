@@ -1,82 +1,122 @@
 ---
-project_name: 'picsell.agency'
+project_name: 'picsell-vitrine'
 user_name: 'David'
-date: '2026-01-27'
-sections_completed: ['technology_stack', 'language_rules', 'framework_rules', 'testing_quality', 'critical_rules']
+date: '2026-09-06'
+sections_completed: ['technology_stack', 'brand_metaphor_rules', 'language_rules', 'framework_rules', 'animation_rules', 'state_rules', 'quality_rules', 'critical_rules', 'workflow_rules']
 status: 'complete'
-rule_count: 22
+rule_count: 28
 optimized_for_llm: true
 ---
 
 # Project Context for AI Agents
 
-_This file contains critical rules and patterns that AI agents must follow when implementing code in this project. Focus on unobvious details that agents might otherwise miss._
+_Ce fichier contient les règles critiques, l'architecture et les conventions que tout agent IA doit impérativement respecter lors du développement sur ce projet. Il fait foi en cas de divergence._
 
 ---
 
-## Technology Stack & Versions
+## 1. Technology Stack & Versions Réelles
 
-- **Framework:** Next.js (Official Starter, App Router)
-- **Language:** TypeScript
-- **Styling:** Tailwind CSS
-- **Animations:** Framer Motion v12, GSAP v3.14 (ScrollTrigger)
-- **State Management:** Zustand v5
-- **Content:** Local MDX (@next/mdx)
-- **Hosting:** Vercel
-- **Analytics:** Google Analytics 4 (next/third-parties)
-
-## Critical Implementation Rules
-
-### Language-Specific Rules (TypeScript)
-- **Typage Strict :** `noImplicitAny`, `strictNullChecks` activés. Éviter `any` à tout prix.
-- **Conventions :**
-    - Fichiers : `kebab-case` (ex: `hero-engine.tsx`).
-    - Composants : `PascalCase` (ex: `HeroEngine`).
-    - Interfaces : Favoriser `interface` pour les props de composants.
-- **Imports :** Utiliser les alias `@/*` (ex: `@/components/ui/button`).
-
-### Framework-Specific Rules (Next.js & React)
-- **App Router :** Utiliser des *Server Components* par défaut. N'ajouter `'use client'` que pour l'interactivité ou les hooks (animations).
-- **Metadata (AEO) :** Chaque page doit définir son objet `metadata` pour l'indexation IA.
-- **Optimisation Images :** Utiliser `next/image` avec des dimensions précises pour le LCP.
-
-### Animations & State (GSAP/Motion/Zustand)
-- **GSAP (ScrollTrigger) :** 
-    - Isoler la logique dans `src/components/animations/`.
-    - Toujours nettoyer les instances GSAP dans un `useEffect` (cleanup function).
-- **Framer Motion :** Utiliser `AnimatePresence` pour les transitions de sortie entre les services.
-- **Zustand :** État atomique pour les engrenages. Ne pas stocker de données de contenu dans le store, uniquement les états UI/Mechanic.
-
-### Testing & Quality Rules
-- **Organisation :** Tests co-localisés avec les composants (ex: `hero-engine.test.tsx`).
-- **Priorité :** Tester les transitions d'état de l'interface "Glass-Engine" et les soumissions de formulaires.
-- **Documentation :** Utiliser JSDoc pour les fonctions complexes d'animation (explication des calculs mathématiques des engrenages).
-
-### Critical Don't-Miss Rules (Anti-Patterns)
-- **🛑 PAS de Framer Motion pour les engrenages complexes :** Utiliser GSAP pour les calculs de rotation synchronisés au scroll. Motion est réservé aux transitions UI.
-- **🛑 PAS de calculs d'animation dans le render :** Utiliser des `useMemo` pour les valeurs mathématiques statiques afin d'éviter les saccades (FPS drop).
-- **🛑 PAS de clés API visibles :** Utiliser `.env.local` et les `Route Handlers` Next.js pour masquer les clés GA4/Email.
-- **Performance :** Toujours vérifier le score Lighthouse/LCP après avoir ajouté une nouvelle animation SVG lourde.
-
-### Git & Workflow
-- **Branch Strategy :**
-    - `dev` : Branche active pour tout le développement et l'implémentation des stories.
-    - `main` : Réservée exclusivement à la page "Coming Soon" et à la production.
-- **Workflow :** Toujours s'assurer d'être sur la branche `dev` avant d'écrire du code applicatif.
+- **Framework :** Next.js 16 (v16.1.5, App Router) + React 19 (v19.2.3)
+- **Language :** TypeScript 5 (Strict mode, `noImplicitAny`, `strictNullChecks`)
+- **Styling :** Tailwind CSS v4 (`@tailwindcss/postcss`, architecture CSS moderne avec variables de thème)
+- **Animations & Moteur Physique :**
+  - **GSAP v3.14** + **`@gsap/react`** (utilisation impérative du hook `useGSAP` avec scoping)
+  - **Lenis Smooth Scroll v1.3** (`lenis`, synchronisé sur le GSAP ticker)
+  - **Framer Motion v12** (réservé aux transitions d'interface, `AnimatePresence`, drawers et modales)
+- **State Management :**
+  - **React Context :** [`SettingsContext.tsx`](file:///d:/Projects/internal/picsell-vitrine/src/context/SettingsContext.tsx) orchestre les presets studio (Sally, Amelia, Winston), la vitesse des engrenages, le mode éco batterie, le son et les overlays de debug.
+  - **Zustand v5 :** Installé et disponible pour de futurs stores atomiques isolés si nécessaire.
+- **Contenu & Docs :** MDX local (`@next/mdx`, `@mdx-js/react`)
+- **Hébergement & CI/CD :** Vercel & GitHub (`main` synchronisée sur `origin/main`)
 
 ---
 
-## Usage Guidelines
+## 2. Métaphore de Marque & Architecture Visuelle (Règle d'Or)
 
-**For AI Agents:**
-- Read this file before implementing any code.
-- Follow ALL rules exactly as documented.
-- When in doubt, prefer the more restrictive option (e.g., stricter TypeScript check).
-- Update this file if new critical patterns emerge.
+L'identité visuelle de Picsell est bâtie sur le concept **« Inside the Engine »** :
 
-**For Humans:**
-- Keep this file lean and focused on agent needs.
-- Update when technology stack changes or new "Don't-Miss" rules are identified.
-- Review for outdated rules.
+1. **Les 4 Piliers Satellites :**
+   - 🌐 **Dév Web & Mobile** (Bleu cyan `#00F5FF`, ratio 1.0, 24 dents)
+   - 📈 **Marketing Digital & AEO** (Orange vibrant `#FF8A00`, ratio 0.8, 20 dents)
+   - ⚡ **Automatisation No-Code & Workflows** (Vert émeraude `#00FF66`, ratio 1.2, 28 dents)
+   - 📊 **Data Analytics & IT Infrastructure** (Violet électrique `#9D00FF`, ratio 0.9, 22 dents)
+2. **Le Moteur IA Central (Engrenage Noir / Quadrant Noir) :**
+   - Engrenage noir central (`#0A0A0A` / bordure `#1F1F1F`, ratio 1.5, 36 dents).
+   - Symbolise le cœur propulseur de l'agence : l'intelligence artificielle qui alimente, synchronise et accélère les 4 piliers.
+3. **Source Unique de Configuration Mécanique :**
+   - **TOUS** les paramètres des engrenages (rayons, ratios de dents, vitesses, angles, couleurs) sont définis dans [`src/config/gears.config.ts`](file:///d:/Projects/internal/picsell-vitrine/src/config/gears.config.ts).
+   - **Interdiction absolue** de coder en dur des ratios ou couleurs d'engrenages dans les composants de rendu.
 
-Last Updated: 2026-01-27
+---
+
+## 3. Conventions de Code & TypeScript
+
+- **Typage Strict :**
+  - `noImplicitAny` et `strictNullChecks` activés. Éviter `any` à tout prix ; définir des interfaces explicites.
+- **Conventions de Nommage :**
+  - **Composants React :** `PascalCase.tsx` (ex: `GearEngine.tsx`, `SettingsDrawer.tsx`, `BlueprintGrid.tsx`, `ScrollytellingEngine.tsx`).
+  - **Fichiers Utilitaires & Config :** `kebab-case.ts` ou `camelCase.ts` (ex: `gears.config.ts`, `utils.ts`).
+  - **Interfaces :** Préférer `interface ComponentProps` pour les props de composants.
+- **Imports :**
+  - Utiliser systématiquement l'alias `@/*` (ex: `@/components/GearEngine`, `@/context/SettingsContext`, `@/config/gears.config`).
+
+---
+
+## 4. Règles Framework (Next.js 16 & React 19)
+
+- **Server Components par défaut :** N'ajouter `'use client'` qu'au sommet des composants nécessitant des hooks React (`useState`, `useEffect`, `useRef`, `useContext`) ou des interactions utilisateur.
+- **Optimisation des Médias :** Utiliser `next/image` avec dimensions strictes et attributs `priority` pour les éléments LCP.
+- **AEO & SEO :** Chaque page/route doit définir son objet `metadata` ou balisage Schema.org (JSON-LD) pour le référencement naturel et l'indexation par les moteurs IA (Perplexity, ChatGPT, Claude).
+
+---
+
+## 5. Animations, GSAP & Performance
+
+- **Hook `useGSAP` obligatoire :**
+  - Toujours encapsuler les initialisations GSAP dans le hook `useGSAP({ scope: containerRef })` de `@gsap/react`.
+  - Laisser `@gsap/react` gérer le nettoyage automatique (`revert`) lors du démontage pour éliminer les fuites mémoire.
+- **Synchronisation Lenis + GSAP ScrollTrigger :**
+  - Le lissage de défilement Lenis doit être synchronisé directement sur le GSAP ticker (`gsap.ticker.add((time) => lenis.raf(time * 1000))`).
+- **Gestion de la Batterie & Mode Réduit :**
+  - Respecter systématiquement les requêtes `prefers-reduced-motion`.
+  - Interroger l'état `isLowPowerMode` ou `batteryLevel` exposé par `SettingsContext` pour suspendre ou ralentir les boucles d'animation continues sur appareils à batterie faible.
+- **Zéro Calcul Lourd dans le Render :**
+  - Ne jamais exécuter de calculs trigonométriques complexes dans le corps de rendu d'un composant React. Utiliser `useMemo` ou déléguer la transformation à GSAP.
+
+---
+
+## 6. Testing, Qualité & Build
+
+- **Validation Build Stricte :**
+  - Avant de soumettre une story ou un commit, le projet doit compiler sans erreur avec `npm run build` (`next build`).
+- **Accessibilité (WCAG AA) :**
+  - Assurer des contrastes textuels de minimum 4.5:1 sur fond sombre (`#050505`).
+  - Tous les boutons, curseurs et toggles du `SettingsDrawer` doivent posséder un `aria-label` accessible et être navigables au clavier.
+- **Performance Web Vitals :**
+  - Maintenir un objectif de 60 FPS sur le Hero et les scènes 3D/SVG, et un score Lighthouse Performance > 90 sur desktop.
+
+---
+
+## 7. Règles Anti-Patterns Absolues (Don't-Miss Rules)
+
+- 🛑 **PAS de Framer Motion pour les engrenages :** Les engrenages interconnectés et le scrollytelling cinématique sont pilotés exclusivement par GSAP ScrollTrigger. Motion est restreint aux micro-interactions et transitions UI (drawers, boutons magnétiques, cartes).
+- 🛑 **PAS de 5ème pilier inventé :** L'agence est structurée autour de **4 piliers satellites** et **1 moteur IA central**.
+- 🛑 **PAS de nommage `kebab-case` pour les composants :** Suivre la convention existante `PascalCase.tsx`.
+- 🛑 **PAS de valeurs d'engrenages en dur :** Toujours importer depuis `@/config/gears.config`.
+- 🛑 **PAS de clés API ou secrets dans le code client :** Utiliser les variables d'environnement `.env.local` et les Route Handlers serveur.
+
+---
+
+## 8. Git & Organisation BMAD
+
+- **Dépôt :** `picsell-vitrine` sur GitHub.
+- **Branche Active :** `main` (synchronisée avec `origin/main`).
+- **Source Unique de Vérité Documentaire :**
+  - Spécifications & PRD : `_bmad-output/planning-artifacts/prd.md`
+  - Architecture : `_bmad-output/planning-artifacts/architecture.md`
+  - Epics & Stories : `_bmad-output/planning-artifacts/epics.md`
+  - Contexte Agent IA : `_bmad-output/planning-artifacts/project-context.md`
+
+---
+
+_Dernière mise à jour : 2026-09-06_
