@@ -107,7 +107,22 @@ L'identité visuelle de Picsell est bâtie sur le concept **« Inside the Engine
 
 ---
 
-## 8. Git & Organisation BMAD
+## 8. Règles de Coordination Multi-Agents & Concurrence de Sprint
+
+- 🔒 **Verrouillage d'État Obligatoire (`in-progress`) :**
+  - Dès qu'un agent commence à travailler sur un Epic ou une User Story, il **DOIT impérativement** passer son statut à `in-progress` dans `_bmad-output/implementation-artifacts/sprint-status.yaml`.
+- 🛡️ **Règle Anti-Collision Multi-Agents :**
+  - Deux agents ne doivent **JAMAIS** travailler simultanément sur la même Story ou sur le même Epic.
+  - Tout agent prêt à intervenir doit d'abord inspecter `_bmad-output/implementation-artifacts/sprint-status.yaml`. Si un Epic ou une Story est déjà marqué(e) `in-progress`, l'agent doit obligatoirement sélectionner une autre Story ou un autre Epic disponible (au statut `backlog` ou `ready-for-dev`).
+- 🌿 **Isolation Stricte par Branche Git :**
+  - Tout travail d'un agent doit être effectué sur une branche Git dédiée (préfixée obligatoirement par `aistudio/` ou `feat/`, ex. `aistudio/epic-2-vitrine-4-piliers-moteur-ia`).
+  - La branche `main` doit rester protégée et intacte afin de préserver l'historique et permettre une intégration structurée avec validation par Pull Request.
+- ✅ **Finalisation & Libération de Verrou :**
+  - Une fois l'implémentation, les tests et la validation de compilation (`npm run build`) validés, l'agent consigne l'artefact de story dans `_bmad-output/implementation-artifacts/` et bascule le statut vers `done` ou `review` dans `sprint-status.yaml`.
+
+---
+
+## 9. Git & Organisation BMAD
 
 - **Dépôt :** `picsell-vitrine` sur GitHub.
 - **Branche Active :** `main` (synchronisée avec `origin/main`).

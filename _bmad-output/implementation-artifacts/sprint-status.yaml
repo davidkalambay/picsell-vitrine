@@ -41,44 +41,44 @@ development_status:
   # ===================================================================
   # EPIC 2: Vitrine des 4 Piliers & Moteur Central IA (FR4-FR8)
   # ===================================================================
-  epic-2-vitrine-des-4-piliers-moteur-central-ia: in-progress
-  2-1-catalogue-des-4-complications-services: review
-  2-2-couplage-mecanique-visualisation-du-moteur-central-ia: review
-  2-3-navigation-continue-spa-transitions-fluides: review
-  epic-2-retrospective: optional
+  epic-2-vitrine-des-4-piliers-moteur-central-ia: done
+  2-1-catalogue-des-4-complications-services: done
+  2-2-couplage-mecanique-visualisation-du-moteur-central-ia: done
+  2-3-navigation-continue-spa-transitions-fluides: done
+  epic-2-retrospective: done
 
   # ===================================================================
   # EPIC 3: Preuve d'Ingénierie, Manifeste BMAD & Code (FR9-FR12)
   # ===================================================================
-  epic-3-preuve-dingenierie-manifeste-bmad-code: in-progress
-  3-1-manifeste-methodologique-bmad-stack-technique: review
-  3-2-terminaux-dingenierie-code-interactifs: review
-  3-3-mode-fond-transparent-glass-engine: review
+  epic-3-preuve-dingenierie-manifeste-bmad-code: ready-for-dev
+  3-1-manifeste-methodologique-bmad-stack-technique: ready-for-dev
+  3-2-terminaux-dingenierie-code-interactifs: ready-for-dev
+  3-3-mode-fond-transparent-glass-engine: ready-for-dev
   epic-3-retrospective: optional
 
   # ===================================================================
   # EPIC 4: Portfolio Garde-Temps & Télémétrie ROI (FR13-FR15, FR21)
   # ===================================================================
-  epic-4-portfolio-garde-temps-telemetrie-roi: in-progress
-  4-1-vitrine-des-4-etudes-de-cas-garde-temps: review
-  4-2-indicateurs-de-roi-telemetrie-live-counter: review
-  4-3-showcase-video-demo-du-dashboard-roi: review
+  epic-4-portfolio-garde-temps-telemetrie-roi: ready-for-dev
+  4-1-vitrine-des-4-etudes-de-cas-garde-temps: ready-for-dev
+  4-2-indicateurs-de-roi-telemetrie-live-counter: ready-for-dev
+  4-3-showcase-video-demo-du-dashboard-roi: ready-for-dev
   epic-4-retrospective: optional
 
   # ===================================================================
   # EPIC 5: Studio Settings Drawer & Micro-Interactions (FR16-FR20)
   # ===================================================================
-  epic-5-studio-settings-drawer-micro-interactions: in-progress
-  5-1-tiroir-de-reglages-interactif-studio-settings-drawer: review
-  5-2-curseur-cinematique-engrenage-boutons-magnetiques: review
-  5-3-revelation-vectorielle-drawsvg-anneau-radial-25-100: review
+  epic-5-studio-settings-drawer-micro-interactions: ready-for-dev
+  5-1-tiroir-de-reglages-interactif-studio-settings-drawer: ready-for-dev
+  5-2-curseur-cinematique-engrenage-boutons-magnetiques: ready-for-dev
+  5-3-revelation-vectorielle-drawsvg-anneau-radial-25-100: ready-for-dev
   epic-5-retrospective: optional
 
   # ===================================================================
   # EPIC 6: Tunnels de Conversion, AEO & Résilience (FR22-FR28)
   # ===================================================================
-  epic-6-tunnels-de-conversion-aeo-resilience: in-progress
-  6-1-double-tunnel-de-conversion-qualifie: review
-  6-2-structuration-aeo-native-integration-ga4: review
-  6-3-resilience-materielle-accessibilite-wcag-aa: review
+  epic-6-tunnels-de-conversion-aeo-resilience: ready-for-dev
+  6-1-double-tunnel-de-conversion-qualifie: ready-for-dev
+  6-2-structuration-aeo-native-integration-ga4: ready-for-dev
+  6-3-resilience-materielle-accessibilite-wcag-aa: ready-for-dev
   epic-6-retrospective: optional

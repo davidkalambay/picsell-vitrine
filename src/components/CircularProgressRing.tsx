@@ -88,7 +88,7 @@ const CircularProgressRingComponent: React.FC<CircularProgressRingProps> = ({ ac
                 </span>
             </div>
 
-            {/* Readout Status Label */}
+            {/* Readout Status Label & Interactive Stepper */}
             <div className="flex flex-col">
                 <div className="flex items-center gap-2">
                     <span
@@ -99,18 +99,27 @@ const CircularProgressRingComponent: React.FC<CircularProgressRingProps> = ({ ac
                         {current.step} — {current.label}
                     </span>
                 </div>
-                <div className="flex items-center gap-1.5 mt-0.5">
+                <div className="flex items-center gap-1.5 mt-1">
                     {["marketing", "automation", "development", "data"].map((secKey, idx) => {
                         const isReached =
                             activeSection &&
                             ['marketing', 'automation', 'development', 'data'].indexOf(activeSection) >= idx;
+                        const isCurrent = activeSection === secKey;
                         return (
-                            <span
+                            <button
                                 key={secKey}
-                                className={`h-1 rounded-full transition-all duration-500 ${
-                                    isReached
+                                type="button"
+                                onClick={() => {
+                                    const el = document.getElementById(`story-${secKey}`);
+                                    if (el) el.scrollIntoView({ behavior: "smooth" });
+                                }}
+                                aria-label={`Naviguer vers le module ${secKey}`}
+                                className={`h-1.5 rounded-full transition-all duration-300 hover:scale-125 focus:outline-none focus:ring-1 focus:ring-white/40 cursor-pointer ${
+                                    isCurrent
+                                        ? "w-6"
+                                        : isReached
                                         ? "w-4"
-                                        : "w-1.5 bg-white/10"
+                                        : "w-2 bg-white/10"
                                 }`}
                                 style={{
                                     backgroundColor: isReached ? current.color : undefined,

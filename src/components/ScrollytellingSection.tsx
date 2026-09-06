@@ -386,6 +386,28 @@ export const ScrollytellingSection: React.FC = () => {
                             {renderBadge("Acquisition", "var(--pic-orange, #f37021)", "#f37021")}
                         </div>
 
+                        {/* Couplage Moteur IA & ROI Métier Telemetry Grid */}
+                        <div className="my-6 grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                            <div className="p-3.5 rounded-xl bg-black/40 border border-white/10 backdrop-blur-md">
+                                <p className="text-[10px] font-mono tracking-wider uppercase text-[var(--pic-orange,#f37021)] mb-1 flex items-center gap-1.5 font-bold">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-[var(--pic-orange,#f37021)]" />
+                                    ROI Métier & Gain Opérationnel
+                                </p>
+                                <p className="text-xs font-semibold text-white">
+                                    +340% ROAS moyen // Coût d&apos;acquisition /2 // Référencement AEO prédictif
+                                </p>
+                            </div>
+                            <div className="p-3.5 rounded-xl bg-black/40 border border-white/10 backdrop-blur-md">
+                                <p className="text-[10px] font-mono tracking-wider uppercase text-cyan-400 mb-1 flex items-center gap-1.5 font-bold">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+                                    Couplage Moteur Central IA
+                                </p>
+                                <p className="text-xs font-semibold text-slate-200">
+                                    Optimisation sémantique continue pour citation prioritaire dans ChatGPT, Perplexity et Gemini.
+                                </p>
+                            </div>
+                        </div>
+
                         {/* Engineering Code Terminal */}
                         <EngineeringTerminal
                             filename="pixel_attribution.ts"
@@ -456,6 +478,28 @@ export const ScrollytellingSection: React.FC = () => {
                             {renderBadge("Workflows", "var(--pic-turquoise, #3dbcc7)", "#3dbcc7")}
                             {renderBadge("Intégrations", "var(--pic-turquoise, #3dbcc7)", "#3dbcc7")}
                             {renderBadge("Gain de temps", "var(--pic-turquoise, #3dbcc7)", "#3dbcc7")}
+                        </div>
+
+                        {/* Couplage Moteur IA & ROI Métier Telemetry Grid */}
+                        <div className="my-6 grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                            <div className="p-3.5 rounded-xl bg-black/40 border border-white/10 backdrop-blur-md">
+                                <p className="text-[10px] font-mono tracking-wider uppercase text-[var(--pic-turquoise,#3dbcc7)] mb-1 flex items-center gap-1.5 font-bold">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-[var(--pic-turquoise,#3dbcc7)]" />
+                                    ROI Métier & Gain Opérationnel
+                                </p>
+                                <p className="text-xs font-semibold text-white">
+                                    -85% de temps de traitement // 0 ressaisie manuelle // 15h libérées/semaine
+                                </p>
+                            </div>
+                            <div className="p-3.5 rounded-xl bg-black/40 border border-white/10 backdrop-blur-md">
+                                <p className="text-[10px] font-mono tracking-wider uppercase text-cyan-400 mb-1 flex items-center gap-1.5 font-bold">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+                                    Couplage Moteur Central IA
+                                </p>
+                                <p className="text-xs font-semibold text-slate-200">
+                                    Agents autonomes multi-étapes orchestrant le tri de pièces jointes et la qualification de leads.
+                                </p>
+                            </div>
                         </div>
 
                         {/* Engineering Code Terminal */}
@@ -529,6 +573,28 @@ export const ScrollytellingSection: React.FC = () => {
                             {renderBadge("Scalabilité", "var(--pic-blue, #0089d0)", "#0089d0")}
                         </div>
 
+                        {/* Couplage Moteur IA & ROI Métier Telemetry Grid */}
+                        <div className="my-6 grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                            <div className="p-3.5 rounded-xl bg-black/40 border border-white/10 backdrop-blur-md">
+                                <p className="text-[10px] font-mono tracking-wider uppercase text-[var(--pic-blue,#0089d0)] mb-1 flex items-center gap-1.5 font-bold">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-[var(--pic-blue,#0089d0)]" />
+                                    ROI Métier & Gain Opérationnel
+                                </p>
+                                <p className="text-xs font-semibold text-white">
+                                    LCP &lt; 1.2s // 99.9% Uptime // Scalabilité Enterprise 100k+ req/s
+                                </p>
+                            </div>
+                            <div className="p-3.5 rounded-xl bg-black/40 border border-white/10 backdrop-blur-md">
+                                <p className="text-[10px] font-mono tracking-wider uppercase text-cyan-400 mb-1 flex items-center gap-1.5 font-bold">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+                                    Couplage Moteur Central IA
+                                </p>
+                                <p className="text-xs font-semibold text-slate-200">
+                                    Supervision BMAD de l&apos;IA générative pour produire du code TypeScript strict sans dette technique.
+                                </p>
+                            </div>
+                        </div>
+
                         {/* Engineering Code Terminal */}
                         <EngineeringTerminal
                             filename="enterprise_app.tsx"
@@ -598,6 +664,28 @@ export const ScrollytellingSection: React.FC = () => {
                             {renderBadge("Dashboards", "var(--pic-gold, #fdb913)", "#fdb913")}
                             {renderBadge("Reporting", "var(--pic-gold, #fdb913)", "#fdb913")}
                             {renderBadge("Prédiction", "var(--pic-gold, #fdb913)", "#fdb913")}
+                        </div>
+
+                        {/* Couplage Moteur IA & ROI Métier Telemetry Grid */}
+                        <div className="my-6 grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                            <div className="p-3.5 rounded-xl bg-black/40 border border-white/10 backdrop-blur-md">
+                                <p className="text-[10px] font-mono tracking-wider uppercase text-[var(--pic-gold,#fdb913)] mb-1 flex items-center gap-1.5 font-bold">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-[var(--pic-gold,#fdb913)]" />
+                                    ROI Métier & Gain Opérationnel
+                                </p>
+                                <p className="text-xs font-semibold text-white">
+                                    Visibilité trésorerie temps réel // Pilotage prédictif BFR // 100% data-driven
+                                </p>
+                            </div>
+                            <div className="p-3.5 rounded-xl bg-black/40 border border-white/10 backdrop-blur-md">
+                                <p className="text-[10px] font-mono tracking-wider uppercase text-cyan-400 mb-1 flex items-center gap-1.5 font-bold">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+                                    Couplage Moteur Central IA
+                                </p>
+                                <p className="text-xs font-semibold text-slate-200">
+                                    Modèles de régression et détection précoce des anomalies financières sur vos flux de données.
+                                </p>
+                            </div>
                         </div>
 
                         {/* Live Telemetry Counter HUD (Amelia's Idea 08) */}

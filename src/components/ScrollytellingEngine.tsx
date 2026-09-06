@@ -234,24 +234,44 @@ const ScrollytellingEngineComponent: React.FC<ScrollytellingEngineProps> = ({ ac
                 </defs>
 
                 <g id="cluster" style={{ transformOrigin: `${CENTRAL_AI_GEAR.center.x}px ${CENTRAL_AI_GEAR.center.y}px` }}>
-                    {/* DrawSVG Blueprint Axis Lines connecting Hub to Satellites */}
+                    {/* DrawSVG Blueprint Axis Lines connecting Hub to Satellites with dynamic AI Coupling */}
                     <g className="drawsvg-axes-group pointer-events-none">
-                        {SATELLITE_GEAR_LIST.map((gear) => (
-                            <line
-                                key={gear.id}
-                                x1={gear.axisLine.x1}
-                                y1={gear.axisLine.y1}
-                                x2={gear.axisLine.x2}
-                                y2={gear.axisLine.y2}
-                                className="drawsvg-axis"
-                                pathLength="100"
-                                strokeDasharray="100"
-                                stroke={gear.color}
-                                strokeWidth="1.5"
-                                strokeDashoffset="0"
-                                strokeOpacity="0.4"
-                            />
-                        ))}
+                        {SATELLITE_GEAR_LIST.map((gear) => {
+                            const isCoupled = activeSection === gear.id;
+                            return (
+                                <g key={gear.id}>
+                                    <line
+                                        x1={gear.axisLine.x1}
+                                        y1={gear.axisLine.y1}
+                                        x2={gear.axisLine.x2}
+                                        y2={gear.axisLine.y2}
+                                        className="drawsvg-axis"
+                                        pathLength="100"
+                                        strokeDasharray={isCoupled ? "4 2" : "100"}
+                                        stroke={gear.color}
+                                        strokeWidth={isCoupled ? "2.5" : "1.2"}
+                                        strokeDashoffset="0"
+                                        strokeOpacity={isCoupled ? "0.95" : "0.25"}
+                                        style={{
+                                            filter: isCoupled ? `drop-shadow(0 0 10px ${gear.color})` : "none",
+                                            transition: "all 0.5s ease-out"
+                                        }}
+                                    />
+                                    {isCoupled && (
+                                        <circle
+                                            cx={(gear.axisLine.x1 + gear.axisLine.x2) / 2}
+                                            cy={(gear.axisLine.y1 + gear.axisLine.y2) / 2}
+                                            r="4"
+                                            fill={gear.color}
+                                            className="animate-ping"
+                                            style={{
+                                                filter: `drop-shadow(0 0 8px ${gear.color})`
+                                            }}
+                                        />
+                                    )}
+                                </g>
+                            );
+                        })}
                     </g>
 
                     {/* AI CORE ENGINE (Central Master Gear) */}
