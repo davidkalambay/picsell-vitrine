@@ -53,10 +53,10 @@ development_status:
   # Agent: Claude Haiku 4.5
   # Status: IN-PROGRESS (Started: 2026-09-06)
   # ===================================================================
-  epic-3-preuve-dingenierie-manifeste-bmad-code: in-progress
+  epic-3-preuve-dingenierie-manifeste-bmad-code: review
   3-1-manifeste-methodologique-bmad-stack-technique: review
   3-2-terminaux-dingenierie-code-interactifs: review
-  3-3-mode-fond-transparent-glass-engine: in-progress
+  3-3-mode-fond-transparent-glass-engine: review
   epic-3-retrospective: optional
 
   # ===================================================================
