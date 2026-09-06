@@ -1,4 +1,4 @@
-# generated: 2026-01-28
+# generated: 2026-09-06
 # project: picsell.agency
 # project_key: PA
 # tracking_system: file-system
@@ -8,63 +8,77 @@
 # ==================
 # Epic Status:
 #   - backlog: Epic not yet started
-#   - in-progress: Epic actively being worked on
-#   - done: All stories in epic completed
-#
-# Epic Status Transitions:
-#   - backlog → in-progress: Automatically when first story is created (via create-story)
-#   - in-progress → done: Manually when all stories reach 'done' status
+#   - in-progress: Epic actively being worked on / partially implemented
+#   - done: All stories in epic completed and verified
 #
 # Story Status:
-#   - backlog: Story only exists in epic file
-#   - ready-for-dev: Story file created in stories folder
-#   - in-progress: Developer actively working on implementation
-#   - review: Ready for code review (via Dev's code-review workflow)
-#   - done: Story completed
+#   - backlog: Story defined in epics.md, waiting for sprint activation
+#   - ready-for-dev: Story file prepared with acceptance criteria
+#   - in-progress: Active development
+#   - review: Implemented, ready for code-review and testing verification
+#   - done: Implemented, reviewed, tests passing 100%
 #
 # Retrospective Status:
 #   - optional: Can be completed but not required
-#   - done: Retrospective has been completed
-#
-# WORKFLOW NOTES:
-# ===============
-# - Epic transitions to 'in-progress' automatically when first story is created
-# - Stories can be worked in parallel if team capacity allows
-# - SM typically creates next story after previous one is 'done' to incorporate learnings
-# - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
+#   - done: Retrospective conducted
 
-generated: 2026-01-28
+generated: 2026-09-06
 project: picsell.agency
 project_key: PA
 tracking_system: file-system
 story_location: _bmad-output/implementation-artifacts
 
 development_status:
-  epic-1-fondations-vitrine-luxury-tech: in-progress
-  1-1-initialization-du-mecanisme-nextjs-stack: review
-  1-2-le-grand-mecanisme-animations-dengrenages: review
-  1-3-configuration-aeo-analytics-ga4: backlog
+  # ===================================================================
+  # EPIC 1: Moteur Vectoriel Horloger & Immersion Cinématique (FR1-FR3)
+  # ===================================================================
+  epic-1-moteur-vectoriel-horloger-immersion-cinematique: in-progress
+  1-1-moteur-vectoriel-svg-synchrone-gearengine: review
+  1-2-pipeline-scrollytelling-lenis-gsap-scrolltrigger: review
+  1-3-univers-visuel-midnight-luxury-grille-blueprint: review
   epic-1-retrospective: optional
 
-  epic-2-navigateur-interactif-des-3-piliers: backlog
-  2-1-navigation-spa-midnight-flow: backlog
-  2-2-catalogue-des-complications-services: backlog
-  2-3-catalogue-dynamique-mdx-content: backlog
+  # ===================================================================
+  # EPIC 2: Vitrine des 4 Piliers & Moteur Central IA (FR4-FR8)
+  # ===================================================================
+  epic-2-vitrine-des-4-piliers-moteur-central-ia: in-progress
+  2-1-catalogue-des-4-complications-services: review
+  2-2-couplage-mecanique-visualisation-du-moteur-central-ia: review
+  2-3-navigation-continue-spa-transitions-fluides: review
   epic-2-retrospective: optional
 
-  epic-3-transparence-bmad-effet-glass-engine: backlog
-  3-1-manifeste-bmad-stack-technique: backlog
-  3-2-interaction-glass-engine-vision-transparente: backlog
+  # ===================================================================
+  # EPIC 3: Preuve d'Ingénierie, Manifeste BMAD & Code (FR9-FR12)
+  # ===================================================================
+  epic-3-preuve-dingenierie-manifeste-bmad-code: in-progress
+  3-1-manifeste-methodologique-bmad-stack-technique: review
+  3-2-terminaux-dingenierie-code-interactifs: review
+  3-3-mode-fond-transparent-glass-engine: review
   epic-3-retrospective: optional
 
-  epic-4-portfolio-garde-temps-preuve-roi: backlog
-  4-1-presentation-des-garde-temps-portfolio: backlog
-  4-2-indicateurs-de-performance-roi-metrics: backlog
-  4-3-showcase-dashboard-roi-video-demo: backlog
+  # ===================================================================
+  # EPIC 4: Portfolio Garde-Temps & Télémétrie ROI (FR13-FR15, FR21)
+  # ===================================================================
+  epic-4-portfolio-garde-temps-telemetrie-roi: in-progress
+  4-1-vitrine-des-4-etudes-de-cas-garde-temps: review
+  4-2-indicateurs-de-roi-telemetrie-live-counter: review
+  4-3-showcase-video-demo-du-dashboard-roi: review
   epic-4-retrospective: optional
 
-  epic-5-moteur-conversion-dual-accessibilite: backlog
-  5-1-le-tunnel-precision-upwork-james: backlog
-  5-2-le-tunnel-proximite-direct-jean-luc: backlog
-  5-3-rigueur-inclusive-wcag-aa-accessibility: backlog
+  # ===================================================================
+  # EPIC 5: Studio Settings Drawer & Micro-Interactions (FR16-FR20)
+  # ===================================================================
+  epic-5-studio-settings-drawer-micro-interactions: in-progress
+  5-1-tiroir-de-reglages-interactif-studio-settings-drawer: review
+  5-2-curseur-cinematique-engrenage-boutons-magnetiques: review
+  5-3-revelation-vectorielle-drawsvg-anneau-radial-25-100: review
   epic-5-retrospective: optional
+
+  # ===================================================================
+  # EPIC 6: Tunnels de Conversion, AEO & Résilience (FR22-FR28)
+  # ===================================================================
+  epic-6-tunnels-de-conversion-aeo-resilience: in-progress
+  6-1-double-tunnel-de-conversion-qualifie: review
+  6-2-structuration-aeo-native-integration-ga4: review
+  6-3-resilience-materielle-accessibilite-wcag-aa: review
+  epic-6-retrospective: optional
