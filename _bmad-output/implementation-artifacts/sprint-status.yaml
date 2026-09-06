@@ -51,12 +51,12 @@ development_status:
   # ===================================================================
   # EPIC 3: Preuve d'Ingénierie, Manifeste BMAD & Code (FR9-FR12)
   # Agent: Claude Haiku 4.5
-  # Status: IN-PROGRESS (Started: 2026-09-06)
+  # Status: DONE (Completed: 2026-09-06)
   # ===================================================================
-  epic-3-preuve-dingenierie-manifeste-bmad-code: review
-  3-1-manifeste-methodologique-bmad-stack-technique: review
-  3-2-terminaux-dingenierie-code-interactifs: review
-  3-3-mode-fond-transparent-glass-engine: review
+  epic-3-preuve-dingenierie-manifeste-bmad-code: done
+  3-1-manifeste-methodologique-bmad-stack-technique: done
+  3-2-terminaux-dingenierie-code-interactifs: done
+  3-3-mode-fond-transparent-glass-engine: done
   epic-3-retrospective: optional
 
   # ===================================================================
@@ -72,9 +72,11 @@ development_status:
 
   # ===================================================================
   # EPIC 5: Studio Settings Drawer & Micro-Interactions (FR16-FR20)
+  # Agent: Claude Haiku 4.5
+  # Status: IN-PROGRESS (Started: 2026-09-06)
   # ===================================================================
-  epic-5-studio-settings-drawer-micro-interactions: ready-for-dev
-  5-1-tiroir-de-reglages-interactif-studio-settings-drawer: ready-for-dev
+  epic-5-studio-settings-drawer-micro-interactions: in-progress
+  5-1-tiroir-de-reglages-interactif-studio-settings-drawer: in-progress
   5-2-curseur-cinematique-engrenage-boutons-magnetiques: ready-for-dev
   5-3-revelation-vectorielle-drawsvg-anneau-radial-25-100: ready-for-dev
   epic-5-retrospective: optional
