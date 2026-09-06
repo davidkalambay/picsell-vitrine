@@ -8,31 +8,31 @@ export const useMobileGearsParallax = () => {
     if (!isMobile) return;
 
     scrollytellingRef.current = document.getElementById("scrollytelling-section");
-    const heroGearContainer = document.querySelector(".hero-gear-watermark")?.parentElement;
+    const gearEngineSvg = document.getElementById("scrollytelling-gear-engine");
+    const gearEngineContainer = gearEngineSvg?.parentElement;
 
-    if (!heroGearContainer || !scrollytellingRef.current) return;
+    if (!gearEngineContainer || !scrollytellingRef.current) return;
 
-    // Make gears sticky on mobile when scrolling into scrollytelling section
+    // Make central gear engine with 4 colored satellites sticky on mobile when scrolling into scrollytelling section
     const handleScroll = () => {
-      if (!scrollytellingRef.current || !heroGearContainer) return;
+      if (!scrollytellingRef.current || !gearEngineContainer) return;
 
       const scrollyRect = scrollytellingRef.current.getBoundingClientRect();
-      const heroRect = heroGearContainer.getBoundingClientRect();
 
       const scrollyInView = scrollyRect.top < window.innerHeight * 0.5;
 
       if (scrollyInView) {
-        heroGearContainer.style.position = "fixed";
-        heroGearContainer.style.top = "50%";
-        heroGearContainer.style.left = "50%";
-        heroGearContainer.style.transform = "translate(-50%, -50%)";
-        heroGearContainer.style.pointerEvents = "none";
-        heroGearContainer.style.zIndex = "40";
+        gearEngineContainer.style.position = "fixed";
+        gearEngineContainer.style.top = "50%";
+        gearEngineContainer.style.left = "50%";
+        gearEngineContainer.style.transform = "translate(-50%, -50%)";
+        gearEngineContainer.style.pointerEvents = "none";
+        gearEngineContainer.style.zIndex = "40";
       } else {
-        heroGearContainer.style.position = "relative";
-        heroGearContainer.style.top = "auto";
-        heroGearContainer.style.left = "auto";
-        heroGearContainer.style.transform = "none";
+        gearEngineContainer.style.position = "relative";
+        gearEngineContainer.style.top = "auto";
+        gearEngineContainer.style.left = "auto";
+        gearEngineContainer.style.transform = "none";
       }
     };
 

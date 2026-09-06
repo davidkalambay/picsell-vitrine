@@ -217,6 +217,7 @@ const ScrollytellingEngineComponent: React.FC<ScrollytellingEngineProps> = ({ ac
 
             <svg
                 ref={container}
+                id="scrollytelling-gear-engine"
                 viewBox={viewBox}
                 width="700"
                 height="600"
