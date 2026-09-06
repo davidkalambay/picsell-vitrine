@@ -6,6 +6,8 @@ import { SettingsDrawer } from "@/components/SettingsDrawer";
 import { ContextualFloatingCTA } from "@/components/ContextualFloatingCTA";
 import { CustomGearCursor } from "@/components/interactions/CustomGearCursor";
 import { ScrollytellingSection } from "@/components/ScrollytellingSection";
+import { GardeTempsPortfolio } from "@/components/portfolio/GardeTempsPortfolio";
+import { RoiDashboardShowcase } from "@/components/portfolio/RoiDashboardShowcase";
 import { SplitTextReveal } from "@/components/animations/SplitTextReveal";
 import { MagneticButton } from "@/components/interactions/MagneticButton";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap-config";
@@ -264,8 +266,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Scrollytelling Section (Immersive Midnight Mode) */}
+      {/* Scrollytelling Section (Immersive Midnight Mode - 4 Pillars) */}
       <ScrollytellingSection />
+
+      {/* Portfolio Garde-Temps Section (Epic 4: 4 Case Studies & Complications) */}
+      <GardeTempsPortfolio />
+
+      {/* ROI Telemetry Dashboard Showcase (Epic 4: Live Simulator, Cockpit & Video Demo) */}
+      <RoiDashboardShowcase />
 
       {/* Closing Section (Deep Obsidian & Golden Accents) */}
       <section className="bg-gradient-to-b from-[#06070a] to-[#040406] text-[#f4f4f6] py-32 px-6 text-center border-t border-white/5 relative overflow-hidden">

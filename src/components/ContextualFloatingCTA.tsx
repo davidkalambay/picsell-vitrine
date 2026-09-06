@@ -31,6 +31,8 @@ const ContextualFloatingCTAComponent: React.FC = () => {
             const automationEl = document.getElementById("story-automation");
             const developmentEl = document.getElementById("story-development");
             const dataEl = document.getElementById("story-data");
+            const portfolioEl = document.getElementById("portfolio-garde-temps");
+            const roiEl = document.getElementById("roi-dashboard-showcase");
             const footerEl = document.getElementById("footer-contact");
 
             const triggerLine = window.innerHeight * 0.70;
@@ -42,6 +44,20 @@ const ContextualFloatingCTAComponent: React.FC = () => {
                     sublabel: "contact@picsell.agency",
                     color: "#fdb913",
                     badge: "CONTACT",
+                });
+            } else if (roiEl && roiEl.getBoundingClientRect().top <= triggerLine && roiEl.getBoundingClientRect().bottom >= bottomLine) {
+                setCurrentCta({
+                    title: "Calculer mon ROI",
+                    sublabel: "Simulateur & Télémétrie // ROI",
+                    color: "#3dbcc7",
+                    badge: "ROI",
+                });
+            } else if (portfolioEl && portfolioEl.getBoundingClientRect().top <= triggerLine && portfolioEl.getBoundingClientRect().bottom >= bottomLine) {
+                setCurrentCta({
+                    title: "Études Garde-Temps",
+                    sublabel: "4 Cas d'Exécution Réels // RDC",
+                    color: "#fdb913",
+                    badge: "CAS",
                 });
             } else if (dataEl && dataEl.getBoundingClientRect().top <= triggerLine && dataEl.getBoundingClientRect().bottom >= bottomLine) {
                 setCurrentCta({
