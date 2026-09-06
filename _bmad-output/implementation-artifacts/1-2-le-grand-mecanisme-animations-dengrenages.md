@@ -1,6 +1,6 @@
 # Story 1.2: Le Grand Mécanisme (Animations d'engrenages)
 
-Status: review
+Status: done
 
 <!-- Note: Validation is optional. Run validate-create-story for quality check before dev-story. -->
 
@@ -13,19 +13,19 @@ so that **I immediately feel the "Luxury Tech" precision and mastery of the agen
 ## Acceptance Criteria
 
 1. **Precision Mechanical Animation:**
-    - [ ] SVG gears rotate with a speed proportional to the scroll velocity (smooth scrubbing).
-    - [ ] Animation maintains a consistent **60 FPS** during scrolling.
-    - [ ] GSAP **ScrollTrigger** is used for precise synchronization (No Lottie for these gears).
-    - [ ] Rotation directions are technically logical (e.g., if Gear A turns clockwise, the interlocking Gear B must turn counter-clockwise).
+    - [x] SVG gears rotate with a speed proportional to the scroll velocity (smooth scrubbing).
+    - [x] Animation maintains a consistent **60 FPS** during scrolling.
+    - [x] GSAP **ScrollTrigger** is used for precise synchronization (No Lottie for these gears).
+    - [x] Rotation directions are technically logical (e.g., if Gear A turns clockwise, the interlocking Gear B must turn counter-clockwise).
 2. **Technical Isolation:**
-    - [ ] Animation logic is strictly isolated in `src/components/animations/`.
-    - [ ] The gear component is reusable and respects the `"use client"` directive.
+    - [x] Animation logic is strictly isolated in `src/components/animations/`.
+    - [x] The gear component is reusable and respects the `"use client"` directive.
 3. **Luxury Tech Aesthetics:**
-    - [ ] Gear colors match the "Midnight Luxury" palette: `Polished Steel` (#E5E4E2) or `Brushed Gold` (#D4AF37).
-    - [ ] Minimalist visual style (stroke-based or clean silhouettes) avoiding "cheap AI" or "plastic" looks.
+    - [x] Gear colors match the "Midnight Luxury" palette: `Polished Steel` (#E5E4E2) or `Brushed Gold` (#D4AF37).
+    - [x] Minimalist visual style (stroke-based or clean silhouettes) avoiding "cheap AI" or "plastic" looks.
 4. **Performance & Integration:**
-    - [ ] Uses the `useGSAP` hook for safe lifecycle management and cleanup.
-    - [ ] Does not block the main thread; optimized SVG paths.
+    - [x] Uses the `useGSAP` hook for safe lifecycle management and cleanup.
+    - [x] Does not block the main thread; optimized SVG paths.
 
 ## Tasks / Subtasks
 

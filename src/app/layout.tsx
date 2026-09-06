@@ -37,8 +37,12 @@ const quicksand = Quicksand({
 });
 
 export const metadata: Metadata = {
-  title: "Picsell Agency — Precision in progress",
-  description: "Agence digitale — Kinshasa, RDC",
+  title: "Picsell Agency",
+  description: "Picsell Agency — Precision in progress. Agence digitale à Kinshasa, RDC avec scrollytelling et interface dynamique.",
+  openGraph: {
+    title: "Picsell Agency",
+    description: "Picsell Agency — Precision in progress. Agence digitale à Kinshasa, RDC avec scrollytelling et interface dynamique.",
+  },
 };
 
 export default function RootLayout({
