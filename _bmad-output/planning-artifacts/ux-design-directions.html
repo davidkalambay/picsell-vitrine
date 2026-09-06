@@ -1,127 +1,415 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Picsell Agency - Design Directions Showcase</title>
+    <title>Picsell Agency — UX Design Directions & Architecture Showcase</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        obsidian: '#050505',
+                        engine: '#0A0A0A',
+                        pillarWeb: '#00F5FF',
+                        pillarMarketing: '#FF8A00',
+                        pillarAuto: '#00FF66',
+                        pillarData: '#9D00FF',
+                        steel: '#E5E4E2'
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        body { background-color: #0A0A0A; color: #E5E4E2; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        body { background-color: #050505; color: #E5E4E2; font-family: 'Inter', sans-serif; overflow-x: hidden; }
         .serif { font-family: 'Playfair Display', serif; }
         .mono { font-family: 'Roboto Mono', monospace; }
-        .gold-glow { box-shadow: 0 0 20px rgba(212, 175, 55, 0.2); }
-        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .direction-card { transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; }
-        .direction-card:hover { transform: translateY(-10px); border-color: #D4AF37; }
-        .gear-spinning { animation: spin 20s linear infinite; }
-        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .glass { background: rgba(255, 255, 255, 0.025); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .glass-chosen { background: linear-gradient(135deg, rgba(0, 245, 255, 0.03) 0%, rgba(157, 0, 255, 0.03) 100%); border: 1px solid rgba(0, 245, 255, 0.2); }
+        .direction-card { transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .direction-card:hover { transform: translateY(-6px); border-color: rgba(255, 255, 255, 0.25); }
+        
+        /* Gear Rotations */
+        @keyframes rotate-cw { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes rotate-ccw { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
+        
+        .gear-center { animation: rotate-cw var(--speed-center, 12s) linear infinite; transform-origin: center; }
+        .gear-sat-web { animation: rotate-ccw var(--speed-web, 8s) linear infinite; transform-origin: center; }
+        .gear-sat-mkt { animation: rotate-ccw var(--speed-mkt, 6.4s) linear infinite; transform-origin: center; }
+        .gear-sat-auto { animation: rotate-ccw var(--speed-auto, 9.6s) linear infinite; transform-origin: center; }
+        .gear-sat-data { animation: rotate-ccw var(--speed-data, 7.2s) linear infinite; transform-origin: center; }
+        
+        .pulse-glow { animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 0.2; } 50% { opacity: 0.5; } }
     </style>
 </head>
-<body class="p-8 lg:p-16">
-    <header class="mb-16 border-b border-white/10 pb-8">
-        <h1 class="serif text-5xl mb-4 text-[#D4AF37]">Design Directions Showcase</h1>
-        <p class="text-xl text-gray-400 max-w-3xl">Explorez 6 directions visuelles pour la "Maison de Haute Horlogerie Digitale". Chaque concept explore un équilibre différent entre luxe, technique et innovation.</p>
+<body class="p-6 md:p-12 lg:p-16 max-w-7xl mx-auto selection:bg-[#00F5FF]/20 selection:text-[#00F5FF]">
+
+    <!-- En-tête -->
+    <header class="mb-14 border-b border-white/10 pb-8">
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs mono tracking-wider bg-white/5 border border-white/10 text-gray-300">
+                <span class="w-2 h-2 rounded-full bg-[#00FF66] animate-ping"></span>
+                BMAD SPECIFICATION • HARMONISÉ SEPTEMBRE 2026
+            </div>
+            <div class="flex items-center gap-2 text-xs mono text-gray-500">
+                <span>Next.js 16</span> • <span>React 19</span> • <span>GSAP v3.14</span> • <span>Lenis v1.3</span>
+            </div>
+        </div>
+        <h1 class="serif text-4xl lg:text-6xl font-bold tracking-tight text-white mb-4">
+            Design Directions & <span class="bg-clip-text text-transparent bg-gradient-to-r from-[#00F5FF] via-[#FF8A00] to-[#9D00FF]">Architecture UX</span>
+        </h1>
+        <p class="text-lg text-gray-400 max-w-3xl leading-relaxed">
+            Spécification visuelle et interactive de la <strong class="text-white">Maison de Haute Horlogerie Digitale</strong>. Modélisation de la cinématique des <strong class="text-[#00F5FF]">4 Piliers Satellites</strong> propulsés par le <strong class="text-white">Moteur IA Central</strong>.
+        </p>
     </header>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Direction 1: The Grand Mechanism -->
-        <div class="direction-card glass p-6 rounded-lg relative overflow-hidden group">
-            <div class="absolute -right-8 -top-8 opacity-10 group-hover:opacity-30 transition-opacity">
-                <svg width="200" height="200" viewBox="0 0 100 100" class="gear-spinning fill-white">
-                    <path d="M50 35c-8.3 0-15 6.7-15 15s6.7 15 15 15 15-6.7 15-15-6.7-15-15-15zm0 25c-5.5 0-10-4.5-10-10s4.5-10 10-10 10 4.5 10 10-4.5 10-10 10zM92.5 45H85c-.6-3.8-1.8-7.3-3.6-10.6l5.3-5.3c.4-.4.4-1.1 0-1.5l-5.7-5.7c-.4-.4-1.1-.4-1.5 0l-5.3 5.3c-3-1.8-6.4-3-10.1-3.6V12.5c0-.6-.4-1.1-1-1.1h-8c-.6 0-1.1.4-1.1 1.1V16c-3.8.6-7.3 1.8-10.6 3.6l-5.3-5.3c-.4-.4-1.1-.4-1.5 0l-5.7 5.7c-.4.4-.4 1.1 0 1.5l5.3 5.3c-1.8 3.3-3 6.8-3.6 10.6H17.5c-.6 0-1.1.4-1.1 1v8c0 .6.4 1.1 1.1 1.1H25c.6 3.8 1.8 7.3 3.6 10.6l-5.3 5.3c-.4.4-.4 1.1 0 1.5l5.7 5.7c.4.4 1.1.4 1.5 0l5.3-5.3c3.3 1.8 6.8 3 10.6 3.6v8.5c0 .6.4 1.1 1.1 1.1h8c.6 0 1-.4 1.1-1.1V84c3.8-.6 7.3-1.8 10.6-3.6l5.3 5.3c.4.4 1.1.4 1.5 0l5.7-5.7c.4-.4.4-1.1 0-1.5l-5.3-5.3c1.8-3.3 3-6.8 3.6-10.6h8.5c.6 0 1.1-.4 1.1-1.1v-8c.1-.6-.4-1.1-1-1.1z"/>
-                </svg>
-            </div>
-            <h3 class="serif text-2xl mb-2 text-[#D4AF37]">01. The Grand Mechanism</h3>
-            <p class="text-gray-400 mb-4">Focus sur le scroll-bound pur. Le site est un immense mouvement horloger SVG qui s'anime au fil de la lecture.</p>
-            <ul class="text-xs mono space-y-1 opacity-60">
-                <li>+ Immersion totale</li>
-                <li>+ Preuve technique immédiate</li>
-                <li>- Risque de surcharge CPU</li>
-            </ul>
-        </div>
-
-        <!-- Direction 2: Glass-Engine Pro -->
-        <div class="direction-card glass p-6 rounded-lg group">
-            <div class="h-32 mb-4 rounded-md border border-white/20 bg-gradient-to-br from-white/5 to-white/0 flex items-center justify-center overflow-hidden">
-                <div class="w-24 h-24 glass rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <span class="mono text-[8px] text-orange-400">DEBUG_MODE</span>
+    <!-- DIRECTION FINALE ADOPTÉE (CHOSEN DIRECTION HERO) -->
+    <section class="mb-16">
+        <div class="glass-chosen rounded-2xl p-8 lg:p-12 relative overflow-hidden shadow-2xl">
+            <!-- Badges & Statut -->
+            <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
+                <div class="flex items-center gap-3">
+                    <span class="px-3 py-1 rounded text-xs font-bold tracking-wider uppercase bg-[#00F5FF]/10 text-[#00F5FF] border border-[#00F5FF]/30">
+                        Direction Validée & Implémentée
+                    </span>
+                    <span class="mono text-xs text-gray-400">Synthèse : Directions 04 + 01 + 02</span>
+                </div>
+                <div class="flex items-center gap-2 mono text-xs text-gray-400">
+                    <span>Source : <code class="text-gray-300">src/config/gears.config.ts</code></span>
                 </div>
             </div>
-            <h3 class="serif text-2xl mb-2 text-white">02. Glass-Engine Pro</h3>
-            <p class="text-gray-400 mb-4">Design type "Schéma Technique". Fond transparent révélant des lignes de code et des flux d'agents IA en permanence.</p>
-            <ul class="text-xs mono space-y-1 opacity-60">
-                <li>+ Transparence BMAD</li>
-                <li>+ Look Geek-Luxury</li>
-                <li>- Lisibilité complexe si non maîtrisé</li>
-            </ul>
-        </div>
 
-        <!-- Direction 3: Midnight Minimal -->
-        <div class="direction-card glass p-6 rounded-lg">
-            <div class="flex flex-col space-y-2 mb-6">
-                <div class="h-1 w-full bg-white/10"></div>
-                <div class="h-1 w-2/3 bg-white/10"></div>
-                <div class="h-1 w-1/2 bg-[#D4AF37]"></div>
-            </div>
-            <h3 class="serif text-2xl mb-2">03. Midnight Minimal</h3>
-            <p class="text-gray-400 mb-4">Luxe par le vide. Typographie massive, noir profond, et une seule animation d'engrenage solitaire et parfaite.</p>
-            <ul class="text-xs mono space-y-1 opacity-60">
-                <li>+ Très haute gamme (Premium)</li>
-                <li>+ Focus sur le message</li>
-                <li>- Peut paraître trop simple sans finition</li>
-            </ul>
-        </div>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                <!-- Texte & Explications -->
+                <div class="lg:col-span-7 space-y-6">
+                    <h2 class="serif text-3xl lg:text-5xl text-white font-bold">
+                        Mechanical Swiss Mastery
+                    </h2>
+                    <p class="text-gray-300 leading-relaxed text-base">
+                        La fusion parfaite entre la <strong class="text-white">Rigueur de la Grille Suisse</strong> (crédibilité technique pour les clients grands comptes comme James), le <strong class="text-white">Grand Mécanisme Horloger</strong> (5 engrenages interconnectés au scroll) et la <strong class="text-white">Transparence Glass-Engine</strong> (terminaux de code réels et réglages studio en direct).
+                    </p>
 
-        <!-- Direction 4: Swiss Grid System -->
-        <div class="direction-card glass p-6 rounded-lg border-l-4 border-[#E5E4E2]">
-            <div class="grid grid-cols-4 gap-1 mb-4 h-24 opacity-20">
-                <div class="border border-white/50"></div><div class="border border-white/50"></div><div class="border border-white/50"></div><div class="border border-white/50"></div>
-            </div>
-            <h3 class="serif text-2xl mb-2">04. Swiss Precision</h3>
-            <p class="text-gray-400 mb-4">Structure ultra-rigoureuse. Annotations techniques sur les marges, mesures de performance live affichées en permanence.</p>
-            <ul class="text-xs mono space-y-1 opacity-60">
-                <li>+ Crédibilité technique infinie</li>
-                <li>+ Maîtrise apparente</li>
-                <li>- Sensation de "froid" si trop rigide</li>
-            </ul>
-        </div>
+                    <!-- Les 4 Piliers Satellites -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+                        <div class="p-3 rounded-lg border border-[#00F5FF]/20 bg-[#00F5FF]/5">
+                            <div class="text-[10px] mono text-[#00F5FF] font-semibold">PILIER 01</div>
+                            <div class="text-sm font-semibold text-white mt-1">Dév Web & Mobile</div>
+                            <div class="mono text-xs text-gray-400 mt-0.5">24 dents • Ratio 1.0</div>
+                        </div>
+                        <div class="p-3 rounded-lg border border-[#FF8A00]/20 bg-[#FF8A00]/5">
+                            <div class="text-[10px] mono text-[#FF8A00] font-semibold">PILIER 02</div>
+                            <div class="text-sm font-semibold text-white mt-1">Marketing & AEO</div>
+                            <div class="mono text-xs text-gray-400 mt-0.5">20 dents • Ratio 0.8</div>
+                        </div>
+                        <div class="p-3 rounded-lg border border-[#00FF66]/20 bg-[#00FF66]/5">
+                            <div class="text-[10px] mono text-[#00FF66] font-semibold">PILIER 03</div>
+                            <div class="text-sm font-semibold text-white mt-1">Automatisation</div>
+                            <div class="mono text-xs text-gray-400 mt-0.5">28 dents • Ratio 1.2</div>
+                        </div>
+                        <div class="p-3 rounded-lg border border-[#9D00FF]/20 bg-[#9D00FF]/5">
+                            <div class="text-[10px] mono text-[#9D00FF] font-semibold">PILIER 04</div>
+                            <div class="text-sm font-semibold text-white mt-1">Data & IT</div>
+                            <div class="mono text-xs text-gray-400 mt-0.5">22 dents • Ratio 0.9</div>
+                        </div>
+                    </div>
 
-        <!-- Direction 5: AEO Horizon -->
-        <div class="direction-card glass p-6 rounded-lg border-b-4 border-orange-500 shadow-[0_10px_30px_-15px_rgba(249,115,22,0.3)]">
-            <div class="h-32 mb-4 bg-orange-600/5 rounded flex items-center justify-center">
-                <div class="text-orange-500 animate-pulse">● AEO_SYNC</div>
-            </div>
-            <h3 class="serif text-2xl mb-2">05. AEO Horizon</h3>
-            <p class="text-gray-400 mb-4">Focus sur le futur de l'IA. Gradients orange chauds, effets de lueur (glows) et typographie futuriste (Sans-Serif large).</p>
-            <ul class="text-xs mono space-y-1 opacity-60">
-                <li>+ Énergie et Dynamisme</li>
-                <li>+ Spécialisation IA marquée</li>
-                <li>- Moins "Horlogerie Traditionnelle"</li>
-            </ul>
-        </div>
+                    <!-- Profils Studio BMAD -->
+                    <div class="pt-4 border-t border-white/10 flex flex-wrap items-center gap-4">
+                        <span class="text-xs text-gray-400 font-medium">Profils Studio Live :</span>
+                        <span class="px-2.5 py-1 rounded text-xs bg-white/5 border border-white/10 text-gray-300">
+                            🎨 <strong>Sally</strong> (UI & Finitions)
+                        </span>
+                        <span class="px-2.5 py-1 rounded text-xs bg-white/5 border border-white/10 text-gray-300">
+                            💻 <strong>Amelia</strong> (Dynamique 60 FPS)
+                        </span>
+                        <span class="px-2.5 py-1 rounded text-xs bg-white/5 border border-white/10 text-gray-300">
+                            🏗️ <strong>Winston</strong> (Architecture & Télémétrie)
+                        </span>
+                    </div>
+                </div>
 
-        <!-- Direction 6: Atomic Horology -->
-        <div class="direction-card glass p-6 rounded-lg bg-gradient-to-t from-gray-950 to-transparent">
-            <div class="relative h-24 mb-4">
-                <div class="absolute inset-0 flex items-center justify-center">
-                   <div class="w-16 h-1 bg-[#D4AF37] rotate-45"></div>
-                   <div class="w-12 h-1 bg-[#E5E4E2] -rotate-12"></div>
+                <!-- Simulation Visuelle Interactive SVG -->
+                <div class="lg:col-span-5 flex flex-col items-center justify-center p-6 glass rounded-xl border border-white/10 relative">
+                    <div class="text-center mb-4">
+                        <span class="mono text-[11px] text-gray-400 tracking-wider">SIMULATION CINÉMATIQUE INTERACTIVE</span>
+                    </div>
+
+                    <!-- SVG 5 Engrenages -->
+                    <div class="relative w-72 h-72 sm:w-80 sm:h-80 flex items-center justify-center">
+                        <svg viewBox="0 0 400 400" class="w-full h-full overflow-visible">
+                            <!-- Fond de repère grille suisse -->
+                            <circle cx="200" cy="200" r="140" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="4 4"/>
+                            <line x1="200" y1="20" x2="200" y2="380" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+                            <line x1="20" y1="200" x2="380" y2="200" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+
+                            <!-- Engrenage Central IA (Noir / Deep Onyx) -->
+                            <g class="gear-center" id="svg-center-gear">
+                                <circle cx="200" cy="200" r="54" fill="#0A0A0A" stroke="#262626" stroke-width="4"/>
+                                <circle cx="200" cy="200" r="32" fill="none" stroke="#333333" stroke-width="2" stroke-dasharray="6 3"/>
+                                <!-- Dents centrales -->
+                                <circle cx="200" cy="200" r="58" fill="none" stroke="#404040" stroke-width="6" stroke-dasharray="6 8"/>
+                                <circle cx="200" cy="200" r="12" fill="#141414" stroke="#525252" stroke-width="2"/>
+                                <text x="200" y="204" font-family="'Roboto Mono'" font-size="10" fill="#E5E4E2" font-weight="bold" text-anchor="middle">IA</text>
+                            </g>
+
+                            <!-- Satellite 1 : Web & Mobile (Haut-Gauche - Cyan) -->
+                            <g class="gear-sat-web" style="transform-origin: 100px 100px;">
+                                <circle cx="100" cy="100" r="36" fill="rgba(0, 245, 255, 0.05)" stroke="#00F5FF" stroke-width="2.5"/>
+                                <circle cx="100" cy="100" r="40" fill="none" stroke="#00F5FF" stroke-width="4" stroke-dasharray="4 6"/>
+                                <circle cx="100" cy="100" r="10" fill="#0A0A0A" stroke="#00F5FF" stroke-width="1.5"/>
+                            </g>
+
+                            <!-- Satellite 2 : Marketing & AEO (Haut-Droite - Orange) -->
+                            <g class="gear-sat-mkt" style="transform-origin: 300px 100px;">
+                                <circle cx="300" cy="100" r="32" fill="rgba(255, 138, 0, 0.05)" stroke="#FF8A00" stroke-width="2.5"/>
+                                <circle cx="300" cy="100" r="36" fill="none" stroke="#FF8A00" stroke-width="4" stroke-dasharray="4 6"/>
+                                <circle cx="300" cy="100" r="8" fill="#0A0A0A" stroke="#FF8A00" stroke-width="1.5"/>
+                            </g>
+
+                            <!-- Satellite 3 : Automatisation (Bas-Droite - Vert) -->
+                            <g class="gear-sat-auto" style="transform-origin: 300px 300px;">
+                                <circle cx="300" cy="300" r="42" fill="rgba(0, 255, 102, 0.05)" stroke="#00FF66" stroke-width="2.5"/>
+                                <circle cx="300" cy="300" r="46" fill="none" stroke="#00FF66" stroke-width="4" stroke-dasharray="5 7"/>
+                                <circle cx="300" cy="300" r="12" fill="#0A0A0A" stroke="#00FF66" stroke-width="1.5"/>
+                            </g>
+
+                            <!-- Satellite 4 : Data & IT (Bas-Gauche - Violet) -->
+                            <g class="gear-sat-data" style="transform-origin: 100px 300px;">
+                                <circle cx="100" cy="300" r="34" fill="rgba(157, 0, 255, 0.05)" stroke="#9D00FF" stroke-width="2.5"/>
+                                <circle cx="100" cy="300" r="38" fill="none" stroke="#9D00FF" stroke-width="4" stroke-dasharray="4 6"/>
+                                <circle cx="100" cy="300" r="9" fill="#0A0A0A" stroke="#9D00FF" stroke-width="1.5"/>
+                            </g>
+                        </svg>
+                    </div>
+
+                    <!-- Contrôle interactif de vitesse -->
+                    <div class="w-full mt-4 flex items-center justify-between gap-3 text-xs mono">
+                        <span class="text-gray-400">Cadence :</span>
+                        <button onclick="setSpeed(0.5)" class="px-2 py-1 rounded bg-white/5 hover:bg-white/10 text-gray-300">0.5x</button>
+                        <button onclick="setSpeed(1.0)" class="px-2 py-1 rounded bg-white/10 text-white font-bold">1.0x</button>
+                        <button onclick="setSpeed(2.0)" class="px-2 py-1 rounded bg-white/5 hover:bg-white/10 text-gray-300">2.0x</button>
+                        <button onclick="togglePause()" id="pause-btn" class="px-2 py-1 rounded bg-red-500/10 text-red-400 hover:bg-red-500/20">Pause</button>
+                    </div>
                 </div>
             </div>
-            <h3 class="serif text-2xl mb-2">06. Atomic Horology</h3>
-            <p class="text-gray-400 mb-4">Mix entre mécanique ancienne et physique atomique. Particules en mouvement couplées à des engrenages SVG.</p>
-            <ul class="text-xs mono space-y-1 opacity-60">
-                <li>+ Effet WOW garanti</li>
-                <li>+ Visionnaire</li>
-                <li>- Complexe à coder (WebGL recommandé)</li>
-            </ul>
         </div>
-    </div>
+    </section>
 
-    <footer class="mt-24 border-t border-white/10 pt-8 text-center">
-        <p class="serif italic text-2xl text-gray-500">"Qui peut le plus, peut le moins."</p>
-        <p class="text-gray-600 mt-2">Picsell Agency © 2026 - Maison de Haute Horlogerie Digitale</p>
+    <!-- LES 6 DIRECTIONS VISUELLES D'ORIGINE -->
+    <section class="mb-16">
+        <div class="mb-8">
+            <h2 class="serif text-3xl font-bold text-white mb-2">Les 6 Directions Visuelles Explorées</h2>
+            <p class="text-gray-400">Analyse comparative des concepts créatifs explorés lors du cycle UX BMAD.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <!-- Direction 1: The Grand Mechanism -->
+            <div class="direction-card glass p-6 rounded-xl relative overflow-hidden border border-white/10">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="mono text-xs font-bold text-[#00F5FF]">01. THE GRAND MECHANISM</span>
+                    <span class="text-[10px] mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400">Adopté dans le Hero</span>
+                </div>
+                <h3 class="serif text-xl font-bold text-white mb-2">Immersion Cinématique Scroll-bound</h3>
+                <p class="text-sm text-gray-400 mb-4 leading-relaxed">
+                    Le site est conçu comme un immense mouvement horloger où le défilement tactile pilote la cinématique des engrenages.
+                </p>
+                <div class="space-y-1 text-xs mono text-gray-400 bg-white/5 p-3 rounded">
+                    <div class="text-emerald-400">+ Preuve d'ingénierie immédiate & effet WOW</div>
+                    <div class="text-emerald-400">+ Feedback tactile sur chaque pixel de scroll</div>
+                    <div class="text-amber-400">⚠ Nécessite GSAP ticker + Mode éco batterie</div>
+                </div>
+            </div>
+
+            <!-- Direction 2: Glass-Engine Pro -->
+            <div class="direction-card glass p-6 rounded-xl relative overflow-hidden border border-white/10">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="mono text-xs font-bold text-[#FF8A00]">02. GLASS-ENGINE PRO</span>
+                    <span class="text-[10px] mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400">Adopté dans les Services</span>
+                </div>
+                <h3 class="serif text-xl font-bold text-white mb-2">Schéma Technique & Terminaux Live</h3>
+                <p class="text-sm text-gray-400 mb-4 leading-relaxed">
+                    Transparence intégrale : la vitrine révèle des terminaux de code TypeScript réels, des flux JSON et une grille blueprint.
+                </p>
+                <div class="space-y-1 text-xs mono text-gray-400 bg-white/5 p-3 rounded">
+                    <div class="text-emerald-400">+ Transparence totale méthode BMAD</div>
+                    <div class="text-emerald-400">+ Crédibilité instantanée auprès des CTOs</div>
+                    <div class="text-amber-400">⚠ Doit rester accessible et lisible pour les PME</div>
+                </div>
+            </div>
+
+            <!-- Direction 3: Midnight Minimal -->
+            <div class="direction-card glass p-6 rounded-xl relative overflow-hidden border border-white/10 opacity-70 hover:opacity-100">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="mono text-xs font-bold text-gray-400">03. MIDNIGHT MINIMAL</span>
+                    <span class="text-[10px] mono px-2 py-0.5 rounded bg-white/5 text-gray-400">Écarté (Trop austère)</span>
+                </div>
+                <h3 class="serif text-xl font-bold text-white mb-2">Luxe par le Vide</h3>
+                <p class="text-sm text-gray-400 mb-4 leading-relaxed">
+                    Typographie Serif géante, fond noir d'encre absolu et un unique engrenage solitaire tournant au ralenti.
+                </p>
+                <div class="space-y-1 text-xs mono text-gray-400 bg-white/5 p-3 rounded">
+                    <div class="text-emerald-400">+ Élégance statutaire digne de la place Vendôme</div>
+                    <div class="text-rose-400">- Déficit de démonstration technique active</div>
+                    <div class="text-rose-400">- Moins percutant pour illustrer les 4 piliers</div>
+                </div>
+            </div>
+
+            <!-- Direction 4: Swiss Precision -->
+            <div class="direction-card glass p-6 rounded-xl relative overflow-hidden border border-white/10">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="mono text-xs font-bold text-[#00FF66]">04. SWISS PRECISION</span>
+                    <span class="text-[10px] mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400">Adopté pour la Grille</span>
+                </div>
+                <h3 class="serif text-xl font-bold text-white mb-2">Grille Modulaire & Télémétrie</h3>
+                <p class="text-sm text-gray-400 mb-4 leading-relaxed">
+                    Alignement millimétré sur grille 12 colonnes, marges annotées, règles d'ingénierie et métriques de performance live.
+                </p>
+                <div class="space-y-1 text-xs mono text-gray-400 bg-white/5 p-3 rounded">
+                    <div class="text-emerald-400">+ Autorité et rigueur architecturale</div>
+                    <div class="text-emerald-400">+ Structure responsive irréprochable</div>
+                    <div class="text-amber-400">⚠ Équilibrer la rigueur avec la chaleur humaine</div>
+                </div>
+            </div>
+
+            <!-- Direction 5: AEO Horizon -->
+            <div class="direction-card glass p-6 rounded-xl relative overflow-hidden border border-white/10">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="mono text-xs font-bold text-[#FF8A00]">05. AEO HORIZON</span>
+                    <span class="text-[10px] mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400">Intégré au Pilier Marketing</span>
+                </div>
+                <h3 class="serif text-xl font-bold text-white mb-2">Accents Énergie & Optimisation IA</h3>
+                <p class="text-sm text-gray-400 mb-4 leading-relaxed">
+                    Gradients chauds orangés, mise en valeur des moteurs de réponse IA (Perplexity, ChatGPT, Claude) et dynamisme.
+                </p>
+                <div class="space-y-1 text-xs mono text-gray-400 bg-white/5 p-3 rounded">
+                    <div class="text-emerald-400">+ Positionnement précurseur sur l'AEO</div>
+                    <div class="text-emerald-400">+ Chaleur visuelle et contraste lumineux</div>
+                    <div class="text-amber-400">⚠ À cantonner au pilier Marketing pour ne pas noyer l'horlogerie</div>
+                </div>
+            </div>
+
+            <!-- Direction 6: Atomic Horology -->
+            <div class="direction-card glass p-6 rounded-xl relative overflow-hidden border border-white/10 opacity-70 hover:opacity-100">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="mono text-xs font-bold text-[#9D00FF]">06. ATOMIC HOROLOGY</span>
+                    <span class="text-[10px] mono px-2 py-0.5 rounded bg-white/5 text-gray-400">Conservé en Réserve WebGL</span>
+                </div>
+                <h3 class="serif text-xl font-bold text-white mb-2">Physique Quantique & Rouages 3D</h3>
+                <p class="text-sm text-gray-400 mb-4 leading-relaxed">
+                    Fusion d'engrenages horlogers et de nuages de particules réactives à la physique newtonienne.
+                </p>
+                <div class="space-y-1 text-xs mono text-gray-400 bg-white/5 p-3 rounded">
+                    <div class="text-emerald-400">+ Potentiel visuel spectaculaire</div>
+                    <div class="text-rose-400">- Empreinte mémoire et GPU lourde sur mobile</div>
+                    <div class="text-amber-400">⚠ Réservé aux transitions d'ouverture spécifiques</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- PALETTE CHROMATIQUE RÉELLE -->
+    <section class="mb-16 glass p-8 rounded-2xl border border-white/10">
+        <h2 class="serif text-2xl font-bold text-white mb-6">Tokens Chromatiques Harmonises (2026)</h2>
+        <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-4">
+            <div class="space-y-2">
+                <div class="h-16 rounded-lg bg-[#050505] border border-white/20"></div>
+                <div class="text-xs font-semibold text-white">Obsidian Base</div>
+                <div class="mono text-[10px] text-gray-400">#050505</div>
+            </div>
+            <div class="space-y-2">
+                <div class="h-16 rounded-lg bg-[#0A0A0A] border border-[#262626]"></div>
+                <div class="text-xs font-semibold text-white">Moteur IA</div>
+                <div class="mono text-[10px] text-gray-400">#0A0A0A</div>
+            </div>
+            <div class="space-y-2">
+                <div class="h-16 rounded-lg bg-[#00F5FF]"></div>
+                <div class="text-xs font-semibold text-white">Web & Mobile</div>
+                <div class="mono text-[10px] text-gray-400">#00F5FF</div>
+            </div>
+            <div class="space-y-2">
+                <div class="h-16 rounded-lg bg-[#FF8A00]"></div>
+                <div class="text-xs font-semibold text-white">Marketing & AEO</div>
+                <div class="mono text-[10px] text-gray-400">#FF8A00</div>
+            </div>
+            <div class="space-y-2">
+                <div class="h-16 rounded-lg bg-[#00FF66]"></div>
+                <div class="text-xs font-semibold text-white">Automatisation</div>
+                <div class="mono text-[10px] text-gray-400">#00FF66</div>
+            </div>
+            <div class="space-y-2">
+                <div class="h-16 rounded-lg bg-[#9D00FF]"></div>
+                <div class="text-xs font-semibold text-white">Data & IT</div>
+                <div class="mono text-[10px] text-gray-400">#9D00FF</div>
+            </div>
+            <div class="space-y-2">
+                <div class="h-16 rounded-lg bg-[#E5E4E2]"></div>
+                <div class="text-xs font-semibold text-gray-900 bg-[#E5E4E2] px-1 rounded inline-block">Acier Suisse</div>
+                <div class="mono text-[10px] text-gray-400">#E5E4E2</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 pt-8 text-center text-sm text-gray-500 mono">
+        <p class="serif italic text-xl text-gray-400 mb-2">« L'intelligence artificielle est le moteur, la rigueur humaine est l'échappement. »</p>
+        <p>Picsell Agency © 2026 • Document d'Ingénierie UX BMAD</p>
     </footer>
+
+    <!-- Script interactif de contrôle -->
+    <script>
+        let currentSpeed = 1.0;
+        let isPaused = false;
+
+        function updateSpeeds() {
+            const root = document.documentElement;
+            if (isPaused) {
+                root.style.setProperty('--speed-center', '0s');
+                root.style.setProperty('--speed-web', '0s');
+                root.style.setProperty('--speed-mkt', '0s');
+                root.style.setProperty('--speed-auto', '0s');
+                root.style.setProperty('--speed-data', '0s');
+            } else {
+                root.style.setProperty('--speed-center', (12 / currentSpeed) + 's');
+                root.style.setProperty('--speed-web', (8 / currentSpeed) + 's');
+                root.style.setProperty('--speed-mkt', (6.4 / currentSpeed) + 's');
+                root.style.setProperty('--speed-auto', (9.6 / currentSpeed) + 's');
+                root.style.setProperty('--speed-data', (7.2 / currentSpeed) + 's');
+            }
+        }
+
+        function setSpeed(val) {
+            isPaused = false;
+            currentSpeed = val;
+            document.getElementById('pause-btn').textContent = 'Pause';
+            document.getElementById('pause-btn').classList.remove('bg-emerald-500/10', 'text-emerald-400');
+            document.getElementById('pause-btn').classList.add('bg-red-500/10', 'text-red-400');
+            updateSpeeds();
+        }
+
+        function togglePause() {
+            isPaused = !isPaused;
+            const btn = document.getElementById('pause-btn');
+            if (isPaused) {
+                btn.textContent = 'Reprendre';
+                btn.classList.remove('bg-red-500/10', 'text-red-400');
+                btn.classList.add('bg-emerald-500/10', 'text-emerald-400');
+            } else {
+                btn.textContent = 'Pause';
+                btn.classList.remove('bg-emerald-500/10', 'text-emerald-400');
+                btn.classList.add('bg-red-500/10', 'text-red-400');
+            }
+            updateSpeeds();
+        }
+
+        // Init
+        updateSpeeds();
+    </script>
 </body>
 </html>
