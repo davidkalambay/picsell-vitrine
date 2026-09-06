@@ -76,7 +76,7 @@ development_status:
   # Status: IN-PROGRESS (Started: 2026-09-06)
   # ===================================================================
   epic-5-studio-settings-drawer-micro-interactions: in-progress
-  5-1-tiroir-de-reglages-interactif-studio-settings-drawer: in-progress
+  5-1-tiroir-de-reglages-interactif-studio-settings-drawer: done
   5-2-curseur-cinematique-engrenage-boutons-magnetiques: ready-for-dev
   5-3-revelation-vectorielle-drawsvg-anneau-radial-25-100: ready-for-dev
   epic-5-retrospective: optional
