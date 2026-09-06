@@ -50,11 +50,13 @@ development_status:
 
   # ===================================================================
   # EPIC 3: Preuve d'Ingénierie, Manifeste BMAD & Code (FR9-FR12)
+  # Agent: Claude Haiku 4.5
+  # Status: IN-PROGRESS (Started: 2026-09-06)
   # ===================================================================
-  epic-3-preuve-dingenierie-manifeste-bmad-code: ready-for-dev
-  3-1-manifeste-methodologique-bmad-stack-technique: ready-for-dev
-  3-2-terminaux-dingenierie-code-interactifs: ready-for-dev
-  3-3-mode-fond-transparent-glass-engine: ready-for-dev
+  epic-3-preuve-dingenierie-manifeste-bmad-code: in-progress
+  3-1-manifeste-methodologique-bmad-stack-technique: in-progress
+  3-2-terminaux-dingenierie-code-interactifs: backlog
+  3-3-mode-fond-transparent-glass-engine: backlog
   epic-3-retrospective: optional
 
   # ===================================================================
