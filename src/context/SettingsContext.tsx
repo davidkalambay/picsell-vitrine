@@ -97,6 +97,19 @@ interface SettingsContextType {
 
 const SettingsContext = createContext<SettingsContextType | undefined>(undefined);
 
+interface BatteryManager extends EventTarget {
+    level: number;
+    charging: boolean;
+    chargingTime: number;
+    dischargingTime: number;
+    addEventListener(type: string, listener: EventListenerOrEventListenerObject): void;
+    removeEventListener(type: string, listener: EventListenerOrEventListenerObject): void;
+}
+
+interface NavigatorWithBattery extends Navigator {
+    getBattery?: () => Promise<BatteryManager>;
+}
+
 export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [settings, setSettings] = useState<SiteSettings>(DEFAULT_SETTINGS);
     const [drawSvgKey, setDrawSvgKey] = useState<number>(0);
@@ -110,14 +123,14 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
         supported: false,
     });
 
-    // Winston 10: Battery Status API listener
+    // FR26: Battery Status API listener with auto ecoMode activation
     useEffect(() => {
         if (typeof window === "undefined" || !("getBattery" in navigator)) return;
 
-        let batteryObj: any = null;
+        let batteryObj: BatteryManager | null = null;
         let updateBatteryState: (() => void) | null = null;
 
-        const handleBattery = (battery: any) => {
+        const handleBattery = (battery: BatteryManager) => {
             batteryObj = battery;
             updateBatteryState = () => {
                 const level = Math.round(battery.level * 100);
@@ -130,6 +143,11 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
                     isLowBattery: isLow,
                     supported: true,
                 });
+
+                // Auto-enable eco-mode on low battery
+                if (isLow) {
+                    setSettings((prev) => ({ ...prev, ecoMode: true }));
+                }
             };
 
             updateBatteryState();
@@ -137,9 +155,12 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
             battery.addEventListener("chargingchange", updateBatteryState);
         };
 
-        (navigator as any).getBattery().then(handleBattery).catch(() => {
-            setBatteryInfo((prev) => ({ ...prev, supported: false }));
-        });
+        const nav = navigator as NavigatorWithBattery;
+        if (nav.getBattery) {
+            nav.getBattery().then(handleBattery).catch(() => {
+                setBatteryInfo((prev) => ({ ...prev, supported: false }));
+            });
+        }
 
         return () => {
             if (batteryObj && updateBatteryState) {
@@ -147,6 +168,29 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
                 batteryObj.removeEventListener("chargingchange", updateBatteryState);
             }
         };
+    }, []);
+
+    // FR27: Native prefers-reduced-motion media query auto-detection
+    useEffect(() => {
+        if (typeof window === "undefined") return;
+
+        const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+        const handleReducedMotionChange = (e: MediaQueryListEvent | MediaQueryList) => {
+            if (e.matches) {
+                setSettings((prev) => ({ ...prev, reducedMotion: true }));
+            }
+        };
+
+        handleReducedMotionChange(mediaQuery);
+
+        try {
+            mediaQuery.addEventListener("change", handleReducedMotionChange);
+            return () => mediaQuery.removeEventListener("change", handleReducedMotionChange);
+        } catch {
+            // Fallback for older browsers
+            mediaQuery.addListener(handleReducedMotionChange);
+            return () => mediaQuery.removeListener(handleReducedMotionChange);
+        }
     }, []);
 
     // Load from localStorage on mount
