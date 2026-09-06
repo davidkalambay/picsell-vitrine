@@ -107,15 +107,118 @@ L'identité visuelle de Picsell est bâtie sur le concept **« Inside the Engine
 
 ---
 
-## 8. Git & Organisation BMAD
+## 8. Concurrent Development & Workflow (Règles Agents IA)
+
+**⚠️ CRITIQUE POUR MULTI-AGENT :** Éviter les conflits de développement
+
+### Statut des Epics & Stories
+
+**Protocole de Réservation :**
+
+1. **AVANT de commencer un Epic/Story :**
+   - Consulter `_bmad-output/implementation-artifacts/sprint-status.yaml`
+   - Vérifier le statut EXACT : `backlog` / `ready-for-dev` / `in-progress` / `review` / `done`
+   - Si `in-progress` → **CHOISIR UN AUTRE EPIC**
+
+2. **AU DÉMARRAGE :**
+   - Mettre à jour `sprint-status.yaml` : `backlog` → `in-progress`
+   - Commiter avec message : `ci: mark epic-X as in-progress by agent-name`
+   - Push immédiatement (réservation)
+
+3. **PENDANT LE DÉVELOPPEMENT :**
+   - Une seule branche par Epic/Story
+   - Format branche : `claude/epic-X-story-Y-description` ou `aistudio/epic-X-...`
+   - Commits réguliers (toutes les 30 min de travail)
+   - Push chaque commit pour visibility
+
+4. **EN CAS DE BLOCAGE/ABANDON :**
+   - Mettre à jour `sprint-status.yaml` : `in-progress` → `backlog` + commentaire
+   - Commiter & push immédiatement
+   - Notifier via commit message : `ci: release epic-X (reason: timeout/blocker)`
+
+5. **À LA FIN (Ready for Review) :**
+   - Mettre à jour `sprint-status.yaml` : `in-progress` → `review`
+   - Créer PR avec lien vers epic.md
+   - Marquer stories individuelles : `ready-for-dev` → `review`
+
+### Fichier d'Autorité
+
+**Source Unique de Statut :**
+```
+_bmad-output/implementation-artifacts/sprint-status.yaml
+```
+
+Structure:
+```yaml
+development_status:
+  epic-1-moteur-vectoriel: in-progress  # ← AGENT READS/UPDATES THIS
+  1-1-story-name: in-progress
+  1-2-story-name: review
+  1-3-story-name: backlog
+  epic-1-retrospective: optional
+```
+
+### Contention Resolution
+
+**Si 2 agents attaquent le même epic :**
+1. Le premier qui push `in-progress` gagne
+2. Le second reçoit conflit merge (normal)
+3. Le second consulte de nouveau le yaml et choisit différent
+4. Aucune "negociation" = juste respect du yaml
+
+### Signaux Visuels
+
+**Branch Naming Convention :**
+```
+✅ claude/epic-1-review-and-validation
+✅ aistudio/epic-2-vitrine-4-piliers
+✅ feat/hero-mechanical-engine (spécifique)
+
+❌ dev (trop générique)
+❌ wip-stuff (trop vague)
+```
+
+**Commit Message Convention :**
+```
+✅ "feat(epic-1): implement gear engine ..."
+✅ "ci: mark epic-1 in-progress"
+✅ "docs: update sprint-status epic-2 → review"
+
+❌ "working on stuff"
+❌ "fixes"
+```
+
+### Communication
+
+**Avant de commencer :**
+```bash
+# Lire le yaml
+git cat-file -p origin/HEAD:_bmad-output/implementation-artifacts/sprint-status.yaml
+
+# Vérifier qui travaille quoi
+git log --grep="in-progress" --oneline -20
+```
+
+**Après chaque étape majeure :**
+```bash
+# Mettre à jour yaml
+# Commiter : "ci: update sprint-status epic-X → status"
+# Push
+```
+
+---
+
+## 9. Git & Organisation BMAD
 
 - **Dépôt :** `picsell-vitrine` sur GitHub.
 - **Branche Active :** `main` (synchronisée avec `origin/main`).
+- **Workflow Epics :** Voir section 8 (Concurrent Development)
 - **Source Unique de Vérité Documentaire :**
   - Spécifications & PRD : `_bmad-output/planning-artifacts/prd.md`
   - Architecture : `_bmad-output/planning-artifacts/architecture.md`
   - Epics & Stories : `_bmad-output/planning-artifacts/epics.md`
-  - Contexte Agent IA : `_bmad-output/planning-artifacts/project-context.md`
+  - Contexte Agent IA : `docs/project-context.md`
+  - **Sprint Status (CRITICAL) :** `_bmad-output/implementation-artifacts/sprint-status.yaml`
 
 ---
 
