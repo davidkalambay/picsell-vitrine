@@ -59,11 +59,13 @@ development_status:
 
   # ===================================================================
   # EPIC 4: Portfolio Garde-Temps & Télémétrie ROI (FR13-FR15, FR21)
+  # Agent: AI Studio Assistant (Gemini)
+  # Status: IN-PROGRESS (Started: 2026-09-06)
   # ===================================================================
-  epic-4-portfolio-garde-temps-telemetrie-roi: ready-for-dev
-  4-1-vitrine-des-4-etudes-de-cas-garde-temps: ready-for-dev
-  4-2-indicateurs-de-roi-telemetrie-live-counter: ready-for-dev
-  4-3-showcase-video-demo-du-dashboard-roi: ready-for-dev
+  epic-4-portfolio-garde-temps-telemetrie-roi: in-progress
+  4-1-vitrine-des-4-etudes-de-cas-garde-temps: in-progress
+  4-2-indicateurs-de-roi-telemetrie-live-counter: in-progress
+  4-3-showcase-video-demo-du-dashboard-roi: in-progress
   epic-4-retrospective: optional
 
   # ===================================================================
