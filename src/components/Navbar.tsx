@@ -263,13 +263,21 @@ const NavbarComponent: React.FC<NavbarProps> = ({ isDark = false }) => {
                             Simulateur ROI
                         </a>
 
+                        {/* Insights */}
+                        <Link
+                            href="/insights"
+                            className="px-3 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-white/5 transition-all"
+                        >
+                            Insights
+                        </Link>
+
                         {/* À Propos */}
-                        <a
+                        <Link
                             href="/a-propos"
                             className="px-3 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-white/5 transition-all"
                         >
                             À Propos
-                        </a>
+                        </Link>
                     </div>
 
                     {/* Desktop Right Action: Quick Consultation CTA */}
@@ -371,14 +379,23 @@ const NavbarComponent: React.FC<NavbarProps> = ({ isDark = false }) => {
                                 <ArrowRight className="w-4 h-4 text-slate-500" />
                             </a>
 
-                            <a
+                            <Link
+                                href="/insights"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                                className="min-h-[44px] flex items-center justify-between text-lg font-bold text-white hover:text-[var(--pic-turquoise,#3dbcc7)] transition-colors border-b border-white/5 py-2"
+                            >
+                                <span>04. Insights & Blog</span>
+                                <ArrowRight className="w-4 h-4 text-slate-500" />
+                            </Link>
+
+                            <Link
                                 href="/a-propos"
                                 onClick={() => setIsMobileMenuOpen(false)}
                                 className="min-h-[44px] flex items-center justify-between text-lg font-bold text-white hover:text-[var(--pic-turquoise,#3dbcc7)] transition-colors border-b border-white/5 py-2"
                             >
-                                <span>04. À Propos de l&apos;Agence</span>
+                                <span>05. À Propos de l&apos;Agence</span>
                                 <ArrowRight className="w-4 h-4 text-slate-500" />
-                            </a>
+                            </Link>
                         </div>
                     </div>
 

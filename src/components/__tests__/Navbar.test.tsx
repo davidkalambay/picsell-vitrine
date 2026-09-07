@@ -26,11 +26,12 @@ describe("Navbar Component", () => {
         expect(brandLink).toHaveAttribute("href", "/");
     });
 
-    it("renders desktop navigation links (Expertises, Preuves, Simulateur, À Propos)", () => {
+    it("renders desktop navigation links (Expertises, Preuves, Simulateur, Insights, À Propos)", () => {
         renderNavbar(false);
         expect(screen.getByRole("button", { name: /Expertises/i })).toBeInTheDocument();
         expect(screen.getByText("Preuves d'Exécution")).toBeInTheDocument();
         expect(screen.getByText("Simulateur ROI")).toBeInTheDocument();
+        expect(screen.getByText("Insights")).toBeInTheDocument();
         expect(screen.getByText("À Propos")).toBeInTheDocument();
     });
 
@@ -58,7 +59,8 @@ describe("Navbar Component", () => {
         fireEvent.click(burgerBtn);
         expect(screen.getByRole("dialog", { name: "Menu de navigation mobile" })).toBeInTheDocument();
         expect(screen.getByText("00. Accueil")).toBeInTheDocument();
-        expect(screen.getByText("04. À Propos de l'Agence")).toBeInTheDocument();
+        expect(screen.getByText("04. Insights & Blog")).toBeInTheDocument();
+        expect(screen.getByText("05. À Propos de l'Agence")).toBeInTheDocument();
     });
 
     it("renders quick consultation CTA button in desktop navbar", () => {
