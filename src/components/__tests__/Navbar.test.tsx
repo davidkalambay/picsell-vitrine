@@ -1,28 +1,69 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
-import { describe, it, expect } from "vitest";
+import { render, screen, fireEvent } from "@testing-library/react";
+import { describe, it, expect, vi } from "vitest";
 import Navbar from "@/components/Navbar";
+import { SettingsProvider } from "@/context/SettingsContext";
+
+// Mock analytics
+vi.mock("@/lib/analytics", () => ({
+    trackEvent: vi.fn(),
+}));
+
+const renderNavbar = (isDark = false) => {
+    return render(
+        <SettingsProvider>
+            <Navbar isDark={isDark} />
+        </SettingsProvider>
+    );
+};
 
 describe("Navbar Component", () => {
-    it("renders the agency brand name and link", () => {
-        render(<Navbar isDark={false} />);
+    it("renders the agency brand logo and link to home", () => {
+        renderNavbar(false);
         const brandText = screen.getByText("Picsell Agency");
         expect(brandText).toBeInTheDocument();
-        const brandLink = screen.getByRole("link");
-        expect(brandLink).toHaveAttribute("href", "#");
+        const brandLink = screen.getByLabelText("Picsell Agency — Retour à l'accueil");
+        expect(brandLink).toHaveAttribute("href", "/");
     });
 
-    it("applies light theme styles by default", () => {
-        const { container } = render(<Navbar isDark={false} />);
-        const nav = container.querySelector("nav");
-        expect(nav?.className).toContain("bg-white/85");
-        expect(nav?.className).toContain("text-slate-900");
+    it("renders desktop navigation links (Expertises, Preuves, Simulateur, À Propos)", () => {
+        renderNavbar(false);
+        expect(screen.getByRole("button", { name: /Expertises/i })).toBeInTheDocument();
+        expect(screen.getByText("Preuves d'Exécution")).toBeInTheDocument();
+        expect(screen.getByText("Simulateur ROI")).toBeInTheDocument();
+        expect(screen.getByText("À Propos")).toBeInTheDocument();
     });
 
-    it("applies dark theme styles when isDark is true", () => {
-        const { container } = render(<Navbar isDark={true} />);
-        const nav = container.querySelector("nav");
-        expect(nav?.className).toContain("bg-[#090a0f]/80");
-        expect(nav?.className).toContain("text-white");
+    it("opens and closes the Expertises mega-dropdown on click", () => {
+        renderNavbar(false);
+        const expertisesBtn = screen.getByRole("button", { name: /Expertises/i });
+
+        // Open dropdown
+        fireEvent.click(expertisesBtn);
+        expect(screen.getByRole("menu", { name: "Sous-menu des expertises" })).toBeInTheDocument();
+        expect(screen.getByText("01 // ACQUÉRIR")).toBeInTheDocument();
+        expect(screen.getByText("02 // ACCÉLÉRER")).toBeInTheDocument();
+        expect(screen.getByText("03 // BÂTIR")).toBeInTheDocument();
+        expect(screen.getByText("04 // PILOTER")).toBeInTheDocument();
+
+        // Close dropdown
+        fireEvent.click(expertisesBtn);
+        expect(screen.queryByRole("menu", { name: "Sous-menu des expertises" })).toBeNull();
+    });
+
+    it("opens mobile navigation drawer when clicking burger toggle", () => {
+        renderNavbar(false);
+        const burgerBtn = screen.getByLabelText("Ouvrir le menu de navigation");
+
+        fireEvent.click(burgerBtn);
+        expect(screen.getByRole("dialog", { name: "Menu de navigation mobile" })).toBeInTheDocument();
+        expect(screen.getByText("00. Accueil")).toBeInTheDocument();
+        expect(screen.getByText("04. À Propos de l'Agence")).toBeInTheDocument();
+    });
+
+    it("renders quick consultation CTA button in desktop navbar", () => {
+        renderNavbar(true);
+        const consultationBtn = screen.getByText("Cadrage Stratégique");
+        expect(consultationBtn).toBeInTheDocument();
     });
 });
