@@ -60,10 +60,10 @@ describe("About Page & Components", () => {
         name: /L'Image n'est pas de la Décoration\. L'Image, c'est de la Vente\./i,
       })
     ).toBeInTheDocument();
-    expect(screen.getByText("PIX")).toBeInTheDocument();
+    expect(screen.getByText("PIC")).toBeInTheDocument();
     expect(screen.getByText("SELL")).toBeInTheDocument();
-    expect(screen.getByText(/Le Pixel • L'Unité Irréductible/i)).toBeInTheDocument();
-    expect(screen.getByText(/Vendre • Convertir l'Attention en Décision/i)).toBeInTheDocument();
+    expect(screen.getByText(/Picture • L'Image • Se lit comme Pixel/i)).toBeInTheDocument();
+    expect(screen.getByText(/Sell • Vendre • La Décision d'Achat/i)).toBeInTheDocument();
     expect(screen.getByText("#0089D0")).toBeInTheDocument();
     expect(screen.getByText("#3DBCC7")).toBeInTheDocument();
     expect(screen.getByText("#F37021")).toBeInTheDocument();

@@ -29,29 +29,29 @@ export function BrandStorySection() {
           </p>
         </div>
 
-        {/* PIX + SELL Dual Cards */}
+        {/* PIC + SELL Dual Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
-          {/* PIX Card */}
+          {/* PIC Card */}
           <div className="p-8 md:p-12 rounded-3xl bg-white/[0.02] border border-white/10 hover:border-[#3dbcc7]/40 transition-all duration-300 relative overflow-hidden group">
             <div className="absolute top-0 right-0 w-32 h-32 bg-[#3dbcc7]/10 blur-3xl group-hover:bg-[#3dbcc7]/20 transition-all pointer-events-none" />
             <div className="flex items-baseline justify-between mb-6">
               <span className="text-5xl md:text-6xl font-black font-sora tracking-tighter text-[#3dbcc7]">
-                PIX
+                PIC
               </span>
               <span className="font-mono text-xs text-slate-400 uppercase tracking-widest px-3 py-1 rounded bg-white/5 border border-white/10">
-                L&apos;Ingénierie Visuelle
+                Picture &bull; Se lit Pixel
               </span>
             </div>
             <h3 className="text-xl font-bold font-sora text-white mb-3">
-              Le Pixel &bull; L&apos;Unité Irréductible
+              Picture &bull; L&apos;Image &bull; Se lit comme Pixel
             </h3>
             <p className="text-slate-300 text-sm md:text-base leading-relaxed mb-6">
-              L&apos;unité la plus petite d&apos;une image numérique. Invisible seule, surpuissante en masse. Elle incarne la précision chirurgicale, le code rigoureux et l&apos;alignement au micromètre de chaque élément de votre interface.
+              Vient de <strong>Picture</strong> (l&apos;image) et se lit comme <strong>Pixel</strong> (le plus petit élément irréductible d&apos;une image). Il incarne la haute ingénierie visuelle, la rigueur esthétique et la précision d&apos;assemblage au micromètre.
             </p>
             <div className="flex items-center gap-2 text-xs font-mono text-[#3dbcc7]">
               <span>&lt;/&gt; Précision d&apos;assemblage</span>
               <span>&bull;</span>
-              <span>Zero artefact</span>
+              <span>L&apos;unité fondamentale</span>
             </div>
           </div>
 
@@ -63,14 +63,14 @@ export function BrandStorySection() {
                 SELL
               </span>
               <span className="font-mono text-xs text-slate-400 uppercase tracking-widest px-3 py-1 rounded bg-white/5 border border-white/10">
-                La Finalité Commerciale
+                Vendre &bull; Performance
               </span>
             </div>
             <h3 className="text-xl font-bold font-sora text-white mb-3">
-              Vendre &bull; Convertir l&apos;Attention en Décision
+              Sell &bull; Vendre &bull; La Décision d&apos;Achat
             </h3>
             <p className="text-slate-300 text-sm md:text-base leading-relaxed mb-6">
-              Vendre. Convaincre. Transformer un visiteur anonyme en client engagé. La finalité absolue de chaque ligne de code que nous écrivons et de chaque automatisation que nous déployons est d&apos;accélérer vos revenus.
+              Vendre. Convaincre. Convertir l&apos;attention d&apos;un visiteur en décision d&apos;achat mesurable. La contraction <strong>Picture + Sell</strong> donne <strong>Picsell</strong> : littéralement <em>l&apos;image qui vend</em>.
             </p>
             <div className="flex items-center gap-2 text-xs font-mono text-[#f37021]">
               <span>▲ Taux de conversion</span>
