@@ -93,4 +93,11 @@ describe("ConversionHub Component", () => {
       expect(screen.getByText(/AUDIT-2026-TEST/i)).toBeInTheDocument();
     });
   });
+
+  it("renders footer links to Brand Guidelines, À Propos and Insights", () => {
+    render(<ConversionHub />);
+    expect(screen.getByRole("link", { name: /Brand Guidelines & Assets/i })).toHaveAttribute("href", "/brand");
+    expect(screen.getByRole("link", { name: /Manifeste & À Propos/i })).toHaveAttribute("href", "/a-propos");
+    expect(screen.getByRole("link", { name: /Insights & Blog Technique/i })).toHaveAttribute("href", "/insights");
+  });
 });

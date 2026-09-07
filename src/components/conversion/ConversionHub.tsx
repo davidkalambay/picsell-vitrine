@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import { SplitTextReveal } from "@/components/animations/SplitTextReveal";
 import { MagneticButton } from "@/components/interactions/MagneticButton";
 import { trackEvent } from "@/lib/analytics";
@@ -616,10 +617,11 @@ export function ConversionHub() {
         </div>
 
         {/* Global Footer & Direct Signals */}
+        {/* Global Footer & Direct Signals */}
         <footer
           id="global-agency-footer"
           aria-label="Informations légales et télémétrie de l'agence"
-          className="pt-12 border-t border-white/10 grid grid-cols-1 md:grid-cols-4 gap-8 text-xs font-mono text-slate-400"
+          className="pt-12 border-t border-white/10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-xs font-mono text-slate-400"
         >
           {/* Col 1: Identity */}
           <div>
@@ -629,9 +631,15 @@ export function ConversionHub() {
             <p className="text-[11px] text-slate-400 leading-relaxed font-sans mb-3">
               Moteur logiciel horloger, automatisation d&apos;élite &amp; marketing de précision.
             </p>
-            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-white/5 border border-white/10 text-[10px] text-emerald-400">
+            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-white/5 border border-white/10 text-[10px] text-emerald-400 mb-3">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
               Kinshasa : {kinshasaTime || "15:42:10 GMT+1"}
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-[#0089d0]" title="Bleu Picsell #0089D0" />
+              <span className="w-2 h-2 rounded-full bg-[#3dbcc7]" title="Turquoise #3DBCC7" />
+              <span className="w-2 h-2 rounded-full bg-[#f37021]" title="Orange Énergie #F37021" />
+              <span className="w-2 h-2 rounded-full bg-[#fdb913]" title="Jaune Doré #FDB913" />
             </div>
           </div>
 
@@ -641,10 +649,10 @@ export function ConversionHub() {
               Complications
             </div>
             <ul className="space-y-1.5 text-slate-400 text-[11px]">
-              <li><a href="#story-marketing" className="hover:text-[#fdb913] transition-colors">Calendrier Perpétuel // Marketing</a></li>
-              <li><a href="#story-automation" className="hover:text-[#3dbcc7] transition-colors">Tourbillon // Automatisation IA</a></li>
-              <li><a href="#story-development" className="hover:text-white transition-colors">Chronographe // Plateformes Web</a></li>
-              <li><a href="#story-data" className="hover:text-[#fdb913] transition-colors">Grande Sonnerie // Data Intelligence</a></li>
+              <li><a href="/#story-marketing" className="hover:text-[#f37021] transition-colors">Calendrier Perpétuel // Marketing</a></li>
+              <li><a href="/#story-automation" className="hover:text-[#3dbcc7] transition-colors">Tourbillon // Automatisation IA</a></li>
+              <li><a href="/#story-development" className="hover:text-white transition-colors">Chronographe // Plateformes Web</a></li>
+              <li><a href="/#story-data" className="hover:text-[#fdb913] transition-colors">Grande Sonnerie // Data Intelligence</a></li>
             </ul>
           </div>
 
@@ -660,23 +668,57 @@ export function ConversionHub() {
                 </a>
               </li>
               <li className="text-slate-400">Kinshasa, République Démocratique du Congo</li>
-              <li className="text-slate-400">Intervention globale remote & astreinte 24/7</li>
+              <li className="text-slate-400">Intervention globale remote &amp; astreinte 24/7</li>
             </ul>
           </div>
 
-          {/* Col 4: Standards & Compliance */}
+          {/* Col 4: Ressources, Brand & Standards */}
           <div>
             <div className="text-slate-200 font-bold uppercase tracking-wider mb-3 text-[11px]">
-              Certifications
+              Ressources &amp; Marque
             </div>
-            <ul className="space-y-1.5 text-slate-400 text-[11px]">
-              <li className="text-emerald-400">✓ WCAG 2.1 AA Compliant</li>
-              <li className="text-[#3dbcc7]">✓ Battery Saver API Native</li>
-              <li className="text-[#fdb913]">✓ AEO & JSON-LD Structured</li>
-              <li className="text-slate-400 mt-2">© 2026 Picsell Agency. Tous droits réservés.</li>
+            <ul className="space-y-2 text-[11px]">
+              <li>
+                <Link href="/a-propos" className="text-slate-300 hover:text-[#fdb913] transition-colors block">
+                  &bull; Manifeste &amp; À Propos
+                </Link>
+              </li>
+              <li>
+                <Link href="/insights" className="text-slate-300 hover:text-[#3dbcc7] transition-colors block">
+                  &bull; Insights &amp; Blog Technique
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/brand"
+                  className="text-[#fdb913] hover:text-white transition-colors font-bold inline-flex items-center gap-1.5 group"
+                >
+                  <span>&bull; Brand Guidelines &amp; Assets</span>
+                  <span className="text-[9px] px-1.5 py-0.5 rounded bg-[#fdb913]/20 text-[#fdb913] group-hover:bg-[#fdb913] group-hover:text-slate-950 transition-colors">
+                    v1.0
+                  </span>
+                </Link>
+              </li>
+              <li className="text-emerald-400 pt-1 text-[10px]">✓ WCAG 2.1 AA Compliant</li>
             </ul>
           </div>
         </footer>
+
+        {/* Bottom Copyright & Navigation Bar */}
+        <div className="mt-8 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between text-[11px] font-mono text-slate-500 gap-4">
+          <div>
+            &copy; 2026 Picsell Agency. Tous droits réservés. &bull; &lt;/&gt; Precision in every pixel
+          </div>
+          <div className="flex items-center gap-3">
+            <Link href="/" className="hover:text-slate-300 transition-colors">Accueil</Link>
+            <span>&bull;</span>
+            <Link href="/a-propos" className="hover:text-slate-300 transition-colors">À Propos</Link>
+            <span>&bull;</span>
+            <Link href="/insights" className="hover:text-slate-300 transition-colors">Insights</Link>
+            <span>&bull;</span>
+            <Link href="/brand" className="text-[#fdb913] hover:underline font-semibold">Brand Guidelines</Link>
+          </div>
+        </div>
       </div>
     </section>
   );
