@@ -6,6 +6,8 @@ import { SettingsDrawer } from "@/components/SettingsDrawer";
 import { ContextualFloatingCTA } from "@/components/ContextualFloatingCTA";
 import { CustomGearCursor } from "@/components/interactions/CustomGearCursor";
 import { AboutHero } from "@/components/about/AboutHero";
+import { BrandStorySection } from "@/components/about/BrandStorySection";
+import { AgencyComparisonSection } from "@/components/about/AgencyComparisonSection";
 import { HorologicalManifesto } from "@/components/about/HorologicalManifesto";
 import { KinshasaDiasporaMap } from "@/components/about/KinshasaDiasporaMap";
 import { LeadershipTeam } from "@/components/about/LeadershipTeam";
@@ -38,19 +40,25 @@ export default function AboutPage() {
       {/* 1. About Hero & Precision Telemetry */}
       <AboutHero />
 
-      {/* 2. The 4 Organ Horological Manifesto */}
+      {/* 2. Brand Storytelling: PIX + SELL & Fibonacci Logo Anatomy */}
+      <BrandStorySection />
+
+      {/* 3. Positioning Matrix: Classic Agency vs Picsell Sales Accelerator */}
+      <AgencyComparisonSection />
+
+      {/* 4. The 4 Organ Horological Manifesto */}
       <HorologicalManifesto />
 
-      {/* 3. Geostrategic Kinshasa & Diaspora Hubs */}
+      {/* 5. Geostrategic Kinshasa & Diaspora Hubs */}
       <KinshasaDiasporaMap />
 
-      {/* 4. Leadership & Watchmaker Guild (David Kalambay & Jean-Luc Mukendi) */}
+      {/* 6. Leadership & Watchmaker Guild (David Kalambay & Jean-Luc Mukendi) */}
       <LeadershipTeam />
 
-      {/* 5. The BMAD 4-Phase Testing Protocol */}
+      {/* 7. The BMAD 4-Phase Testing Protocol */}
       <BmadFrameworkSteps />
 
-      {/* 6. Dual Conversion Hub (Upwork Escrow + Strategic Consultation) */}
+      {/* 8. Dual Conversion Hub (Upwork Escrow + Strategic Consultation) */}
       <ConversionHub />
     </main>
   );

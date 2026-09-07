@@ -3,6 +3,8 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import React from "react";
 import { SettingsProvider } from "@/context/SettingsContext";
 import { AboutHero } from "@/components/about/AboutHero";
+import { BrandStorySection } from "@/components/about/BrandStorySection";
+import { AgencyComparisonSection } from "@/components/about/AgencyComparisonSection";
 import { HorologicalManifesto } from "@/components/about/HorologicalManifesto";
 import { KinshasaDiasporaMap } from "@/components/about/KinshasaDiasporaMap";
 import { LeadershipTeam } from "@/components/about/LeadershipTeam";
@@ -44,6 +46,46 @@ describe("About Page & Components", () => {
     expect(screen.getByText(/99.9%/i)).toBeInTheDocument();
     expect(screen.getByText(/0 Dette/i)).toBeInTheDocument();
     expect(screen.getByText(/100%/i)).toBeInTheDocument();
+  });
+
+  it("renders BrandStorySection with PIX, SELL, Fibonacci logo anatomy and hex colors", () => {
+    render(
+      <SettingsProvider>
+        <BrandStorySection />
+      </SettingsProvider>
+    );
+
+    expect(
+      screen.getByRole("heading", {
+        name: /L'Image n'est pas de la Décoration\. L'Image, c'est de la Vente\./i,
+      })
+    ).toBeInTheDocument();
+    expect(screen.getByText("PIX")).toBeInTheDocument();
+    expect(screen.getByText("SELL")).toBeInTheDocument();
+    expect(screen.getByText(/Le Pixel • L'Unité Irréductible/i)).toBeInTheDocument();
+    expect(screen.getByText(/Vendre • Convertir l'Attention en Décision/i)).toBeInTheDocument();
+    expect(screen.getByText("#0089D0")).toBeInTheDocument();
+    expect(screen.getByText("#3DBCC7")).toBeInTheDocument();
+    expect(screen.getByText("#F37021")).toBeInTheDocument();
+    expect(screen.getByText("#FDB913")).toBeInTheDocument();
+  });
+
+  it("renders AgencyComparisonSection with positioning matrix", () => {
+    render(
+      <SettingsProvider>
+        <AgencyComparisonSection />
+      </SettingsProvider>
+    );
+
+    expect(
+      screen.getByRole("heading", {
+        name: /Ce Que Nous Sommes • Et Ce Que Nous Refusons d'Être/i,
+      })
+    ).toBeInTheDocument();
+    expect(screen.getByText(/Agence Marketing Classique/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/Accélérateur de Vente/i).length).toBeGreaterThanOrEqual(1);
+    expect(screen.getByText(/Crée des campagnes éphémères et recommence chaque mois/i)).toBeInTheDocument();
+    expect(screen.getByText(/Construit des systèmes logiciels & marketing autonomes qui vendent en continu/i)).toBeInTheDocument();
   });
 
   it("renders HorologicalManifesto with 4 clockwork organs", () => {
