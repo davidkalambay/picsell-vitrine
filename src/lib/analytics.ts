@@ -7,7 +7,7 @@ export type AnalyticsEvent =
   | { name: "toggle_eco_mode"; params: { enabled: boolean; source: "manual" | "auto_battery" } }
   | { name: "toggle_reduced_motion"; params: { enabled: boolean; source: "manual" | "auto_system" } }
   | { name: "calculate_roi"; params: { monthly_budget: number; processes_count: number; annual_gain: number } }
-  | { name: "cta_click"; params: { target: "upwork" | "consultation" | "portfolio" | "audit" | "code_review"; location: string } }
+  | { name: "cta_click"; params: { target: "upwork" | "consultation" | "portfolio" | "audit" | "code_review" | "manifesto" | "leadership"; location: string } }
   | { name: "submit_consultation"; params: { pillar: string; budget: string; urgency: string } };
 
 declare global {
