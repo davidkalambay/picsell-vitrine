@@ -16,6 +16,10 @@
   --text: #1A1A1A;
   --glass-bg: rgba(255, 255, 255, 0.85);
   --glass-border: rgba(255, 255, 255, 0.6);
+  --pillar-web: #00F5FF;
+  --pillar-marketing: #FF8A00;
+  --pillar-auto: #00FF66;
+  --pillar-data: #9D00FF;
 }
 
 body {
@@ -31,6 +35,22 @@ body {
   backdrop-filter: blur(15px);
   border: 1px solid var(--glass-border);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+}
+
+.glass-dark {
+  background: rgba(10, 10, 15, 0.75);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+.glass-engine {
+  background: linear-gradient(135deg, rgba(0, 245, 255, 0.03) 0%, rgba(157, 0, 255, 0.03) 100%);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 245, 255, 0.18);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
 }
 
 .gear-text {
