@@ -100,7 +100,8 @@ export const SettingsDrawer: React.FC = () => {
 
                         <button
                             onClick={() => setIsDrawerOpen(false)}
-                            className="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-slate-400 hover:text-white transition-colors"
+                            aria-label="Fermer le studio de réglages"
+                            className="w-10 h-10 min-w-[40px] min-h-[40px] rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-slate-300 hover:text-white transition-colors"
                         >
                             ✕
                         </button>
@@ -114,7 +115,7 @@ export const SettingsDrawer: React.FC = () => {
                                 <button
                                     key={tab.id}
                                     onClick={() => setActiveTab(tab.id)}
-                                    className={`py-2 px-1 rounded-xl text-[11px] font-bold flex flex-col items-center justify-center gap-1 transition-all ${
+                                    className={`min-h-[44px] py-2 px-1.5 rounded-xl text-[11px] font-bold flex flex-col items-center justify-center gap-1 transition-all ${
                                         isActive
                                             ? "bg-white/15 text-white shadow-lg border border-white/20"
                                             : "text-slate-400 hover:text-slate-200 hover:bg-white/5"
@@ -644,9 +645,9 @@ export const SettingsDrawer: React.FC = () => {
                                         step="0.2"
                                         value={settings.scrubSpeed}
                                         onChange={(e) => updateSetting("scrubSpeed", parseFloat(e.target.value))}
-                                        className="w-full accent-[var(--pic-turquoise,#3dbcc7)] cursor-pointer"
+                                        className="w-full accent-[var(--pic-turquoise,#3dbcc7)] rounded cursor-pointer"
                                     />
-                                    <div className="flex justify-between text-[10px] text-slate-500 mt-1 font-mono">
+                                    <div className="flex justify-between text-[10px] text-slate-400 mt-1 font-mono">
                                         <span>0.3s (Instantané)</span>
                                         <span>2.5s (Très fluide)</span>
                                     </div>
@@ -858,7 +859,7 @@ export const SettingsDrawer: React.FC = () => {
                     >
                         <span>↺</span> Réinitialiser tous les réglages par défaut
                     </button>
-                    <p className="text-[10px] text-center text-slate-500 font-mono">
+                    <p className="text-[10px] text-center text-slate-400 font-mono">
                         Picsell Studio Config v1.0 • Sauvegarde auto en local
                     </p>
                 </div>

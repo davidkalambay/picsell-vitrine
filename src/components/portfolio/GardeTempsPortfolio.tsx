@@ -189,7 +189,7 @@ export function GardeTempsPortfolio() {
 
               {/* Stack Badges */}
               <div className="pt-4 border-t border-white/10 flex flex-wrap items-center gap-2 font-mono text-[11px]">
-                <span className="text-slate-500 uppercase tracking-wider mr-2">STACK TECHNIQUE :</span>
+                <span className="text-slate-400 uppercase tracking-wider mr-2 font-semibold">STACK TECHNIQUE :</span>
                 {activeCase.stack.map((tech) => (
                   <span
                     key={tech}
@@ -254,7 +254,7 @@ export function GardeTempsPortfolio() {
                   </p>
                   <div className="font-mono text-[11px]">
                     <span className="text-white font-bold block">{activeCase.quote.author}</span>
-                    <span className="text-slate-500">{activeCase.quote.role}</span>
+                    <span className="text-slate-400">{activeCase.quote.role}</span>
                   </div>
                 </div>
               )}

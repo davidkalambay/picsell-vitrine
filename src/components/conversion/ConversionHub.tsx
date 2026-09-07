@@ -316,7 +316,7 @@ export function ConversionHub() {
                   <span>Engager David sur Upwork</span>
                   <ExternalLink className="w-4 h-4" />
                 </MagneticButton>
-                <div className="text-center mt-3 text-[11px] text-slate-500 font-mono">
+                <div className="text-center mt-3 text-[11px] text-slate-400 font-mono">
                   Lien direct officiel vérifié // Aucun intermédiaire
                 </div>
               </div>
@@ -372,15 +372,15 @@ export function ConversionHub() {
 
                   <div className="p-4 rounded-lg bg-black/40 border border-white/10 font-mono text-xs space-y-2 mb-6 text-slate-300">
                     <div className="flex justify-between">
-                      <span className="text-slate-500">Entreprise :</span>
+                      <span className="text-slate-400">Entreprise :</span>
                       <span className="text-white font-bold">{successReceipt.company}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-slate-500">Horodatage de synchronisation :</span>
+                      <span className="text-slate-400">Horodatage de synchronisation :</span>
                       <span className="text-white">{successReceipt.timestamp} (GMT+1)</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-slate-500">Statut :</span>
+                      <span className="text-slate-400">Statut :</span>
                       <span className="text-emerald-400 font-bold">En file prioritaire</span>
                     </div>
                   </div>
@@ -606,7 +606,7 @@ export function ConversionHub() {
                       </>
                     )}
                   </MagneticButton>
-                  <p className="text-center text-[11px] text-slate-500 font-mono">
+                  <p className="text-center text-[11px] text-slate-400 font-mono">
                     Validation instantanée // Réponse sous 24h avec plan d&apos;action
                   </p>
                 </form>
@@ -626,7 +626,7 @@ export function ConversionHub() {
             <div className="text-base font-bold text-white font-sora mb-2 tracking-tight">
               PICSELL AGENCY
             </div>
-            <p className="text-[11px] text-slate-500 leading-relaxed font-sans mb-3">
+            <p className="text-[11px] text-slate-400 leading-relaxed font-sans mb-3">
               Moteur logiciel horloger, automatisation d&apos;élite &amp; marketing de précision.
             </p>
             <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-white/5 border border-white/10 text-[10px] text-emerald-400">
@@ -673,7 +673,7 @@ export function ConversionHub() {
               <li className="text-emerald-400">✓ WCAG 2.1 AA Compliant</li>
               <li className="text-[#3dbcc7]">✓ Battery Saver API Native</li>
               <li className="text-[#fdb913]">✓ AEO & JSON-LD Structured</li>
-              <li className="text-slate-500 mt-2">© 2026 Picsell Agency. Tous droits réservés.</li>
+              <li className="text-slate-400 mt-2">© 2026 Picsell Agency. Tous droits réservés.</li>
             </ul>
           </div>
         </footer>

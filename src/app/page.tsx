@@ -11,6 +11,7 @@ import { RoiDashboardShowcase } from "@/components/portfolio/RoiDashboardShowcas
 import { ConversionHub } from "@/components/conversion/ConversionHub";
 import { SplitTextReveal } from "@/components/animations/SplitTextReveal";
 import { MagneticButton } from "@/components/interactions/MagneticButton";
+import { trackEvent } from "@/lib/analytics";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap-config";
 import { useSiteSettings } from "@/context/SettingsContext";
 
@@ -239,7 +240,7 @@ export default function Home() {
 
         {/* Technical Monospace Metadata HUD (Sally's Idea 09) */}
         {settings.extremeTypography && (
-          <div id="hero-hud" className="mb-10 inline-flex flex-wrap items-center justify-center gap-2 sm:gap-4 px-4 py-1.5 rounded-full bg-slate-100 dark:bg-white/[0.03] border border-slate-200 dark:border-white/10 font-mono text-[10px] sm:text-[11px] tracking-widest text-slate-500 uppercase select-none relative z-10">
+          <div id="hero-hud" className="mb-10 inline-flex flex-wrap items-center justify-center gap-2 sm:gap-4 px-4 py-1.5 rounded-full bg-slate-100 dark:bg-white/[0.03] border border-slate-200 dark:border-white/10 font-mono text-[10px] sm:text-[11px] tracking-widest text-slate-400 uppercase select-none relative z-10">
             <span>SYS_ID // PICSELL_HQ</span>
             <span className="opacity-40">•</span>
             <span>GEO // KINSHASA (4.32°S 15.30°E)</span>
@@ -254,6 +255,9 @@ export default function Home() {
             strength={0.35}
             textStrength={0.18}
             className="px-7 py-3.5 rounded-full text-sm font-bold bg-slate-900 text-white hover:bg-black hover:shadow-lg hover:-translate-y-0.5 transition-all shadow-[0_4px_20px_rgba(0,0,0,0.15)]"
+            onClick={() => {
+              trackEvent("cta_click", { target: "consultation", location: "hero" });
+            }}
           >
             Lancer un cadrage stratégique →
           </MagneticButton>
@@ -262,6 +266,9 @@ export default function Home() {
             strength={0.3}
             textStrength={0.15}
             className="px-7 py-3.5 rounded-full text-sm font-bold border-2 border-slate-200 text-slate-900 hover:border-slate-900 hover:-translate-y-0.5 transition-all"
+            onClick={() => {
+              trackEvent("cta_click", { target: "audit", location: "hero" });
+            }}
           >
             Explorer le simulateur ROI
           </MagneticButton>

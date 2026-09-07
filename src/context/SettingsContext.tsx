@@ -193,7 +193,7 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
         }
     }, []);
 
-    // Load from localStorage on mount
+    // Load from localStorage on mount & detect low-spec hardware
     useEffect(() => {
         try {
             const saved = localStorage.getItem(STORAGE_KEY);
@@ -203,6 +203,19 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
                     ...prev,
                     ...parsed,
                 }));
+            } else if (typeof navigator !== "undefined") {
+                // ISSUE-03: Proactive Low-Spec Hardware detection (<= 4 CPU cores or <= 4GB RAM)
+                const isLowCpu = typeof navigator.hardwareConcurrency === "number" && navigator.hardwareConcurrency <= 4;
+                const navMemory = (navigator as unknown as { deviceMemory?: number }).deviceMemory;
+                const isLowMemory = typeof navMemory === "number" && navMemory <= 4;
+
+                if (isLowCpu || isLowMemory) {
+                    setSettings((prev) => ({
+                        ...prev,
+                        performanceMode: true,
+                        glassmorphism: false,
+                    }));
+                }
             }
         } catch (e) {
             console.error("Failed to load settings from localStorage", e);

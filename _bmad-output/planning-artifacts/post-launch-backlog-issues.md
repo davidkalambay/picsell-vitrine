@@ -4,19 +4,19 @@ Ce document rassemble les recommandations issues de la revue critique **BMAD Par
 
 ---
 
-## 🎯 Vue d'ensemble des Issues
+## 🎯 Vue d'ensemble des Issues (100% Résolu)
 
-| ID | Titre de l'Issue | Type / Label | Priorité | Estimation | Porteur (Persona) |
-| :--- | :--- | :---: | :---: | :---: | :---: |
-| **ISSUE-01** | [CRO] Optimiser la clarté et l'accès au CTA Primaire dans le Hero Header | `enhancement`, `cro` | **P1 (High)** | **S (1j)** | Sally |
-| **ISSUE-02** | [A11y/UI] Rehausser le ratio de contraste des labels secondaires et métadonnées | `accessibility`, `ui` | **P1 (High)** | **S (0.5j)** | Amélia |
-| **ISSUE-03** | [Perf] Auto-détection des périphériques Low-Spec (Hardware Concurrency / RAM) | `performance`, `dx` | **P2 (Medium)** | **M (2j)** | Winston |
-| **ISSUE-04** | [Mobile/UX] Élargir les cibles tactiles (Touch Targets $\ge$ 44px) sur mobile | `mobile`, `ux` | **P2 (Medium)** | **S (1j)** | Amélia |
-| **ISSUE-05** | [Analytics] Intégrer la télémétrie privacy-first et le tracking d'entonnoir | `analytics`, `growth` | **P2 (Medium)** | **M (1.5j)** | Sally |
-| **ISSUE-06** | [CI/CD] Ajouter le workflow GitHub Actions pour exécuter Vitest et ESLint | `ci-cd`, `devops` | **P3 (Low)** | **S (0.5j)** | Bob |
-| **ISSUE-07** | [Copy/CRO] Réécriture orientée résultats du sous-titre et des micro-copies Hero | `copywriting`, `cro` | **P1 (High)** | **S (0.5j)** | Sally |
-| **ISSUE-08** | [Copy/Branding] Refonte des 4 Piliers Scrollytelling avec des verbes d'action | `copywriting`, `brand` | **P2 (Medium)** | **S (1j)** | Sally |
-| **ISSUE-09** | [Copy/Storytelling] Clarification des "Complications" vers "Preuves d'Exécution" | `copywriting`, `ux` | **P2 (Medium)** | **S (0.5j)** | Amélia |
+| ID | Titre de l'Issue | Type / Label | Priorité | Estimation | Porteur | Statut |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: |
+| **ISSUE-01** | [CRO] Optimiser la clarté et l'accès au CTA Primaire dans le Hero Header | `enhancement`, `cro` | **P1 (High)** | **S (1j)** | Sally | ✅ **RÉSOLU** |
+| **ISSUE-02** | [A11y/UI] Rehausser le ratio de contraste des labels secondaires et métadonnées | `accessibility`, `ui` | **P1 (High)** | **S (0.5j)** | Amélia | ✅ **RÉSOLU** |
+| **ISSUE-03** | [Perf] Auto-détection des périphériques Low-Spec (Hardware Concurrency / RAM) | `performance`, `dx` | **P2 (Medium)** | **M (2j)** | Winston | ✅ **RÉSOLU** |
+| **ISSUE-04** | [Mobile/UX] Élargir les cibles tactiles (Touch Targets $\ge$ 44px) sur mobile | `mobile`, `ux` | **P2 (Medium)** | **S (1j)** | Amélia | ✅ **RÉSOLU** |
+| **ISSUE-05** | [Analytics] Intégrer la télémétrie privacy-first et le tracking d'entonnoir | `analytics`, `growth` | **P2 (Medium)** | **M (1.5j)** | Sally | ✅ **RÉSOLU** |
+| **ISSUE-06** | [CI/CD] Ajouter le workflow GitHub Actions pour exécuter Vitest et ESLint | `ci-cd`, `devops` | **P3 (Low)** | **S (0.5j)** | Bob | ✅ **RÉSOLU** |
+| **ISSUE-07** | [Copy/CRO] Réécriture orientée résultats du sous-titre et des micro-copies Hero | `copywriting`, `cro` | **P1 (High)** | **S (0.5j)** | Sally | ✅ **RÉSOLU** |
+| **ISSUE-08** | [Copy/Branding] Refonte des 4 Piliers Scrollytelling avec des verbes d'action | `copywriting`, `brand` | **P2 (Medium)** | **S (1j)** | Sally | ✅ **RÉSOLU** |
+| **ISSUE-09** | [Copy/Storytelling] Clarification des "Complications" vers "Preuves d'Exécution" | `copywriting`, `ux` | **P2 (Medium)** | **S (0.5j)** | Amélia | ✅ **RÉSOLU** |
 
 ---
 

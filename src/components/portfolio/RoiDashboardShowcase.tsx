@@ -152,7 +152,7 @@ export function RoiDashboardShowcase() {
                     onChange={(e) => setMonthlyBudget(Number(e.target.value))}
                     className="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer accent-[var(--pic-gold,#fdb913)]"
                   />
-                  <div className="flex justify-between text-[10px] font-mono text-slate-500 mt-2">
+                  <div className="flex justify-between text-[10px] font-mono text-slate-400 mt-2">
                     <span>3 000 $</span>
                     <span>50 000 $</span>
                     <span>100 000 $</span>
@@ -182,7 +182,7 @@ export function RoiDashboardShowcase() {
                     onChange={(e) => setMonthlyDossiers(Number(e.target.value))}
                     className="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer accent-[var(--pic-turquoise,#3dbcc7)]"
                   />
-                  <div className="flex justify-between text-[10px] font-mono text-slate-500 mt-2">
+                  <div className="flex justify-between text-[10px] font-mono text-slate-400 mt-2">
                     <span>100 dossiers</span>
                     <span>2 500</span>
                     <span>5 000 dossiers</span>
@@ -356,24 +356,24 @@ export function RoiDashboardShowcase() {
             {/* Mock Live Pipeline Log Stream */}
             <div className="p-4 rounded-xl bg-black/60 border border-white/10 font-mono text-xs text-slate-300 space-y-2 mb-6 max-h-56 overflow-y-auto">
               <div className="flex items-center gap-2 text-emerald-400">
-                <span className="text-slate-500">[14:02:18.421]</span>
+                <span className="text-slate-400">[14:02:18.421]</span>
                 <span className="font-bold">✓ CAPI_EVENT_DISPATCHED</span>
-                <span className="text-slate-400">-- cart_id=NG-9842 value=420.00$ status=200_OK</span>
+                <span className="text-slate-300">-- cart_id=NG-9842 value=420.00$ status=200_OK</span>
               </div>
               <div className="flex items-center gap-2 text-[var(--pic-turquoise,#3dbcc7)]">
-                <span className="text-slate-500">[14:02:19.012]</span>
+                <span className="text-slate-400">[14:02:19.012]</span>
                 <span className="font-bold">⚡ N8N_WORKFLOW_TRIGGERED</span>
-                <span className="text-slate-400">-- manifest_pdf_ocr payload_size=2.4MB routing=kolwezi_hub</span>
+                <span className="text-slate-300">-- manifest_pdf_ocr payload_size=2.4MB routing=kolwezi_hub</span>
               </div>
               <div className="flex items-center gap-2 text-white">
-                <span className="text-slate-500">[14:02:19.198]</span>
+                <span className="text-slate-400">[14:02:19.198]</span>
                 <span className="font-bold">⚙ GEMINI_VISION_PARSED</span>
-                <span className="text-slate-400">-- 44 items extracted with 99.8% confidence match</span>
+                <span className="text-slate-300">-- 44 items extracted with 99.8% confidence match</span>
               </div>
               <div className="flex items-center gap-2 text-[var(--pic-gold,#fdb913)]">
-                <span className="text-slate-500">[14:02:19.450]</span>
+                <span className="text-slate-400">[14:02:19.450]</span>
                 <span className="font-bold">📊 DUCKDB_TELEMETRY_AGGREGATED</span>
-                <span className="text-slate-400">-- metrics updated in memory, latency delta -4ms</span>
+                <span className="text-slate-300">-- metrics updated in memory, latency delta -4ms</span>
               </div>
             </div>
 
