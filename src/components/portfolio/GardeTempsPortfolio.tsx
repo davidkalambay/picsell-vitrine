@@ -61,7 +61,7 @@ export function GardeTempsPortfolio() {
           </SplitTextReveal>
 
           <p className="text-base sm:text-lg text-slate-400 font-normal leading-relaxed">
-            Quatre complications horlogères appliquées à des défis d&apos;entreprise réels.
+            Preuves d&apos;exécution &amp; ingénierie sur-mesure appliquées à des défis d&apos;entreprise réels.
             Chaque projet est un mécanisme autonome conçu pour générer un retour sur investissement chiffré et pérenne.
           </p>
         </div>

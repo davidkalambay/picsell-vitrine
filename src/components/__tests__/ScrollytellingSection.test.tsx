@@ -32,13 +32,13 @@ vi.mock("@/lib/gsap-config", () => ({
 }));
 
 describe("ScrollytellingSection Component", () => {
-  it("renders the 4 service pillar cards in DOM", () => {
+  it("renders the 4 service pillar cards in DOM with active action verbs", () => {
     render(<ScrollytellingSection />);
 
-    expect(screen.getByText("Digital Marketing")).toBeInTheDocument();
-    expect(screen.getByText("Automation")).toBeInTheDocument();
-    expect(screen.getByText("Development")).toBeInTheDocument();
-    expect(screen.getByText("Data Intelligence")).toBeInTheDocument();
+    expect(screen.getByText(/01 \/ ACQUÉRIR/i)).toBeInTheDocument();
+    expect(screen.getByText(/02 \/ ACCÉLÉRER/i)).toBeInTheDocument();
+    expect(screen.getByText(/03 \/ BÂTIR/i)).toBeInTheDocument();
+    expect(screen.getByText(/04 \/ PILOTER/i)).toBeInTheDocument();
   });
 
   it("renders pillar badges and technical spec indices", () => {

@@ -234,7 +234,7 @@ export default function Home() {
           flavor="smooth"
           className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto mb-8 leading-relaxed font-normal relative z-10"
         >
-          Picsell Agency conçoit des systèmes marketing, techniques et data pilotés par {"l'IA"}, pensés pour les entreprises congolaises et le marché francophone.
+          Nous concevons les architectures digitales, marketing et data qui automatisent votre croissance. Une ingénierie d&apos;élite opérée depuis Kinshasa pour les entreprises exigeantes et la diaspora.
         </SplitTextReveal>
 
         {/* Technical Monospace Metadata HUD (Sally's Idea 09) */}
@@ -250,20 +250,20 @@ export default function Home() {
 
         <div id="hero-cta" className="flex flex-wrap justify-center gap-4 relative z-10">
           <MagneticButton
-            href="#scrollytelling-section"
+            href="#footer-contact"
             strength={0.35}
             textStrength={0.18}
             className="px-7 py-3.5 rounded-full text-sm font-bold bg-slate-900 text-white hover:bg-black hover:shadow-lg hover:-translate-y-0.5 transition-all shadow-[0_4px_20px_rgba(0,0,0,0.15)]"
           >
-            Découvrir nos expertises ↓
+            Lancer un cadrage stratégique →
           </MagneticButton>
           <MagneticButton
-            href="#footer-contact"
+            href="#roi-dashboard-showcase"
             strength={0.3}
             textStrength={0.15}
             className="px-7 py-3.5 rounded-full text-sm font-bold border-2 border-slate-200 text-slate-900 hover:border-slate-900 hover:-translate-y-0.5 transition-all"
           >
-            Nous écrire
+            Explorer le simulateur ROI
           </MagneticButton>
         </div>
       </section>

@@ -345,7 +345,7 @@ export const ScrollytellingSection: React.FC = () => {
                         <div className="card-top-pill flex items-center justify-between mb-4">
                             <p className="text-xs font-bold tracking-[0.2em] uppercase text-[var(--pic-orange,#f37021)] flex items-center gap-2">
                                 <span className="w-2 h-2 rounded-full bg-[var(--pic-orange,#f37021)]"></span>
-                                Digital Marketing
+                                01 / ACQUÉRIR — Digital Marketing
                             </p>
                             {renderNumber("01", "marketing", "var(--pic-orange, #f37021)")}
                         </div>
@@ -439,7 +439,7 @@ export const ScrollytellingSection: React.FC = () => {
                         <div className="card-top-pill flex items-center justify-between mb-4">
                             <p className="text-xs font-bold tracking-[0.2em] uppercase text-[var(--pic-turquoise,#3dbcc7)] flex items-center gap-2">
                                 <span className="w-2 h-2 rounded-full bg-[var(--pic-turquoise,#3dbcc7)]"></span>
-                                Automation
+                                02 / ACCÉLÉRER — Automatisation & IA
                             </p>
                             {renderNumber("02", "automation", "var(--pic-turquoise, #3dbcc7)")}
                         </div>
@@ -532,7 +532,7 @@ export const ScrollytellingSection: React.FC = () => {
                         <div className="card-top-pill flex items-center justify-between mb-4">
                             <p className="text-xs font-bold tracking-[0.2em] uppercase text-[var(--pic-blue,#0089d0)] flex items-center gap-2">
                                 <span className="w-2 h-2 rounded-full bg-[var(--pic-blue,#0089d0)]"></span>
-                                Development
+                                03 / BÂTIR — Développement Web &amp; Cloud
                             </p>
                             {renderNumber("03", "development", "var(--pic-blue, #0089d0)")}
                         </div>
@@ -625,7 +625,7 @@ export const ScrollytellingSection: React.FC = () => {
                         <div className="card-top-pill flex items-center justify-between mb-4">
                             <p className="text-xs font-bold tracking-[0.2em] uppercase text-[var(--pic-gold,#fdb913)] flex items-center gap-2">
                                 <span className="w-2 h-2 rounded-full bg-[var(--pic-gold,#fdb913)]"></span>
-                                Data Intelligence
+                                04 / PILOTER — Data Intelligence
                             </p>
                             {renderNumber("04", "data", "var(--pic-gold, #fdb913)")}
                         </div>
