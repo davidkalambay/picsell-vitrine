@@ -12,6 +12,10 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    "Main-html/**",
+    "prototype/**",
+    "_bmad/**",
+    "_bmad-output/**",
   ]),
 ]);
 

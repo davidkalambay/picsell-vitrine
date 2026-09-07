@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { useSiteSettings, ThemeMode, GearSize } from "@/context/SettingsContext";
+import { useSiteSettings, ThemeMode, GearSize, NoiseIntensity } from "@/context/SettingsContext";
 
 type SettingsTab = "sally" | "amelia" | "winston" | "all";
 
@@ -170,7 +170,7 @@ export const SettingsDrawer: React.FC = () => {
                                 <div>
                                     <div className="flex justify-between items-center mb-2.5">
                                         <label className="text-xs font-bold uppercase tracking-widest text-slate-400 block">
-                                            🌓 Mode d'ambiance
+                                            🌓 Mode d&apos;ambiance
                                         </label>
                                         <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-[var(--pic-orange,#f37021)]/20 text-[var(--pic-orange,#f37021)]">
                                             SALLY #01
@@ -220,12 +220,12 @@ export const SettingsDrawer: React.FC = () => {
                                 <div className="flex items-center justify-between p-4 rounded-2xl bg-white/[0.03] border border-white/10">
                                     <div>
                                         <div className="flex items-center gap-1.5">
-                                            <p className="text-sm font-bold text-white">Chiffres "Outline" Réactifs</p>
+                                            <p className="text-sm font-bold text-white">Chiffres &quot;Outline&quot; Réactifs</p>
                                             <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-[var(--pic-orange,#f37021)]/20 text-[var(--pic-orange,#f37021)]">
                                                 SALLY #03
                                             </span>
                                         </div>
-                                        <p className="text-xs text-slate-400">Contour filaire qui s'illumine & se remplit</p>
+                                        <p className="text-xs text-slate-400">Contour filaire qui s&apos;illumine &amp; se remplit</p>
                                     </div>
                                     <input
                                         type="checkbox"
@@ -266,7 +266,7 @@ export const SettingsDrawer: React.FC = () => {
                                                 ].map((level) => (
                                                     <button
                                                         key={level.id}
-                                                        onClick={() => updateSetting("noiseIntensity", level.id as any)}
+                                                        onClick={() => updateSetting("noiseIntensity", level.id as NoiseIntensity)}
                                                         className={`px-2.5 py-1 rounded-lg text-[10px] font-bold border transition-all ${
                                                             settings.noiseIntensity === level.id
                                                                 ? "bg-[var(--pic-orange,#f37021)]/20 border-[var(--pic-orange,#f37021)] text-white shadow-[0_0_10px_rgba(243,112,33,0.3)]"
@@ -290,7 +290,7 @@ export const SettingsDrawer: React.FC = () => {
                                                 SALLY #05
                                             </span>
                                         </div>
-                                        <p className="text-xs text-slate-400">Repères d'ingénierie & lignes de force</p>
+                                        <p className="text-xs text-slate-400">Repères d&apos;ingénierie &amp; lignes de force</p>
                                     </div>
                                     <input
                                         type="checkbox"
@@ -342,7 +342,7 @@ export const SettingsDrawer: React.FC = () => {
                                 <div className="flex items-center justify-between p-4 rounded-2xl bg-white/[0.03] border border-white/10">
                                     <div>
                                         <div className="flex items-center gap-1.5">
-                                            <p className="text-sm font-bold text-white">Terminaux d'Ingénierie</p>
+                                            <p className="text-sm font-bold text-white">Terminaux d&apos;Ingénierie</p>
                                             <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-[var(--pic-orange,#f37021)]/20 text-[var(--pic-orange,#f37021)]">
                                                 SALLY #07
                                             </span>
@@ -458,7 +458,7 @@ export const SettingsDrawer: React.FC = () => {
                                                 AMELIA #03
                                             </span>
                                         </div>
-                                        <p className="text-xs text-slate-400">Révélation mécanique mot par mot & frappe d'horlogerie</p>
+                                        <p className="text-xs text-slate-400">Révélation mécanique mot par mot &amp; frappe d&apos;horlogerie</p>
                                     </div>
                                     <input
                                         type="checkbox"
@@ -493,7 +493,7 @@ export const SettingsDrawer: React.FC = () => {
                                             onClick={() => triggerDrawSvgReplay()}
                                             className="w-full py-2 px-3 rounded-xl text-xs font-bold font-mono tracking-wider uppercase border border-[var(--pic-turquoise,#3dbcc7)]/40 bg-[var(--pic-turquoise,#3dbcc7)]/10 hover:bg-[var(--pic-turquoise,#3dbcc7)]/20 text-[var(--pic-turquoise,#3dbcc7)] hover:text-white flex items-center justify-center gap-2 transition-all"
                                         >
-                                            <span>▶</span> Rejouer l'assemblage DrawSVG
+                                            <span>▶</span> Rejouer l&apos;assemblage DrawSVG
                                         </button>
                                     )}
                                 </div>
@@ -564,7 +564,7 @@ export const SettingsDrawer: React.FC = () => {
                                             }}
                                             className="w-full py-2 px-3 rounded-xl text-xs font-bold font-mono tracking-wider uppercase border border-[var(--pic-turquoise,#3dbcc7)]/40 bg-[var(--pic-turquoise,#3dbcc7)]/10 hover:bg-[var(--pic-turquoise,#3dbcc7)]/20 text-[var(--pic-turquoise,#3dbcc7)] hover:text-white flex items-center justify-center gap-2 transition-all"
                                         >
-                                            <span>▶</span> Rejouer l'entrée du Hero
+                                            <span>▶</span> Rejouer l&apos;entrée du Hero
                                         </button>
                                     )}
                                 </div>
@@ -578,7 +578,7 @@ export const SettingsDrawer: React.FC = () => {
                                                 AMELIA #08
                                             </span>
                                         </div>
-                                        <p className="text-xs text-slate-400">Télémétrie en direct & calcul d'odomètre haute vitesse</p>
+                                        <p className="text-xs text-slate-400">Télémétrie en direct &amp; calcul d&apos;odomètre haute vitesse</p>
                                     </div>
                                     <input
                                         type="checkbox"
@@ -631,7 +631,7 @@ export const SettingsDrawer: React.FC = () => {
                                     <div className="flex justify-between items-center mb-3">
                                         <div>
                                             <p className="text-sm font-bold text-white">Inertie du Scroll (Scrubbing)</p>
-                                            <p className="text-xs text-slate-400">Fluidité de rotation de l'engrenage</p>
+                                            <p className="text-xs text-slate-400">Fluidité de rotation de l&apos;engrenage</p>
                                         </div>
                                         <span className="text-xs font-mono font-bold px-2 py-1 rounded bg-white/10 text-[var(--pic-turquoise,#3dbcc7)]">
                                             {settings.scrubSpeed}s

@@ -186,7 +186,7 @@ export const SplitTextReveal: React.FC<SplitTextRevealProps> = ({
         }
 
         if (React.isValidElement(node)) {
-            const { children: childChildren, ...otherProps } = node.props as { children?: React.ReactNode; [key: string]: any };
+            const { children: childChildren, ...otherProps } = node.props as { children?: React.ReactNode; [key: string]: unknown };
             return React.cloneElement(
                 node,
                 { ...otherProps, key: node.key || keyPrefix },
@@ -197,16 +197,18 @@ export const SplitTextReveal: React.FC<SplitTextRevealProps> = ({
         return node;
     };
 
-    return React.createElement(
-        Tag,
-        {
-            ref: containerRef,
-            className: `split-reveal-container ${className}`,
-            style,
-            "aria-label": fullPlainText,
-        },
-        <span aria-hidden="true" className="inline-block w-full">
-            {renderNode(children, id)}
-        </span>
+    const Component = Tag as React.ElementType;
+
+    return (
+        <Component
+            ref={containerRef}
+            className={`split-reveal-container ${className}`}
+            style={style}
+            aria-label={fullPlainText}
+        >
+            <span aria-hidden="true" className="inline-block w-full">
+                {renderNode(children, id)}
+            </span>
+        </Component>
     );
 };

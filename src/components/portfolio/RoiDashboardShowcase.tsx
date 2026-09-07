@@ -72,9 +72,11 @@ export function RoiDashboardShowcase() {
 
         {/* Mode Switcher Tabs */}
         <div className="flex justify-center mb-10">
-          <div className="inline-flex p-1 rounded-2xl bg-white/[0.03] border border-white/10 font-mono text-xs">
+          <div role="tablist" className="inline-flex p-1 rounded-2xl bg-white/[0.03] border border-white/10 font-mono text-xs">
             <button
               id="tab-roi-simulator"
+              role="tab"
+              aria-selected={activeTab === "simulator"}
               onClick={() => setActiveTab("simulator")}
               className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold tracking-wider transition-all cursor-pointer ${
                 activeTab === "simulator"
@@ -87,6 +89,8 @@ export function RoiDashboardShowcase() {
             </button>
             <button
               id="tab-roi-cockpit"
+              role="tab"
+              aria-selected={activeTab === "cockpit"}
               onClick={() => setActiveTab("cockpit")}
               className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold tracking-wider transition-all cursor-pointer ${
                 activeTab === "cockpit"
@@ -99,6 +103,8 @@ export function RoiDashboardShowcase() {
             </button>
             <button
               id="tab-roi-demo"
+              role="tab"
+              aria-selected={activeTab === "demo"}
               onClick={() => setActiveTab("demo")}
               className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold tracking-wider transition-all cursor-pointer ${
                 activeTab === "demo"

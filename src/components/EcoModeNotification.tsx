@@ -1,21 +1,14 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSiteSettings } from "@/context/SettingsContext";
-import { BatteryCharging, BatteryWarning, Zap, X } from "lucide-react";
+import { BatteryWarning, X } from "lucide-react";
 
 export function EcoModeNotification() {
   const { settings, batteryInfo, updateSetting } = useSiteSettings();
   const [dismissed, setDismissed] = useState(false);
-  const [showToast, setShowToast] = useState(false);
 
-  useEffect(() => {
-    if (batteryInfo.isLowBattery && settings.ecoMode && !dismissed) {
-      setShowToast(true);
-    } else {
-      setShowToast(false);
-    }
-  }, [batteryInfo.isLowBattery, settings.ecoMode, dismissed]);
+  const showToast = batteryInfo.isLowBattery && settings.ecoMode && !dismissed;
 
   if (!showToast) return null;
 

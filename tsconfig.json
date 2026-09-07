@@ -40,6 +40,9 @@
   ],
   "exclude": [
     "node_modules",
-    "prototype"
+    "prototype",
+    "Main-html",
+    "_bmad",
+    "_bmad-output"
   ]
 }

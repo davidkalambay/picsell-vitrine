@@ -96,38 +96,70 @@ const MagneticButtonComponent: React.FC<MagneticButtonProps> = ({
         };
     }, { scope: buttonRef, dependencies: [settings.magneticButtons, strength, textStrength] });
 
-    const props: any = {
-        ref: buttonRef,
-        id,
-        className: `inline-flex items-center justify-center select-none relative ${className}`,
-        style: {
-            willChange: "transform",
-            ...style,
-        },
-        onClick,
-        disabled,
-        type: Tag === "button" ? type || "button" : undefined,
-        "aria-label": ariaLabel,
+    const sharedClassName = `inline-flex items-center justify-center select-none relative ${className}`;
+    const sharedStyle: React.CSSProperties = {
+        willChange: "transform",
+        ...style,
     };
 
+    const innerContent = (
+        <span
+            ref={contentRef}
+            className="w-full h-full inline-flex items-center justify-center pointer-events-none"
+            style={{ willChange: "transform" }}
+        >
+            {children}
+        </span>
+    );
+
     if (Tag === "a" || href) {
-        props.href = href;
-        if (target) props.target = target;
-        if (rel) props.rel = rel;
+        return (
+            <a
+                ref={buttonRef as unknown as React.RefObject<HTMLAnchorElement | null>}
+                id={id}
+                href={href}
+                target={target}
+                rel={rel}
+                className={sharedClassName}
+                style={sharedStyle}
+                onClick={onClick}
+                aria-label={ariaLabel}
+            >
+                {innerContent}
+            </a>
+        );
     }
 
-    const Component = Tag as any;
+    if (Tag === "div") {
+        return (
+            <div
+                ref={buttonRef as unknown as React.RefObject<HTMLDivElement | null>}
+                id={id}
+                className={sharedClassName}
+                style={sharedStyle}
+                onClick={onClick}
+                aria-label={ariaLabel}
+                role="button"
+                tabIndex={0}
+            >
+                {innerContent}
+            </div>
+        );
+    }
 
     return (
-        <Component {...props}>
-            <span
-                ref={contentRef}
-                className="w-full h-full inline-flex items-center justify-center pointer-events-none"
-                style={{ willChange: "transform" }}
-            >
-                {children}
-            </span>
-        </Component>
+        <button
+            ref={buttonRef as unknown as React.RefObject<HTMLButtonElement | null>}
+            id={id}
+            type={type || "button"}
+            disabled={disabled}
+            className={sharedClassName}
+            style={sharedStyle}
+            onClick={onClick}
+            aria-label={ariaLabel}
+        >
+            {innerContent}
+        </button>
     );
 };
 

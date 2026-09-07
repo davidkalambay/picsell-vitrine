@@ -182,15 +182,6 @@ export default function TechStackShowcase() {
     { scope: containerRef }
   );
 
-  const categorizedTech = TECH_STACK.reduce(
-    (acc, tech) => {
-      if (!acc[tech.category]) acc[tech.category] = [];
-      acc[tech.category].push(tech);
-      return acc;
-    },
-    {} as Record<string, TechItem[]>
-  );
-
   return (
     <section ref={containerRef} className="py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
       {/* Header */}

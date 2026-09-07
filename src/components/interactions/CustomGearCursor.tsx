@@ -4,24 +4,26 @@ import React, { useEffect, useRef, useState } from "react";
 import { gsap, useGSAP } from "@/lib/gsap-config";
 import { useSiteSettings } from "@/context/SettingsContext";
 
+const emptySubscribe = () => () => {};
+function getIsTouchDevice() {
+    if (typeof window === "undefined") return false;
+    return window.matchMedia("(pointer: coarse)").matches || "ontouchstart" in window;
+}
+
 const CustomGearCursorComponent: React.FC = () => {
     const { settings } = useSiteSettings();
     const cursorRef = useRef<HTMLDivElement>(null);
     const dotRef = useRef<HTMLDivElement>(null);
     const gearRef = useRef<SVGSVGElement>(null);
-    const [isTouchDevice, setIsTouchDevice] = useState(false);
+    const isTouchDevice = React.useSyncExternalStore(
+        emptySubscribe,
+        getIsTouchDevice,
+        () => false
+    );
     const [isHovered, setIsHovered] = useState(false);
     const [isClicked, setIsClicked] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
     const [activeColor, setActiveColor] = useState("#0089d0");
-
-    useEffect(() => {
-        // Detect touch device
-        if (typeof window !== "undefined") {
-            const hasTouch = window.matchMedia("(pointer: coarse)").matches || "ontouchstart" in window;
-            setIsTouchDevice(hasTouch);
-        }
-    }, []);
 
     useGSAP(() => {
         if (!settings.gearCursor || settings.reducedMotion || isTouchDevice || !cursorRef.current || !dotRef.current || !gearRef.current) {

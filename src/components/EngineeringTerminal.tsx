@@ -94,7 +94,7 @@ deploy:vercel:
   },
 ];
 
-const getTokenColor = (token: string, language: string): string => {
+const getTokenColor = (token: string): string => {
   if (['export', 'interface', 'type', 'const', 'let', 'var', 'function', 'class', 'import', 'from', 'default', 'return', 'if', 'else', 'for', 'while'].includes(token)) {
     return 'text-cyan-400';
   }
@@ -122,7 +122,7 @@ interface HighlightedCodeProps {
   lines?: CodeLine[];
 }
 
-const HighlightedCode: React.FC<HighlightedCodeProps> = ({ code, language, lines }) => {
+const HighlightedCode: React.FC<HighlightedCodeProps> = ({ code, lines }) => {
   const displayLines = lines ? lines.map(l => l.text) : code.split('\n');
   
   return (
@@ -136,7 +136,7 @@ const HighlightedCode: React.FC<HighlightedCodeProps> = ({ code, language, lines
             <span className="flex-1 text-zinc-300">
               {line.split(/(\s+|[{}[\]():",;])/).map((token, tokenIdx) => (
                 token.trim() ? (
-                  <span key={tokenIdx} className={getTokenColor(token, language)}>
+                  <span key={tokenIdx} className={getTokenColor(token)}>
                     {token}
                   </span>
                 ) : (

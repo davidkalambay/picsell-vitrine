@@ -47,7 +47,7 @@ export interface BatteryInfo {
     supported: boolean;
 }
 
-const DEFAULT_SETTINGS: SiteSettings = {
+export const DEFAULT_SETTINGS: SiteSettings = {
     themeMode: "scroll-dynamic",
     glassmorphism: true,
     gearSize: "large",

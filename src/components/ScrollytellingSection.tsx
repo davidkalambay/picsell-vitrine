@@ -353,7 +353,7 @@ export const ScrollytellingSection: React.FC = () => {
                         {/* Technical Spec Index (Sally's Idea 09) */}
                         {settings.extremeTypography && (
                             <p className="font-mono text-[10px] sm:text-[11px] tracking-[0.22em] uppercase text-[var(--pic-orange,#f37021)]/90 mb-2 select-none">
-                                // SPEC_01: ACQUISITION_ROAS // CHANNEL_GROWTH
+                                {"// SPEC_01: ACQUISITION_ROAS // CHANNEL_GROWTH"}
                             </p>
                         )}
 
@@ -447,7 +447,7 @@ export const ScrollytellingSection: React.FC = () => {
                         {/* Technical Spec Index (Sally's Idea 09) */}
                         {settings.extremeTypography && (
                             <p className="font-mono text-[10px] sm:text-[11px] tracking-[0.22em] uppercase text-[var(--pic-turquoise,#3dbcc7)]/90 mb-2 select-none">
-                                // SPEC_02: WORKFLOW_SYNC // ZERO_HUMAN_ERROR
+                                {"// SPEC_02: WORKFLOW_SYNC // ZERO_HUMAN_ERROR"}
                             </p>
                         )}
 
@@ -540,7 +540,7 @@ export const ScrollytellingSection: React.FC = () => {
                         {/* Technical Spec Index (Sally's Idea 09) */}
                         {settings.extremeTypography && (
                             <p className="font-mono text-[10px] sm:text-[11px] tracking-[0.22em] uppercase text-[var(--pic-blue,#0089d0)]/90 mb-2 select-none">
-                                // SPEC_03: SAAS_CORE_ENGINE // POSTGRES_OPTIMIZED
+                                {"// SPEC_03: SAAS_CORE_ENGINE // POSTGRES_OPTIMIZED"}
                             </p>
                         )}
 
@@ -553,7 +553,7 @@ export const ScrollytellingSection: React.FC = () => {
                             flavor="clockwork"
                             className="text-2xl sm:text-4xl font-black tracking-tight mb-4 text-white leading-tight font-sora"
                         >
-                            Des produits robustes, du prototype à l'échelle.
+                            Des produits robustes, du prototype à l&apos;échelle.
                         </SplitTextReveal>
                         <SplitTextReveal
                             as="p"
@@ -633,7 +633,7 @@ export const ScrollytellingSection: React.FC = () => {
                         {/* Technical Spec Index (Sally's Idea 09) */}
                         {settings.extremeTypography && (
                             <p className="font-mono text-[10px] sm:text-[11px] tracking-[0.22em] uppercase text-[var(--pic-gold,#fdb913)]/90 mb-2 select-none">
-                                // SPEC_04: PREDICTIVE_ANALYTICS // DECISION_ENGINE
+                                {"// SPEC_04: PREDICTIVE_ANALYTICS // DECISION_ENGINE"}
                             </p>
                         )}
 

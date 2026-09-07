@@ -17,17 +17,16 @@ import { useSiteSettings } from "@/context/SettingsContext";
 export default function Home() {
   const mainRef = useRef<HTMLElement>(null);
   const { settings, heroIntroKey } = useSiteSettings();
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isScrollDarkMode, setIsScrollDarkMode] = useState(false);
+  const isDarkMode = settings.themeMode === "force-dark" ? true : settings.themeMode === "force-light" ? false : isScrollDarkMode;
 
   // Handle Forced Themes
   useEffect(() => {
     if (!mainRef.current) return;
 
     if (settings.themeMode === "force-dark") {
-      setIsDarkMode(true);
       gsap.to(mainRef.current, { backgroundColor: "#06070a", duration: 0.4 });
     } else if (settings.themeMode === "force-light") {
-      setIsDarkMode(false);
       gsap.to(mainRef.current, { backgroundColor: "#ffffff", duration: 0.4 });
     }
   }, [settings.themeMode]);
@@ -41,7 +40,7 @@ export default function Home() {
       start: "top 70%",
       end: "bottom 30%",
       onEnter: () => {
-        setIsDarkMode(true);
+        setIsScrollDarkMode(true);
         gsap.to(mainRef.current, {
           backgroundColor: "#06070a",
           duration: 0.8,
@@ -49,7 +48,7 @@ export default function Home() {
         });
       },
       onLeaveBack: () => {
-        setIsDarkMode(false);
+        setIsScrollDarkMode(false);
         gsap.to(mainRef.current, {
           backgroundColor: "#ffffff",
           duration: 0.8,
@@ -235,7 +234,7 @@ export default function Home() {
           flavor="smooth"
           className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto mb-8 leading-relaxed font-normal relative z-10"
         >
-          Picsell Agency conçoit des systèmes marketing, techniques et data pilotés par l'IA, pensés pour les entreprises congolaises et le marché francophone.
+          Picsell Agency conçoit des systèmes marketing, techniques et data pilotés par {"l'IA"}, pensés pour les entreprises congolaises et le marché francophone.
         </SplitTextReveal>
 
         {/* Technical Monospace Metadata HUD (Sally's Idea 09) */}
